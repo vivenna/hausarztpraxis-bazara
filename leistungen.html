@@ -1488,7 +1488,7 @@
         display: flex;
         max-width: 950px; /* Etwas breiter */
         width: 90%;
-        max-height: 85vh; 
+        max-height: 90vh; /* Höhe des Pop-ups erhöht */
         box-shadow: 0 8px 25px rgba(0,0,0,0.2); /* Deutlicherer Schatten */
         position: relative;
         overflow-y: auto; 
@@ -1520,7 +1520,7 @@
 
       .modal-image-container img {
         max-width: 100%;
-        max-height: 75vh; 
+        max-height: 88vh; /* Höhe des Bildes im Pop-up weiter erhöht */
         height: auto;
         display: block;
         border-radius: 4px;
@@ -1535,12 +1535,16 @@
 
       .modal-text-container h4 { /* Titel im Modal */
         font-family: 'Poppins', sans-serif;
-        font-weight: 700; /* Bold */
-        font-size: 26px; /* Angepasste Größe */
+        font-weight: 700; /* Bold, wie .betreuung-bild-beschriftung */
+        font-size: 56px; /* Doppelte Schriftgröße von .betreuung-bild-beschriftung (28px * 2) */
         color: #333333;
         margin-top: 0;
         margin-bottom: 15px; /* Weniger Abstand zum Text */
         line-height: 1.3;
+      }
+      /* Stellt sicher, dass die Highlight-Farbe auch im Modal-Titel angewendet wird */
+      .modal-text-container h4 .highlight-krankheit {
+        color: #6e370e; 
       }
 
       .modal-text-container p.poppins-light { /* Infotext im Modal */
@@ -1618,12 +1622,16 @@
           if (!imageElement || !titleElement) return;
 
           const imageSrc = imageElement.src;
-          const titleText = titleElement.textContent.trim(); // .textContent und .trim() für sauberen Text
+          const titleHTML = titleElement.innerHTML; // HTML-Inhalt für korrekte Formatierung übernehmen
           const infoText = bildItem.dataset.infoText;
 
           modalImage.src = imageSrc;
-          modalImage.alt = titleText; 
-          modalTitle.textContent = titleText;
+          modalImage.alt = titleElement.textContent.trim(); // Alt-Text bleibt reiner Text
+          
+          // Modifiziere titleHTML, um "DMP für " in Schwarz darzustellen
+          const modifiedTitleHTML = titleHTML.replace("DMP für ", '<span style="color: #000000;">DMP für </span>');
+          modalTitle.innerHTML = modifiedTitleHTML;
+
           modalInfoText.textContent = infoText || "Keine weiteren Informationen verfügbar."; // Fallback
 
           if (modalOverlay) modalOverlay.style.display = 'flex';
