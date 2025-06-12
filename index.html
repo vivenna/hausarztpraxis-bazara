@@ -665,6 +665,62 @@
       max-width: 400px; /* Maximale Breite für die Beschreibung, anpassbar */
     }
 
+    /* Fußzeile */
+    .main-footer {
+      background-color: #6e370e;
+      padding: 80px 40px; /* Ausreichend Innenabstand */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column; /* Falls später noch Copyright o.ä. hinzukommt */
+      text-align: center;
+      position: relative; /* Für die Positionierung des Logos, falls es überlappen soll */
+    }
+
+    .footer-logo-wrapper {
+      opacity: 0.5; /* Transparenz für das gesamte Logo */
+    }
+
+    /* Wiederverwendung der Logo-Struktur, aber mit eigenen Klassen für die Größe */
+    .footer-logo .logo-link {
+      text-decoration: none;
+      color: inherit; /* Farbe wird von Elternelementen im Footer geerbt oder explizit gesetzt */
+      display: inline-block;
+    }
+
+    .footer-logo .logo-text-container {
+      position: relative;
+      display: inline-block;
+      line-height: 1;
+    }
+
+    .footer-logo .bazara-style {
+      font-family: 'Questrial', sans-serif;
+      font-size: 180px; /* Deutlich größer */
+      color: #ffffff; /* Helle Farbe für guten Kontrast auf dunklem Grund */
+    }
+
+    .footer-logo .safia-style {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Great Vibes', cursive;
+      font-size: 190px; /* Deutlich größer */
+      color: #f0f0f0; /* Helle Farbe, leicht abgesetzt */
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .footer-logo .subtitle-style {
+      margin-top: 15px; /* Angepasster Abstand */
+      font-family: 'Inter', sans-serif;
+      font-size: 28px; /* Größerer Untertitel */
+      color: #ffffff; /* Helle Farbe */
+      line-height: 1.2;
+      text-align: center;
+    }
+
   </style>
 </head>
 <body>
@@ -894,6 +950,19 @@
       </div>
     </div>
   </div>
+  <footer class="main-footer">
+    <div class="footer-logo-wrapper">
+      <div class="footer-logo">
+        <a href="index.html" class="logo-link"> <!-- Verlinkt zur Startseite -->
+          <div class="logo-text-container">
+            <div class="bazara-style">BAZARA</div>
+            <div class="safia-style">safia</div>
+          </div>
+          <div class="subtitle-style">Hausarztpraxis</div>
+        </a>
+      </div>
+    </div>
+  </footer>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const mainNav = document.querySelector('.main-nav');
