@@ -405,6 +405,47 @@
       font-weight: 700; /* Sicherstellen, dass Bold beibehalten wird */
     }
 
+    .diagnostik-infotext {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; /* Poppins Light */
+      font-size: 18px;
+      line-height: 1.6;
+      color: #333333; /* Passend zum Tabellentext */
+      text-align: left;
+      /* Angepasst für Flexbox-Layout */
+      width: calc(50% - 150px); /* Breite des Textinhalts, 50% des Wrappers minus linker Einzug */
+      margin-left: 150px;       /* Einzug von links innerhalb des Wrappers */
+      margin-right: 40px;       /* Abstand zum rechten Icon-Container */
+      flex-shrink: 0;           /* Verhindert, dass das Element schrumpft */
+      /* margin-top und margin-bottom werden vom Wrapper übernommen */
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    .diagnostik-content-wrapper { /* Neuer Container für Text und Icon */
+      display: flex;
+      align-items: center; /* Vertikale Zentrierung von Text und Icon zueinander */
+      margin-top: 170px;   /* Abstand vom Haupttitel "MODERNE DIAGNOSTIK" */
+      margin-bottom: 60px; /* Abstand zum Ende der Sektion oder folgendem Inhalt */
+    }
+
+    .diagnostik-icon-container { /* Container für das rechte Icon */
+      flex-grow: 1; /* Nimmt den verbleibenden Platz in der rechten Hälfte ein */
+      display: flex;
+      justify-content: center; /* Horizontale Zentrierung des Icons */
+      max-width: 410px;
+      align-items: center;     /* Vertikale Zentrierung des Icons */
+      padding: 20px; /* Optional: Innenabstand, damit das Icon nicht am Rand klebt */
+      box-sizing: border-box;
+    }
+
+    .diagnostik-icon { /* Das Icon selbst */
+      max-width: 100%; /* Stellt sicher, dass das Icon nicht über seinen Container hinausgeht */
+      max-height: 450px; /* Beispiel für "riesig", passen Sie dies bei Bedarf an */
+      height: auto;      /* Behält das Seitenverhältnis bei */
+      display: block;    /* Verhindert möglichen Leerraum unter dem Bild */
+    }
+
     /* Tabelle für Sprechzeiten */
     .sprechzeiten-tabelle {
       width: 80%; /* Anpassbare Breite der Tabelle */
@@ -1123,6 +1164,25 @@
       </div>
     </div>
     <!-- Anderer Inhalt der .leistungen-section kann hier folgen -->
+  </div>
+
+  <div class="sprechzeiten-section">
+    <div class="section-divider"></div>
+    <div class="sub-heading-container">
+      <span class="sub-heading-bullet">&bull;</span>
+      <h3 class="sub-heading">Klarheit schaffen – früh und präzise</h3>
+    </div>
+    <h2 class="main-heading">
+      <span class="highlight">MODERNE</span> DIAGNOSTIK
+    </h2>
+    <div class="diagnostik-content-wrapper">
+      <p class="diagnostik-infotext">
+        Mit präziser und moderner Diagnosetechnik lassen sich Erkrankungen frühzeitig erkennen, gezielt beobachten und individuell behandeln – für mehr Sicherheit in jeder Phase Ihrer Gesundheit.
+      </p>
+      <div class="diagnostik-icon-container">
+        <img src="/assets/herz.png" alt="Moderne Diagnostik Illustration" class="diagnostik-icon">
+      </div>
+    </div>
   </div>
 
   <script>
