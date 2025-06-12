@@ -234,7 +234,7 @@
 
     .leistung-item {
       flex-basis: 30%; /* Jedes Item nimmt ca. 30% der Breite ein */
-      max-width: 280px; /* Maximale Breite für jedes Item */
+      /* max-width: 280px; */ /* Entfernt, um dem Label mehr Platz zu geben */
       display: flex;
       flex-direction: column;
       align-items: center; /* Zentriert Icon, Linie und Text */
@@ -252,17 +252,33 @@
     }
 
     .leistung-line {
-      width: 60px; /* Länge der Linie */
-      height: 2px; /* Dicke der Linie */
+      width: 110px; /* Länge der Linie erhöht */
+      height: 4px; /* Dicke der Linie erhöht */
       background-color: #6e370e; /* Farbe der Linie */
-      margin-left: -10px; /* Beginnt etwas weiter links als das Icon (Iconbreite/2 - Linienbreite/2 - Offset) */
-      margin-bottom: 15px;
+      margin-top: 60px; /* Weiter nach unten verschoben */
+      margin-bottom: -5px; /* Weiter reduzierter Abstand zur Beschriftung */
     }
+
+    /* Individuelle Positionierung der Linien */
+    .leistungen-items-container .leistung-item:nth-of-type(1) .leistung-line {
+      margin-left: -130px; /* Weniger nach links für die erste Linie (DMP) */
+    }
+
+    .leistungen-items-container .leistung-item:nth-of-type(2) .leistung-line {
+      margin-left: -250px; /* Weiter nach links für die zweite Linie (Diagnostik) */
+    }
+
+    .leistungen-items-container .leistung-item:nth-of-type(3) .leistung-line {
+      margin-left: -220px; /* Ein bisschen weiter nach links für die dritte Linie (Vorsorge) */
+    }
+
+
+
 
     .leistung-label {
       font-family: 'Poppins', sans-serif;
-      font-weight: 300; /* Poppins Light */
-      font-size: 16px;
+      font-weight: 700; /* Poppins Light */
+      font-size: 22px;
     }
   </style>
 </head>
@@ -313,14 +329,14 @@
     </h2>
     <div class="leistungen-items-container">
       <div class="leistung-item">
-        <img src="/assets/diagnostik.png" alt="Diagnostik & Überwachung Icon" class="leistung-icon">
-        <div class="leistung-line"></div>
-        <p class="leistung-label">Diagnostik & Überwachung</p>
-      </div>
-      <div class="leistung-item">
         <img src="/assets/dmp.png" alt="DMP-Betreuung Icon" class="leistung-icon">
         <div class="leistung-line"></div>
         <p class="leistung-label">DMP-Betreuung</p>
+      </div>
+      <div class="leistung-item">
+        <img src="/assets/diagnostik.png" alt="Diagnostik & Überwachung Icon" class="leistung-icon">
+        <div class="leistung-line"></div>
+        <p class="leistung-label">Diagnostik & Überwachung</p>
       </div>
       <div class="leistung-item">
         <img src="assets/diabetes.png" alt="Vorsorge und Impfungen Icon" class="leistung-icon">
