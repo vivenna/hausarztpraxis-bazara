@@ -332,6 +332,53 @@
       margin-left: 8px; /* Kleiner Abstand zum Text */
     }
 
+    /* Sprechzeiten-Bereich */
+    .sprechzeiten-section {
+      background-color: #ffffff; /* Hintergrundfarbe wie Leistungsbereich, anpassbar */
+      color: #000000;
+      padding: 60px 40px; /* Etwas weniger Padding oben als Leistungsbereich wegen der Linie */
+      text-align: center;
+    }
+
+    .sprechzeiten-section .section-divider {
+      width: 80%;
+      height: 1px; /* Linie dünner gemacht */
+      background-color: #6e370e;
+      margin: 0 auto 40px auto; /* Zentriert und Abstand nach unten */
+    }
+
+    .sprechzeiten-section .sub-heading-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .sprechzeiten-section .sub-heading-bullet {
+      font-size: 24px; /* Größe des Punktes */
+      color: #6e370e;
+      margin-right: 10px;
+      line-height: 1;
+    }
+
+    .sprechzeiten-section .sub-heading {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; /* Poppins Light */
+      font-size: 20px;
+    }
+
+    .sprechzeiten-section .main-heading {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700; /* Poppins Bold */
+      font-size: 70px; /* Gleich wie Leistungsbereich, anpassbar */
+      line-height: 1.1;
+      margin-top: 0;
+    }
+
+    .sprechzeiten-section .main-heading .highlight {
+      color: #6e370e;
+      font-weight: 700; /* Sicherstellen, dass Bold beibehalten wird */
+    }
 
 
 
@@ -407,6 +454,17 @@
     </div>
   </div>
 
+  <div class="sprechzeiten-section">
+    <div class="section-divider"></div>
+    <div class="sub-heading-container">
+      <span class="sub-heading-bullet">&bull;</span>
+      <h3 class="sub-heading">Wann wir für Sie da sind</h3>
+    </div>
+    <h2 class="main-heading">
+      <span class="highlight">UNSERE</span> SPRECHSTUNDE
+    </h2>
+    <!-- Hier können die Sprechzeiten-Details später eingefügt werden -->
+  </div>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const mainNav = document.querySelector('.main-nav');
