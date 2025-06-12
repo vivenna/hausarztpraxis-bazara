@@ -1310,7 +1310,7 @@
       CHRONISCHE <span class="highlight">BETREUUNG</span>
     </h2>
     <div class="chronische-betreuung-bilder-container">
-      <div class="betreuung-bild-item">
+      <div class="betreuung-bild-item" data-info-text="Das strukturierte DMP für Koronare Herzkrankheit (KHK) unterstützt Patientinnen und Patienten dabei, Risikofaktoren zu erkennen, Herzbeschwerden zu beobachten und einem Herzinfarkt gezielt vorzubeugen – durch regelmäßige Betreuung und klare Therapieziele.">
         <div class="bild-mit-overlay-container">
           <img src="/assets/KHK.png" alt="DMP für KHK" class="betreuung-bild">
           <div class="neues-weisses-rechteck"></div>
@@ -1321,7 +1321,7 @@
           DMP für <span class="highlight-krankheit">KHK</span>
         </p>
       </div>
-      <div class="betreuung-bild-item">
+      <div class="betreuung-bild-item" data-info-text="Das DMP Asthma hilft Ihnen, Ihre Erkrankung besser zu verstehen, Asthmaanfälle zu reduzieren und Ihre Lebensqualität durch gezielte Maßnahmen und Schulungen zu verbessern.">
         <div class="bild-mit-overlay-container">
           <img src="/assets/asthma.png" alt="DMP für Asthma" class="betreuung-bild">
           <div class="neues-weisses-rechteck"></div>
@@ -1332,7 +1332,7 @@
           DMP für <span class="highlight-krankheit">Asthma</span>
         </p>
       </div>
-      <div class="betreuung-bild-item">
+      <div class="betreuung-bild-item" data-info-text="Mit dem DMP Diabetes erhalten Sie eine umfassende Betreuung, um Blutzuckerwerte optimal einzustellen, Folgeerkrankungen vorzubeugen und ein aktives Leben mit Diabetes zu führen.">
         <div class="bild-mit-overlay-container">
           <img src="/assets/diabetes dmp.png" alt="DMP für Diabetes" class="betreuung-bild">
           <div class="neues-weisses-rechteck"></div>
@@ -1464,6 +1464,93 @@
         border-radius: 25px; /* Starke Abrundung (Hälfte der Höhe) */
         pointer-events: none; /* Keine Interaktion, da rein dekorativ */
       }
+
+      /* Modal Stile */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.75); /* Etwas dunklerer Overlay */
+        display: none; /* Initial versteckt */
+        justify-content: center;
+        align-items: center;
+        z-index: 1001; /* Über allem anderen */
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      .modal-content {
+        background-color: #ffffff;
+        padding: 35px; /* Mehr Padding */
+        border-radius: 8px;
+        display: flex;
+        max-width: 950px; /* Etwas breiter */
+        width: 90%;
+        max-height: 85vh; 
+        box-shadow: 0 8px 25px rgba(0,0,0,0.2); /* Deutlicherer Schatten */
+        position: relative;
+        overflow-y: auto; 
+      }
+
+      .modal-close-button {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        background: none;
+        border: none;
+        font-size: 32px; /* Größerer Schließen-Button */
+        font-weight: bold;
+        color: #555;
+        cursor: pointer;
+        line-height: 1;
+      }
+      .modal-close-button:hover {
+        color: #000;
+      }
+
+      .modal-image-container {
+        flex: 0 0 45%; 
+        margin-right: 35px; /* Mehr Abstand zum Text */
+        display: flex;
+        align-items: center; 
+        justify-content: center;
+      }
+
+      .modal-image-container img {
+        max-width: 100%;
+        max-height: 75vh; 
+        height: auto;
+        display: block;
+        border-radius: 4px;
+      }
+
+      .modal-text-container {
+        flex: 1; 
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; 
+      }
+
+      .modal-text-container h4 { /* Titel im Modal */
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700; /* Bold */
+        font-size: 26px; /* Angepasste Größe */
+        color: #333333;
+        margin-top: 0;
+        margin-bottom: 15px; /* Weniger Abstand zum Text */
+        line-height: 1.3;
+      }
+
+      .modal-text-container p.poppins-light { /* Infotext im Modal */
+        font-family: 'Poppins', sans-serif;
+        font-weight: 300; /* Light */
+        font-size: 17px; /* Etwas größerer Text */
+        line-height: 1.7; /* Bessere Lesbarkeit */
+        color: #555555;
+        margin-bottom: 0;
+      }
     `;
     document.head.appendChild(styleSheet);
 
@@ -1508,8 +1595,63 @@
       window.addEventListener('scroll', checkMenuPosition);
       window.addEventListener('resize', checkMenuPosition); // Auch bei Größenänderung prüfen
       checkMenuPosition(); // Initiale Prüfung beim Laden der Seite
+
+      // Modal-Logik
+      const modalOverlay = document.getElementById('infoModalOverlay');
+      const modalImage = document.getElementById('modalImage');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalInfoText = document.getElementById('modalInfoText');
+      const modalCloseButton = document.querySelector('.modal-close-button');
+
+      const plusKreise = document.querySelectorAll('.plus-kreis');
+
+      plusKreise.forEach(plusKreis => {
+        plusKreis.addEventListener('click', function(event) {
+          event.stopPropagation(); 
+
+          const bildItem = this.closest('.betreuung-bild-item');
+          if (!bildItem) return;
+
+          const imageElement = bildItem.querySelector('.betreuung-bild');
+          const titleElement = bildItem.querySelector('.betreuung-bild-beschriftung');
+          
+          if (!imageElement || !titleElement) return;
+
+          const imageSrc = imageElement.src;
+          const titleText = titleElement.textContent.trim(); // .textContent und .trim() für sauberen Text
+          const infoText = bildItem.dataset.infoText;
+
+          modalImage.src = imageSrc;
+          modalImage.alt = titleText; 
+          modalTitle.textContent = titleText;
+          modalInfoText.textContent = infoText || "Keine weiteren Informationen verfügbar."; // Fallback
+
+          if (modalOverlay) modalOverlay.style.display = 'flex';
+        });
+      });
+
+      if (modalCloseButton && modalOverlay) {
+          modalCloseButton.addEventListener('click', () => modalOverlay.style.display = 'none');
+      }
+
+      if (modalOverlay) {
+          modalOverlay.addEventListener('click', (event) => {
+              if (event.target === modalOverlay) modalOverlay.style.display = 'none';
+          });
+      }
     });
   </script>
-
+  <div id="infoModalOverlay" class="modal-overlay">
+    <div class="modal-content">
+      <button class="modal-close-button">&times;</button>
+      <div class="modal-image-container">
+        <img id="modalImage" src="" alt="Detailansicht">
+      </div>
+      <div class="modal-text-container">
+        <h4 id="modalTitle">Titel des Pop-ups</h4>
+        <p id="modalInfoText" class="poppins-light">Hier steht der Infotext.</p>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
