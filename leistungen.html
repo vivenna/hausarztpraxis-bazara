@@ -1311,19 +1311,28 @@
     </h2>
     <div class="chronische-betreuung-bilder-container">
       <div class="betreuung-bild-item">
-        <img src="/assets/KHK.png" alt="DMP für KHK" class="betreuung-bild">
+        <div class="bild-mit-overlay-container">
+          <img src="/assets/KHK.png" alt="DMP für KHK" class="betreuung-bild">
+          <div class="plus-kreis"><span>+</span></div>
+        </div>
         <p class="betreuung-bild-beschriftung">
           DMP für <span class="highlight-krankheit">KHK</span>
         </p>
       </div>
       <div class="betreuung-bild-item">
-        <img src="/assets/asthma.png" alt="DMP für Asthma" class="betreuung-bild">
+        <div class="bild-mit-overlay-container">
+          <img src="/assets/asthma.png" alt="DMP für Asthma" class="betreuung-bild">
+          <div class="plus-kreis"><span>+</span></div>
+        </div>
         <p class="betreuung-bild-beschriftung">
           DMP für <span class="highlight-krankheit">Asthma</span>
         </p>
       </div>
       <div class="betreuung-bild-item">
-        <img src="/assets/diabetes dmp.png" alt="DMP für Diabetes" class="betreuung-bild">
+        <div class="bild-mit-overlay-container">
+          <img src="/assets/diabetes dmp.png" alt="DMP für Diabetes" class="betreuung-bild">
+          <div class="plus-kreis"><span>+</span></div>
+        </div>
         <p class="betreuung-bild-beschriftung">
           DMP für <span class="highlight-krankheit">Diabetes</span>
         </p>
@@ -1340,30 +1349,65 @@
         display: flex;
         justify-content: space-around; /* Gleichmäßiger Abstand */
         align-items: flex-start; /* Oben ausrichten */
-        margin-top: 70px; /* Abstand zum Titel */
+        margin-top: 90px; /* Abstand zum Haupttitel "CHRONISCHE BETREUUNG" */
         flex-wrap: wrap; /* Umbruch bei Bedarf */
+        max-width: 1100px; /* Maximale Breite des Containers, macht ihn schmaler */
+        margin-left: auto; /* Zentriert den Container */
+        margin-right: auto; /* Zentriert den Container */
       }
       .betreuung-bild-item {
         text-align: center;
         flex-basis: 30%; /* Jedes Item nimmt ca. 30% ein */
         margin-bottom: 40px;
+        margin-top: 30px; /* Mehr Abstand der Items (und somit Bilder) nach oben */
+      }
+      .bild-mit-overlay-container { /* Neuer Container für Bild und Plus-Kreis */
+        position: relative; /* Wichtig für die absolute Positionierung des Kreises */
+        display: inline-block; /* Damit der Container sich an die Bildgröße anpasst */
       }
       .betreuung-bild {
         width: 100%; /* Bild füllt die Breite des Items */
-        max-width: 250px; /* Maximale Breite des Bildes, anpassbar */
-        height: 250px; /* Feste Höhe für die Bilder */
+        max-width: 300px; /* Maximale Breite des Bildes vergrößert */
+        height: 300px; /* Feste Höhe für die Bilder vergrößert */
         object-fit: contain; /* Bild wird skaliert, um hineinzupassen, Seitenverhältnis beibehalten */
-        margin-bottom: 15px;
+        margin-bottom: 20px; /* Etwas mehr Abstand zur Beschriftung */
       }
       .betreuung-bild-beschriftung {
         font-family: 'Poppins', sans-serif;
-        font-size: 20px;
+        font-size: 28px; /* Schriftgröße weiter erhöht */
+        font-weight: 700; /* Poppins Bold */
         color: #0c0c0c;
         margin-top: 10px;
       }
       .betreuung-bild-beschriftung .highlight-krankheit {
         color: #6e370e;
-        font-weight: 500; /* Etwas fetter, falls gewünscht */
+        font-weight: 700; /* Poppins Bold, um konsistent zu sein, oder 500 für leichten Unterschied */
+      }
+      .plus-kreis {
+        position: absolute;
+        bottom: 40px; /* Noch weiter angehoben */
+        right: -7px;  /* Um 10px nach links verschoben */
+        width: 50px;   /* Breite des Kreises */
+        height: 50px;  /* Höhe des Kreises */
+        background-color: #ffffff;
+        border: 2px solid #0c0c0c;
+        border-radius: 50%; /* Macht es rund */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px; /* Größe des Pluszeichens */
+        font-weight: 300; /* Light für das Plus */
+        color: #0c0c0c;
+        line-height: 1; /* Verhindert zusätzlichen vertikalen Platz */
+        box-shadow: 0px 2px 5px rgba(0,0,0,0.1); /* Optional: kleiner Schatten */
+        transform: translate(25%, 25%); /* Verschiebt den Kreis um 1/4 seiner Größe nach außen */
+
+      }
+      .plus-kreis span {
+        display: inline-block; /* Stellt sicher, dass line-height korrekt angewendet wird */
+        line-height: 50px; /* Setzt die Zeilenhöhe auf die Höhe des Kreises */
+        position: relative; /* Ermöglicht feine Positionsanpassung */
+        top: -2px; /* Verschiebt das Plus-Zeichen 2px nach oben */
       }
     `;
     document.head.appendChild(styleSheet);
