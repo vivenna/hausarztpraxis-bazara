@@ -182,6 +182,88 @@
       font-weight: 300; /* Poppins Light */
       line-height: 1.3; /* Bessere Lesbarkeit für längeren Text */
     }
+
+    /* Leistungsbereich */
+    .leistungen-section {
+      background-color: #ffffff;
+      color: #000000;
+      padding: 80px 40px;
+      text-align: center;
+    }
+
+    .leistungen-section .sub-heading-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .leistungen-section .sub-heading-bullet {
+      font-size: 24px; /* Größe des Punktes */
+      color: #6e370e;
+      margin-right: 10px;
+      line-height: 1;
+    }
+
+    .leistungen-section .sub-heading {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; /* Poppins Light */
+      font-size: 20px;
+    }
+
+    .leistungen-section .main-heading {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700; /* Poppins Bold */
+      font-size: 70px; /* Beispielgröße, anpassbar */
+      line-height: 1.1;
+      margin-top: 0;
+    }
+
+    .leistungen-section .main-heading .highlight {
+      color: #6e370e;
+      font-weight: 700; /* Sicherstellen, dass Bold beibehalten wird */
+    }
+
+    .leistungen-items-container {
+      display: flex;
+      justify-content: space-around; /* Gleichmäßiger Abstand um die Elemente */
+      align-items: flex-start; /* Oben ausrichten, falls Inhalte variieren */
+      margin-top: 130px; /* Reduzierter Abstand zum Haupttitel */
+      flex-wrap: wrap; /* Falls auf kleinen Bildschirmen nicht genug Platz ist */
+    }
+
+    .leistung-item {
+      flex-basis: 30%; /* Jedes Item nimmt ca. 30% der Breite ein */
+      max-width: 280px; /* Maximale Breite für jedes Item */
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Zentriert Icon, Linie und Text */
+      margin-bottom: 40px; /* Abstand zwischen den Reihen, falls umgebrochen wird */
+    }
+
+    .leistung-icon {
+      width: fit-content; /* Beispielbreite für das Icon */
+      height: 250px; /* Gleiche Höhe für alle Icons */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 15px;
+      object-fit: contain; /* Stellt sicher, dass das Bild passt, ohne es zu verzerren */
+    }
+
+    .leistung-line {
+      width: 60px; /* Länge der Linie */
+      height: 2px; /* Dicke der Linie */
+      background-color: #6e370e; /* Farbe der Linie */
+      margin-left: -10px; /* Beginnt etwas weiter links als das Icon (Iconbreite/2 - Linienbreite/2 - Offset) */
+      margin-bottom: 15px;
+    }
+
+    .leistung-label {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; /* Poppins Light */
+      font-size: 16px;
+    }
   </style>
 </head>
 <body>
@@ -218,6 +300,33 @@
     </div>
     <div class="right-column">
       <p class="welcome-text">Herzlich willkommen in unserer Praxis. Wir nehmen uns Zeit für Ihre Gesundheit – mit Erfahrung, Empathie und einem verlässlichen Team.</p>
+    </div>
+  </div>
+
+  <div class="leistungen-section">
+    <div class="sub-heading-container">
+      <span class="sub-heading-bullet">&bull;</span>
+      <h3 class="sub-heading">So unterstützen wir Ihre Gesundheit</h3>
+    </div>
+    <h2 class="main-heading">
+      <span class="highlight">UNSERE</span> LEISTUNGEN
+    </h2>
+    <div class="leistungen-items-container">
+      <div class="leistung-item">
+        <img src="/assets/diagnostik.png" alt="Diagnostik & Überwachung Icon" class="leistung-icon">
+        <div class="leistung-line"></div>
+        <p class="leistung-label">Diagnostik & Überwachung</p>
+      </div>
+      <div class="leistung-item">
+        <img src="/assets/dmp.png" alt="DMP-Betreuung Icon" class="leistung-icon">
+        <div class="leistung-line"></div>
+        <p class="leistung-label">DMP-Betreuung</p>
+      </div>
+      <div class="leistung-item">
+        <img src="assets/diabetes.png" alt="Vorsorge und Impfungen Icon" class="leistung-icon">
+        <div class="leistung-line"></div>
+        <p class="leistung-label">Vorsorge und Impfungen</p>
+      </div>
     </div>
   </div>
 
