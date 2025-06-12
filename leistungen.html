@@ -1417,19 +1417,21 @@
         position: absolute;
         bottom: 27.5px; /* Vertikal auf Höhe des Kreises */
         left: 0;        /* Linke Kante des Rechtecks am linken Bildrand (finale Position) */
-        right: -20px;  /* Rechte Kante des Rechtecks an linker Kante des Kreises (finale Position) */
+        right: -20px;  /* User-angepasst: rechte Kante 20px über rechten Rand des Containers */
+        /* width: 160px; entfernt, Breite wird durch left/right definiert */
         height: 50px; /* Gleiche Höhe wie der Kreis */
         background-color: #6e370e; /* Akzentfarbe für Hintergrund */
         color: #ffffff; /* Weißer Text */
-        border-radius: 25px; /* Starke Abrundung für Pillenform */
+        border-radius: 25px; /* Starke Abrundung für Pillenform (zurückgesetzt) */
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start; /* Text linksbündig */
+        padding-left: 30px; /* Abstand für den linksbündigen Text */
         font-family: 'Poppins', sans-serif;
-        font-size: 16px;
+        font-size: 16px; /* Zurückgesetzt auf vorherige Größe */
         font-weight: 500; /* Medium */
         opacity: 0;
-        transform: translateX(50px); /* Startet weiter rechts verschoben, um mit rechter Kreiskante übereinzustimmen */
+        transform: translateX(100%); /* Startet um 100% seiner Breite nach rechts verschoben */
         transition: transform 0.35s ease-out, opacity 0.3s ease-out; /* Sanfter Übergang für Position und Deckkraft */
         z-index: 5; /* Unter dem Plus-Kreis, aber über dem Bild */
         pointer-events: none; /* Verhindert Interaktion im versteckten Zustand */
@@ -1437,7 +1439,7 @@
 
       .bild-mit-overlay-container:hover .info-rechteck { /* Geändert: Hover auf Container, nicht nur Kreis */
         opacity: 1;
-        transform: translateX(0); /* Schiebt sich an die finale Position (linksbündig bis zur linken Kante des Kreises) */
+        transform: translateX(0); /* Schiebt sich an die finale Position */
         pointer-events: auto;
       }
     `;
