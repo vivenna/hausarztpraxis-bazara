@@ -413,30 +413,45 @@
       color: #333333; /* Passend zum Tabellentext */
       text-align: left;
       /* Angepasst für Flexbox-Layout */
-      width: calc(50% - 150px); /* Breite des Textinhalts, 50% des Wrappers minus linker Einzug */
-      margin-left: 150px;       /* Einzug von links innerhalb des Wrappers */
-      margin-right: 40px;       /* Abstand zum rechten Icon-Container */
-      flex-shrink: 0;           /* Verhindert, dass das Element schrumpft */
+      width: 100%; /* Nimmt volle Breite des .diagnostik-content-links Containers ein */
+      margin-left: 0;
+      margin-right: 0;
       /* margin-top und margin-bottom werden vom Wrapper übernommen */
-      margin-top: 0;
-      margin-bottom: 0;
+      margin-top: 0; /* Wird vom Wrapper gesteuert */
+      margin-bottom: 160px; /* Abstand zur neuen Punkteliste auf 160px vergrößert */
     }
 
     .diagnostik-content-wrapper { /* Neuer Container für Text und Icon */
       display: flex;
-      align-items: center; /* Vertikale Zentrierung von Text und Icon zueinander */
+      align-items: flex-start; /* Richtet linke Spalte und rechte Spalte (Icon) oben bündig aus */
       margin-top: 170px;   /* Abstand vom Haupttitel "MODERNE DIAGNOSTIK" */
       margin-bottom: 60px; /* Abstand zum Ende der Sektion oder folgendem Inhalt */
+      gap: 40px; /* Abstand zwischen linker Inhaltsspalte und rechter Icon-Spalte */
+    }
+
+    .diagnostik-content-links { /* Linke Spalte für Infotext und scrollbare Punkteliste */
+      flex-basis: 50%; /* Linke Spalte nimmt 50% der Breite ein */
+      padding-left: 150px; /* Globaler linker Einzug für diese Spalte */
+    }
+
+    .diagnostik-icon-sticky-rechts { /* Rechte Spalte für das sticky Icon */
+      flex-basis: 50%; /* Rechte Spalte nimmt 50% der Breite ein */
+      position: sticky; /* Die Spalte selbst wird sticky */
+      top: 200px; /* Erhöht, damit das Icon früher stoppt und mehr Abstand oben hat */
+      align-self: flex-start; /* Stellt sicher, dass die Spalte oben im Wrapper beginnt und nicht gestreckt wird */
     }
 
     .diagnostik-icon-container { /* Container für das rechte Icon */
-      flex-grow: 1; /* Nimmt den verbleibenden Platz in der rechten Hälfte ein */
+      /* flex-grow entfernt, da Breite durch .diagnostik-icon-sticky-rechts gesteuert wird */
       display: flex;
       justify-content: center; /* Horizontale Zentrierung des Icons */
-      max-width: 410px;
       align-items: center;     /* Vertikale Zentrierung des Icons */
       padding: 20px; /* Optional: Innenabstand, damit das Icon nicht am Rand klebt */
       box-sizing: border-box;
+      /* position: sticky und top entfernt, da der Parent (.diagnostik-icon-sticky-rechts) jetzt sticky ist */
+      width: 100%; /* Füllt die .diagnostik-icon-sticky-rechts Spalte */
+      max-width: 410px; /* Maximale Breite des Icons selbst */
+      margin: 0 auto; /* Zentriert das Icon, wenn die Spalte breiter als max-width ist */
     }
 
     .diagnostik-icon { /* Das Icon selbst */
@@ -444,6 +459,65 @@
       max-height: 450px; /* Beispiel für "riesig", passen Sie dies bei Bedarf an */
       height: auto;      /* Behält das Seitenverhältnis bei */
       display: block;    /* Verhindert möglichen Leerraum unter dem Bild */
+    }
+
+    /* Stile für die scrollbare Punkteliste (analog zu .werte-list-scrollable) */
+    .diagnostik-punkte-scrollable {
+      width: 85%; /* Nimmt 85% der Breite des .diagnostik-content-links Containers ein, um schmaler zu wirken */
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300;
+    }
+
+    .diagnostik-punkt-item {
+      display: flex;
+      align-items: flex-start; /* Nummer, Linie und Text oben bündig */
+      margin-bottom: 70px; /* Abstand zwischen den Punkten */
+    }
+
+    .diagnostik-punkt-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .diagnostik-punkt-number {
+      font-size: 40px;
+      font-weight: 300;
+      color: #333333;
+      line-height: 1;
+      min-width: 60px; /* Feste Breite für Ausrichtung */
+      text-align: right;
+      padding-right: 15px; /* Abstand zur Linie */
+    }
+
+    .diagnostik-punkt-title {
+      font-size: 40px;
+      font-weight: 300;
+      color: #0c0c0c;
+      margin-top: 0;
+      margin-bottom: 20px;
+      line-height: 1;
+      margin-left: 25px; 
+      text-align: left;
+      position: relative; /* Für die Positionierung des Pseudo-Elements */
+      display: block; /* Stellt sicher, dass der Titel als Blockelement linksbündig ist */
+      padding-bottom: 8px; /* Etwas Platz für den Unterstrich unter dem Text */
+    }
+
+    .diagnostik-punkt-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0; /* Positioniert den Unterstrich direkt unter dem padding-bottom des Titels */
+      left: -15px; /* Beginnt 15px links vom linken Rand des Titels (inkl. dessen margin-left) */
+      width: 60px; /* Kurze Breite des Unterstrichs */
+      height: 2px; /* Dicke des Unterstrichs */
+      background-color: #6e370e; /* Farbe des Unterstrichs */
+    }
+
+    .diagnostik-punkt-description {
+      font-size: 16px;
+      color: #6e370e;
+      line-height: 1.6;
+      margin-left: 25px; /* Hinzugefügt, um den Abstand zum Text zu erhalten, der vorher durch die Linie kam */
+      text-align: left;
     }
 
     /* Tabelle für Sprechzeiten */
@@ -1176,11 +1250,52 @@
       <span class="highlight">MODERNE</span> DIAGNOSTIK
     </h2>
     <div class="diagnostik-content-wrapper">
-      <p class="diagnostik-infotext">
-        Mit präziser und moderner Diagnosetechnik lassen sich Erkrankungen frühzeitig erkennen, gezielt beobachten und individuell behandeln – für mehr Sicherheit in jeder Phase Ihrer Gesundheit.
-      </p>
-      <div class="diagnostik-icon-container">
-        <img src="/assets/herz.png" alt="Moderne Diagnostik Illustration" class="diagnostik-icon">
+      <div class="diagnostik-content-links">
+        <p class="diagnostik-infotext">
+          Mit präziser und moderner Diagnosetechnik lassen sich Erkrankungen frühzeitig erkennen, gezielt beobachten und individuell behandeln – für mehr Sicherheit in jeder Phase Ihrer Gesundheit.
+        </p>
+        <div class="diagnostik-punkte-scrollable">
+          <div class="diagnostik-punkt-item">
+            <div class="diagnostik-punkt-number">01</div>
+            <div class="diagnostik-punkt-text-content">
+              <h4 class="diagnostik-punkt-title">Langzeit-EKG</h4>
+              <p class="diagnostik-punkt-description">Zur Erkennung von Herzrhythmusstörungen und zur Überwachung der Herzaktivität über 24 Stunden.</p>
+            </div>
+          </div>
+          <div class="diagnostik-punkt-item">
+            <div class="diagnostik-punkt-number">02</div>
+            <div class="diagnostik-punkt-text-content">
+              <h4 class="diagnostik-punkt-title">Laboranalysen</h4>
+              <p class="diagnostik-punkt-description">Laboranalysen liefern wichtige Hinweise auf Entzündungen, Organfunktionen und Stoffwechselprozesse – schnell und zuverlässig.</p>
+            </div>
+          </div>
+          <div class="diagnostik-punkt-item">
+            <div class="diagnostik-punkt-number">03</div>
+            <div class="diagnostik-punkt-text-content">
+              <h4 class="diagnostik-punkt-title">Blutdruckmessung</h4>
+              <p class="diagnostik-punkt-description">Regelmäßige Blutdruckkontrollen helfen, Herz-Kreislauf-Erkrankungen frühzeitig zu erkennen und rechtzeitig zu behandeln.</p>
+            </div>
+          </div>
+          <div class="diagnostik-punkt-item">
+            <div class="diagnostik-punkt-number">04</div>
+            <div class="diagnostik-punkt-text-content">
+              <h4 class="diagnostik-punkt-title">Lungenfunktionstest</h4>
+              <p class="diagnostik-punkt-description">Die Lungenfunktionsprüfung zeigt, wie gut Ihre Lunge arbeitet, und hilft, Atemprobleme frühzeitig zu erkennen und zu behandeln.</p>
+            </div>
+          </div>
+          <div class="diagnostik-punkt-item">
+            <div class="diagnostik-punkt-number">05</div>
+            <div class="diagnostik-punkt-text-content">
+              <h4 class="diagnostik-punkt-title">Blutentnahme</h4>
+              <p class="diagnostik-punkt-description">Gezielte Blutentnahmen helfen, Erkrankungen früh zu erkennen, Therapien zu überwachen und Ihre Gesundheit fundiert zu beurteilen.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="diagnostik-icon-sticky-rechts">
+        <div class="diagnostik-icon-container">
+          <img src="/assets/herz.png" alt="Moderne Diagnostik Illustration" class="diagnostik-icon">
+        </div>
       </div>
     </div>
   </div>
