@@ -932,12 +932,14 @@
       margin-bottom: 20px;
       width: 100%; /* Stellt sicher, dass die Zentrierung korrekt funktioniert */
     }
-
-    .notfall-zeile .notfall-icon-svg {
-      width: 48px; /* Größe des Icons */
-      height: auto;
+    
+    .notfall-icon-svg { /* Selektor korrigiert: .notfall-zeile entfernt */
+      width: 50px; /* Größe des Icons weiter reduziert, bitte anpassen nach Bedarf */
       fill: #0c0c0c; /* Farbe des Icons */
-      margin-right: 10px;
+      /* margin-right: 10px; entfernt, Steuerung über Tabellenzelle */
+      display: block; /* Für Zentrierung in der Zelle */
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .notfall-text-label {
@@ -945,7 +947,8 @@
       font-weight: 300; /* Light */
       font-size: 20px; /* Angepasste Schriftgröße */
       color: #0c0c0c;
-      margin-right: 15px;
+      /* margin-right: 15px; entfernt, Steuerung über Tabellenzelle */
+      white-space: nowrap; /* Verhindert Umbruch */
     }
 
     .notfall-nummer {
@@ -953,20 +956,46 @@
       font-size: 42px; /* Größere Schrift für die Nummern */
       color: #6e370e;
       line-height: 1; /* Verhindert zusätzlichen Zeilenabstand */
+      white-space: nowrap; /* Verhindert Umbruch */
+    }
+
+    /* .notfall-text-details wird nicht mehr benötigt */
+
+    .notfall-ubersicht-tabelle {
+      border-collapse: collapse;
+      width: auto; /* Passt sich dem Inhalt an und wird durch .notfall-info-links zentriert */
+      margin-bottom: 30px; /* Abstand zur Akut-Sprechstunde */
+      align-self: flex-end; /* Verschiebt die Tabelle nach rechts innerhalb des .notfall-info-links Containers */
+      margin-right: -30px;
+    }
+
+    .notfall-ubersicht-tabelle td {
+      border: none; /* Keine sichtbaren Ränder */
+      padding: 8px 15px; /* Innenabstand der Zellen, horizontal etwas mehr für Abstand */
+      text-align: center; /* Alle Inhalte mittig zentriert */
+      vertical-align: middle;
+    }
+
+    /* Mittlere Spalte der Notfall-Tabelle breiter machen */
+    .notfall-ubersicht-tabelle td:nth-child(2) {
+      padding-left: 30px;  /* Mehr Abstand links */
+      padding-right: 30px; /* Mehr Abstand rechts */
     }
 
     .akut-sprechstd-titel {
       font-family: 'Dancing Script', cursive;
       font-size: 36px; /* Angepasste Schriftgröße */
       color: #0c0c0c;
-      margin-top: 20px; /* Abstand nach oben */
-      margin-bottom: 25px;
+      margin-top: 50px; /* Abstand nach oben */
+      margin-bottom: 45px;
+      margin-right: 80px;
     }
 
     .akut-sprechstd-zeiten-container {
       display: flex;
       flex-direction: column;
       align-items: center; /* Zentriert die Zeit-Zeilen */
+      line-height: 2;
     }
 
     .akut-zeiten-zeile {
@@ -1060,16 +1089,21 @@
     <div class="notfall-info-section">
       <div class="notfall-info-wrapper">
         <div class="notfall-info-links">
-          <div class="notfall-zeile">
-            <img src="/assets/notfall.png" alt="Notfall Icon" class="notfall-icon-svg">
-            <span class="notfall-text-label">lebensbedrohlicher Notfall:</span>
-            <span class="notfall-nummer">112</span>
-          </div>
-          <div class="notfall-zeile">
-            <img src="/assets/notfall.png" alt="Notfall Icon" class="notfall-icon-svg">
-            <span class="notfall-text-label">dringlicher Notfall:</span>
-            <span class="notfall-nummer">116117</span>
-          </div>
+          <table class="notfall-ubersicht-tabelle">
+            <tbody>
+              <tr>
+                <td><img src="/assets/notfall.png" alt="Notfall Icon" class="notfall-icon-svg"></td>
+                <td><span class="notfall-text-label">lebensbedrohlicher Notfall:</span></td>
+                <td><span class="notfall-nummer">112</span></td>
+              </tr>
+              <tr>
+                <td><img src="/assets/notfall.png" alt="Notfall Icon" class="notfall-icon-svg"></td>
+                <td><span class="notfall-text-label">dringlicher Notfall:</span></td>
+                <td><span class="notfall-nummer">116117</span></td>
+              </tr>
+            </tbody>
+          </table>
+
           <div class="akut-sprechstd-titel">Akute Sprechstunde</div>
           <div class="akut-sprechstd-zeiten-container">
             <div class="akut-zeiten-zeile">
