@@ -549,6 +549,118 @@
       padding-bottom: 8px; /* Erhöht den unteren Innenabstand */
     }
 
+    /* Unsere Werte Bereich */
+    .werte-section {
+      background-color: #ffffff; /* Hintergrundfarbe wie vorherige Sektionen */
+      color: #000000;
+      padding: 0 40px 60px 40px; /* Gleiches Padding wie vorherige Sektionen */
+      /* text-align: center; wird entfernt für Linksbündigkeit */
+    }
+
+    .werte-section .section-divider {
+      width: 80%;
+      height: 1px;
+      background-color: #6e370e;
+      margin: 0 auto 80px auto; /* Beibehaltung der Zentrierung für die Linie */
+    }
+
+    .werte-section .sub-heading-container {
+      display: flex;
+      /* justify-content: center; wird entfernt für Linksbündigkeit */
+      justify-content: flex-start; /* Linksbündig */
+      align-items: center;
+      margin-bottom: 15px;
+      /* padding-left: 10%; Wird durch Flexbox-Layout der Spalten gesteuert */
+    }
+
+    .werte-section .sub-heading-bullet {
+      font-size: 24px;
+      color: #6e370e;
+      margin-right: 15px; /* Etwas mehr Abstand für den linken Titel */
+      line-height: 1;
+    }
+
+    .werte-section .sub-heading {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; /* Poppins Light */
+      font-size: 20px;
+    }
+
+    .werte-section .main-heading {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700; /* Poppins Bold */
+      font-size: 48px; /* Angepasst an die Größe der Nummerierung */
+      line-height: 1.1;
+      margin-top: 0;
+      text-align: left; /* Hauptüberschrift linksbündig innerhalb ihrer Spalte */
+      /* padding-left: 10%; Wird durch Flexbox-Layout der Spalten gesteuert */
+    }
+
+    .werte-section .main-heading .highlight {
+      color: #6e370e;
+      font-weight: 700; /* Sicherstellen, dass Bold beibehalten wird */
+    }
+
+    .werte-content-layout {
+      display: flex;
+      gap: 40px; /* Abstand zwischen linker und rechter Spalte */
+      margin-top: 40px; /* Abstand von den Haupttiteln zum Inhalt */
+    }
+
+    .werte-sticky-titles {
+      flex-basis: 65%; /* Deutlich mehr Platz für die linke Spalte (Titel) */
+      position: sticky;
+      top: 110px; /* Muss größer sein als die Höhe der Navigationsleiste (93px) + etwas Puffer */
+      align-self: flex-start; /* Verhindert, dass die Spalte unnötig gestreckt wird */
+      height: calc(100vh - 120px); /* Damit es nicht über den unteren Rand hinaus sticky ist, anpassbar */
+    }
+
+    .werte-list-scrollable {
+      flex-basis: 35%; /* Deutlich weniger Platz für die rechte Spalte (Werte-Liste) */
+      padding-right: 250px; /* Rand nach rechts vergrößert */
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; /* Poppins Light für alle Inhalte hier */
+    }
+
+    .wert-item {
+      display: flex;
+      align-items: flex-start; /* Oben ausrichten für Nummer, Linie, Text */
+      margin-bottom: 80px; /* Abstand zwischen den Wert-Items vergrößert */
+    }
+
+    .wert-item .wert-number {
+      font-size: 48px; /* Große Nummer */
+      font-weight: 300; /* Poppins Light (war bereits so, explizit beibehalten) */
+      color: #333333; /* Dunkelgrau für die Nummern */
+      line-height: 1;
+      min-width: 70px; /* Feste Breite für die Nummer, um Ausrichtung zu stabilisieren */
+      text-align: right; /* Nummer rechtsbündig vor der Linie */
+      padding-right: 15px;
+    }
+
+    .wert-item .wert-separator {
+      width: 1px;
+      background-color: #000000; /* Schwarze, dünne Linie */
+      align-self: stretch; /* Linie soll sich der Höhe des Textinhalts anpassen, falls dieser höher ist */
+      min-height: 60px; /* Mindesthöhe für die Linie, falls Text kurz ist */
+      margin-right: 20px;
+    }
+
+    .wert-item .wert-title {
+      font-size: 48px; /* Schriftgröße angepasst an wert-number */
+      font-weight: 300; /* Poppins Light */
+      color: #0c0c0c;
+      margin-top: 0; /* Entfernt den oberen Standardabstand des h4-Elements */
+      margin-bottom: 30px; /* Abstand zur Beschreibung vergrößert */
+      line-height: 1; /* Stellt sicher, dass die Zeilenhöhe mit der Nummer übereinstimmt */
+    }
+
+    .wert-item .wert-description {
+      font-size: 16px; /* Kleine Schriftgröße für die Beschreibung */
+      color: #6e370e;
+      line-height: 1.5;
+    }
+
   </style>
 </head>
 <body>
@@ -704,6 +816,45 @@
       <div class="anfahrt-row">
         <div class="left-col">Auto:</div>
         <div class="right-col">gute Parkmöglichkeiten</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="werte-section">
+    <div class="section-divider"></div>
+    <div class="werte-content-layout">
+      <div class="werte-sticky-titles">
+        <div class="sub-heading-container">
+          <span class="sub-heading-bullet">&bull;</span>
+          <h3 class="sub-heading">Wofür wir stehen</h3>
+        </div>
+        <h2 class="main-heading">
+          <span class="highlight">UNSERE</span> WERTE
+        </h2>
+      </div>
+      <div class="werte-list-scrollable">
+        <script>
+          // JavaScript, um 10 Wert-Items zu generieren
+          const werteContainer = document.currentScript.parentElement; // Nimmt das Elternelement des Skript-Tags
+          for (let i = 1; i <= 10; i++) {
+            const wertItemHTML = `
+              <div class="wert-item">
+                <div class="wert-number">${String(i).padStart(2, '0')}</div>
+                <div class="wert-separator"></div>
+                <div class="wert-text-content">
+                  <h4 class="wert-title">Vertrauen</h4>
+                  <p class="wert-description">Wir schaffen eine Atmosphäre, in der sich Patientinnen und Patienten sicher und ernst genommen fühlen.</p>
+                </div>
+              </div>
+            `;
+            werteContainer.innerHTML += wertItemHTML;
+          }
+          // Entferne das Skript-Tag selbst, nachdem es ausgeführt wurde
+          document.currentScript.remove();
+        </script>
+        <!-- Die 10 Wert-Items werden hier per JavaScript eingefügt -->
+        <!-- Beispiel für ein Item (wird durch JS ersetzt):
+        -->
       </div>
     </div>
   </div>
