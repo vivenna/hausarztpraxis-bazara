@@ -1473,12 +1473,16 @@
         width: 100%;
         height: 100%;
         background-color: rgba(0, 0, 0, 0.75); /* Etwas dunklerer Overlay */
-        display: none; /* Initial versteckt */
-        justify-content: center;
+        /* display: none; Initial versteckt - geändert für Transition */
+        opacity: 0;
+        visibility: hidden;
+        display: flex; /* Hinzugefügt für Flexbox-Zentrierung */
+        justify-content: center; /* Stellt sicher, dass der Inhalt horizontal zentriert wird */
         align-items: center;
         z-index: 1001; /* Über allem anderen */
         padding: 20px;
         box-sizing: border-box;
+        transition: opacity 0.3s ease-out, visibility 0s linear 0.3s; /* Übergang für Overlay */
       }
 
       .modal-content {
@@ -1488,10 +1492,22 @@
         display: flex;
         max-width: 950px; /* Etwas breiter */
         width: 90%;
-        height: 40vh; /* Höhe des Pop-ups weiter erhöht */
+        height: 40vh; /* Korrigiert: Flexible maximale Höhe */
         box-shadow: 0 8px 25px rgba(0,0,0,0.2); /* Deutlicherer Schatten */
         position: relative;
         overflow-y: auto; 
+        opacity: 0; /* Initialzustand für Animation */
+        transform: scale(0.95); /* Initialzustand für Animation */
+        transition: opacity 0.3s ease-out, transform 0.3s ease-out; 
+      }
+      .modal-overlay.modal-active {
+        opacity: 1;
+        visibility: visible;
+        transition-delay: 0s; /* Sofort sichtbar machen, wenn aktiv */
+      }
+      .modal-overlay.modal-active .modal-content {
+        opacity: 1; /* Endzustand für Animation: sichtbar */
+        transform: scale(1); /* Endzustand für Animation: normale Größe */
       }
 
       .modal-close-button {
@@ -1552,7 +1568,7 @@
         font-weight: 300; /* Light */
         font-size: 17px; /* Etwas größerer Text */
         line-height: 1.7; /* Bessere Lesbarkeit */
-        color: #555555;
+        color: #333;
         margin-bottom: 0;
       }
     `;
@@ -1633,23 +1649,29 @@
           modalTitle.innerHTML = modifiedTitleHTML;
 
           modalInfoText.textContent = infoText || "Keine weiteren Informationen verfügbar."; // Fallback
-
-          if (modalOverlay) modalOverlay.style.display = 'flex';
+          
+          if (modalOverlay) {
+            modalOverlay.classList.add('modal-active');
+            // modalOverlay.style.display = 'flex'; // Ersetzt durch Klassen-Toggle
+          }
         });
       });
 
       if (modalCloseButton && modalOverlay) {
-          modalCloseButton.addEventListener('click', () => modalOverlay.style.display = 'none');
+          modalCloseButton.addEventListener('click', () => {
+            modalOverlay.classList.remove('modal-active');
+            // modalOverlay.style.display = 'none'; // Ersetzt durch Klassen-Toggle
+          });
       }
 
       if (modalOverlay) {
           modalOverlay.addEventListener('click', (event) => {
-              if (event.target === modalOverlay) modalOverlay.style.display = 'none';
+              if (event.target === modalOverlay) modalOverlay.classList.remove('modal-active');
           });
       }
     });
   </script>
-  <div id="infoModalOverlay" class="modal-overlay">
+  <div id="infoModalOverlay" class="modal-overlay"> <!-- Klasse modal-active wird per JS hinzugefügt/entfernt -->
     <div class="modal-content">
       <button class="modal-close-button">&times;</button>
       <div class="modal-image-container">
