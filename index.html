@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- Google Fonts Einbindung -->
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter&family=Questrial&family=Poppins:wght@300;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter&family=Questrial&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   
   <style>
     body {
@@ -280,6 +280,50 @@
       font-weight: 700; /* Poppins Light */
       font-size: 22px;
     }
+
+    .leistungen-beschreibung {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; /* Poppins Light */
+      font-size: 18px; /* Anpassbare Größe */
+      line-height: 1.6;
+      max-width: 900px; /* Maximale Breite für den Textblock */
+      margin: 40px auto 40px 115px; /* Oben, Rechts-Auto, Unten, Links 0 */
+      text-align: left; /* Text linksbündig */
+    }
+
+    .leistungen-beschreibung .highlight-beratung {
+      font-weight: 500; /* Etwas fetter */
+    }
+
+    /* Stellt sicher, dass der Button-Container zentriert ist und die gleiche Breite hat */
+    .leistungen-button-container {
+      text-align: left; /* Button links ausrichten */
+      max-width: 900px; /* Gleiche maximale Breite wie der Textblock */
+      margin: 0 auto 40px 115px; /* Oben, Rechts-Auto, Unten, Links 0 */
+    }
+
+    .leistungen-button {
+      display: inline-flex; /* Für Icon-Ausrichtung */
+      align-items: center;
+      background-color: #6e370e; /* Beispiel-Buttonfarbe */
+      color: #ffffff; /* Textfarbe auf Weiß geändert */
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; /* Poppins Light */
+      font-size: 18px; /* Schriftgröße erhöht */
+      padding: 12px 25px;
+      text-decoration: none;
+      border-radius: 50px; /* Starke Abrundung für Pillenform */
+    }
+
+    .leistungen-button .arrow {
+      font-size: 24px; /* Größerer Pfeil */
+      font-weight: bold; /* Dickerer Pfeil */
+      margin-left: 8px; /* Kleiner Abstand zum Text */
+    }
+
+
+
+
   </style>
 </head>
 <body>
@@ -343,6 +387,12 @@
         <div class="leistung-line"></div>
         <p class="leistung-label">Vorsorge und Impfungen</p>
       </div>
+    </div>
+    <div class="leistungen-beschreibung">
+      In unserer Praxis bieten wir ein breites Spektrum an hausärztlichen Leistungen – von Vorsorgeuntersuchungen über moderne Diagnostik bis zur <span class="highlight-beratung">individuellen Beratung</span> und Behandlung chronischer Erkrankungen. Ihr Wohlbefinden und eine persönliche Betreuung stehen dabei stets im Mittelpunkt.
+    </div>
+    <div class="leistungen-button-container">
+      <a href="leistungen.html" class="leistungen-button">Alle Leistungen <span class="arrow">&rarr;</span></a>
     </div>
   </div>
 
