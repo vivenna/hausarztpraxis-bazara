@@ -1433,9 +1433,9 @@
         font-family: 'Poppins', sans-serif;
         font-size: 16px; /* Zurückgesetzt auf vorherige Größe */
         font-weight: 500; /* Medium */
-        opacity: 0;
-        transform: translateX(70px); /* Startet 70px rechts von seiner Endposition, also "weiter links" als zuvor */
-        transition: transform 0.35s ease-out, opacity 0.3s ease-out; /* Sanfter Übergang für Position und Deckkraft */
+        opacity: 1; /* Von Anfang an voll sichtbar */
+        transform: translateX(75%); /* Startet 70px rechts von seiner Endposition, also "weiter links" als zuvor */
+        transition: transform 0.35s ease-out; /* Sanfter Übergang nur für Position */
         z-index: 5; /* Unter dem Plus-Kreis, aber über dem Bild */
         pointer-events: none; /* Verhindert Interaktion im versteckten Zustand */
       }
@@ -1450,12 +1450,11 @@
         bottom: 27.5px; /* Gleiche Höhe wie info-rechteck und plus-kreis */
         height: 50px;   /* Gleiche Höhe wie info-rechteck und plus-kreis */
         background-color: #ffffff;
-        border: 1px solid #000000; /* Feiner schwarzer Rand */
         z-index: 7; /* Zwischen info-rechteck (5) und plus-kreis (10) */
         /* Linke Kante bündig mit visueller linker Kante von .plus-kreis */
         left: calc(100% - 30.5px);
         /* right: -20px; entfernt, da feste Breite gewünscht */
-        width: 200px; /* Feste Breite von 300px */
+        width: 208px; /* Feste Breite von 300px */
         border-radius: 25px; /* Starke Abrundung (Hälfte der Höhe) */
         pointer-events: none; /* Keine Interaktion, da rein dekorativ */
       }
