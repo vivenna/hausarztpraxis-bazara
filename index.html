@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- Google Fonts Einbindung -->
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter&family=Questrial&family=Poppins:wght@300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter&family=Questrial&family=Poppins:wght@300;700&display=swap" rel="stylesheet">
   
   <style>
     body {
@@ -20,7 +20,7 @@
     .main-nav {
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: center; 
       background-color: rgba(230, 230, 230, 0.15); /* #e6e6e6 mit 0.5 Transparenz (weniger transparent) */
       border-bottom: 1px solid #c8c5c5; /* Linienfarbe geändert */
       padding: 0 25px; /* Padding links/rechts, vertikales Padding wird durch Höhe und align-items gesteuert */
@@ -40,7 +40,8 @@
       text-decoration: none;
       color: inherit;
       display: inline-block;
-      padding-top: 4px;
+      padding-top: 5.5px;
+      padding-left: 20px;
     }
 
     .menu-logo .logo-text-container {
@@ -88,11 +89,11 @@
     }
 
     .nav-links li {
-      margin-left: 45px; /* Vergrößerter Abstand zwischen den Menüpunkten */
+      margin-left: 60px; /* Weiter vergrößerter Abstand zwischen den Menüpunkten */
     }
 
     .nav-links li:last-child {
-      margin-right: 20px; /* Zusätzlicher Rand rechts für den letzten Menüpunkt */
+      margin-right: 60px; /* Vergrößerter Rand rechts für den letzten Menüpunkt */
     }
 
     .nav-links a {
@@ -122,13 +123,19 @@
     }
 
     .hero-section h1 {
-      font-size: 3rem;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700; /* Bold */
+      font-size: 110px;
       margin-bottom: 20px;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Textschatten für bessere Lesbarkeit */
+      line-height: 1.2; /* Für bessere Lesbarkeit bei mehrzeiligem Text */
     }
-    .hero-section p {
-      font-size: 1.2rem;
+    .hero-section h2 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; /* Light */
+      font-size: 30.1px;
       text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Textschatten für bessere Lesbarkeit */
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -153,8 +160,10 @@
   </nav>
 
   <div class="hero-section">
-    <h1>Willkommen</h1>
-    <p>Dies ist der Bereich für das große Willkommensbild und erste Informationen.</p>
+    <div class="hero-text-wrapper">
+      <h1>Gesund werden.<br>Gesund bleiben.</h1>
+      <h2>Wir begleiten Sie – persönlich, nah und mit Zeit.</h2>
+    </div>
   </div>
 
 </body>
