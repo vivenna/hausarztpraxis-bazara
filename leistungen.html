@@ -122,7 +122,7 @@
     /* Hero Section für das große Bild */
     .hero-section {
       height: 100vh; /* Volle Viewport-Höhe */
-      background-image: url('/assets/startseite.png'); /* Beispielbild, bitte ersetzen */
+      background-image: url('/assets/leistungen.png'); /* Beispielbild, bitte ersetzen */
       background-size: cover;
       background-position: center;
       display: flex;
@@ -895,9 +895,123 @@
       margin-bottom: 0;
     }
 
+    /* Notfall Info Bereich */
+    .notfall-info-section {
+      background-color: #ffffff; /* Hintergrund auf Weiß gesetzt */
+      padding: 40px 40px 80px 40px; /* Oberes Padding reduziert, unteres beibehalten */
+      /* margin-top: 60px; entfernt, da es jetzt Teil der leistungen-section ist */
+    }
+
+    .notfall-info-wrapper {
+      display: flex;
+      align-items: center; /* Vertikal zentrieren */
+      gap: 40px; /* Abstand zwischen linker und rechter Spalte */
+      max-width: 1200px; /* Maximale Breite des Inhalts */
+      margin: 0 auto; /* Zentrieren des Wrappers */
+    }
+
+    .notfall-info-links {
+      flex-basis: 55%; /* Linke Spalte nimmt etwas mehr Platz */
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Inhalt horizontal zentrieren */
+      text-align: center; /* Text zentrieren */
+    }
+
+    .notfall-info-rechts {
+      flex-basis: 45%; /* Rechte Spalte */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .notfall-zeile {
+      display: flex;
+      align-items: center;
+      justify-content: center; /* Zentriert Elemente in der Zeile */
+      margin-bottom: 20px;
+      width: 100%; /* Stellt sicher, dass die Zentrierung korrekt funktioniert */
+    }
+
+    .notfall-zeile .notfall-icon-svg {
+      width: 48px; /* Größe des Icons */
+      height: auto;
+      fill: #0c0c0c; /* Farbe des Icons */
+      margin-right: 10px;
+    }
+
+    .notfall-text-label {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; /* Light */
+      font-size: 20px; /* Angepasste Schriftgröße */
+      color: #0c0c0c;
+      margin-right: 15px;
+    }
+
+    .notfall-nummer {
+      font-family: 'Dancing Script', cursive;
+      font-size: 42px; /* Größere Schrift für die Nummern */
+      color: #6e370e;
+      line-height: 1; /* Verhindert zusätzlichen Zeilenabstand */
+    }
+
+    .akut-sprechstd-titel {
+      font-family: 'Dancing Script', cursive;
+      font-size: 36px; /* Angepasste Schriftgröße */
+      color: #0c0c0c;
+      margin-top: 20px; /* Abstand nach oben */
+      margin-bottom: 25px;
+    }
+
+    .akut-sprechstd-zeiten-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Zentriert die Zeit-Zeilen */
+    }
+
+    .akut-zeiten-zeile {
+      display: flex;
+      justify-content: space-between; /* Verteilt Tage und Uhrzeit */
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; /* Light */
+      font-size: 18px; /* Angepasste Schriftgröße */
+      color: #0c0c0c;
+      margin-bottom: 10px;
+      width: 280px; /* Feste Breite für bessere Ausrichtung */
+    }
+
+    .akut-zeiten-zeile .tage {
+      text-align: left;
+      flex-basis: 50%;
+    }
+
+    .akut-zeiten-zeile .uhrzeit {
+      text-align: right;
+      flex-basis: 50%;
+    }
+
+    .platzhalter-icon-gross {
+      width: 300px; /* Sehr großes Icon */
+      height: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+      font-size: 40px;
+      color: #6e370e;
+      background-color: #e9e9e9; /* Heller Hintergrund für den Platzhalter */
+    }
+
   </style>
 </head>
 <body>
+  <!-- SVG Symbol Definition (kann einmal pro Seite definiert werden) -->
+  <svg style="display:none;">
+    <symbol id="icon-notfall-symbol" viewBox="0 0 24 24">
+      <path d="M12 5.99L19.53 19H4.47L12 5.99M12 2L1 21h22L12 2zm1 14h-2v2h2v-2zm0-6h-2v4h2v-4z"/>
+    </symbol>
+  </svg>
+
 
   <nav class="main-nav">
     <div class="menu-logo">
@@ -919,30 +1033,62 @@
 
   <div class="hero-section">
     <div class="hero-text-wrapper">
-      <h1>Gesund werden.<br>Gesund bleiben.</h1>
-      <h2>Wir begleiten Sie – persönlich, nah und mit Zeit.</h2>
+      <h1>Leistungen.<br>Klar & persönlich.</h1>
+      <h2>Diagnostik, Behandlung und Vorsorge – alles in Ihrer Hausarztpraxis.</h2>
     </div>
   </div>
 
   <div class="info-section">
     <div class="left-column">
       <span class="bullet-point">&bull;</span>
-      <span class="practice-name">Hausarztpraxis Bazara</span>
+      <span class="practice-name">Unser Spektrum</span>
     </div>
     <div class="right-column">
-      <p class="welcome-text">Herzlich willkommen in unserer Praxis. Wir nehmen uns Zeit für Ihre Gesundheit – mit Erfahrung, Empathie und einem verlässlichen Team.</p>
+      <p class="welcome-text">Unsere hausärztlichen Leistungen verbinden Erfahrung mit persönlicher Betreuung – für akute Hilfe, langfristige Begleitung und wirksame Vorsorge.</p>
     </div>
   </div>
 
   <div class="leistungen-section"> <!-- Beginn der kopierten Sektion -->
     <div class="sub-heading-container">
       <span class="sub-heading-bullet">&bull;</span>
-      <h3 class="sub-heading">So unterstützen wir Ihre Gesundheit</h3>
+      <h3 class="sub-heading">Wenn schnelle Hilfe zählt</h3>
     </div>
     <h2 class="main-heading">
-      <span class="highlight">UNSERE</span> LEISTUNGEN
+      <span class="highlight">AKUTE</span> BEHANDLUNG
     </h2>
-    <!-- Der Rest des Inhalts der leistungen-section (Items, Beschreibung, Button) fehlt hier noch -->
+    
+    <div class="notfall-info-section">
+      <div class="notfall-info-wrapper">
+        <div class="notfall-info-links">
+          <div class="notfall-zeile">
+            <img src="/assets/notfall.png" alt="Notfall Icon" class="notfall-icon-svg">
+            <span class="notfall-text-label">lebensbedrohlicher Notfall:</span>
+            <span class="notfall-nummer">112</span>
+          </div>
+          <div class="notfall-zeile">
+            <img src="/assets/notfall.png" alt="Notfall Icon" class="notfall-icon-svg">
+            <span class="notfall-text-label">dringlicher Notfall:</span>
+            <span class="notfall-nummer">116117</span>
+          </div>
+          <div class="akut-sprechstd-titel">Akute Sprechstunde</div>
+          <div class="akut-sprechstd-zeiten-container">
+            <div class="akut-zeiten-zeile">
+              <span class="tage">Mo, Di, Fr:</span>
+              <span class="uhrzeit">8 - 9 Uhr</span>
+            </div>
+            <div class="akut-zeiten-zeile">
+              <span class="tage">Do:</span>
+              <span class="uhrzeit">13 - 14 Uhr</span>
+            </div>
+          </div>
+        </div>
+        <div class="notfall-info-rechts">
+          <!-- Hier den Pfad zum richtigen Icon einfügen, z.B. <img src="/assets/mein-grosses-icon.svg" alt="Platzhalter"> -->
+          <img src="/assets/krankenwagen.png" alt="Krankenwagen Icon" class="platzhalter-icon-gross">
+        </div>
+      </div>
+    </div>
+    <!-- Anderer Inhalt der .leistungen-section kann hier folgen -->
   </div>
 
   <script>
