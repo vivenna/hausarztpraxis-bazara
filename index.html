@@ -380,7 +380,123 @@
       font-weight: 700; /* Sicherstellen, dass Bold beibehalten wird */
     }
 
+    /* Tabelle für Sprechzeiten */
+    .sprechzeiten-tabelle {
+      width: 80%; /* Anpassbare Breite der Tabelle */
+      margin: 40px auto 0 auto; /* Abstand nach oben, zentriert */
+      margin-top: 60px; /* Vergrößerter Abstand zum Titel oben */
+      border-collapse: collapse; /* Entfernt doppelte Ränder */
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; /* Poppins Light */
+      font-size: 18px; /* Schriftgröße erhöht */
+      color: #333333; /* Schriftfarbe etwas dunkler gemacht */
+    }
 
+    .sprechzeiten-tabelle th,
+    .sprechzeiten-tabelle td {
+      padding: 18px 15px; /* Innenabstand (Zeilenhöhe) erhöht */
+      text-align: center; /* Textausrichtung in den Zellen zentriert */
+      border-bottom: none; /* Keine horizontalen Linien */
+      border-top: none; /* Keine horizontalen Linien */
+    }
+
+    .sprechzeiten-tabelle th:not(:first-child),
+    .sprechzeiten-tabelle td:not(:first-child) {
+      border-left: 0.5px solid #6e370e; /* Sehr feine vertikale Linie für Spalten ab der zweiten */
+    }
+
+    .sprechzeiten-tabelle th:first-child,
+    .sprechzeiten-tabelle td:first-child {
+      border-left: none; /* Keine Linie für die erste Spalte links */
+    }
+    
+    .sprechzeiten-tabelle th {
+      font-weight: 300; /* Poppins Light auch für Header */
+    }
+
+    /* Erste Spalte (Wochentage) linksbündig */
+    .sprechzeiten-tabelle tbody th {
+      text-align: left;
+    }
+
+    .sprechzeiten-tabelle td {
+       /* Standard Poppins Light wird vererbt */
+    }
+
+    .sprechzeiten-tabelle th .underline-text {
+      position: relative; /* Für die Positionierung des Pseudo-Elements */
+      display: inline-block; /* Damit der Unterstrich sich an die Textbreite anpasst */
+    }
+
+    .sprechzeiten-tabelle th .underline-text::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; /* Abstand des Unterstrichs zum Text */
+      left: 50%;
+      transform: translateX(-50%);
+      width: 85%; /* Breite des Unterstrichs */
+      height: 0.5px; /* Dicke des Unterstrichs angepasst */
+      background-color: #6e370e; /* Farbe des Unterstrichs angepasst an Spaltenlinien */
+    }
+
+
+
+    .sprechzeiten-hinweis {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; /* Poppins Light */
+      font-size: 14px; /* Kleine Schriftgröße */
+      color: #333333; /* Schriftfarbe angepasst */
+      text-align: center;
+      margin-top: 50px; /* Abstand zur Tabelle */
+    }
+
+    /* Lage & Anfahrt Bereich */
+    .lage-anfahrt-section {
+      background-color: #ffffff; /* Hintergrundfarbe wie vorherige Sektionen */
+      color: #000000;
+      padding: 0 40px 60px 40px; /* Gleiches Padding wie Sprechzeiten */
+      text-align: center;
+    }
+
+    .lage-anfahrt-section .section-divider {
+      width: 80%;
+      height: 1px;
+      background-color: #6e370e;
+      margin: 0 auto 80px auto; /* Gleicher Abstand wie Sprechzeiten */
+    }
+
+    .lage-anfahrt-section .sub-heading-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .lage-anfahrt-section .sub-heading-bullet {
+      font-size: 24px;
+      color: #6e370e;
+      margin-right: 10px;
+      line-height: 1;
+    }
+
+    .lage-anfahrt-section .sub-heading {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; /* Poppins Light */
+      font-size: 20px;
+    }
+
+    .lage-anfahrt-section .main-heading {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700; /* Poppins Bold */
+      font-size: 70px; /* Gleich wie vorherige Sektionen */
+      line-height: 1.1;
+      margin-top: 0;
+    }
+
+    .lage-anfahrt-section .main-heading .highlight {
+      color: #6e370e;
+      font-weight: 700; /* Sicherstellen, dass Bold beibehalten wird */
+    }
 
   </style>
 </head>
@@ -463,7 +579,57 @@
     <h2 class="main-heading">
       <span class="highlight">UNSERE</span> SPRECHSTUNDE
     </h2>
-    <!-- Hier können die Sprechzeiten-Details später eingefügt werden -->
+    <table class="sprechzeiten-tabelle">
+      <thead>
+        <tr> <!-- Zeile A -->
+          <th></th> <!-- A1 - Leer für die Ecke -->
+          <th><span class="underline-text">akute Sprechstunde</span></th> <!-- A2 -->
+          <th><span class="underline-text">reguläre Sprechstunde</span></th> <!-- A3 -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr> <!-- Zeile B -->
+          <th>Montag</th> <!-- B1 - Jetzt Zeilenüberschrift -->
+          <td>8 - 9 Uhr</td> <!-- B2 -->
+          <td>8:30 - 12 Uhr und 15 - 18 Uhr</td> <!-- B3 -->
+        </tr>
+        <tr> <!-- Zeile C -->
+          <th>Dienstag</th> <!-- C1 -->
+          <td>8 - 9 Uhr</td> <!-- C2 -->
+          <td>8:30 - 12 Uhr</td> <!-- C3 -->
+        </tr>
+        <tr> <!-- Zeile D -->
+          <th>Mittwoch</th> <!-- D1 -->
+          <td>/</td> <!-- D2 -->
+          <td>nach Vereinbarung</td> <!-- D3 -->
+        </tr>
+        <tr> <!-- Zeile E -->
+          <th>Donnerstag</th> <!-- E1 -->
+          <td>13 - 14 Uhr</td> <!-- E2 -->
+          <td>13:30 - 18 Uhr</td> <!-- E3 -->
+        </tr>
+        <tr> <!-- Zeile F -->
+          <th>Freitag</th> <!-- F1 -->
+          <td>8 - 9 Uhr</td> <!-- F2 -->
+          <td>8:30 - 12 Uhr</td> <!-- F3 -->
+        </tr>
+      </tbody>
+    </table>
+    <p class="sprechzeiten-hinweis">
+      Bitte beachten Sie die Urlaubszeiten und Feiertage.
+    </p>
+  </div>
+
+  <div class="lage-anfahrt-section">
+    <div class="section-divider"></div>
+    <div class="sub-heading-container">
+      <span class="sub-heading-bullet">&bull;</span>
+      <h3 class="sub-heading">So finden Sie uns</h3>
+    </div>
+    <h2 class="main-heading">
+      <span class="highlight">LAGE</span> & ANFAHRT
+    </h2>
+    <!-- Hier können Karten und Anfahrtsbeschreibungen später eingefügt werden -->
   </div>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
