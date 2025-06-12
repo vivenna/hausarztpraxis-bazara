@@ -1300,7 +1300,74 @@
     </div>
   </div>
 
+  <div class="leistungen-section"> <!-- Wiederverwendung der Klasse für konsistentes Styling, ggf. anpassen -->
+    <div class="section-divider"></div>
+    <div class="sub-heading-container">
+      <span class="sub-heading-bullet">&bull;</span>
+      <h3 class="sub-heading">Verlässlich an Ihrer Seite</h3>
+    </div>
+    <h2 class="main-heading">
+      CHRONISCHE <span class="highlight">BETREUUNG</span>
+    </h2>
+    <div class="chronische-betreuung-bilder-container">
+      <div class="betreuung-bild-item">
+        <img src="/assets/KHK.png" alt="DMP für KHK" class="betreuung-bild">
+        <p class="betreuung-bild-beschriftung">
+          DMP für <span class="highlight-krankheit">KHK</span>
+        </p>
+      </div>
+      <div class="betreuung-bild-item">
+        <img src="/assets/asthma.png" alt="DMP für Asthma" class="betreuung-bild">
+        <p class="betreuung-bild-beschriftung">
+          DMP für <span class="highlight-krankheit">Asthma</span>
+        </p>
+      </div>
+      <div class="betreuung-bild-item">
+        <img src="/assets/diabetes dmp.png" alt="DMP für Diabetes" class="betreuung-bild">
+        <p class="betreuung-bild-beschriftung">
+          DMP für <span class="highlight-krankheit">Diabetes</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
   <script>
+    // Zusätzliche CSS-Stile für den neuen Bereich
+    const styleSheet = document.createElement("style");
+    styleSheet.type = "text/css";
+    styleSheet.innerText = `
+      .chronische-betreuung-bilder-container {
+        display: flex;
+        justify-content: space-around; /* Gleichmäßiger Abstand */
+        align-items: flex-start; /* Oben ausrichten */
+        margin-top: 70px; /* Abstand zum Titel */
+        flex-wrap: wrap; /* Umbruch bei Bedarf */
+      }
+      .betreuung-bild-item {
+        text-align: center;
+        flex-basis: 30%; /* Jedes Item nimmt ca. 30% ein */
+        margin-bottom: 40px;
+      }
+      .betreuung-bild {
+        width: 100%; /* Bild füllt die Breite des Items */
+        max-width: 250px; /* Maximale Breite des Bildes, anpassbar */
+        height: 250px; /* Feste Höhe für die Bilder */
+        object-fit: contain; /* Bild wird skaliert, um hineinzupassen, Seitenverhältnis beibehalten */
+        margin-bottom: 15px;
+      }
+      .betreuung-bild-beschriftung {
+        font-family: 'Poppins', sans-serif;
+        font-size: 20px;
+        color: #0c0c0c;
+        margin-top: 10px;
+      }
+      .betreuung-bild-beschriftung .highlight-krankheit {
+        color: #6e370e;
+        font-weight: 500; /* Etwas fetter, falls gewünscht */
+      }
+    `;
+    document.head.appendChild(styleSheet);
+
     document.addEventListener('DOMContentLoaded', function() {
       const mainNav = document.querySelector('.main-nav');
       const navLinksUl = document.querySelector('.nav-links'); // Selektiert das <ul> Element
