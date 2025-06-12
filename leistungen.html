@@ -1313,6 +1313,7 @@
       <div class="betreuung-bild-item">
         <div class="bild-mit-overlay-container">
           <img src="/assets/KHK.png" alt="DMP für KHK" class="betreuung-bild">
+          <div class="neues-weisses-rechteck"></div>
           <div class="info-rechteck">Mehr erfahren</div>
           <div class="plus-kreis"><span>+</span></div>
         </div>
@@ -1323,6 +1324,7 @@
       <div class="betreuung-bild-item">
         <div class="bild-mit-overlay-container">
           <img src="/assets/asthma.png" alt="DMP für Asthma" class="betreuung-bild">
+          <div class="neues-weisses-rechteck"></div>
           <div class="info-rechteck">Mehr erfahren</div>
           <div class="plus-kreis"><span>+</span></div>
         </div>
@@ -1333,6 +1335,7 @@
       <div class="betreuung-bild-item">
         <div class="bild-mit-overlay-container">
           <img src="/assets/diabetes dmp.png" alt="DMP für Diabetes" class="betreuung-bild">
+          <div class="neues-weisses-rechteck"></div>
           <div class="info-rechteck">Mehr erfahren</div>
           <div class="plus-kreis"><span>+</span></div>
         </div>
@@ -1431,7 +1434,7 @@
         font-size: 16px; /* Zurückgesetzt auf vorherige Größe */
         font-weight: 500; /* Medium */
         opacity: 0;
-        transform: translateX(100%); /* Startet um 100% seiner Breite nach rechts verschoben */
+        transform: translateX(70px); /* Startet 70px rechts von seiner Endposition, also "weiter links" als zuvor */
         transition: transform 0.35s ease-out, opacity 0.3s ease-out; /* Sanfter Übergang für Position und Deckkraft */
         z-index: 5; /* Unter dem Plus-Kreis, aber über dem Bild */
         pointer-events: none; /* Verhindert Interaktion im versteckten Zustand */
@@ -1441,6 +1444,20 @@
         opacity: 1;
         transform: translateX(0); /* Schiebt sich an die finale Position */
         pointer-events: auto;
+      }
+      .neues-weisses-rechteck {
+        position: absolute;
+        bottom: 27.5px; /* Gleiche Höhe wie info-rechteck und plus-kreis */
+        height: 50px;   /* Gleiche Höhe wie info-rechteck und plus-kreis */
+        background-color: #ffffff;
+        border: 1px solid #000000; /* Feiner schwarzer Rand */
+        z-index: 7; /* Zwischen info-rechteck (5) und plus-kreis (10) */
+        /* Linke Kante bündig mit visueller linker Kante von .plus-kreis */
+        left: calc(100% - 30.5px);
+        /* right: -20px; entfernt, da feste Breite gewünscht */
+        width: 200px; /* Feste Breite von 300px */
+        border-radius: 25px; /* Starke Abrundung (Hälfte der Höhe) */
+        pointer-events: none; /* Keine Interaktion, da rein dekorativ */
       }
     `;
     document.head.appendChild(styleSheet);
