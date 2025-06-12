@@ -451,7 +451,7 @@
     .lage-anfahrt-section {
       background-color: #ffffff; /* Hintergrundfarbe wie vorherige Sektionen */
       color: #000000;
-      padding: 0 40px 60px 40px; /* Gleiches Padding wie Sprechzeiten */
+      padding: 0 40px 80px 40px; /* Gleiches Padding wie Sprechzeiten */
       text-align: center;
     }
 
@@ -553,7 +553,7 @@
     .werte-section {
       background-color: #ffffff; /* Hintergrundfarbe wie vorherige Sektionen */
       color: #000000;
-      padding: 0 40px 60px 40px; /* Gleiches Padding wie vorherige Sektionen */
+      padding: 0 40px 80px 40px; /* Gleiches Padding wie vorherige Sektionen */
       /* text-align: center; wird entfernt für Linksbündigkeit */
     }
 
@@ -561,7 +561,7 @@
       width: 80%;
       height: 1px;
       background-color: #6e370e;
-      margin: 0 auto 80px auto; /* Beibehaltung der Zentrierung für die Linie */
+      margin: 0 auto 120px auto; /* Beibehaltung der Zentrierung für die Linie */
     }
 
     .werte-section .sub-heading-container {
@@ -610,7 +610,7 @@
     .werte-sticky-titles {
       flex-basis: 60%; /* Weniger Platz für die linke Spalte */
       position: sticky;
-      top: 110px; /* Muss größer sein als die Höhe der Navigationsleiste (93px) + etwas Puffer */
+      top: 140px; /* Erhöht, damit der Titel früher stoppt und mehr Abstand oben hat */
       align-self: flex-start; /* Verhindert, dass die Spalte unnötig gestreckt wird */
       padding-left: 170px; /* Abstand der Titel zum linken Rand der Spalte hinzugefügt */
       height: calc(100vh - 120px); /* Damit es nicht über den unteren Rand hinaus sticky ist, anpassbar */
@@ -864,21 +864,30 @@
     document.addEventListener('DOMContentLoaded', function() {
       const mainNav = document.querySelector('.main-nav');
       const navLinksUl = document.querySelector('.nav-links'); // Selektiert das <ul> Element
-      const leistungenSection = document.querySelector('.leistungen-section');
+      // Alle Sektionen auswählen, bei denen der Farbwechsel stattfinden soll
+      const sectionsForColorChange = document.querySelectorAll('.leistungen-section, .sprechzeiten-section, .lage-anfahrt-section, .werte-section');
 
-      if (!mainNav || !navLinksUl || !leistungenSection) {
-        // console.error('Erforderliche Elemente für den Menü-Farbwechsel nicht gefunden.');
+      if (!mainNav || !navLinksUl || sectionsForColorChange.length === 0) {
+        console.error('Erforderliche Elemente für den Menü-Farbwechsel nicht gefunden oder keine Sektionen definiert.');
         return;
       }
 
       const menuHeight = mainNav.offsetHeight;
 
       function checkMenuPosition() {
-        const sectionRect = leistungenSection.getBoundingClientRect();
+        // const sectionRect = leistungenSection.getBoundingClientRect(); // Entfernte Zeile
+        let shouldBeDark = false;
 
-        // Prüft, ob das Menü (das oben im Viewport fixiert ist)
-        // sich visuell über der leistungenSection befindet
-        if (sectionRect.top < menuHeight && sectionRect.bottom > 0) {
+        sectionsForColorChange.forEach(section => {
+          const rect = section.getBoundingClientRect();
+          // Prüft, ob das Menü (das oben im Viewport fixiert ist)
+          // sich visuell über einer der definierten Sektionen befindet
+          if (rect.top < menuHeight && rect.bottom > menuHeight) { // Bedingung angepasst für bessere Überlappungserkennung
+            shouldBeDark = true;
+          }
+        });
+
+        if (shouldBeDark) {
           navLinksUl.classList.add('dark-text');
           mainNav.classList.add('strong-blur'); // Stärkeren Blur hinzufügen
         } else {
