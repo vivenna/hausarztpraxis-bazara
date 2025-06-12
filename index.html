@@ -839,13 +839,45 @@
           // JavaScript, um 10 Wert-Items zu generieren
           const werteContainer = document.currentScript.parentElement; // Nimmt das Elternelement des Skript-Tags
           for (let i = 1; i <= 10; i++) {
+            let title = "Vertrauen";
+            let description = "Wir schaffen eine Atmosphäre, in der sich Patientinnen und Patienten sicher und ernst genommen fühlen.";
+
+            if (i === 2) {
+              title = "Empathie";
+              description = "Wir hören zu, nehmen Sorgen ernst und behandeln jede Person mit Respekt und Mitgefühl.";
+            } else if (i === 3) {
+              title = "Kompetenz";
+              description = "Unsere medizinischen Entscheidungen basieren auf aktuellem Wissen und langjähriger Erfahrung.";
+            } else if (i === 4) {
+              title = "Transparenz";
+              description = "Wir erklären Diagnosen und Therapien verständlich und nachvollziehbar.";
+            } else if (i === 5) {
+              title = "Zuverlässigkeit";
+              description = "Auf uns ist Verlass – in der Terminplanung, Betreuung und Nachsorge.";
+            } else if (i === 6) {
+              title = "Diskretion";
+              description = "Der Schutz Ihrer persönlichen Daten und Ihrer Privatsphäre ist für uns selbstverständlich.";
+            } else if (i === 7) {
+              title = "Engagement";
+              description = "Wir setzen uns täglich mit voller Aufmerksamkeit für Ihre Gesundheit ein.";
+            } else if (i === 8) {
+              title = "Teamarbeit";
+              description = "Ein gutes Miteinander im Team schafft Qualität in der Behandlung.";
+            } else if (i === 9) {
+              title = "Präsenz";
+              description = "Gesund bleiben ist genauso wichtig wie gesund werden – wir beraten aktiv zur Vorsorge.";
+            } else if (i === 10) {
+              title = "Fortbildung";
+              description = "Wir bilden uns kontinuierlich fort, um Ihnen Medizin auf aktuellem Stand bieten zu können.";
+            }
+
             const wertItemHTML = `
               <div class="wert-item">
                 <div class="wert-number">${String(i).padStart(2, '0')}</div>
                 <div class="wert-separator"></div>
                 <div class="wert-text-content">
-                  <h4 class="wert-title">Vertrauen</h4>
-                  <p class="wert-description">Wir schaffen eine Atmosphäre, in der sich Patientinnen und Patienten sicher und ernst genommen fühlen.</p>
+                  <h4 class="wert-title">${title}</h4>
+                  <p class="wert-description">${description}</p>
                 </div>
               </div>
             `;
