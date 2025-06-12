@@ -1447,8 +1447,7 @@
         pointer-events: none; /* Verhindert Interaktion im versteckten Zustand */
       }
 
-      .bild-mit-overlay-container:hover .info-rechteck { /* Geändert: Hover auf Container, nicht nur Kreis */
-        opacity: 1;
+      .bild-mit-overlay-container:has(.plus-kreis:hover) .info-rechteck {
         transform: translateX(0); /* Schiebt sich an die finale Position */
         pointer-events: auto;
       }
