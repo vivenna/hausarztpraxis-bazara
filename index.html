@@ -608,15 +608,16 @@
     }
 
     .werte-sticky-titles {
-      flex-basis: 65%; /* Deutlich mehr Platz für die linke Spalte (Titel) */
+      flex-basis: 60%; /* Weniger Platz für die linke Spalte */
       position: sticky;
       top: 110px; /* Muss größer sein als die Höhe der Navigationsleiste (93px) + etwas Puffer */
       align-self: flex-start; /* Verhindert, dass die Spalte unnötig gestreckt wird */
+      padding-left: 170px; /* Abstand der Titel zum linken Rand der Spalte hinzugefügt */
       height: calc(100vh - 120px); /* Damit es nicht über den unteren Rand hinaus sticky ist, anpassbar */
     }
 
     .werte-list-scrollable {
-      flex-basis: 35%; /* Deutlich weniger Platz für die rechte Spalte (Werte-Liste) */
+      flex-basis: 40%; /* Mehr Platz für die rechte Spalte */
       padding-right: 250px; /* Rand nach rechts vergrößert */
       font-family: 'Poppins', sans-serif;
       font-weight: 300; /* Poppins Light für alle Inhalte hier */
@@ -659,6 +660,7 @@
       font-size: 16px; /* Kleine Schriftgröße für die Beschreibung */
       color: #6e370e;
       line-height: 1.5;
+      max-width: 400px; /* Maximale Breite für die Beschreibung, anpassbar */
     }
 
   </style>
