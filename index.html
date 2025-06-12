@@ -33,6 +33,12 @@
       z-index: 1000; 
       backdrop-filter: blur(8px); /* Stärkerer Unschärfeeffekt für den Hintergrund */
       -webkit-backdrop-filter: blur(8px); /* Safari-Präfix für Unschärfeeffekt */
+      transition: backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease; /* Sanfter Übergang für den Blur-Effekt */
+    }
+
+    .main-nav.strong-blur {
+      backdrop-filter: blur(16px); /* Noch stärkerer Unschärfeeffekt */
+      -webkit-backdrop-filter: blur(16px);
     }
 
     /* Logo Stile für das Menü */
@@ -106,6 +112,11 @@
 
     .nav-links a:hover {
       text-decoration: underline;
+    }
+
+    /* Klasse für dunkle Navigationslinks */
+    .nav-links.dark-text a {
+      color: #000000; /* Schwarz, wenn über hellem Hintergrund */
     }
 
     /* Hero Section für das große Bild */
@@ -395,6 +406,39 @@
       <a href="leistungen.html" class="leistungen-button">Alle Leistungen <span class="arrow">&rarr;</span></a>
     </div>
   </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const mainNav = document.querySelector('.main-nav');
+      const navLinksUl = document.querySelector('.nav-links'); // Selektiert das <ul> Element
+      const leistungenSection = document.querySelector('.leistungen-section');
+
+      if (!mainNav || !navLinksUl || !leistungenSection) {
+        // console.error('Erforderliche Elemente für den Menü-Farbwechsel nicht gefunden.');
+        return;
+      }
+
+      const menuHeight = mainNav.offsetHeight;
+
+      function checkMenuPosition() {
+        const sectionRect = leistungenSection.getBoundingClientRect();
+
+        // Prüft, ob das Menü (das oben im Viewport fixiert ist)
+        // sich visuell über der leistungenSection befindet
+        if (sectionRect.top < menuHeight && sectionRect.bottom > 0) {
+          navLinksUl.classList.add('dark-text');
+          mainNav.classList.add('strong-blur'); // Stärkeren Blur hinzufügen
+        } else {
+          navLinksUl.classList.remove('dark-text');
+          mainNav.classList.remove('strong-blur'); // Stärkeren Blur entfernen
+        }
+      }
+
+      window.addEventListener('scroll', checkMenuPosition);
+      window.addEventListener('resize', checkMenuPosition); // Auch bei Größenänderung prüfen
+      checkMenuPosition(); // Initiale Prüfung beim Laden der Seite
+    });
+  </script>
 
 </body>
 </html>
