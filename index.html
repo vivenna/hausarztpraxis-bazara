@@ -603,12 +603,12 @@
 
     .werte-content-layout {
       display: flex;
-      gap: 40px; /* Abstand zwischen linker und rechter Spalte */
+      gap: 80px; /* Abstand zwischen linker und rechter Spalte vergrößert */
       margin-top: 40px; /* Abstand von den Haupttiteln zum Inhalt */
     }
 
     .werte-sticky-titles {
-      flex-basis: 60%; /* Weniger Platz für die linke Spalte */
+      flex-basis: 65%; /* Linke Spalte nimmt mehr Raum ein */
       position: sticky;
       top: 140px; /* Erhöht, damit der Titel früher stoppt und mehr Abstand oben hat */
       align-self: flex-start; /* Verhindert, dass die Spalte unnötig gestreckt wird */
@@ -617,8 +617,9 @@
     }
 
     .werte-list-scrollable {
-      flex-basis: 40%; /* Mehr Platz für die rechte Spalte */
-      padding-right: 250px; /* Rand nach rechts vergrößert */
+      flex-basis: 35%; /* Rechte Spalte nimmt weniger Raum ein und rückt somit nach rechts */
+      /* padding-left: 50px; */ /* Entfernt, da der Rand jetzt direkt bei der Nummer ist */
+      padding-right: 180px; /* Rand nach rechts reduziert */
       font-family: 'Poppins', sans-serif;
       font-weight: 300; /* Poppins Light für alle Inhalte hier */
     }
@@ -636,6 +637,7 @@
       line-height: 1;
       min-width: 70px; /* Feste Breite für die Nummer, um Ausrichtung zu stabilisieren */
       text-align: right; /* Nummer rechtsbündig vor der Linie */
+      padding-left: 30px; /* Innerer Rand links bei der Nummer hinzugefügt */
       padding-right: 15px;
     }
 
