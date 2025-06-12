@@ -810,6 +810,7 @@
       width: 60%; /* Breite des Containers, anpassbar */
       display: flex;
       justify-content: flex-start; /* Geändert, um Elemente am Anfang auszurichten */
+      align-items: flex-start; /* Stellt sicher, dass die Spalten oben bündig beginnen */
       z-index: 5; /* Über dem Logo */
       font-family: 'Poppins', sans-serif;
       font-weight: 300; /* Poppins Light */
@@ -842,11 +843,16 @@
     }
 
     .footer-hours-column .hours-title {
-      margin-bottom: 10px; /* Etwas mehr Abstand für den Titel "Öffnungszeiten" */
+      margin-bottom: 5px; /* Angepasst, um die Höhe an die Kontakt-Spalte anzugleichen */
     }
 
     .footer-hours-details {
       display: flex;
+    }
+
+    .footer-hours-times {
+        text-align: right;
+        padding-right: 130px;
     }
 
     .footer-hours-days,
@@ -1148,7 +1154,7 @@
           <p>Telefax: +49 (0) 30 9940 2335</p>
         </div>
         <div class="footer-hours-column">
-          <p class="hours-title">Öffnungszeiten</p>
+          <p class="hours-title">Öffnungszeiten:</p>
           <div class="footer-hours-details">
             <div class="footer-hours-days">
               <p>Mo, Di, Fr:</p>
