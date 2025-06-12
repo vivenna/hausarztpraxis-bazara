@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Leistungen - BAZARA safia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Google Fonts Einbindung -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter&family=Questrial&family=Poppins:wght@300;500;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #f9f9f9; /* Heller Hintergrund für den Inhalt */
+      font-smooth: always;
+      /* padding-top: 93px; */ /* Entfernt, damit Hero-Section oben beginnt */
+    }
+
+    .main-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center; 
+      background-color: rgba(230, 230, 230, 0.15); /* #e6e6e6 mit 0.5 Transparenz (weniger transparent) */
+      border-bottom: 1px solid #c8c5c5; /* Linienfarbe geändert */
+      padding: 0 25px; /* Padding links/rechts, vertikales Padding wird durch Höhe und align-items gesteuert */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 93px; /* Feste Höhe für die Navigationsleiste */
+      box-sizing: border-box;
+      z-index: 1000; 
+      backdrop-filter: blur(8px); /* Stärkerer Unschärfeeffekt für den Hintergrund */
+      -webkit-backdrop-filter: blur(8px); /* Safari-Präfix für Unschärfeeffekt */
+      transition: backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease; /* Sanfter Übergang für den Blur-Effekt */
+    }
+
+    .main-nav.strong-blur {
+      backdrop-filter: blur(16px); /* Noch stärkerer Unschärfeeffekt */
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    /* Logo Stile für das Menü */
+    .menu-logo .logo-link {
+      text-decoration: none;
+      color: inherit;
+      display: inline-block;
+      padding-top: 5.5px;
+      padding-left: 20px;
+    }
+
+    .menu-logo .logo-text-container {
+      position: relative;
+      display: inline-block; 
+      line-height: 1;
+    }
+
+    .menu-logo .bazara-style {
+      font-family: 'Questrial', sans-serif;
+      font-size: 34px; 
+      color: #c8c5c5;
+    }
+
+    .menu-logo .safia-style {
+      position: absolute;
+      top: 0; 
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Great Vibes', cursive;
+      font-size: 30px; 
+      color: #0c0c0c;
+      pointer-events: none;
+      opacity: 0.75;
+      white-space: nowrap;
+    }
+
+    .menu-logo .subtitle-style {
+      margin-top: 4px; 
+      font-family: 'Inter', sans-serif;
+      font-size: 10px; /* Lesbare Größe für den Untertitel im Menü */
+      color: #000000;
+      opacity: 0.9;
+      line-height: 1.2; /* Korrigierte Zeilenhöhe für bessere Lesbarkeit */
+      text-align: center;
+    }
+
+    /* Navigationslinks */
+    .nav-links {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links li {
+      margin-left: 60px; /* Weiter vergrößerter Abstand zwischen den Menüpunkten */
+    }
+
+    .nav-links li:last-child {
+      margin-right: 60px; /* Vergrößerter Rand rechts für den letzten Menüpunkt */
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #ffffff; /* Schriftfarbe der Menüpunkte auf Weiß geändert */
+      font-family: 'Poppins', sans-serif; /* Geänderte Schriftart */
+      font-weight: 300; /* Schriftgewicht für Light */
+      font-size: 16px;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* Klasse für dunkle Navigationslinks */
+    .nav-links.dark-text a {
+      color: #000000; /* Schwarz, wenn über hellem Hintergrund */
+    }
+
+    /* Hero Section für das große Bild */
+    .hero-section {
+      height: 100vh; /* Volle Viewport-Höhe */
+      background-image: url('/assets/startseite.png'); /* Beispielbild, bitte ersetzen */
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #ffffff; /* Standardtextfarbe für Inhalte im Hero-Bereich */
+      position: relative; /* Für absolute Positionierung von Kindelementen */
+    }
+
+    .hero-section h1 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700; /* Bold */
+      font-size: 110px;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Textschatten für bessere Lesbarkeit */
+      line-height: 1.2; /* Für bessere Lesbarkeit bei mehrzeiligem Text */
+    }
+    .hero-section h2 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; /* Light */
+      font-size: 30.1px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Textschatten für bessere Lesbarkeit */
+      margin-top: 10px;
+    }
+
+    .hero-new-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700; /* Bold */
+      font-size: 110px; /* Gleiche Schriftgröße wie h1 */
+      color: #ffffff;
+      line-height: 1.2;
+      margin-bottom: 30px; /* Abstand zum Button */
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Gleicher Textschatten wie h1 */
+    }
+
+    .hero-new-button {
+      display: inline-block;
+      background-color: #ffffff;
+      color: #0c0c0c; /* Dunkler Text für weißen Button */
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; /* Light */
+      font-size: 18px;
+      padding: 12px 25px;
+      text-decoration: none;
+      border-radius: 0; /* Keine Abrundung */
+      border: none; /* Kein Rand */
+      cursor: pointer;
+    }
+
+    /* Neuer Bereich unter Hero */
+    .info-section {
+      background-color: #6e370e;
+      color: #ffffff; /* Helle Schriftfarbe für guten Kontrast */
+      padding: 60px 40px; /* Ausreichend Innenabstand */
+      display: flex;
+      align-items: flex-start; /* Oben ausrichten, falls Texte unterschiedlich lang sind */
+      gap: 30px; /* Abstand zwischen linkem und rechtem Teil */
+    }
+
+    .info-section .left-column {
+      flex-basis: 30%; /* Linke Spalte nimmt 30% ein */
+      display: flex;
+      align-items: center; /* Punkt und Text vertikal zueinander zentrieren */
+      justify-content: center; /* Inhalt horizontal zentrieren */
+      padding-top: 60px; /* "Hausarztpraxis Bazara" weiter nach unten verschieben */
+      align-self: flex-start; /* Verhindert vertikales Strecken der Spalte */
+    }
+
+    .info-section .right-column {
+      flex-basis: 70%; /* Rechte Spalte nimmt 70% ein */
+      padding-top: 5px; /* Reduziert, um den großen Text etwas anzuheben */
+      padding-right: 85px; /* Weiter vergrößerter Abstand zum rechten Rand */
+    }
+
+    .info-section .left-column .bullet-point {
+      font-size: 24px; /* Größe des Punktes */
+      margin-right: 10px;
+      line-height: 1; /* Verhindert zusätzlichen vertikalen Platz durch den Punkt */
+    }
+
+    .info-section .left-column .practice-name {
+      font-size: 18px;
+      font-family: 'Poppins', sans-serif; /* Konsistente Schriftart */
+      font-weight: 300; /* Light, falls gewünscht, ansonsten normal */
+      line-height: 1.2; /* Für präzise Berechnung der vertikalen Mitte */
+    }
+
+    .info-section .right-column .welcome-text {
+      font-size: 60px; /* Schriftgröße weiter erhöht */
+      font-family: 'Poppins', sans-serif; /* Konsistente Schriftart */
+      font-weight: 300; /* Poppins Light */
+      line-height: 1.3; /* Bessere Lesbarkeit für längeren Text */
+    }
+
+    /* Leistungsbereich */
+    .leistungen-section {
+      background-color: #ffffff;
+      color: #000000;
+      padding: 80px 40px;
+      text-align: center;
+    }
+
+    .leistungen-section .sub-heading-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .leistungen-section .sub-heading-bullet {
+      font-size: 24px; /* Größe des Punktes */
+      color: #6e370e;
+      margin-right: 10px;
+      line-height: 1;
+    }
+
+    .leistungen-section .sub-heading {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; /* Poppins Light */
+      font-size: 20px;
+    }
+
+    .leistungen-section .main-heading {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700; /* Poppins Bold */
+      font-size: 70px; /* Beispielgröße, anpassbar */
+      line-height: 1.1;
+      margin-top: 0;
+    }
+
+    .leistungen-section .main-heading .highlight {
+      color: #6e370e;
+      font-weight: 700; /* Sicherstellen, dass Bold beibehalten wird */
+    }
+
+    .leistungen-items-container {
+      display: flex;
+      justify-content: space-around; /* Gleichmäßiger Abstand um die Elemente */
+      align-items: flex-start; /* Oben ausrichten, falls Inhalte variieren */
+      margin-top: 130px; /* Reduzierter Abstand zum Haupttitel */
+      flex-wrap: wrap; /* Falls auf kleinen Bildschirmen nicht genug Platz ist */
+    }
+
+    .leistung-item {
+      flex-basis: 30%; /* Jedes Item nimmt ca. 30% der Breite ein */
+      /* max-width: 280px; */ /* Entfernt, um dem Label mehr Platz zu geben */
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Zentriert Icon, Linie und Text */
+      margin-bottom: 40px; /* Abstand zwischen den Reihen, falls umgebrochen wird */
+    }
+
+    .leistung-icon {
+      width: fit-content; /* Beispielbreite für das Icon */
+      height: 250px; /* Gleiche Höhe für alle Icons */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 15px;
+      object-fit: contain; /* Stellt sicher, dass das Bild passt, ohne es zu verzerren */
+    }
+
+    .leistung-line {
+      width: 110px; /* Länge der Linie erhöht */
+      height: 4px; /* Dicke der Linie erhöht */
+      background-color: #6e370e; /* Farbe der Linie */
+      margin-top: 60px; /* Weiter nach unten verschoben */
+      margin-bottom: -5px; /* Weiter reduzierter Abstand zur Beschriftung */
+    }
+
+    /* Individuelle Positionierung der Linien */
+    .leistungen-items-container .leistung-item:nth-of-type(1) .leistung-line {
+      margin-left: -130px; /* Weniger nach links für die erste Linie (DMP) */
+    }
+
+    .leistungen-items-container .leistung-item:nth-of-type(2) .leistung-line {
+      margin-left: -250px; /* Weiter nach links für die zweite Linie (Diagnostik) */
+    }
+
+    .leistungen-items-container .leistung-item:nth-of-type(3) .leistung-line {
+      margin-left: -220px; /* Ein bisschen weiter nach links für die dritte Linie (Vorsorge) */
+    }
+
+
+
+
+    .leistung-label {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700; /* Poppins Light */
+      font-size: 22px;
+    }
+
+    .leistungen-beschreibung {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; /* Poppins Light */
+      font-size: 18px; /* Anpassbare Größe */
+      line-height: 1.6;
+      max-width: 900px; /* Maximale Breite für den Textblock */
+      margin: 40px auto 40px 115px; /* Oben, Rechts-Auto, Unten, Links 0 */
+      text-align: left; /* Text linksbündig */
+    }
+
+    .leistungen-beschreibung .highlight-beratung {
+      font-weight: 500; /* Etwas fetter */
+    }
+
+    /* Stellt sicher, dass der Button-Container zentriert ist und die gleiche Breite hat */
+    .leistungen-button-container {
+      text-align: left; /* Button links ausrichten */
+      max-width: 900px; /* Gleiche maximale Breite wie der Textblock */
+      margin: 0 auto 40px 115px; /* Oben, Rechts-Auto, Unten, Links 0 */
+    }
+
+    .leistungen-button {
+      display: inline-flex; /* Für Icon-Ausrichtung */
+      align-items: center;
+      background-color: #6e370e; /* Beispiel-Buttonfarbe */
+      color: #ffffff; /* Textfarbe auf Weiß geändert */
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; /* Poppins Light */
+      font-size: 18px; /* Schriftgröße erhöht */
+      padding: 12px 25px;
+      text-decoration: none;
+      border-radius: 50px; /* Starke Abrundung für Pillenform */
+    }
+
+    .leistungen-button .arrow {
+      font-size: 24px; /* Größerer Pfeil */
+      font-weight: bold; /* Dickerer Pfeil */
+      margin-left: 8px; /* Kleiner Abstand zum Text */
+    }
+
+    /* Sprechzeiten-Bereich */
+    .sprechzeiten-section {
+      background-color: #ffffff; /* Hintergrundfarbe wie Leistungsbereich, anpassbar */
+      color: #000000;
+      padding: 0 40px 60px 40px; /* padding-top auf 0 gesetzt, andere Paddings beibehalten */
+      text-align: center;
+    }
+
+    .sprechzeiten-section .section-divider {
+      width: 80%;
+      height: 1px; /* Linie dünner gemacht */
+      background-color: #6e370e;
+      margin: 0 auto 80px auto; /* Zentriert und Abstand nach unten weiter vergrößert */
+    }
+
+    .sprechzeiten-section .sub-heading-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .sprechzeiten-section .sub-heading-bullet {
+      font-size: 24px; /* Größe des Punktes */
+      color: #6e370e;
+      margin-right: 10px;
+      line-height: 1;
+    }
+
+    .sprechzeiten-section .sub-heading {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; /* Poppins Light */
+      font-size: 20px;
+    }
+
+    .sprechzeiten-section .main-heading {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700; /* Poppins Bold */
+      font-size: 70px; /* Gleich wie Leistungsbereich, anpassbar */
+      line-height: 1.1;
+      margin-top: 0;
+    }
+
+    .sprechzeiten-section .main-heading .highlight {
+      color: #6e370e;
+      font-weight: 700; /* Sicherstellen, dass Bold beibehalten wird */
+    }
+
+    /* Tabelle für Sprechzeiten */
+    .sprechzeiten-tabelle {
+      width: 80%; /* Anpassbare Breite der Tabelle */
+      margin: 40px auto 0 auto; /* Abstand nach oben, zentriert */
+      margin-top: 60px; /* Vergrößerter Abstand zum Titel oben */
+      border-collapse: collapse; /* Entfernt doppelte Ränder */
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; /* Poppins Light */
+      font-size: 18px; /* Schriftgröße erhöht */
+      color: #333333; /* Schriftfarbe etwas dunkler gemacht */
+    }
+
+    .sprechzeiten-tabelle th,
+    .sprechzeiten-tabelle td {
+      padding: 18px 15px; /* Innenabstand (Zeilenhöhe) erhöht */
+      text-align: center; /* Textausrichtung in den Zellen zentriert */
+      border-bottom: none; /* Keine horizontalen Linien */
+      border-top: none; /* Keine horizontalen Linien */
+    }
+
+    .sprechzeiten-tabelle th:not(:first-child),
+    .sprechzeiten-tabelle td:not(:first-child) {
+      border-left: 0.5px solid #6e370e; /* Sehr feine vertikale Linie für Spalten ab der zweiten */
+    }
+
+    .sprechzeiten-tabelle th:first-child,
+    .sprechzeiten-tabelle td:first-child {
+      border-left: none; /* Keine Linie für die erste Spalte links */
+    }
+    
+    .sprechzeiten-tabelle th {
+      font-weight: 300; /* Poppins Light auch für Header */
+    }
+
+    /* Erste Spalte (Wochentage) linksbündig */
+    .sprechzeiten-tabelle tbody th {
+      text-align: left;
+    }
+
+    .sprechzeiten-tabelle th .underline-text {
+      position: relative; /* Für die Positionierung des Pseudo-Elements */
+      display: inline-block; /* Damit der Unterstrich sich an die Textbreite anpasst */
+    }
+
+    .sprechzeiten-tabelle th .underline-text::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; /* Abstand des Unterstrichs zum Text */
+      left: 50%;
+      transform: translateX(-50%);
+      width: 85%; /* Breite des Unterstrichs */
+      height: 0.5px; /* Dicke des Unterstrichs angepasst */
+      background-color: #6e370e; /* Farbe des Unterstrichs angepasst an Spaltenlinien */
+    }
+
+
+
+    .sprechzeiten-hinweis {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; /* Poppins Light */
+      font-size: 14px; /* Kleine Schriftgröße */
+      color: #333333; /* Schriftfarbe angepasst */
+      text-align: center;
+      margin-top: 50px; /* Abstand zur Tabelle */
+      margin-bottom: 40px;
+    }
+
+    /* Lage & Anfahrt Bereich */
+    .lage-anfahrt-section {
+      background-color: #ffffff; /* Hintergrundfarbe wie vorherige Sektionen */
+      color: #000000;
+      padding: 0 40px 80px 40px; /* Gleiches Padding wie Sprechzeiten */
+      text-align: center;
+    }
+
+    .lage-anfahrt-section .section-divider {
+      width: 80%;
+      height: 1px;
+      background-color: #6e370e;
+      margin: 0 auto 80px auto; /* Gleicher Abstand wie Sprechzeiten */
+    }
+
+    .lage-anfahrt-section .sub-heading-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .lage-anfahrt-section .sub-heading-bullet {
+      font-size: 24px;
+      color: #6e370e;
+      margin-right: 10px;
+      line-height: 1;
+    }
+
+    .lage-anfahrt-section .sub-heading {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; /* Poppins Light */
+      font-size: 20px;
+    }
+
+    .lage-anfahrt-section .main-heading {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700; /* Poppins Bold */
+      font-size: 70px; /* Gleich wie vorherige Sektionen */
+      line-height: 1.1;
+      margin-top: 0;
+    }
+
+    .lage-anfahrt-section .main-heading .highlight {
+      color: #6e370e;
+      font-weight: 700; /* Sicherstellen, dass Bold beibehalten wird */
+    }
+
+    /* Inhalt für Lage & Anfahrt */
+    .anfahrt-details-container {
+      width: 80%; /* Ähnliche Breite wie Tabelle, anpassbar */
+      margin: 80px auto 0 auto; /* Abstand nach oben vergrößert, zentriert */
+      font-family: 'Poppins', sans-serif; /* Standard-Schriftart für diesen Bereich */
+      font-weight: 300; /* Poppins Light als Standard */
+    }
+
+    .anfahrt-row {
+      display: flex;
+      margin-bottom: 15px; /* Abstand zwischen den Zeilen vergrößert */
+    }
+
+    .anfahrt-row .left-col {
+      flex-basis: 30%; /* Linke Spalte nimmt weniger Platz */
+      padding-right: 20px; /* Abstand zur rechten Spalte */
+      text-align: left;
+    }
+
+    .anfahrt-row .right-col {
+      flex-basis: 70%; /* Rechte Spalte nimmt mehr Platz */
+      text-align: left;
+    }
+
+    .anfahrt-row.adresse-row .left-col {
+      font-family: 'Dancing Script', cursive;
+      font-size: 55px; /* Schriftgröße vergrößert */
+      color: #6e370e;
+      line-height: 1.1; /* Anpassung für Dancing Script */
+    }
+
+    .anfahrt-row.adresse-row .right-col {
+      font-size: 26px; /* Schriftgröße vergrößert */
+      color: #0c0c0c; /* Standard Schwarz für die Adresse */
+      padding-top: 20px; /* Vertikale Ausrichtung angepasst */
+    }
+
+    .anfahrt-row.gap-row {
+      margin-bottom: 40px; /* Größere Lücke vergrößert */
+    }
+
+    .anfahrt-row:not(.adresse-row) .left-col {
+      font-size: 21px; /* Schriftgröße vergrößert */
+      color: #555555;
+      padding-top: 8px; /* Erhöht den oberen Innenabstand */
+      padding-bottom: 8px; /* Erhöht den unteren Innenabstand */
+    }
+    .anfahrt-row:not(.adresse-row) .right-col {
+      font-size: 21px; /* Schriftgröße vergrößert */
+      color: #0c0c0c;
+      padding-top: 8px; /* Erhöht den oberen Innenabstand */
+      padding-bottom: 8px; /* Erhöht den unteren Innenabstand */
+    }
+
+    /* Unsere Werte Bereich */
+    .werte-section {
+      background-color: #ffffff; /* Hintergrundfarbe wie vorherige Sektionen */
+      color: #000000;
+      padding: 0 40px 80px 40px; /* Gleiches Padding wie vorherige Sektionen */
+      /* text-align: center; wird entfernt für Linksbündigkeit */
+    }
+
+    .werte-section .section-divider {
+      width: 80%;
+      height: 1px;
+      background-color: #6e370e;
+      margin: 0 auto 120px auto; /* Beibehaltung der Zentrierung für die Linie */
+    }
+
+    .werte-section .sub-heading-container {
+      display: flex;
+      /* justify-content: center; wird entfernt für Linksbündigkeit */
+      justify-content: flex-start; /* Linksbündig */
+      align-items: center;
+      margin-bottom: 15px;
+      padding-left: 20px; /* Zusätzlicher Einzug für den Sub-Heading-Container */
+    }
+
+    .werte-section .sub-heading-bullet {
+      font-size: 24px;
+      color: #6e370e;
+      margin-right: 15px; /* Etwas mehr Abstand für den linken Titel */
+      line-height: 1;
+    }
+
+    .werte-section .sub-heading {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; /* Poppins Light */
+      font-size: 20px;
+    }
+
+    .werte-section .main-heading {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700; /* Poppins Bold */
+      font-size: 48px; /* Angepasst an die Größe der Nummerierung */
+      line-height: 1.1;
+      margin-top: 0;
+      text-align: left; /* Hauptüberschrift linksbündig innerhalb ihrer Spalte */
+      /* padding-left: 10%; Wird durch Flexbox-Layout der Spalten gesteuert */
+    }
+
+    .werte-section .main-heading .highlight {
+      color: #6e370e;
+      font-weight: 700; /* Sicherstellen, dass Bold beibehalten wird */
+    }
+
+    .werte-content-layout {
+      display: flex;
+      gap: 80px; /* Abstand zwischen linker und rechter Spalte vergrößert */
+      margin-top: 40px; /* Abstand von den Haupttiteln zum Inhalt */
+    }
+
+    .werte-sticky-titles {
+      flex-basis: 65%; /* Linke Spalte nimmt mehr Raum ein */
+      position: sticky;
+      top: 140px; /* Erhöht, damit der Titel früher stoppt und mehr Abstand oben hat */
+      align-self: flex-start; /* Verhindert, dass die Spalte unnötig gestreckt wird */
+      padding-left: 170px; /* Abstand der Titel zum linken Rand der Spalte hinzugefügt */
+      height: calc(100vh - 120px); /* Damit es nicht über den unteren Rand hinaus sticky ist, anpassbar */
+    }
+
+    .werte-list-scrollable {
+      flex-basis: 35%; /* Rechte Spalte nimmt weniger Raum ein und rückt somit nach rechts */
+      /* padding-left: 50px; */ /* Entfernt, da der Rand jetzt direkt bei der Nummer ist */
+      padding-right: 180px; /* Rand nach rechts reduziert */
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; /* Poppins Light für alle Inhalte hier */
+    }
+
+    .wert-item {
+      display: flex;
+      align-items: flex-start; /* Oben ausrichten für Nummer, Linie, Text */
+      margin-bottom: 80px; /* Abstand zwischen den Wert-Items vergrößert */
+    }
+
+    .wert-item .wert-number {
+      font-size: 48px; /* Große Nummer */
+      font-weight: 300; /* Poppins Light (war bereits so, explizit beibehalten) */
+      color: #333333; /* Dunkelgrau für die Nummern */
+      line-height: 1;
+      min-width: 70px; /* Feste Breite für die Nummer, um Ausrichtung zu stabilisieren */
+      text-align: right; /* Nummer rechtsbündig vor der Linie */
+      padding-left: 30px; /* Innerer Rand links bei der Nummer hinzugefügt */
+      padding-right: 15px;
+    }
+
+    .wert-item .wert-separator {
+      width: 1px;
+      background-color: #000000; /* Schwarze, dünne Linie */
+      align-self: stretch; /* Linie soll sich der Höhe des Textinhalts anpassen, falls dieser höher ist */
+      min-height: 60px; /* Mindesthöhe für die Linie, falls Text kurz ist */
+      margin-right: 20px;
+    }
+
+    .wert-item .wert-title {
+      font-size: 48px; /* Schriftgröße angepasst an wert-number */
+      font-weight: 300; /* Poppins Light */
+      color: #0c0c0c;
+      margin-top: 0; /* Entfernt den oberen Standardabstand des h4-Elements */
+      margin-bottom: 30px; /* Abstand zur Beschreibung vergrößert */
+      line-height: 1; /* Stellt sicher, dass die Zeilenhöhe mit der Nummer übereinstimmt */
+    }
+
+    .wert-item .wert-description {
+      font-size: 16px; /* Kleine Schriftgröße für die Beschreibung */
+      color: #6e370e;
+      line-height: 1.5;
+      max-width: 400px; /* Maximale Breite für die Beschreibung, anpassbar */
+    }
+
+    /* Fußzeile */
+    .main-footer {
+      background-color: #6e370e;
+      height: 100vh; /* Fußzeile nimmt die komplette Bildschirmhöhe ein */
+      box-sizing: border-box; /* Stellt sicher, dass Padding die 100vh nicht überschreitet */
+      padding: 0; /* Padding wird durch innere Elemente gesteuert oder spezifisch gesetzt */
+      display: flex;
+      justify-content: center;
+      align-items: center; /* Zentriert das Logo vertikal */
+      position: relative; /* Für absolute Positionierung des neuen Inhalts */
+    }
+
+    .footer-top-left-content {
+      position: absolute;
+      top: 130px;
+      left: 140px; /* Abstand vom linken Rand vergrößert */
+      text-align: left;
+      z-index: 5; /* Über dem Logo, falls es überlappt */
+    }
+
+    .footer-new-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700; /* Bold */
+      font-size: 110px; /* Gleiche Schriftgröße wie h1 in hero-section */
+      color: #ffffff; /* Helle Schrift für dunklen Footer-Hintergrund */
+      line-height: 1.2;
+      margin-bottom: 60px; /* Abstand zum Button vergrößert */
+      /* Kein Textschatten, da Hintergrund einfarbig ist, kann bei Bedarf hinzugefügt werden */
+    }
+
+    .footer-new-button {
+      display: inline-block;
+      background-color: #ffffff;
+      color: #6e370e; /* Schriftfarbe geändert */
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; /* Light */
+      font-size: 22px; /* Schriftgröße erhöht */
+      padding: 12px 80px; /* Horizontales Padding verdoppelt */
+      text-decoration: none;
+      border-radius: 0; /* Keine Abrundung */
+      border: none; /* Kein Rand */
+      cursor: pointer;
+    }
+
+    .footer-logo-wrapper {
+      opacity: 0.2; /* Transparenz weiter reduziert */
+      /* Stellt sicher, dass das Logo hinter dem neuen Inhalt ist, falls es überlappt */
+      position: relative; 
+      z-index: 1; 
+    }
+
+    .footer-logo-wrapper {
+      opacity: 0.2; /* Transparenz weiter reduziert */
+    }
+
+    /* Wiederverwendung der Logo-Struktur, aber mit eigenen Klassen für die Größe */
+    .footer-logo .logo-link {
+      text-decoration: none;
+      color: inherit; /* Farbe wird von Elternelementen im Footer geerbt oder explizit gesetzt */
+      display: inline-block;
+    }
+
+    .footer-logo .logo-text-container {
+      position: relative;
+      display: inline-block;
+      line-height: 1;
+    }
+
+    .footer-logo .bazara-style {
+      font-family: 'Questrial', sans-serif;
+      font-size: 270px; /* 1.5x größer */
+      color: #c8c5c5; /* Farbe wie Menü-Logo */
+    }
+
+    .footer-logo .safia-style {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Great Vibes', cursive;
+      font-size: 285px; /* 1.5x größer */
+      color: #0c0c0c; /* Farbe wie Menü-Logo */
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .footer-logo .subtitle-style {
+      margin-top: 22.5px; /* Angepasster Abstand (1.5x) */
+      font-family: 'Inter', sans-serif;
+      font-size: 42px; /* 1.5x größer */
+      color: #000000; /* Farbe wie Menü-Logo */
+      line-height: 1.2;
+      text-align: center;
+    }
+
+    .footer-bottom-left-text {
+      position: absolute;
+      bottom: 60px; /* Abstand vom unteren Rand */
+      left: 140px;  /* Gleicher linker Abstand wie der Inhalt oben links */
+      text-align: left;
+      z-index: 5; /* Über dem Logo */
+      font-family: 'Poppins', sans-serif; /* Konsistente Schriftart */
+      font-weight: 300; /* Poppins Light */
+      font-size: 30px;
+      line-height: 1.5;
+    }
+
+    .footer-bottom-left-text .hausarzt-color {
+      color: #d5ad8f;
+    }
+    .footer-bottom-left-text .bazara-color {
+      color: #ffffff;
+    }
+    .footer-contact-hours-container {
+      position: absolute;
+      bottom: 60px; /* Gleicher Abstand vom unteren Rand wie die anderen Elemente */
+      left: 25%; /* Weiter nach rechts verschoben, Wert anpassbar */
+      width: 60%; /* Breite des Containers, anpassbar */
+      display: flex;
+      justify-content: flex-start; /* Geändert, um Elemente am Anfang auszurichten */
+      align-items: flex-start; /* Stellt sicher, dass die Spalten oben bündig beginnen */
+      z-index: 5; /* Über dem Logo */
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; /* Poppins Light */
+      font-size: 12px;
+      color: #ffffff; /* Standardtextfarbe für diesen Bereich */
+    }
+
+    .footer-contact-column,
+    .footer-hours-column {
+      flex-basis: 48%; /* Gibt jeder Spalte etwas weniger als die Hälfte für einen kleinen Abstand */
+      /* Die Breite kann bei Bedarf auch auf 'auto' oder einen festen Wert gesetzt werden */
+      text-align: left;
+    }
+
+    .footer-contact-column p,
+    .footer-hours-column p {
+      margin: 0 0 5px 0; /* Kleiner Abstand zwischen den Zeilen */
+      line-height: 1.6; /* Zeilenhöhe angepasst */
+    }
+    
+    .footer-contact-column {
+      margin-right: 0px; /* Abstand zwischen Kontakt- und Öffnungszeiten-Spalte, anpassbar */
+      padding-left: 250px; /* Schiebt den Inhalt der Kontakt-Spalte nach rechts, anpassbar */
+    }
+
+    .footer-contact-column p:last-child,
+    .footer-hours-days p:last-child,
+    .footer-hours-times p:last-child {
+      margin-bottom: 0; /* Entfernt den unteren Abstand vom letzten p-Element */
+    }
+
+    .footer-hours-column .hours-title {
+      margin-bottom: 5px; /* Angepasst, um die Höhe an die Kontakt-Spalte anzugleichen */
+    }
+
+    .footer-hours-details {
+      display: flex;
+    }
+
+    .footer-hours-times {
+        text-align: right;
+        padding-right: 130px;
+    }
+
+    .footer-hours-days,
+    .footer-hours-times {
+      flex-basis: 50%;
+      /* text-align: left; ist bereits Standard für p-Elemente in diesem Kontext */
+    }
+
+    .footer-hours-days p,
+    .footer-hours-times p {
+       margin: 0 0 5px 0;
+       line-height: 1.6; /* Zeilenhöhe angepasst */
+    }
+
+    .footer-hours-days {
+      margin-right: -90px; /* Schiebt die Zeiten-Spalte nach links, anpassbar */
+    }
+
+
+
+
+    .footer-bottom-right-links {
+      position: absolute;
+      bottom: 60px; /* Gleicher Abstand vom unteren Rand wie der Text links */
+      right: 140px; /* Abstand vom rechten Rand */
+      text-align: left; /* Textausrichtung innerhalb des Containers auf links geändert */
+      z-index: 5; /* Über dem Logo */
+    }
+
+    .footer-bottom-right-links a {
+      display: block; /* Damit die Links untereinander stehen */
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; /* Poppins Light */
+      font-size: 12px; /* Schriftgröße auf 12px gesetzt */
+      color: #ffffff; /* Helle Schrift für dunklen Footer */
+      text-decoration: none;
+      margin-bottom: 8px; /* Abstand zwischen den Links */
+    }
+    .footer-bottom-right-links a:last-child {
+      margin-bottom: 0;
+    }
+
+  </style>
+</head>
+<body>
+
+  <nav class="main-nav">
+    <div class="menu-logo">
+      <a href="index.html" class="logo-link">
+        <div class="logo-text-container">
+          <div class="bazara-style">BAZARA</div>
+          <div class="safia-style">safia</div>
+        </div>
+        <div class="subtitle-style">Hausarztpraxis</div>
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="leistungen.html">Leistungen</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="kontakt.html">Kontakt</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero-section">
+    <div class="hero-text-wrapper">
+      <h1>Gesund werden.<br>Gesund bleiben.</h1>
+      <h2>Wir begleiten Sie – persönlich, nah und mit Zeit.</h2>
+    </div>
+  </div>
+
+  <div class="info-section">
+    <div class="left-column">
+      <span class="bullet-point">&bull;</span>
+      <span class="practice-name">Hausarztpraxis Bazara</span>
+    </div>
+    <div class="right-column">
+      <p class="welcome-text">Herzlich willkommen in unserer Praxis. Wir nehmen uns Zeit für Ihre Gesundheit – mit Erfahrung, Empathie und einem verlässlichen Team.</p>
+    </div>
+  </div>
+
+  <div class="leistungen-section"> <!-- Beginn der kopierten Sektion -->
+    <div class="sub-heading-container">
+      <span class="sub-heading-bullet">&bull;</span>
+      <h3 class="sub-heading">So unterstützen wir Ihre Gesundheit</h3>
+    </div>
+    <h2 class="main-heading">
+      <span class="highlight">UNSERE</span> LEISTUNGEN
+    </h2>
+    <!-- Der Rest des Inhalts der leistungen-section (Items, Beschreibung, Button) fehlt hier noch -->
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const mainNav = document.querySelector('.main-nav');
+      const navLinksUl = document.querySelector('.nav-links'); // Selektiert das <ul> Element
+      // Alle Sektionen auswählen, bei denen der Farbwechsel stattfinden soll
+      // Passen Sie diese Selektoren an die Sektionen auf der leistungen.html Seite an,
+      // falls der Farbwechseleffekt gewünscht ist.
+      const sectionsForColorChange = document.querySelectorAll('.leistungen-section, .sprechzeiten-section, .lage-anfahrt-section, .werte-section');
+
+      if (!mainNav || !navLinksUl) { // Prüfung auf sectionsForColorChange.length entfernt, da die Seite anfangs leer sein kann
+        console.error('Erforderliche Elemente für das Menü nicht gefunden.');
+        return;
+      }
+
+      const menuHeight = mainNav.offsetHeight;
+
+      function checkMenuPosition() {
+        let shouldBeDark = false;
+
+        if (sectionsForColorChange.length > 0) {
+          sectionsForColorChange.forEach(section => {
+            const rect = section.getBoundingClientRect();
+            // Prüft, ob das Menü (das oben im Viewport fixiert ist)
+            // sich visuell über einer der definierten Sektionen befindet
+            if (rect.top < menuHeight && rect.bottom > menuHeight) { 
+              shouldBeDark = true;
+            }
+          });
+        }
+
+        if (shouldBeDark) {
+          navLinksUl.classList.add('dark-text');
+          mainNav.classList.add('strong-blur'); // Stärkeren Blur hinzufügen
+        } else {
+          navLinksUl.classList.remove('dark-text');
+          mainNav.classList.remove('strong-blur'); // Stärkeren Blur entfernen
+        }
+      }
+
+      window.addEventListener('scroll', checkMenuPosition);
+      window.addEventListener('resize', checkMenuPosition); // Auch bei Größenänderung prüfen
+      checkMenuPosition(); // Initiale Prüfung beim Laden der Seite
+    });
+  </script>
+
+</body>
+</html>
