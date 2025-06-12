@@ -668,6 +668,8 @@
     /* Fußzeile */
     .main-footer {
       background-color: #6e370e;
+      height: 100vh; /* Fußzeile nimmt die komplette Bildschirmhöhe ein */
+      box-sizing: border-box; /* Stellt sicher, dass Padding die 100vh nicht überschreitet */
       padding: 80px 40px; /* Ausreichend Innenabstand */
       display: flex;
       justify-content: center;
@@ -678,7 +680,7 @@
     }
 
     .footer-logo-wrapper {
-      opacity: 0.5; /* Transparenz für das gesamte Logo */
+      opacity: 0.2; /* Transparenz weiter reduziert */
     }
 
     /* Wiederverwendung der Logo-Struktur, aber mit eigenen Klassen für die Größe */
@@ -696,8 +698,8 @@
 
     .footer-logo .bazara-style {
       font-family: 'Questrial', sans-serif;
-      font-size: 180px; /* Deutlich größer */
-      color: #ffffff; /* Helle Farbe für guten Kontrast auf dunklem Grund */
+      font-size: 270px; /* 1.5x größer */
+      color: #c8c5c5; /* Farbe wie Menü-Logo */
     }
 
     .footer-logo .safia-style {
@@ -706,17 +708,17 @@
       left: 50%;
       transform: translateX(-50%);
       font-family: 'Great Vibes', cursive;
-      font-size: 190px; /* Deutlich größer */
-      color: #f0f0f0; /* Helle Farbe, leicht abgesetzt */
+      font-size: 285px; /* 1.5x größer */
+      color: #0c0c0c; /* Farbe wie Menü-Logo */
       pointer-events: none;
       white-space: nowrap;
     }
 
     .footer-logo .subtitle-style {
-      margin-top: 15px; /* Angepasster Abstand */
+      margin-top: 22.5px; /* Angepasster Abstand (1.5x) */
       font-family: 'Inter', sans-serif;
-      font-size: 28px; /* Größerer Untertitel */
-      color: #ffffff; /* Helle Farbe */
+      font-size: 42px; /* 1.5x größer */
+      color: #000000; /* Farbe wie Menü-Logo */
       line-height: 1.2;
       text-align: center;
     }
@@ -953,7 +955,7 @@
   <footer class="main-footer">
     <div class="footer-logo-wrapper">
       <div class="footer-logo">
-        <a href="index.html" class="logo-link"> <!-- Verlinkt zur Startseite -->
+        <a class="logo-link"> <!-- href entfernt, um Weiterleitung zu verhindern -->
           <div class="logo-text-container">
             <div class="bazara-style">BAZARA</div>
             <div class="safia-style">safia</div>
