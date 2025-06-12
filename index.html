@@ -131,6 +131,7 @@
       justify-content: center;
       text-align: center;
       color: #ffffff; /* Standardtextfarbe für Inhalte im Hero-Bereich */
+      position: relative; /* Für absolute Positionierung von Kindelementen */
     }
 
     .hero-section h1 {
@@ -147,6 +148,30 @@
       font-size: 30.1px;
       text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Textschatten für bessere Lesbarkeit */
       margin-top: 10px;
+    }
+
+    .hero-new-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700; /* Bold */
+      font-size: 110px; /* Gleiche Schriftgröße wie h1 */
+      color: #ffffff;
+      line-height: 1.2;
+      margin-bottom: 30px; /* Abstand zum Button */
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Gleicher Textschatten wie h1 */
+    }
+
+    .hero-new-button {
+      display: inline-block;
+      background-color: #ffffff;
+      color: #0c0c0c; /* Dunkler Text für weißen Button */
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; /* Light */
+      font-size: 18px;
+      padding: 12px 25px;
+      text-decoration: none;
+      border-radius: 0; /* Keine Abrundung */
+      border: none; /* Kein Rand */
+      cursor: pointer;
     }
 
     /* Neuer Bereich unter Hero */
@@ -670,13 +695,50 @@
       background-color: #6e370e;
       height: 100vh; /* Fußzeile nimmt die komplette Bildschirmhöhe ein */
       box-sizing: border-box; /* Stellt sicher, dass Padding die 100vh nicht überschreitet */
-      padding: 80px 40px; /* Ausreichend Innenabstand */
+      padding: 0; /* Padding wird durch innere Elemente gesteuert oder spezifisch gesetzt */
       display: flex;
       justify-content: center;
-      align-items: center;
-      flex-direction: column; /* Falls später noch Copyright o.ä. hinzukommt */
-      text-align: center;
-      position: relative; /* Für die Positionierung des Logos, falls es überlappen soll */
+      align-items: center; /* Zentriert das Logo vertikal */
+      position: relative; /* Für absolute Positionierung des neuen Inhalts */
+    }
+
+    .footer-top-left-content {
+      position: absolute;
+      top: 130px;
+      left: 140px; /* Abstand vom linken Rand vergrößert */
+      text-align: left;
+      z-index: 5; /* Über dem Logo, falls es überlappt */
+    }
+
+    .footer-new-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700; /* Bold */
+      font-size: 110px; /* Gleiche Schriftgröße wie h1 in hero-section */
+      color: #ffffff; /* Helle Schrift für dunklen Footer-Hintergrund */
+      line-height: 1.2;
+      margin-bottom: 60px; /* Abstand zum Button vergrößert */
+      /* Kein Textschatten, da Hintergrund einfarbig ist, kann bei Bedarf hinzugefügt werden */
+    }
+
+    .footer-new-button {
+      display: inline-block;
+      background-color: #ffffff;
+      color: #6e370e; /* Schriftfarbe geändert */
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; /* Light */
+      font-size: 22px; /* Schriftgröße erhöht */
+      padding: 12px 80px; /* Horizontales Padding verdoppelt */
+      text-decoration: none;
+      border-radius: 0; /* Keine Abrundung */
+      border: none; /* Kein Rand */
+      cursor: pointer;
+    }
+
+    .footer-logo-wrapper {
+      opacity: 0.2; /* Transparenz weiter reduziert */
+      /* Stellt sicher, dass das Logo hinter dem neuen Inhalt ist, falls es überlappt */
+      position: relative; 
+      z-index: 1; 
     }
 
     .footer-logo-wrapper {
@@ -953,6 +1015,10 @@
     </div>
   </div>
   <footer class="main-footer">
+    <div class="footer-top-left-content">
+      <div class="footer-new-title">Ihre Gesundheit.<br>Unser Auftrag.</div>
+      <a href="kontakt.html" class="footer-new-button">Kontakt</a>
+    </div>
     <div class="footer-logo-wrapper">
       <div class="footer-logo">
         <a class="logo-link"> <!-- href entfernt, um Weiterleitung zu verhindern -->
