@@ -230,7 +230,7 @@
       font-size: 70px; /* Beispielgröße, anpassbar */
       line-height: 1.1;
       margin-top: 0;
-      margin-bottom: 150px; /* Vergrößerter Abstand zum nachfolgenden Inhalt */
+      margin-bottom: 100px; /* Abstand reduziert, um Zitat nach oben zu verschieben */
       text-align: center; /* Main-Heading zentrieren */
     }
 
@@ -342,17 +342,30 @@
       font-size: 18px;
       line-height: 1.6;
       padding: 30px;
-      margin: 20px auto 0 auto; /* Zentriert und Abstand nach oben */
+      margin: 0 auto 0 auto; /* Zentriert und Abstand nach oben reduziert */
       max-width: 700px; /* Gleiche Breite wie Zitat für Konsistenz */
       border-radius: 10px; /* Leicht abgerundete Ecken */
-      display: none; /* Standardmäßig ausgeblendet */
       text-align: left; /* Text im Kasten linksbündig */
+      /* Für sanftes Ein-/Ausblenden */
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      visibility: hidden;
+      transition: opacity 0.35s ease-in-out, max-height 0.35s ease-in-out, visibility 0s linear 0.35s, margin-top 0.35s ease-in-out;
     }
 
     .answer-box .highlight-age {
       font-weight: 500; /* Etwas fetter */
     }
 
+
+    .answer-box.visible {
+      opacity: 1;
+      max-height: 500px; /* Ausreichend Höhe für den Inhalt, anpassbar */
+      visibility: visible;
+      margin-top: 20px; /* Wiederherstellen des ursprünglichen Abstands, wenn sichtbar */
+      transition-delay: 0s; /* Sofortige Sichtbarkeit beim Aktivieren */
+    }
 
   </style>
 </head>
@@ -474,8 +487,7 @@
 
       if (toggleButton && answerBox && buttonArrow) {
         toggleButton.addEventListener('click', function() {
-          const isBoxOpen = answerBox.style.display === 'block';
-          answerBox.style.display = isBoxOpen ? 'none' : 'block';
+          answerBox.classList.toggle('visible');
           this.classList.toggle('active'); // Fügt/entfernt die 'active' Klasse für den Button-Stil
           // Die Pfeilrichtung wird jetzt über CSS-Rotation der .active Klasse gesteuert
           // buttonArrow.textContent = isBoxOpen ? '^' : 'v'; // Diese Zeile wird nicht mehr benötigt
