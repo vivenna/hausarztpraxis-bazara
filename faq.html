@@ -379,6 +379,11 @@
       padding: 0px 40px 160px 40px; /* padding-bottom erhöht für mehr Abstand zur Fußzeile */
       text-align: center;
     }
+    /* Speziell für die .neue-faq-sektion, die direkt vor dem Footer kommt, um den Abstand zu vergrößern */
+    .neue-faq-sektion:has(+ .main-footer) {
+      padding-bottom: 190px; /* Erhöhter Wert (z.B. 240px statt 160px) für mehr Abstand zum Footer */
+    }
+
 
     .neue-faq-sektion .section-divider {
       width: 80%;
