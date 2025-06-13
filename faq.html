@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>FAQ - BAZARA safia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Google Fonts Einbindung -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter&family=Questrial&family=Poppins:wght@300;500;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #f9f9f9; /* Heller Hintergrund für den Inhalt */
+      font-smooth: always;
+      /* padding-top: 93px; */ /* Platz für die fixe Navigationsleiste, falls benötigt */
+    }
+
+    .main-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center; 
+      background-color: rgba(230, 230, 230, 0.15); 
+      border-bottom: 1px solid #c8c5c5; 
+      padding: 0 25px; 
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 93px; 
+      box-sizing: border-box;
+      z-index: 1000; 
+      backdrop-filter: blur(8px); 
+      -webkit-backdrop-filter: blur(8px); 
+      transition: backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease; 
+    }
+
+    .main-nav.strong-blur {
+      backdrop-filter: blur(16px); 
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    /* Logo Stile für das Menü */
+    .menu-logo .logo-link {
+      text-decoration: none;
+      color: inherit;
+      display: inline-block;
+      padding-top: 5.5px;
+      padding-left: 20px;
+    }
+
+    .menu-logo .logo-text-container {
+      position: relative;
+      display: inline-block; 
+      line-height: 1;
+    }
+
+    .menu-logo .bazara-style {
+      font-family: 'Questrial', sans-serif;
+      font-size: 34px; 
+      color: #c8c5c5;
+    }
+
+    .menu-logo .safia-style {
+      position: absolute;
+      top: 0; 
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Great Vibes', cursive;
+      font-size: 30px; 
+      color: #0c0c0c;
+      pointer-events: none;
+      opacity: 0.75;
+      white-space: nowrap;
+    }
+
+    .menu-logo .subtitle-style {
+      margin-top: 4px; 
+      font-family: 'Inter', sans-serif;
+      font-size: 10px; 
+      color: #000000;
+      opacity: 0.9;
+      line-height: 1.2; 
+      text-align: center;
+    }
+
+    /* Navigationslinks */
+    .nav-links {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links li {
+      margin-left: 60px; 
+    }
+
+    .nav-links li:last-child {
+      margin-right: 60px; 
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #ffffff; 
+      font-family: 'Poppins', sans-serif; 
+      font-weight: 300; 
+      font-size: 16px;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* Klasse für dunkle Navigationslinks */
+    .nav-links.dark-text a {
+      color: #000000; /* Schwarz, wenn über hellem Hintergrund */
+    }
+
+    /* Hero Section für das große Bild */
+    .hero-section {
+      height: 100vh; /* Volle Viewport-Höhe */
+      background-image: url('/assets/faq.png'); /* Pfad zum Hintergrundbild */
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #ffffff; /* Standardtextfarbe für Inhalte im Hero-Bereich */
+      position: relative; /* Für absolute Positionierung von Kindelementen */
+    }
+
+    .hero-section h1 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700; /* Bold */
+      font-size: 110px;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Textschatten für bessere Lesbarkeit */
+      line-height: 1.2; /* Für bessere Lesbarkeit bei mehrzeiligem Text */
+    }
+    .hero-section h2 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; /* Light */
+      font-size: 30.1px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Textschatten für bessere Lesbarkeit */
+      margin-top: 10px;
+    }
+
+    /* Info Section (Einleitung) */
+    .info-section {
+      background-color: #6e370e;
+      color: #ffffff; /* Helle Schriftfarbe für guten Kontrast */
+      padding: 60px 40px; /* Ausreichend Innenabstand */
+      display: flex;
+      align-items: flex-start; /* Oben ausrichten, falls Texte unterschiedlich lang sind */
+      gap: 30px; /* Abstand zwischen linkem und rechtem Teil */
+    }
+
+    .info-section .left-column {
+      flex-basis: 30%; /* Linke Spalte nimmt 30% ein */
+      display: flex;
+      align-items: center; /* Punkt und Text vertikal zueinander zentrieren */
+      justify-content: center; /* Inhalt horizontal zentrieren */
+      padding-top: 60px; /* "Hausarztpraxis Bazara" weiter nach unten verschieben */
+      align-self: flex-start; /* Verhindert vertikales Strecken der Spalte */
+    }
+
+    .info-section .right-column {
+      flex-basis: 70%; /* Rechte Spalte nimmt 70% ein */
+      padding-top: 5px; /* Reduziert, um den großen Text etwas anzuheben */
+      padding-right: 85px; /* Weiter vergrößerter Abstand zum rechten Rand */
+    }
+
+    .info-section .left-column .bullet-point {
+      font-size: 24px; /* Größe des Punktes */
+      margin-right: 10px;
+      line-height: 1; /* Verhindert zusätzlichen vertikalen Platz durch den Punkt */
+    }
+
+    .info-section .left-column .practice-name {
+      font-size: 18px;
+      font-family: 'Poppins', sans-serif; /* Konsistente Schriftart */
+      font-weight: 300; /* Light, falls gewünscht, ansonsten normal */
+      line-height: 1.2; /* Für präzise Berechnung der vertikalen Mitte */
+    }
+
+    .info-section .right-column .welcome-text {
+      font-size: 60px; /* Schriftgröße weiter erhöht */
+      font-family: 'Poppins', sans-serif; /* Konsistente Schriftart */
+      font-weight: 300; /* Poppins Light */
+      line-height: 1.3; /* Bessere Lesbarkeit für längeren Text */
+    }
+
+
+  </style>
+</head>
+<body>
+
+  <nav class="main-nav">
+    <div class="menu-logo">
+      <a href="/" class="logo-link">
+        <div class="logo-text-container">
+          <div class="bazara-style">BAZARA</div>
+          <div class="safia-style">safia</div>
+        </div>
+        <div class="subtitle-style">Hausarztpraxis</div>
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/leistungen">Leistungen</a></li>
+      <li><a href="/faq">FAQ</a></li>
+      <li><a href="/kontakt">Kontakt</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero-section">
+    <div class="hero-text-wrapper">
+      <h1>Fragen stellen.<br>Antworten finden.</h1>
+      <h2>Was Sie rund um unsere Praxis, Abläufe und Leistungen wissen<br>möchten – klar erklärt und gut verständlich.</h2>
+    </div>
+  </div>
+
+  <div class="info-section">
+    <div class="left-column">
+      <span class="bullet-point">&bull;</span>
+      <span class="practice-name">Hausarztpraxis Bazara</span>
+    </div>
+    <div class="right-column">
+      <p class="welcome-text">Herzlich willkommen in unserer Praxis. Wir nehmen uns Zeit für Ihre Gesundheit – mit Erfahrung, Empathie und einem verlässlichen Team.</p>
+    </div>
+  </div>
+
+  <!-- Beispielinhalt für FAQ-Seite -->
+  <div style="padding: 40px; min-height: 50vh; background-color: #f9f9f9;">
+    <h1>FAQ</h1>
+    <p>Hier stehen bald häufig gestellte Fragen und Antworten.</p>
+
+    <!-- Beispiel für eine Sektion, die den Farbwechsel auslösen würde, wenn sie die richtige Klasse hätte -->
+    <!-- <div class="leistungen-section" style="margin-top: 50px; background: white; padding: 20px; height: 300px;">
+      <h2>Test Sektion für Menü Farbwechsel</h2>
+    </div> -->
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const mainNav = document.querySelector('.main-nav');
+      const navLinksUl = document.querySelector('.nav-links');
+      const sectionsForColorChange = document.querySelectorAll('.leistungen-section, .sprechzeiten-section, .lage-anfahrt-section, .werte-section');
+
+      if (!mainNav || !navLinksUl) { // Prüfung auf sectionsForColorChange.length entfernt, um Fehler zu vermeiden, wenn keine Sektionen da sind
+        console.error('Erforderliche Menü-Elemente nicht gefunden.');
+        return;
+      }
+      
+      // Wenn keine Sektionen für den Farbwechsel vorhanden sind, wird die Funktion nicht viel tun, aber auch keinen Fehler werfen.
+      if (sectionsForColorChange.length === 0) {
+        console.warn('Keine Sektionen für den dynamischen Menü-Farbwechsel auf dieser Seite definiert. Das Menü behält seine Standardfarben.');
+      }
+
+      const menuHeight = mainNav.offsetHeight;
+
+      function checkMenuPosition() {
+        let shouldBeDark = false;
+
+        sectionsForColorChange.forEach(section => {
+          const rect = section.getBoundingClientRect();
+          if (rect.top < menuHeight && rect.bottom > menuHeight) {
+            shouldBeDark = true;
+          }
+        });
+
+        if (shouldBeDark) {
+          navLinksUl.classList.add('dark-text');
+          mainNav.classList.add('strong-blur');
+        } else {
+          navLinksUl.classList.remove('dark-text');
+          mainNav.classList.remove('strong-blur');
+        }
+      }
+
+      window.addEventListener('scroll', checkMenuPosition);
+      window.addEventListener('resize', checkMenuPosition);
+      checkMenuPosition(); 
+    });
+  </script>
+
+</body>
+</html>
