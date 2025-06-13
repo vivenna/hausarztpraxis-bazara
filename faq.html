@@ -292,6 +292,68 @@
       right: -85px;  /* Weiter nach rechts und außen */
     }
 
+    /* Button und Antwortkasten Stile */
+    .answer-button-container {
+      text-align: center; /* Zentriert den Button */
+      margin-top: 80px; /* Vergrößerter Abstand zum Zitat */
+      margin-bottom: 40px;
+    }
+
+    .answer-button {
+      display: inline-flex;
+      align-items: center;
+      background-color: #ffffff;
+      color: #6e370e;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; /* Poppins Light */
+      font-size: 18px;
+      padding: 12px 35px; /* Horizontales Padding erhöht */
+      text-decoration: none;
+      border: 2px solid #6e370e;
+      border-radius: 50px; /* Pillenform */
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .answer-button .arrow {
+      font-size: 20px; /* Angepasst an Slideshow-Pfeile */
+      font-weight: normal; /* Normales Gewicht für die Pfeilspitze */
+      margin-left: 20px; /* Abstand zum Text "Antwort" vergrößert */
+      display: inline-block; /* Wichtig für Transformation */
+      transition: transform 0.3s ease-in-out; /* Sanfte Drehung */
+      transform: rotate(-90deg); /* Initial nach oben (‹ rotiert) */
+    }
+
+    .answer-button:hover,
+    .answer-button.active { /* Stil für Hover und wenn Kasten offen ist */
+      background-color: #6e370e;
+      color: #ffffff;
+    }
+    /* Wenn der Button aktiv ist (Kasten offen), Pfeil nach unten drehen */
+    .answer-button.active .arrow {
+      transform: rotate(90deg); /* Nach unten (‹ rotiert) */
+    }
+
+    .answer-box {
+      background-color: #6e370e;
+      color: #ffffff;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; /* Poppins Light für den Kasteninhalt */
+      font-size: 18px;
+      line-height: 1.6;
+      padding: 30px;
+      margin: 20px auto 0 auto; /* Zentriert und Abstand nach oben */
+      max-width: 700px; /* Gleiche Breite wie Zitat für Konsistenz */
+      border-radius: 10px; /* Leicht abgerundete Ecken */
+      display: none; /* Standardmäßig ausgeblendet */
+      text-align: left; /* Text im Kasten linksbündig */
+    }
+
+    .answer-box .highlight-age {
+      font-weight: 500; /* Etwas fetter */
+    }
+
+
   </style>
 </head>
 <body>
@@ -348,8 +410,16 @@
           Darf ich eine<br><span class="highlight-text">RSV-Impfung</span> bekommen?
         </p>
       </div>
-      <!-- z.B. <dl><dt>Frage 1?</dt><dd>Antwort 1.</dd></dl> -->
+      <div class="answer-button-container">
+        <button class="answer-button" id="toggleAnswerButton">
+          Antwort <span class="arrow" id="buttonArrow">&#10094;</span>
+        </button>
+      </div>
+      <div class="answer-box" id="answerRsv">
+        Die RSV-Impfung empfehlen wir für Patienten <span class="highlight-age">ab 75 Jahre</span> sowie für Menschen ab 60 Jahren mit schweren Vorerkrankungen. Sprechen Sie uns gerne für eine individuelle Beratung an.
+      </div>
     </div>
+
     <!-- Beispiel für eine Sektion, die den Farbwechsel auslösen würde, wenn sie die richtige Klasse hätte -->
     <!-- <div class="leistungen-section" style="margin-top: 50px; background: white; padding: 20px; height: 300px;">
       <h2>Test Sektion für Menü Farbwechsel</h2>
@@ -396,6 +466,24 @@
       window.addEventListener('scroll', checkMenuPosition);
       window.addEventListener('resize', checkMenuPosition);
       checkMenuPosition(); 
+
+      // JavaScript für den Aufklapp-Button
+      const toggleButton = document.getElementById('toggleAnswerButton');
+      const answerBox = document.getElementById('answerRsv');
+      const buttonArrow = document.getElementById('buttonArrow');
+
+      if (toggleButton && answerBox && buttonArrow) {
+        toggleButton.addEventListener('click', function() {
+          const isBoxOpen = answerBox.style.display === 'block';
+          answerBox.style.display = isBoxOpen ? 'none' : 'block';
+          this.classList.toggle('active'); // Fügt/entfernt die 'active' Klasse für den Button-Stil
+          // Die Pfeilrichtung wird jetzt über CSS-Rotation der .active Klasse gesteuert
+          // buttonArrow.textContent = isBoxOpen ? '^' : 'v'; // Diese Zeile wird nicht mehr benötigt
+        });
+      } else {
+        console.warn('Button oder Antwortkasten für RSV-Frage nicht gefunden.');
+      }
+
     });
   </script>
 
