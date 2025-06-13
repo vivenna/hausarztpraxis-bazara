@@ -176,9 +176,6 @@
     /* Hero Section für das große Bild */
     .hero-section {
       height: 100vh; /* Volle Viewport-Höhe */
-      background-image: url('/assets/kontakt.png'); /* Beispielbild, bitte ersetzen */
-      background-size: cover;
-      background-position: center;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -186,7 +183,30 @@
       text-align: center;
       color: #ffffff; /* Standardtextfarbe für Inhalte im Hero-Bereich */
       position: relative; /* Für absolute Positionierung von Kindelementen */
+      overflow: hidden; /* Wichtig, um den gezoomten Hintergrund zu beschneiden */
     }
+
+    .hero-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('/assets/kontakt.png'); /* Hintergrundbild hierher verschoben */
+      background-size: cover;
+      background-position: center;
+      z-index: 0; /* Hintergrund auf z-index 0 setzen, damit er über html/body background liegt */
+      /* Sanfter Übergang für die Skalierung, um Ruckeln zu minimieren */
+      transition: transform 0.1s ease-out;
+      min-width: 100vw; /* Verhindert, dass das Bild schmaler als der Viewport wird */
+      min-height: 100vh; /* Verhindert, dass das Bild niedriger als der Viewport wird */
+    }
+
+    .hero-text-wrapper {
+      position: relative; /* Notwendig, damit z-index wirkt */
+      z-index: 1;         /* Stellt sicher, dass der Text über dem .hero-background liegt */
+    }
+
 
     .hero-section h1 {
       font-family: 'Poppins', sans-serif;
@@ -1108,6 +1128,7 @@
   </nav>
 
   <div class="hero-section">
+    <div class="hero-background"></div> <!-- Neuer Container für das Hintergrundbild -->
     <div class="hero-text-wrapper">
       <h1>Schnell erreicht.<br>Gut verbunden.</h1>
       <h2>So einfach nehmen Sie mit uns Kontakt auf.</h2>
@@ -1292,6 +1313,7 @@
     document.addEventListener('DOMContentLoaded', function() {
       const mainNav = document.querySelector('.main-nav');
       const navLinksUl = document.querySelector('.nav-links'); // Selektiert das <ul> Element
+      const heroBackground = document.querySelector('.hero-background');
       // Alle Sektionen auswählen, bei denen der Farbwechsel stattfinden soll
       // Für die Kontaktseite müssen ggf. andere oder keine Sektionen definiert werden,
       // wenn das dynamische Verhalten der Navigationsleiste (Textfarbe, Blur)
@@ -1318,6 +1340,19 @@
 
       const menuHeight = mainNav.offsetHeight;
 
+      // Parallax Zoom für Hero-Background
+      function handleHeroZoom() {
+        if (heroBackground) {
+          let scrollPosition = window.pageYOffset;
+          // Der Divisor (z.B. 7000) steuert, wie schnell der Zoom erfolgt.
+          // Ein größerer Wert bedeutet langsameren Zoom.
+          // Stelle sicher, dass scaleValue nie kleiner als 1 ist
+          let scaleValue = Math.max(1, 1 + scrollPosition / 7000);
+          // heroBackground.style.transform = `scale(${scaleValue})`; // Temporär auskommentiert für Test
+          heroBackground.style.transform = `scale(${scaleValue}) translateZ(0)`; // Force hardware acceleration
+        }
+      }
+
       function checkMenuPosition() {
         let shouldBeDark = false;
 
@@ -1335,11 +1370,14 @@
           navLinksUl.classList.remove('dark-text');
           mainNav.classList.remove('strong-blur');
         }
+        // Hero Zoom Effekt aufrufen
+        handleHeroZoom();
       }
 
       window.addEventListener('scroll', checkMenuPosition);
       window.addEventListener('resize', checkMenuPosition);
       checkMenuPosition(); // Initiale Prüfung beim Laden der Seite
+      handleHeroZoom(); // Initialen Zoom-Status setzen
     });
   </script>
 
