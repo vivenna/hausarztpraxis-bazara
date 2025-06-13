@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Test Scrollbar</title>
+  <style>
+    body {
+      height: 200vh; /* genug Inhalt zum Scrollen */
+    }
+
+    ::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: #8a5a34;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: #6e370e;
+    }
+  </style>
+</head>
+<body>
+  <p>Scroll mich</p>
+</body>
+</html>
