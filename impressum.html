@@ -496,20 +496,44 @@
     document.addEventListener('DOMContentLoaded', function() {
       const mainNav = document.querySelector('.main-nav');
       const navLinksUl = document.querySelector('.nav-links');
-      // Für die Impressumsseite ist der Farbwechsel der Navigation wahrscheinlich nicht nötig,
-      // da der Hintergrund typischerweise hell ist.
-      // Falls doch benötigt, hier die Logik von index.html anpassen/einfügen.
-      // Aktuell wird die Navigation immer helle Links haben, es sei denn,
-      // die .dark-text Klasse wird manuell oder durch eine andere Logik hinzugefügt.
+      const footer = document.querySelector('.main-footer');
 
-      // Beispiel: Wenn die Impressumsseite immer dunklen Text in der Navi haben soll:
-      if (navLinksUl) {
-         navLinksUl.classList.add('dark-text');
+      if (!mainNav || !navLinksUl) {
+        console.error('Erforderliche Elemente für Menüanpassung nicht gefunden (mainNav oder navLinksUl).');
+        return;
       }
-      if (mainNav) {
-        // Ggf. Blur-Effekt anpassen, falls gewünscht
-        // mainNav.classList.add('strong-blur');
+
+      // Standardzustand: schwarzer Text, kein starker Blur
+      navLinksUl.classList.add('dark-text');
+      mainNav.classList.remove('strong-blur');
+
+      if (!footer) {
+        console.warn('Footer-Element (.main-footer) nicht gefunden. Menü behält Standardaussehen (schwarzer Text).');
+        // Keine Event-Listener hinzufügen, wenn kein Footer vorhanden ist, auf den reagiert werden soll.
+        return;
       }
+
+      const menuHeight = mainNav.offsetHeight;
+
+      function checkMenuPosition() {
+        const footerRect = footer.getBoundingClientRect();
+        // isOverFooter ist true, wenn der obere Rand des Footers über dem unteren Rand der Navigationsleiste liegt.
+        const isOverFooter = footerRect.top < menuHeight;
+
+        if (isOverFooter) {
+          // Footer ist unter der Navigation: Text weiß, starker Blur
+          navLinksUl.classList.remove('dark-text');
+          mainNav.classList.add('strong-blur');
+        } else {
+          // Standardzustand (nicht über dem Footer): Text schwarz, kein starker Blur
+          navLinksUl.classList.add('dark-text');
+          mainNav.classList.remove('strong-blur');
+        }
+      }
+
+      window.addEventListener('scroll', checkMenuPosition);
+      window.addEventListener('resize', checkMenuPosition);
+      checkMenuPosition(); // Zustand beim Laden der Seite prüfen
     });
   </script>
 
