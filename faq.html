@@ -715,9 +715,22 @@
       font-weight: 700; /* Bold */
       font-size: 110px; /* Gleiche Schriftgröße wie h1 in hero-section */
       color: #ffffff; /* Helle Schrift für dunklen Footer-Hintergrund */
-      line-height: 1.2;
+      line-height: 1.27; /* Angepasst für Konsistenz und Platz für Unterlängen */
       margin-bottom: 60px; /* Abstand zum Button vergrößert */
       /* Kein Textschatten, da Hintergrund einfarbig ist, kann bei Bedarf hinzugefügt werden */
+
+      /* Hinzugefügt für die Animation (kopiert von index.html/kontakt.html) */
+      opacity: 1;
+      transform: translateY(150px);
+      clip-path: inset(100% 0 0 0);
+      transition: transform 0.7s ease-out, clip-path 0.7s ease-out;
+      visibility: hidden;
+    }
+
+    .footer-new-title.animate-footer-title { /* Kopiert von index.html/kontakt.html */
+      transform: translateY(0);
+      clip-path: inset(0 0 0 0);
+      visibility: visible;
     }
 
     .footer-new-button {
@@ -1096,6 +1109,7 @@
       const mainNav = document.querySelector('.main-nav');
       const navLinksUl = document.querySelector('.nav-links');
       const heroBackground = document.querySelector('.hero-background');
+      const footerNewTitle = document.querySelector('.footer-new-title'); // Selektor für Footer-Titel hinzugefügt
       const sectionsForColorChange = document.querySelectorAll('.leistungen-section, .neue-faq-sektion');
 
       if (!mainNav || !navLinksUl) { // Prüfung auf sectionsForColorChange.length entfernt, um Fehler zu vermeiden, wenn keine Sektionen da sind
@@ -1122,6 +1136,18 @@
 
       const menuHeight = mainNav.offsetHeight;
 
+      function checkFooterTitleAnimation() { // Kopiert von index.html/kontakt.html
+        if (footerNewTitle && !footerNewTitle.classList.contains('animate-footer-title')) {
+          const rect = footerNewTitle.getBoundingClientRect();
+          // Animation starten, wenn die Oberkante des (verschobenen) Titels in den Viewport kommt.
+          // Die CSS-Transitionen für transform und clip-path laufen dann synchron ab.
+          if (rect.top < window.innerHeight && rect.bottom >= 0) {
+            footerNewTitle.classList.add('animate-footer-title');
+          }
+        }
+      }
+
+
       function checkMenuPosition() {
         let shouldBeDark = false;
 
@@ -1141,6 +1167,7 @@
         }
 
         handleHeroZoom();
+        checkFooterTitleAnimation(); // Animation für Footer-Titel prüfen
       }
 
       window.addEventListener('scroll', checkMenuPosition);
