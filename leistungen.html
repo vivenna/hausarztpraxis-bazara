@@ -1756,7 +1756,7 @@
         margin: 70px auto 40px auto; /* Abstand oben/unten und zentriert */
         overflow: hidden; /* Wichtig, um nur einen Slide anzuzeigen */
         border-radius: 8px; 
-        padding: 0 56px; /* Horizontalen Padding für die Pfeile hinzugefügt */
+        padding: 0 53px; /* Horizontalen Padding für die Pfeile hinzugefügt */
         /* box-shadow: 0 4px 15px rgba(0,0,0,0.1); */
       }
 
@@ -1983,63 +1983,110 @@
       const slideshowContainer = document.querySelector('.slideshow-container');
       if (slideshowContainer) {
         const slideshowWrapper = slideshowContainer.querySelector('.slideshow-wrapper');
-        const slides = Array.from(slideshowContainer.querySelectorAll('.slide')); // Wichtig: Array.from
+        const originalSlides = Array.from(slideshowContainer.querySelectorAll('.slide'));
         const prevButton = slideshowContainer.querySelector('.slide-nav.prev');
         const nextButton = slideshowContainer.querySelector('.slide-nav.next');
         const dotsContainer = slideshowContainer.querySelector('.slide-dots');
         let dots = []; // Wird später gefüllt
 
-        let currentSlide = 0;
-        const totalSlides = slides.length;
+        const totalOriginalSlides = originalSlides.length;
+        if (totalOriginalSlides === 0) return; // Nichts zu tun, wenn keine Slides da sind
+
+        let logicalCurrentSlide = 0;
+        let actualSlideIndexDOM = totalOriginalSlides > 1 ? 1 : 0; // Startet beim ersten echten Slide (nach dem Klon des letzten)
+        let isTransitioning = false;
+
+        function setupInfiniteLoop() {
+          if (totalOriginalSlides <= 1) return; // Kein Loop bei 1 oder 0 Slides
+
+          const firstClone = originalSlides[0].cloneNode(true);
+          firstClone.classList.add('slide-clone');
+          const lastClone = originalSlides[totalOriginalSlides - 1].cloneNode(true);
+          lastClone.classList.add('slide-clone');
+
+          slideshowWrapper.appendChild(firstClone);
+          slideshowWrapper.insertBefore(lastClone, originalSlides[0]);
+
+          slideshowWrapper.style.transform = `translateX(-${actualSlideIndexDOM * 100}%)`;
+        }
 
         function createDots() {
-          if (!dotsContainer || totalSlides === 0) return;
+          if (!dotsContainer || totalOriginalSlides === 0) return;
           dotsContainer.innerHTML = ''; // Alte Dots entfernen
-          for (let i = 0; i < totalSlides; i++) {
+          for (let i = 0; i < totalOriginalSlides; i++) { // Nur für originale Slides Dots erstellen
             const dot = document.createElement('span');
             dot.classList.add('dot');
             dot.addEventListener('click', () => {
-              currentSlide = i;
-              updateSlideshow();
+              if (isTransitioning) return;
+              if (totalOriginalSlides > 1) isTransitioning = true;
+              
+              logicalCurrentSlide = i;
+              actualSlideIndexDOM = totalOriginalSlides > 1 ? logicalCurrentSlide + 1 : logicalCurrentSlide;
+              updateSlideshowVisuals();
             });
             dotsContainer.appendChild(dot);
           }
           dots = Array.from(dotsContainer.querySelectorAll('.dot')); // Neu selektieren
         }
 
-        function updateSlideshow() {
-          if (!slideshowWrapper || slides.length === 0) return;
-          slideshowWrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
+        function updateSlideshowVisuals() {
+          if (!slideshowWrapper) return;
+          slideshowWrapper.style.transform = `translateX(-${actualSlideIndexDOM * 100}%)`;
 
           if (dots.length > 0) {
             dots.forEach((dot, index) => {
-              dot.classList.toggle('active', index === currentSlide);
+              dot.classList.toggle('active', index === logicalCurrentSlide);
             });
           }
-          // Optional: Buttons deaktivieren, wenn nicht geloopt wird
-          // if (prevButton) prevButton.disabled = currentSlide === 0;
-          // if (nextButton) nextButton.disabled = currentSlide === totalSlides - 1;
+        }
+
+        if (totalOriginalSlides > 1) {
+          slideshowWrapper.addEventListener('transitionend', () => {
+            isTransitioning = false;
+            if (actualSlideIndexDOM === 0) { // Am Klon des letzten Slides angekommen
+              slideshowWrapper.style.transition = 'none';
+              actualSlideIndexDOM = totalOriginalSlides;
+              slideshowWrapper.style.transform = `translateX(-${actualSlideIndexDOM * 100}%)`;
+              slideshowWrapper.offsetHeight; // Force reflow
+              slideshowWrapper.style.transition = 'transform 0.5s ease-in-out';
+            } else if (actualSlideIndexDOM === totalOriginalSlides + 1) { // Am Klon des ersten Slides angekommen
+              slideshowWrapper.style.transition = 'none';
+              actualSlideIndexDOM = 1;
+              slideshowWrapper.style.transform = `translateX(-${actualSlideIndexDOM * 100}%)`;
+              slideshowWrapper.offsetHeight; // Force reflow
+              slideshowWrapper.style.transition = 'transform 0.5s ease-in-out';
+            }
+          });
         }
 
         if (nextButton) {
           nextButton.addEventListener('click', () => {
-            currentSlide = (currentSlide + 1) % totalSlides; // Loop
-            updateSlideshow();
+            if (isTransitioning && totalOriginalSlides > 1) return;
+            if (totalOriginalSlides > 1) isTransitioning = true;
+
+            actualSlideIndexDOM++;
+            logicalCurrentSlide = (logicalCurrentSlide + 1) % totalOriginalSlides;
+            updateSlideshowVisuals();
           });
         }
 
         if (prevButton) {
           prevButton.addEventListener('click', () => {
-            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides; // Loop
-            updateSlideshow();
+            if (isTransitioning && totalOriginalSlides > 1) return;
+            if (totalOriginalSlides > 1) isTransitioning = true;
+
+            actualSlideIndexDOM--;
+            logicalCurrentSlide = (logicalCurrentSlide - 1 + totalOriginalSlides) % totalOriginalSlides;
+            updateSlideshowVisuals();
           });
         }
 
         // Initial setup
-        if (totalSlides > 0) {
-          createDots(); // Dots erstellen, bevor updateSlideshow zum ersten Mal aufgerufen wird
-          updateSlideshow();
+        if (totalOriginalSlides > 1) {
+          setupInfiniteLoop();
         }
+        createDots(); 
+        updateSlideshowVisuals(); // Stellt sicher, dass der erste Slide und der aktive Dot korrekt angezeigt werden
       }
     });
   </script>
