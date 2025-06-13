@@ -499,30 +499,33 @@
       color: #333333; /* Schriftfarbe etwas dunkler gemacht */
     }
 
+    /* Die Tabelle selbst benötigt overflow:hidden, damit die "zu langen" Linien korrekt abgeschnitten werden */
+    .sprechzeiten-tabelle {
+      overflow: hidden; /* Schneidet überstehende Teile der animierten Linien ab */
+    }
+
     .sprechzeiten-tabelle th,
     .sprechzeiten-tabelle td {
       padding: 18px 15px; /* Innenabstand (Zeilenhöhe) erhöht */
       text-align: center; /* Textausrichtung in den Zellen zentriert */
       border: none; /* Entfernt alle Standard-Ränder, wir steuern sie manuell/mit Pseudo-Elementen */
-      position: relative; /* Wichtig für die Positionierung der Pseudo-Elemente für Linien */
+      position: relative; /* Wichtig für die Positionierung der Pseudo-Elemente (Unterstriche und Spaltentrenner) */
     }
 
     /* Vertikale Spaltentrenner (animiert) */
-    .sprechzeiten-tabelle th:not(:first-child)::before,
-    .sprechzeiten-tabelle td:not(:first-child)::before {
+    .sprechzeiten-tabelle thead th:not(:first-child)::before { /* Gilt nur für Kopfzellen, nicht für jede einzelne td */
       content: '';
       position: absolute;
       top: 0;
-      left: 0; /* Linie am linken Rand der Zelle */
+      left: 0; /* Linie am linken Rand der th-Zelle (da th position:relative hat) */
       width: 0.5px; /* Dicke der Linie */
       background-color: #6e370e;
       height: 0; /* Initial keine Höhe */
       transition: height 0.5s ease-out;
     }
 
-    .sprechzeiten-tabelle.start-animation th:not(:first-child)::before,
-    .sprechzeiten-tabelle.start-animation td:not(:first-child)::before {
-      height: 100%; /* Linie füllt die Zelle vertikal aus */
+    .sprechzeiten-tabelle.start-animation thead th:not(:first-child)::before {
+      height: 350px; /* Eine Höhe, die sicher die gesamte Tabelle abdeckt. Ggf. anpassen, falls Tabelleninhalt wächst. */
     }
     
     .sprechzeiten-tabelle th {
