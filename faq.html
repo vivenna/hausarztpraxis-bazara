@@ -376,7 +376,7 @@
     .neue-faq-sektion { /* Eigene Klasse für die neue Sektion, um Styling-Konflikte zu vermeiden */
       background-color: #ffffff; 
       color: #000000;
-      padding: 0 40px 160px 40px; /* padding-bottom erhöht für mehr Abstand zur Fußzeile */
+      padding: 0px 40px 160px 40px; /* padding-bottom erhöht für mehr Abstand zur Fußzeile */
       text-align: center;
     }
 
@@ -465,15 +465,27 @@
     }
 
     .neue-faq-sektion .kontakt-info-rechts p {
-      margin: 0 0 20px 0; /* "große Lücke zwischen den Zeilen", unterer Abstand erhöht */
-      line-height: 1.9;   /* "Hohe Zeilenhöhe" */
+      display: flex; /* Macht das p-Element zum Flex-Container */
+      align-items: baseline; /* Richtet Label und Wert an der Grundlinie aus */
+      margin: 0 0 20px 0;
+      line-height: 1.9;
     }
     .neue-faq-sektion .kontakt-info-rechts p:last-child {
       margin-bottom: 0; /* Kein Abstand unter dem letzten Kontaktinfo-Eintrag */
     }
 
     .neue-faq-sektion .kontakt-label {
-      font-weight: 500; /* Poppins Medium für die Labels (z.B. "E-Mail:") */
+      min-width: 110px; /* Feste Mindestbreite für die Labels, anpassbar */
+      display: inline-block; /* Erforderlich für min-width */
+    }
+
+    /* Stil für anklickbare Links in Kontaktinfos, um Standard-Blau zu vermeiden */
+    .neue-faq-sektion .kontakt-info-rechts a {
+      color: inherit; /* Erbt die Textfarbe vom Elternelement */
+      text-decoration: none; /* Entfernt Unterstreichung, kann bei Bedarf angepasst werden */
+    }
+    .neue-faq-sektion .kontakt-info-rechts a:hover {
+      text-decoration: underline; /* Unterstreichung bei Hover für bessere Nutzererfahrung */
     }
 
     /* Responsive Anpassung für kleinere Bildschirme */
@@ -949,9 +961,9 @@
       </div>
       <div class="kontakt-vertikale-linie-element"></div>
       <div class="kontakt-info-rechts">
-        <p>E-Mail: arztpraxisbazara@gmail.com</p>
-        <p>Telefon: +49 (0) 30 9939 168</p>
-        <p>Telefax: +49 (0) 30 9940 2335</p>
+        <p><span class="kontakt-label">E-Mail:</span> <a href="mailto:arztpraxisbazara@gmail.com">arztpraxisbazara@gmail.com</a></p>
+        <p><span class="kontakt-label">Telefon:</span> <a href="tel:+49309939168">+49 (0) 30 9939 168</a></p>
+        <p><span class="kontakt-label">Telefax:</span> +49 (0) 30 9940 2335</p>
       </div>
     </div>
   </div>
