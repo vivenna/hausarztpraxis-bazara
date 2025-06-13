@@ -428,12 +428,25 @@
       text-align: center;
     }
 
-    .sprechzeiten-section .section-divider {
+    /* Allgemeine Stile und Animationsvorbereitung für ALLE section-divider */
+    .section-divider {
       width: 80%;
-      height: 1px; /* Linie dünner gemacht */
+      height: 1px;
       background-color: #6e370e;
-      margin: 0 auto 80px auto; /* Zentriert und Abstand nach unten weiter vergrößert */
+      margin-left: auto; /* Für Zentrierung */
+      margin-right: auto; /* Für Zentrierung */
+      /* Animationseigenschaften */
+      clip-path: inset(0 100% 0 0); /* Initial von rechts komplett verdeckt */
+      transition: clip-path 0.7s ease-out;
     }
+
+    .sprechzeiten-section .section-divider {
+      /* Allgemeine Stile kommen von .section-divider */
+      margin-top: 0; /* Spezifischer oberer Margin für diesen Divider */
+      margin-bottom: 80px; /* Spezifischer unterer Margin für diesen Divider */
+    }
+
+
 
     .sprechzeiten-section .sub-heading-container {
       display: flex;
@@ -659,10 +672,9 @@
     }
 
     .lage-anfahrt-section .section-divider {
-      width: 80%;
-      height: 1px;
-      background-color: #6e370e;
-      margin: 0 auto 80px auto; /* Gleicher Abstand wie Sprechzeiten */
+      /* Allgemeine Stile kommen von .section-divider */
+      margin-top: 0; /* Spezifischer oberer Margin */
+      margin-bottom: 80px; /* Spezifischer unterer Margin */
     }
 
     .lage-anfahrt-section .sub-heading-container {
@@ -761,17 +773,23 @@
     }
 
     .werte-section .section-divider {
-      width: 80%;
-      height: 1px;
-      background-color: #6e370e;
-      margin: 0 auto 120px auto; /* Beibehaltung der Zentrierung für die Linie */
+      /* Allgemeine Stile kommen von .section-divider */
+      margin-top: 0; /* Spezifischer oberer Margin */
+      margin-bottom: 120px; /* Spezifischer unterer Margin */
     }
 
     .leistungen-section .section-divider {
-      width: 80%;
-      height: 1px;
-      background-color: #6e370e;
-      margin: 0 auto 120px auto; /* Beibehaltung der Zentrierung für die Linie */
+      /* Allgemeine Stile kommen von .section-divider */
+      /* Margins werden hier spezifisch für jeden .leistungen-section .section-divider gesetzt,
+         da .leistungen-section mehrfach verwendet wird.
+         Wenn ein Standardabstand gewünscht ist, hier margin-top/bottom definieren.
+         Aktuell wird der Abstand durch die Platzierung im HTML und ggf. andere Sektions-Paddings bestimmt.
+         Für den Divider vor "CHRONISCHE BETREUUNG", "VORSORGE & IMPFSCHUTZ", "PERSÖNLICHE BEGLEITUNG"
+         könnten spezifischere Regeln oder Anpassungen im HTML nötig sein, falls sie eigene Margins brauchen.
+         Vorerst verlassen wir uns auf die allgemeine .section-divider Regel für die Animation.
+      */
+      margin-top: 0; /* Beispiel, falls ein oberer Standard-Margin für diese Divider gewünscht ist */
+      margin-bottom: 80px; /* Beispiel für einen unteren Standard-Margin */
     }
 
     .werte-section .sub-heading-container {
@@ -1821,6 +1839,11 @@
         font-weight: 500; /* Medium, um es etwas hervorzuheben */
         margin-bottom: 0;
       }
+    
+    /* Animationsklasse für alle section-divider */
+    .section-divider.animate {
+      clip-path: inset(0 0 0 0); /* Macht den Divider sichtbar (von links nach rechts) */
+    }
 
       /* Slideshow für Persönliche Begleitung */
       .slideshow-container {
@@ -1963,6 +1986,7 @@
       // Alle Sektionen auswählen, bei denen der Farbwechsel stattfinden soll
       // Passen Sie diese Selektoren an die Sektionen auf der leistungen.html Seite an,
       // falls der Farbwechseleffekt gewünscht ist.
+      const sectionDividers = document.querySelectorAll('.section-divider');
       const sectionsForColorChange = document.querySelectorAll('.leistungen-section, .sprechzeiten-section, .lage-anfahrt-section, .werte-section');
 
       if (!mainNav || !navLinksUl) { // Prüfung auf sectionsForColorChange.length entfernt, da die Seite anfangs leer sein kann
@@ -1982,6 +2006,19 @@
           let scaleValue = Math.max(1, 1 + scrollPosition / 7000);
           heroBackground.style.transform = `scale(${scaleValue})`;
         }
+      }
+
+      function checkSectionDividersVisibility() {
+        sectionDividers.forEach(divider => {
+          if (!divider.classList.contains('animate')) {
+            const rect = divider.getBoundingClientRect();
+            // Startet die Animation, wenn der Divider z.B. zu 90% im Viewport ist
+            // oder einfach im Viewport erscheint.
+            if (rect.top < window.innerHeight * 0.9 && rect.bottom >= 0) {
+              divider.classList.add('animate');
+            }
+          }
+        });
       }
 
       function checkMenuPosition() {
@@ -2006,6 +2043,7 @@
           mainNav.classList.remove('strong-blur'); // Stärkeren Blur entfernen
         }
         handleHeroZoom();
+        checkSectionDividersVisibility(); // Animation für Section Dividers prüfen
       }
 
       window.addEventListener('scroll', checkMenuPosition);
