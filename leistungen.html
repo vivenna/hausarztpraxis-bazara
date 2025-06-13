@@ -280,6 +280,14 @@
       font-family: 'Poppins', sans-serif; /* Konsistente Schriftart */
       font-weight: 300; /* Poppins Light */
       line-height: 1.3; /* Bessere Lesbarkeit für längeren Text */
+      /* Hinzugefügt für die Animation */
+      opacity: 0;
+      transform: translateY(30px); /* Startet 30px weiter unten */
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .info-section .right-column .welcome-text.visible {
+      opacity: 1;
+      transform: translateY(0); /* Bewegt sich zur Originalposition */
     }
 
     /* Leistungsbereich */
@@ -1983,6 +1991,7 @@
       const mainNav = document.querySelector('.main-nav');
       const navLinksUl = document.querySelector('.nav-links'); // Selektiert das <ul> Element
       const heroBackground = document.querySelector('.hero-background');
+      const welcomeText = document.querySelector('.info-section .right-column .welcome-text');
       // Alle Sektionen auswählen, bei denen der Farbwechsel stattfinden soll
       // Passen Sie diese Selektoren an die Sektionen auf der leistungen.html Seite an,
       // falls der Farbwechseleffekt gewünscht ist.
@@ -2005,6 +2014,17 @@
           // Stelle sicher, dass scaleValue nie kleiner als 1 ist (um Schrumpfen beim Overscroll zu verhindern)
           let scaleValue = Math.max(1, 1 + scrollPosition / 7000);
           heroBackground.style.transform = `scale(${scaleValue})`;
+        }
+      }
+
+      function checkWelcomeTextVisibility() {
+        if (welcomeText) {
+          const rect = welcomeText.getBoundingClientRect();
+          // Prüft, ob das Element mindestens zu einem kleinen Teil im Viewport ist
+          // und die Animation noch nicht ausgelöst wurde
+          if (rect.top < window.innerHeight && rect.bottom >= 0 && !welcomeText.classList.contains('visible')) {
+            welcomeText.classList.add('visible');
+          }
         }
       }
 
@@ -2043,6 +2063,7 @@
           mainNav.classList.remove('strong-blur'); // Stärkeren Blur entfernen
         }
         handleHeroZoom();
+        checkWelcomeTextVisibility(); // Sichtbarkeit des Welcome-Textes prüfen
         checkSectionDividersVisibility(); // Animation für Section Dividers prüfen
       }
 
