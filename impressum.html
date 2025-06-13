@@ -228,8 +228,21 @@
       font-weight: 700; /* Bold */
       font-size: 110px; /* Gleiche Schriftgröße wie h1 in hero-section */
       color: #ffffff; /* Helle Schrift für dunklen Footer-Hintergrund */
-      line-height: 1.2;
+      line-height: 1.27; /* Angepasst für Konsistenz und Platz für Unterlängen */
       margin-bottom: 60px; /* Abstand zum Button vergrößert */
+      /* Kein Textschatten, da Hintergrund einfarbig ist, kann bei Bedarf hinzugefügt werden */
+
+      /* Hinzugefügt für die Animation (kopiert von anderen Seiten) */
+      opacity: 1;
+      transform: translateY(150px);
+      clip-path: inset(100% 0 0 0);
+      transition: transform 0.7s ease-out, clip-path 0.7s ease-out;
+      visibility: hidden;
+    }
+    .footer-new-title.animate-footer-title { /* Kopiert von anderen Seiten */
+      transform: translateY(0);
+      clip-path: inset(0 0 0 0);
+      visibility: visible;
     }
 
     .footer-new-button {
@@ -547,6 +560,7 @@
       const mainNav = document.querySelector('.main-nav');
       const navLinksUl = document.querySelector('.nav-links');
       const footer = document.querySelector('.main-footer');
+      const footerNewTitle = document.querySelector('.footer-new-title'); // Selektor für Footer-Titel hinzugefügt
 
       if (!mainNav || !navLinksUl) {
         console.error('Erforderliche Elemente für Menüanpassung nicht gefunden (mainNav oder navLinksUl).');
@@ -565,6 +579,18 @@
 
       const menuHeight = mainNav.offsetHeight;
 
+      function checkFooterTitleAnimation() { // Kopiert von anderen Seiten
+        if (footerNewTitle && !footerNewTitle.classList.contains('animate-footer-title')) {
+          const rect = footerNewTitle.getBoundingClientRect();
+          // Animation starten, wenn die Oberkante des (verschobenen) Titels in den Viewport kommt.
+          // Die CSS-Transitionen für transform und clip-path laufen dann synchron ab.
+          if (rect.top < window.innerHeight && rect.bottom >= 0) {
+            footerNewTitle.classList.add('animate-footer-title');
+          }
+        }
+      }
+
+
       function checkMenuPosition() {
         const footerRect = footer.getBoundingClientRect();
         // isOverFooter ist true, wenn der obere Rand des Footers über dem unteren Rand der Navigationsleiste liegt.
@@ -579,6 +605,7 @@
           navLinksUl.classList.add('dark-text');
           mainNav.classList.remove('strong-blur');
         }
+        checkFooterTitleAnimation(); // Animation für Footer-Titel prüfen
       }
 
       window.addEventListener('scroll', checkMenuPosition);
