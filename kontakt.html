@@ -224,14 +224,26 @@
       margin-top: 10px;
     }
 
-    .hero-new-title {
+    .footer-new-title { /* Korrigierter Selektor für den initialen Zustand */
       font-family: 'Poppins', sans-serif;
       font-weight: 700; /* Bold */
       font-size: 110px; /* Gleiche Schriftgröße wie h1 */
       color: #ffffff;
-      line-height: 1.2;
-      margin-bottom: 30px; /* Abstand zum Button */
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Gleicher Textschatten wie h1 */
+      line-height: 1.27;
+            margin-bottom: 60px; /* Abstand zum Button vergrößert */
+      /* Kein Textschatten, da Hintergrund einfarbig ist, kann bei Bedarf hinzugefügt werden */
+
+      /* Hinzugefügt für die Animation (kopiert von index.html) */
+      opacity: 1; 
+      transform: translateY(150px); 
+      clip-path: inset(100% 0 0 0); 
+      transition: transform 0.7s ease-out, clip-path 0.7s ease-out; 
+      visibility: hidden; 
+    }
+    .footer-new-title.animate-footer-title { 
+      transform: translateY(0); 
+      clip-path: inset(0 0 0 0); 
+      visibility: visible;
     }
 
     .hero-new-button {
@@ -791,7 +803,7 @@
       font-weight: 700; /* Bold */
       font-size: 110px; /* Gleiche Schriftgröße wie h1 in hero-section */
       color: #ffffff; /* Helle Schrift für dunklen Footer-Hintergrund */
-      line-height: 1.2;
+      line-height: 1.27;
       margin-bottom: 60px; /* Abstand zum Button vergrößert */
       /* Kein Textschatten, da Hintergrund einfarbig ist, kann bei Bedarf hinzugefügt werden */
     }
@@ -1313,6 +1325,7 @@
     document.addEventListener('DOMContentLoaded', function() {
       const mainNav = document.querySelector('.main-nav');
       const navLinksUl = document.querySelector('.nav-links'); // Selektiert das <ul> Element
+      const footerNewTitle = document.querySelector('.footer-new-title'); // Selektor für Footer-Titel hinzugefügt
       const heroBackground = document.querySelector('.hero-background');
       // Alle Sektionen auswählen, bei denen der Farbwechsel stattfinden soll
       // Für die Kontaktseite müssen ggf. andere oder keine Sektionen definiert werden,
@@ -1353,6 +1366,17 @@
         }
       }
 
+      function checkFooterTitleAnimation() { // Kopiert von index.html
+        if (footerNewTitle && !footerNewTitle.classList.contains('animate-footer-title')) {
+          const rect = footerNewTitle.getBoundingClientRect();
+          // Animation starten, wenn die Oberkante des (verschobenen) Titels in den Viewport kommt.
+          // Die CSS-Transitionen für transform und clip-path laufen dann synchron ab.
+          if (rect.top < window.innerHeight && rect.bottom >= 0) { 
+            footerNewTitle.classList.add('animate-footer-title');
+          }
+        }
+      }
+
       function checkMenuPosition() {
         let shouldBeDark = false;
 
@@ -1372,6 +1396,7 @@
         }
         // Hero Zoom Effekt aufrufen
         handleHeroZoom();
+        checkFooterTitleAnimation(); // Animation für Footer-Titel prüfen
       }
 
       window.addEventListener('scroll', checkMenuPosition);
