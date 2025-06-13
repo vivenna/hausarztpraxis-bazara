@@ -456,12 +456,22 @@
       padding-bottom: 190px; /* Erhöhter Wert (z.B. 240px statt 160px) für mehr Abstand zum Footer */
     }
 
-
-    .neue-faq-sektion .section-divider {
+    /* Allgemeine Stile und Animationsvorbereitung für ALLE section-divider (kopiert von index.html) */
+    .section-divider {
       width: 80%;
       height: 1px;
       background-color: #6e370e;
-      margin: 0 auto 80px auto; /* Zentriert und Abstand nach unten */
+      margin-left: auto; /* Für Zentrierung */
+      margin-right: auto; /* Für Zentrierung */
+      /* Animationseigenschaften */
+      clip-path: inset(0 100% 0 0); /* Initial von rechts komplett verdeckt */
+      transition: clip-path 0.7s ease-out;
+    }
+
+    .neue-faq-sektion .section-divider {
+      /* Allgemeine Stile kommen von .section-divider */
+      margin-top: 0; /* Spezifischer oberer Margin, falls benötigt, sonst Standard von .section-divider */
+      margin-bottom: 80px; /* Spezifischer unterer Margin */
     }
 
     .neue-faq-sektion .sub-heading-container {
@@ -689,6 +699,11 @@
     /* .faq-slideshow-container:hover .faq-slideshow-wrapper {
       animation-play-state: paused;
     } */
+
+    /* Animationsklasse für alle section-divider (kopiert von index.html) */
+    .section-divider.animate {
+      clip-path: inset(0 0 0 0); /* Macht den Divider sichtbar (von links nach rechts) */
+    }
 
     /* Hilfsklasse, um Textauswahl zu verhindern, falls gewünscht */
     .no-select {
@@ -1118,6 +1133,7 @@
       const navLinksUl = document.querySelector('.nav-links');
       const heroBackground = document.querySelector('.hero-background');
       const welcomeText = document.querySelector('.info-section .right-column .welcome-text'); // Selektor für Welcome-Text
+      const sectionDividers = document.querySelectorAll('.section-divider'); // Selektor für Section Dividers
       const footerNewTitle = document.querySelector('.footer-new-title'); // Selektor für Footer-Titel hinzugefügt
       const sectionsForColorChange = document.querySelectorAll('.leistungen-section, .neue-faq-sektion');
 
@@ -1156,6 +1172,19 @@
         }
       }
 
+      function checkSectionDividersVisibility() { // Kopiert von index.html
+        sectionDividers.forEach(divider => {
+          if (!divider.classList.contains('animate')) {
+            const rect = divider.getBoundingClientRect();
+            // Startet die Animation, wenn der Divider z.B. zu 90% im Viewport ist
+            // oder einfach im Viewport erscheint.
+            if (rect.top < window.innerHeight * 0.9 && rect.bottom >= 0) {
+              divider.classList.add('animate');
+            }
+          }
+        });
+      }
+
       function checkFooterTitleAnimation() { // Kopiert von index.html/kontakt.html
         if (footerNewTitle && !footerNewTitle.classList.contains('animate-footer-title')) {
           const rect = footerNewTitle.getBoundingClientRect();
@@ -1188,6 +1217,7 @@
 
         handleHeroZoom();
         checkWelcomeTextVisibility(); // Sichtbarkeit des Welcome-Textes prüfen
+        checkSectionDividersVisibility(); // Animation für Section Dividers prüfen
         checkFooterTitleAnimation(); // Animation für Footer-Titel prüfen
       }
 
