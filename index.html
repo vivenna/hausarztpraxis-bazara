@@ -282,6 +282,14 @@
       font-family: 'Poppins', sans-serif; /* Konsistente Schriftart */
       font-weight: 300; /* Poppins Light */
       line-height: 1.3; /* Bessere Lesbarkeit für längeren Text */
+      /* Hinzugefügt für die Animation */
+      opacity: 0;
+      transform: translateY(30px); /* Startet 30px weiter unten */
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .info-section .right-column .welcome-text.visible {
+      opacity: 1;
+      transform: translateY(0); /* Bewegt sich zur Originalposition */
     }
 
     /* Leistungsbereich */
@@ -1343,6 +1351,7 @@
       const mainNav = document.querySelector('.main-nav');
       const navLinksUl = document.querySelector('.nav-links'); // Selektiert das <ul> Element
       const heroBackground = document.querySelector('.hero-background');
+      const welcomeText = document.querySelector('.info-section .right-column .welcome-text');
       // Alle Sektionen auswählen, bei denen der Farbwechsel stattfinden soll
       const sectionsForColorChange = document.querySelectorAll('.leistungen-section, .sprechzeiten-section, .lage-anfahrt-section, .werte-section');
 
@@ -1365,8 +1374,19 @@
 
       const menuHeight = mainNav.offsetHeight;
 
+      function checkWelcomeTextVisibility() {
+        if (welcomeText) {
+          const rect = welcomeText.getBoundingClientRect();
+          // Prüft, ob das Element mindestens zu einem kleinen Teil im Viewport ist
+          // und die Animation noch nicht ausgelöst wurde
+          if (rect.top < window.innerHeight && rect.bottom >= 0 && !welcomeText.classList.contains('visible')) {
+            welcomeText.classList.add('visible');
+          }
+        }
+      }
+
       // Funktion für Menü-Farbwechsel und Hero-Zoom beim Scrollen
-      function checkMenuPosition() {
+      function checkAllAnimations() { // Umbenannt, um mehr Animationen zu handhaben
         // const sectionRect = leistungenSection.getBoundingClientRect(); // Entfernte Zeile
         let shouldBeDark = false;
 
@@ -1389,11 +1409,12 @@
 
         // Hero Zoom Effekt aufrufen
         handleHeroZoom();
+        checkWelcomeTextVisibility(); // Sichtbarkeit des Welcome-Textes prüfen
       }
 
-      window.addEventListener('scroll', checkMenuPosition);
-      window.addEventListener('resize', checkMenuPosition); // Auch bei Größenänderung prüfen
-      checkMenuPosition(); // Initiale Prüfung beim Laden der Seite
+      window.addEventListener('scroll', checkAllAnimations);
+      window.addEventListener('resize', checkAllAnimations); // Auch bei Größenänderung prüfen
+      checkAllAnimations(); // Initiale Prüfung beim Laden der Seite
       handleHeroZoom(); // Initialen Zoom-Status setzen (wichtig, falls Seite nicht ganz oben geladen wird)
     });
   </script>
