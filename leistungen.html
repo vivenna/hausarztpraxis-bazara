@@ -1362,8 +1362,31 @@
     <h2 class="main-heading">
       <span class="highlight">VORSORGE</span> &amp; IMPFSCHUTZ
     </h2>
-    <!-- TODO: Inhalt für Vorsorge & Impfschutz hier einfügen -->
-    <div style="height: 200px;"></div> <!-- Platzhalter für Inhalt, damit die Seite nicht zu kurz wirkt -->
+    
+    <div class="vorsorge-impfschutz-content-wrapper">
+      <div class="vorsorge-impfschutz-icon-container">
+        <!-- Ersetzen Sie 'vorsorge-icon-placeholder.png' durch Ihr gewünschtes Icon -->
+        <img src="/assets/vorsorge.png" alt="Vorsorge Icon" class="vorsorge-impfschutz-icon">
+      </div>
+      <div class="vorsorge-impfschutz-text-container">
+        <p class="vorsorge-impfschutz-intro">Mit gezielter Vorsorge und umfassendem Impfschutz stärken wir Ihre Gesundheit – heute und für morgen</p>
+        <ul class="vorsorge-impfschutz-liste">
+          <li>
+            <span class="vorsorge-impfschutz-nummer">01</span>
+            <p class="vorsorge-impfschutz-punkt"><span class="highlight-text">Regelmäßige Vorsorge</span> hilft, Risiken früh zu erkennen</p>
+          </li>
+          <li>
+            <span class="vorsorge-impfschutz-nummer">02</span>
+            <p class="vorsorge-impfschutz-punkt"><span class="highlight-text">Individuelle Impfberatung</span> für optimalen Schutz</p>
+          </li>
+          <li>
+            <span class="vorsorge-impfschutz-nummer">03</span>
+            <p class="vorsorge-impfschutz-punkt"><span class="highlight-text">Persönliche Begleitung</span> bei allen Gesundheitsfragen</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+
   </div>
 
 
@@ -1590,6 +1613,87 @@
         font-size: 17px; /* Etwas größerer Text */
         line-height: 1.7; /* Bessere Lesbarkeit */
         color: #333;
+        margin-bottom: 0;
+      }
+
+      /* Stile für den VORSORGE & IMPFSCHUTZ Bereich */
+      .vorsorge-impfschutz-content-wrapper {
+        display: flex;
+        align-items: center; /* Vertikal zentrieren */
+        gap: 50px; /* Abstand zwischen Icon und Text */
+        margin-top: 70px; /* Abstand zum Haupttitel */
+        padding: 0 40px; /* Seitlicher Abstand, passend zur Sektion */
+        text-align: left; /* Stellt sicher, dass der Inhalt linksbündig ist */
+      }
+
+      .vorsorge-impfschutz-icon-container {
+        flex-basis: 35%; /* Breite für das Icon */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .vorsorge-impfschutz-icon {
+        max-width: 300px; /* Größe des Icons, anpassbar */
+        height: auto;
+        /* Beispiel für ein Platzhalter-Styling, falls kein Bild vorhanden ist */
+        /* background-color: #e0e0e0; 
+           width: 300px; height: 300px; 
+           display:flex; align-items:center; justify-content:center; 
+           font-size: 24px; color: #6e370e; border-radius: 8px; */
+      }
+
+      .vorsorge-impfschutz-text-container {
+        flex-basis: 65%; /* Breite für den Textbereich */
+      }
+
+      .vorsorge-impfschutz-intro {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 300; /* Light */
+        font-size: 24px; /* Anpassbare Größe */
+        line-height: 1.6;
+        color: #0c0c0c;
+        margin-bottom: 50px; /* Abstand zur Liste */
+        max-width: 750px;
+      }
+
+      .vorsorge-impfschutz-liste {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        margin-left: 50px; /* Leichte Einrückung für die gesamte Liste */
+      }
+
+      .vorsorge-impfschutz-liste li {
+        display: flex;
+        align-items: flex-start; /* Nummer und Text oben bündig */
+        margin-bottom: 30px; /* Abstand zwischen den Listenelementen */
+      }
+
+      .vorsorge-impfschutz-nummer {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 300; /* Light */
+        font-size: 38px; /* Größe der Nummer */
+        color: #0c0c0c; /* Farbe der Nummer */
+        min-width: 55px; /* Feste Breite für Ausrichtung */
+        margin-right: 25px; /* Abstand zum Text */
+        line-height: 1.3; /* Anpassung an Texthöhe */
+        padding-top: 2px; /* Feinanpassung vertikale Ausrichtung */
+      }
+
+      .vorsorge-impfschutz-punkt {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 300; /* Light */
+        font-size: 26px; /* Größe des Textes */
+        line-height: 1.6;
+        color: #0c0c0c; /* Standardfarbe für den Rest des Satzes */
+        margin: 0;
+        max-width: 600px;
+      }
+
+      .vorsorge-impfschutz-punkt .highlight-text {
+        color: #6e370e; /* Farbe für die ersten Wörter */
+        font-weight: 500; /* Medium, um es etwas hervorzuheben */
         margin-bottom: 0;
       }
     `;
