@@ -914,6 +914,109 @@
       min-height: calc(100vh - 93px); /* Example to fill viewport height below nav */
     }
 
+    /* Stile für neue Sektionstitel (kopiert von faq.html für Kontaktwege) */
+    .neue-faq-sektion { 
+      background-color: #ffffff; 
+      color: #000000;
+      padding: 0 40px 160px 40px; /* padding-bottom erhöht für mehr Abstand zur Fußzeile */
+      text-align: center;
+    }
+
+    .neue-faq-sektion .section-divider {
+      width: 80%;
+      height: 1px;
+      background-color: #6e370e;
+      margin: 0 auto 80px auto; /* Zentriert und Abstand nach unten */
+    }
+
+    .neue-faq-sektion .sub-heading-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .neue-faq-sektion .sub-heading-bullet {
+      font-size: 24px; 
+      color: #6e370e;
+      margin-right: 10px;
+      line-height: 1;
+    }
+
+    .neue-faq-sektion .sub-heading {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; /* Poppins Light */
+      font-size: 20px;
+    }
+
+    .neue-faq-sektion .main-heading {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700; /* Poppins Bold */
+      font-size: 70px; 
+      line-height: 1.1;
+      margin-top: 0;
+    }
+
+    .neue-faq-sektion .main-heading .highlight {
+      color: #6e370e;
+      font-weight: 700; 
+    }
+
+    /* Stile für den Inhalt des Kontaktwege-Bereichs (kopiert von faq.html) */
+    .neue-faq-sektion .kontakt-layout-container {
+      display: flex;
+      align-items: flex-start; 
+      max-width: 950px; 
+      margin: 120px auto 0 auto; 
+      padding: 0 15px;        
+      text-align: left;       
+      position: relative; 
+    }
+
+    .neue-faq-sektion .kontakt-text-links {
+      flex: 1; 
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; 
+      font-size: 20px;  
+      line-height: 1.9; 
+      padding-right: 55px; 
+      box-sizing: border-box;
+    }
+    .neue-faq-sektion .kontakt-text-links p {
+      margin-top: 0; 
+    }
+
+    .neue-faq-sektion .kontakt-vertikale-linie-element {
+      width: 0.7px; 
+      background-color: #6e370e;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: -25px; 
+      bottom: -55px; 
+    }
+
+    .neue-faq-sektion .kontakt-info-rechts {
+      flex: 1; 
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; 
+      font-size: 20px; 
+      padding-left: 55px; 
+      box-sizing: border-box;
+    }
+
+    .neue-faq-sektion .kontakt-info-rechts p {
+      margin: 0 0 20px 0; 
+      line-height: 1.9;   
+    }
+    .neue-faq-sektion .kontakt-info-rechts p:last-child {
+      margin-bottom: 0; 
+    }
+
+    .neue-faq-sektion .kontakt-label { /* Sicherstellen, dass dieser Stil auch hier ist */
+      font-weight: 500; /* Poppins Medium für die Labels */
+    }
+
   </style>
 </head>
 <body>
@@ -952,6 +1055,30 @@
       <p class="welcome-text">Ob Rückfrage, Rezeptwunsch oder Terminvereinbarung – wir sind auf verschiedenen Wegen erreichbar. Ganz unkompliziert, ganz nah.</p>
     </div>
   </div>
+
+  <!-- Neuer Bereich: Ihre Kontaktwege (kopiert von faq.html) -->
+  <div class="neue-faq-sektion">
+    <div class="section-divider"></div>
+    <div class="sub-heading-container">
+      <span class="sub-heading-bullet">&bull;</span>
+      <h3 class="sub-heading">Weil persönlicher Kontakt zählt</h3>
+    </div>
+    <h2 class="main-heading">
+      SCHNELLER <span class="highlight">KONTAKT</span>
+    </h2>
+    <div class="kontakt-layout-container">
+      <div class="kontakt-text-links">
+        <p>Bei Fragen oder Anliegen erreichen Sie uns schnell und unkompliziert – wir sind persönlich für Sie da.</p>
+      </div>
+      <div class="kontakt-vertikale-linie-element"></div>
+      <div class="kontakt-info-rechts">
+        <p>E-Mail: arztpraxisbazara@gmail.com</p>
+        <p>Telefon: +49 (0) 30 9939 168</p>
+        <p>Telefax: +49 (0) 30 9940 2335</p>
+      </div>
+    </div>
+  </div>
+
 
   <!-- 
     Der Footer wurde hier nicht mitkopiert, da die Anfrage sich spezifisch auf die Navigation bezog.
