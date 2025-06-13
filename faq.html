@@ -113,10 +113,27 @@
       font-family: 'Poppins', sans-serif; 
       font-weight: 300; 
       font-size: 16px;
+      position: relative; /* Notwendig für die Positionierung des Pseudo-Elements */
+      padding-bottom: 1px; /* Platz für die Linie unter dem Text */
     }
 
     .nav-links a:hover {
-      text-decoration: underline;
+      text-decoration: none; /* Entfernt die Standard-Unterstreichung */
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 1.3px; /* Dicke der Linie */
+      bottom: 0;
+      left: 0;
+      background-color: currentColor; /* Nimmt die Textfarbe des Links an */
+      transition: width 0.2s ease-in-out; /* Animation für die Breite */
+    }
+
+    .nav-links a:hover::after {
+      width: 100%; /* Linie dehnt sich auf volle Breite aus */
     }
 
     /* Klasse für dunkle Navigationslinks */
