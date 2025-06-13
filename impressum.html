@@ -9,6 +9,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter&family=Questrial&family=Poppins:wght@300;500;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
+    html {
+      background-color: #6e370e; /* Verhindert weiße Linie unter dem Footer */
+    }
+
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
@@ -121,10 +125,9 @@
 
     /* Impressum spezifische Stile */
     .impressum-section {
-      padding: 40px 40px 40px 180px; /* Linker Rand vergrößert */
+      padding: 40px 40px 100px 180px; /* Linker Rand und unterer Abstand zur Fußzeile vergrößert */
       background-color: #ffffff; /* Weißer Hintergrund für den Inhalt */
-      min-height: calc(100vh - 93px - 100vh); /* Mindesthöhe: Viewport - Navi - Footer (Footer ist 100vh) */
-                                            /* Dies muss angepasst werden, wenn Footer Höhe anders ist */
+      min-height: 0; /* Effektive Mindesthöhe; vorherige Berechnung (calc(100vh - 93px - 100vh)) ergab einen negativen Wert. */
       box-sizing: border-box;
     }
     .impressum-section h1 {
