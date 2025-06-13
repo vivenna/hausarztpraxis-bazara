@@ -195,6 +195,8 @@
       /* Sanfter Übergang für die Skalierung, um Ruckeln zu minimieren */
       /* Kann angepasst oder entfernt werden, je nach gewünschtem Verhalten */
       transition: transform 0.1s ease-out;
+      min-width: 100vw; /* Verhindert, dass das Bild schmaler als der Viewport wird */
+      min-height: 100vh; /* Verhindert, dass das Bild niedriger als der Viewport wird */
     }
 
     .hero-section h1 {
@@ -1355,7 +1357,8 @@
           let scrollPosition = window.pageYOffset;
           // Der Divisor (z.B. 4000) steuert, wie schnell der Zoom erfolgt.
           // Ein größerer Wert bedeutet langsameren Zoom.
-          let scaleValue = 1 + scrollPosition / 7000; 
+          // Stelle sicher, dass scaleValue nie kleiner als 1 ist (um Schrumpfen beim Overscroll zu verhindern)
+          let scaleValue = Math.max(1, 1 + scrollPosition / 7000);
           heroBackground.style.transform = `scale(${scaleValue})`;
         }
       }
