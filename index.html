@@ -830,6 +830,19 @@
       line-height: 1.2;
       margin-bottom: 60px; /* Abstand zum Button vergrößert */
       /* Kein Textschatten, da Hintergrund einfarbig ist, kann bei Bedarf hinzugefügt werden */
+
+      /* Hinzugefügt für die Animation */
+      opacity: 1; /* Nicht mehr über Opazität, sondern clip-path gesteuert */
+      transform: translateY(150px); /* Startet ca. eine Zeilenhöhe tiefer (110px * 1.2 = 132px) */
+      clip-path: inset(100% 0 0 0); /* Initial von unten komplett verdeckt (top, right, bottom, left) */
+      transition: transform 0.7s ease-out, clip-path 0.7s ease-out; /* Bewegung und Sichtbarwerden animieren */
+      visibility: hidden; /* Verhindert Interaktion/Darstellung bevor Animation startet */
+    }
+
+    .footer-new-title.animate-footer-title { /* Geänderter Klassenname für Klarheit */
+      transform: translateY(0); /* Bewegt sich zur finalen Position */
+      clip-path: inset(0 0 0 0); /* Wird von unten nach oben sichtbar */
+      visibility: visible;
     }
 
     .footer-new-button {
@@ -1384,6 +1397,7 @@
       const welcomeText = document.querySelector('.info-section .right-column .welcome-text');
       const sprechzeitenTabelle = document.querySelector('.sprechzeiten-tabelle');
       const sectionDividers = document.querySelectorAll('.section-divider');
+      const footerNewTitle = document.querySelector('.footer-new-title');
       // Alle Sektionen auswählen, bei denen der Farbwechsel stattfinden soll
       const sectionsForColorChange = document.querySelectorAll('.leistungen-section, .sprechzeiten-section, .lage-anfahrt-section, .werte-section');
 
@@ -1441,6 +1455,17 @@
         });
       }
 
+      function checkFooterTitleAnimation() {
+        if (footerNewTitle && !footerNewTitle.classList.contains('animate-footer-title')) {
+          const rect = footerNewTitle.getBoundingClientRect();
+          // Animation starten, wenn die Oberkante des (verschobenen) Titels in den Viewport kommt.
+          // Die CSS-Transitionen für transform und clip-path laufen dann synchron ab.
+          if (rect.top < window.innerHeight && rect.bottom >= 0) { 
+            footerNewTitle.classList.add('animate-footer-title');
+          }
+        }
+      }
+
       // Funktion für Menü-Farbwechsel und Hero-Zoom beim Scrollen
       function checkAllAnimations() { // Umbenannt, um mehr Animationen zu handhaben
         // const sectionRect = leistungenSection.getBoundingClientRect(); // Entfernte Zeile
@@ -1468,6 +1493,7 @@
         checkWelcomeTextVisibility(); // Sichtbarkeit des Welcome-Textes prüfen
         checkSprechzeitenAnimation(); // Animation für Sprechzeiten-Tabelle prüfen
         checkSectionDividersVisibility(); // Animation für Section Dividers prüfen
+        checkFooterTitleAnimation(); // Animation für Footer-Titel prüfen
       }
 
       window.addEventListener('scroll', checkAllAnimations);
