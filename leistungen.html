@@ -1433,8 +1433,8 @@
         </div>
       </div>
 
-      <button class="slide-nav prev" aria-label="Vorherige Folie">&#10094;</button>
-      <button class="slide-nav next" aria-label="Nächste Folie">&#10095;</button>
+      <button class="slide-nav prev" aria-label="Vorherige Folie"><span>&#10094;</span></button>
+      <button class="slide-nav next" aria-label="Nächste Folie"><span>&#10095;</span></button>
 
       <div class="slide-dots"></div>
     </div>
@@ -1833,6 +1833,15 @@
         align-items: center;
         box-shadow: 0 1px 4px rgba(0,0,0,0.1);
         transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+      }
+      .slide-nav span {
+        display: inline-block; /* Stellt sicher, dass transform korrekt angewendet wird */
+      }
+      .slide-nav.prev span {
+        transform: translateX(-1px); /* Linken Pfeil 1px nach links verschieben */
+      }
+      .slide-nav.next span {
+        transform: translateX(1px); /* Rechten Pfeil 1px nach rechts verschieben */
       }
       .slide-nav:hover {
         background-color: #6e370e;
