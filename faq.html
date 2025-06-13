@@ -423,6 +423,7 @@
       margin: 120px auto 0 auto; /* Abstand nach oben zum Titel vergrößert, zentriert den Block horizontal */
       padding: 0 15px;        /* Innenabstand des Blocks, falls max-width erreicht wird */
       text-align: left;       /* Stellt Linksalignierung für den Inhalt sicher */
+      position: relative; /* Erforderlich für die absolute Positionierung der Linie */
     }
 
     .neue-faq-sektion .kontakt-text-links {
@@ -441,7 +442,12 @@
     .neue-faq-sektion .kontakt-vertikale-linie-element {
       width: 0.7px; /* Feinere Linienstärke */
       background-color: #6e370e;
-      align-self: stretch; /* Dehnt die Linie auf die Höhe des höchsten Nachbarelements im Flex-Container */
+      /* align-self: stretch; Wird durch absolute Positionierung ersetzt */
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: -25px; /* Beginnt 15px über dem Inhalt des Containers */
+      bottom: -55px; /* Endet 15px unter dem Inhalt des Containers */
     }
 
     .neue-faq-sektion .kontakt-info-rechts {
@@ -472,13 +478,16 @@
         align-items: center; /* Zentriert die Blöcke, wenn sie untereinander sind */
       }
       .neue-faq-sektion .kontakt-vertikale-linie-element {
+        position: static; /* Absolute Positionierung aufheben */
+        left: auto;
+        top: auto;
+        bottom: auto;
+        transform: none; /* Transform zurücksetzen */
+
         width: 80%; /* Linie wird horizontal, wenn Spalten gestapelt sind */
         height: 1px;
         margin: 25px 0; /* Abstand um die horizontale Linie */
         align-self: center;
-      }
-      .neue-faq-sektion .kontakt-text-links,
-      .neue-faq-sektion .kontakt-info-rechts {
         padding-right: 0;
         padding-left: 0;
         text-align: center; /* Text zentrieren auf kleinen Bildschirmen */
@@ -729,9 +738,9 @@
       </div>
       <div class="kontakt-vertikale-linie-element"></div>
       <div class="kontakt-info-rechts">
-        <p><span class="kontakt-label">E-Mail:</span> arztpraxisbazara@gmail.com</p>
-        <p><span class="kontakt-label">Telefon:</span> +49 (0) 30 9939 168</p>
-        <p><span class="kontakt-label">Telefax:</span> +49 (0) 30 9940 2335</p>
+        <p>E-Mail: arztpraxisbazara@gmail.com</p>
+        <p>Telefon: +49 (0) 30 9939 168</p>
+        <p>Telefax: +49 (0) 30 9940 2335</p>
       </div>
     </div>
   </div>
