@@ -459,11 +459,22 @@
       text-align: center;
     }
 
-    .sprechzeiten-section .section-divider {
+    /* Allgemeine Stile und Animationsvorbereitung für ALLE section-divider (kopiert von index.html) */
+    .section-divider {
       width: 80%;
-      height: 1px; /* Linie dünner gemacht */
+      height: 1px;
       background-color: #6e370e;
-      margin: 0 auto 80px auto; /* Zentriert und Abstand nach unten weiter vergrößert */
+      margin-left: auto; /* Für Zentrierung */
+      margin-right: auto; /* Für Zentrierung */
+      /* Animationseigenschaften */
+      clip-path: inset(0 100% 0 0); /* Initial von rechts komplett verdeckt */
+      transition: clip-path 0.7s ease-out;
+    }
+
+    .sprechzeiten-section .section-divider,
+    .lage-anfahrt-section .section-divider { /* Hinzugefügt für Konsistenz mit index.html */
+      margin-top: 0; /* Spezifischer oberer Margin für diesen Divider */
+      margin-bottom: 80px; /* Spezifischer unterer Margin für diesen Divider */
     }
 
     .sprechzeiten-section .sub-heading-container {
@@ -573,11 +584,9 @@
       text-align: center;
     }
 
-    .lage-anfahrt-section .section-divider {
-      width: 80%;
-      height: 1px;
-      background-color: #6e370e;
-      margin: 0 auto 80px auto; /* Gleicher Abstand wie Sprechzeiten */
+    /* Animationsklasse für alle section-divider (kopiert von index.html) */
+    .section-divider.animate {
+      clip-path: inset(0 0 0 0); /* Macht den Divider sichtbar (von links nach rechts) */
     }
 
     .lage-anfahrt-section .sub-heading-container {
@@ -1019,11 +1028,11 @@
     }
 
     .neue-faq-sektion .section-divider {
-      width: 80%;
-      height: 1px;
-      background-color: #6e370e;
-      margin: 0 auto 80px auto; /* Zentriert und Abstand nach unten */
-    }
+      /* Allgemeine Stile kommen von .section-divider */
+      /* Spezifische Margins können hier bei Bedarf überschrieben werden,
+         aber für den Animationseffekt sind die allgemeinen Stile entscheidend. */
+      margin-top: 0; /* Beispiel, falls benötigt */
+      margin-bottom: 80px; /* Beispiel, falls benötigt */    }
 
     .neue-faq-sektion .sub-heading-container {
       display: flex;
@@ -1336,6 +1345,7 @@
       const footerNewTitle = document.querySelector('.footer-new-title'); // Selektor für Footer-Titel hinzugefügt
       const heroBackground = document.querySelector('.hero-background');
       const welcomeText = document.querySelector('.info-section .right-column .welcome-text'); // Selektor für Welcome-Text
+      const sectionDividers = document.querySelectorAll('.section-divider'); // Selektor für Section Dividers hinzugefügt
       // Alle Sektionen auswählen, bei denen der Farbwechsel stattfinden soll
       // Für die Kontaktseite müssen ggf. andere oder keine Sektionen definiert werden,
       // wenn das dynamische Verhalten der Navigationsleiste (Textfarbe, Blur)
@@ -1386,6 +1396,19 @@
         }
       }
 
+      function checkSectionDividersVisibility() { // Funktion von index.html kopiert
+        sectionDividers.forEach(divider => {
+          if (!divider.classList.contains('animate')) {
+            const rect = divider.getBoundingClientRect();
+            // Animation starten, sobald der obere Rand des Dividers in den Viewport kommt
+            // und der untere Rand noch nicht komplett darüber ist.
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+              divider.classList.add('animate');
+            }
+          }
+        });
+      }
+
       function checkWelcomeTextVisibility() { // Kopiert von index.html
         if (welcomeText) {
           const rect = welcomeText.getBoundingClientRect();
@@ -1418,12 +1441,14 @@
         handleHeroZoom();
         checkFooterTitleAnimation(); // Animation für Footer-Titel prüfen
         checkWelcomeTextVisibility(); // Animation für Welcome-Text prüfen
+        checkSectionDividersVisibility(); // Animation für Section Dividers prüfen
       }
 
       window.addEventListener('scroll', checkMenuPosition);
       window.addEventListener('resize', checkMenuPosition);
       checkMenuPosition(); // Initiale Prüfung beim Laden der Seite
       handleHeroZoom(); // Initialen Zoom-Status setzen
+      // checkSectionDividersVisibility(); // Initiale Prüfung, falls Divider direkt sichtbar sind (wird durch checkMenuPosition() abgedeckt)
       // checkWelcomeTextVisibility(); // Initiale Prüfung für Welcome-Text, falls er direkt sichtbar sein könnte
     });
   </script>
