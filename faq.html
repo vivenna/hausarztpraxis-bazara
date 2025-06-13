@@ -414,6 +414,106 @@
       color: #6e370e;
       font-weight: 700; 
     }
+
+    /* FAQ Slideshow Stile */
+    .faq-slideshow-container {
+      width: 100%;
+      overflow: hidden; 
+      margin-top: 80px; /* Abstand zum Titel vergrößert */
+      padding: 20px 0; /* Etwas Platz oben und unten */
+      background-color: #ffffff; /* Hintergrund der Sektion bleibt weiß */
+    }
+
+    .faq-slideshow-wrapper {
+      display: flex;
+      /* Animation: Name, Dauer, Timing-Funktion, Iterationsanzahl */
+      animation: faq-slide 30s linear infinite; 
+    }
+
+    .faq-slide-item {
+      flex: 0 0 250px; /* Breite reduziert für Hochformat */
+      height: 300px; /* Höhe erhöht für Hochformat */
+      background-color: #8a5a34; 
+      color: #ffffff;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; /* Poppins Light */
+      font-size: 18px; /* Schriftgröße der Frage */
+      line-height: 1.5;
+      padding: 25px;
+      margin-right: 30px; /* Abstand zwischen den Kästen */
+      border-radius: 8px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* Zentriert die Frage vertikal */
+      align-items: center; /* Zentriert die Frage horizontal */
+      text-align: center;
+      position: relative; /* Für den Hover-Text */
+      transition: background-color 0.3s ease;
+    }
+
+    .faq-slide-item .question-highlight {
+      font-weight: 500; /* Poppins Medium für Schlüsselwörter */
+    }
+
+    .faq-slide-item .hover-answer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Great Vibes', cursive;
+      font-size: 60px; /* Große Schrift für das Antwortwort */
+      color: #ffffff;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+      pointer-events: none; /* Damit der Kasten-Hover nicht blockiert wird */
+    }
+
+    .faq-slide-item:hover {
+      background-color: #6e370e; /* Dunkleres Braun bei Hover */
+    }
+
+    .faq-slide-item:hover .question-text {
+      opacity: 0; /* Frage ausblenden bei Hover */
+      visibility: hidden;
+      transition: opacity 0.2s ease, visibility 0s linear 0.2s;
+    }
+
+    .faq-slide-item:hover .hover-answer {
+      opacity: 1;
+      visibility: visible;
+      transition-delay: 0.1s; /* Leichte Verzögerung für sanfteren Übergang */
+    }
+
+    /* CSS Animation für die Slideshow */
+    @keyframes faq-slide {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        /* (Breite eines Kastens + margin-right) * Anzahl der Original-Kästen */
+        /* (250px + 30px) * 6 = 1680px */
+        transform: translateX(-1680px); 
+      }
+    }
+
+    /* Um die Animation bei Hover auf dem Container anzuhalten (optional) */
+    /* .faq-slideshow-container:hover .faq-slideshow-wrapper {
+      animation-play-state: paused;
+    } */
+
+    /* Hilfsklasse, um Textauswahl zu verhindern, falls gewünscht */
+    .no-select {
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+    }
   </style>
 </head>
 <body>
@@ -495,9 +595,41 @@
     <h2 class="main-heading">
       <span class="highlight">KURZ &</span> KLAR
     </h2>
-    <!-- Inhalt für diese neue Sektion kann hier folgen -->
-    <div style="min-height: 200px; padding-top: 20px;">
-      <p>Hier können weitere FAQ-Elemente oder Informationen platziert werden.</p>
+    
+    <div class="faq-slideshow-container no-select">
+      <div class="faq-slideshow-wrapper">
+        <!-- Originale 6 Kästen -->
+        <div class="faq-slide-item">
+          <p class="question-text">Ist die Praxis <span class="question-highlight">barrierefrei</span> zugänglich?</p>
+          <span class="hover-answer">Sicher!</span>
+        </div>
+        <div class="faq-slide-item">
+          <p class="question-text">Bekomme ich hier <span class="question-highlight">Atteste</span>?</p>
+          <span class="hover-answer">Klar.</span>
+        </div>
+        <div class="faq-slide-item">
+          <p class="question-text">Behandeln Sie auch <span class="question-highlight">Kinder</span>?</p>
+          <span class="hover-answer">Ja!</span>
+        </div>
+        <div class="faq-slide-item">
+          <p class="question-text">Übernimmt die Praxis auch <span class="question-highlight">Impfungen</span>?</p>
+          <span class="hover-answer">Natürlich.</span>
+        </div>
+        <div class="faq-slide-item">
+          <p class="question-text">Kann ich meine Rezepte <span class="question-highlight">digital</span> erhalten?</p>
+          <span class="hover-answer">Gerne.</span>
+        </div>
+        <div class="faq-slide-item">
+          <p class="question-text">Behandeln Sie auch <span class="question-highlight">gesetzlich</span> versicherte Patienten?</p>
+          <span class="hover-answer">Na Klar.</span>
+        </div>
+        <!-- Duplikate der 6 Kästen für den nahtlosen Loop -->
+        <script>
+          const wrapper = document.currentScript.parentElement;
+          const originalSlides = wrapper.querySelectorAll('.faq-slide-item:not(.clone)');
+          originalSlides.forEach(slide => wrapper.appendChild(slide.cloneNode(true)).classList.add('clone'));
+        </script>
+      </div>
     </div>
   </div>
   <script>
