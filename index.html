@@ -503,18 +503,26 @@
     .sprechzeiten-tabelle td {
       padding: 18px 15px; /* Innenabstand (Zeilenhöhe) erhöht */
       text-align: center; /* Textausrichtung in den Zellen zentriert */
-      border-bottom: none; /* Keine horizontalen Linien */
-      border-top: none; /* Keine horizontalen Linien */
+      border: none; /* Entfernt alle Standard-Ränder, wir steuern sie manuell/mit Pseudo-Elementen */
+      position: relative; /* Wichtig für die Positionierung der Pseudo-Elemente für Linien */
     }
 
-    .sprechzeiten-tabelle th:not(:first-child),
-    .sprechzeiten-tabelle td:not(:first-child) {
-      border-left: 0.5px solid #6e370e; /* Sehr feine vertikale Linie für Spalten ab der zweiten */
+    /* Vertikale Spaltentrenner (animiert) */
+    .sprechzeiten-tabelle th:not(:first-child)::before,
+    .sprechzeiten-tabelle td:not(:first-child)::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0; /* Linie am linken Rand der Zelle */
+      width: 0.5px; /* Dicke der Linie */
+      background-color: #6e370e;
+      height: 0; /* Initial keine Höhe */
+      transition: height 0.5s ease-out;
     }
 
-    .sprechzeiten-tabelle th:first-child,
-    .sprechzeiten-tabelle td:first-child {
-      border-left: none; /* Keine Linie für die erste Spalte links */
+    .sprechzeiten-tabelle.start-animation th:not(:first-child)::before,
+    .sprechzeiten-tabelle.start-animation td:not(:first-child)::before {
+      height: 100%; /* Linie füllt die Zelle vertikal aus */
     }
     
     .sprechzeiten-tabelle th {
@@ -535,15 +543,15 @@
       content: '';
       position: absolute;
       bottom: -3px; /* Abstand des Unterstrichs zum Text */
-      left: 50%;
-      transform: translateX(-50%);
-      width: 85%; /* Breite des Unterstrichs */
+      /* Positionierung für einen zentrierten 85% breiten Unterstrich */
+      left: 7.5%; /* (100% - 85%) / 2, um den 85% breiten Strich zu zentrieren */
+      width: 85%;   /* Finale Breite des Unterstrichs, relativ zum .underline-text */
       height: 0.5px; /* Dicke des Unterstrichs angepasst */
       background-color: #6e370e; /* Farbe des Unterstrichs angepasst an Spaltenlinien */
+      /* Animation über clip-path für den "von links zeichnen" Effekt */
+      clip-path: inset(0 100% 0 0); /* Initial von rechts komplett verdeckt (top, right, bottom, left) */
+      transition: clip-path 0.5s 0.3s ease-out; /* Verzögerung beibehalten, damit vertikale Linien zuerst kommen */
     }
-
-
-
     .sprechzeiten-hinweis {
       font-family: 'Poppins', sans-serif;
       font-weight: 300; /* Poppins Light */
@@ -552,6 +560,11 @@
       text-align: center;
       margin-top: 50px; /* Abstand zur Tabelle */
       margin-bottom: 40px;
+    }
+
+    /* Animierter Zustand für die Unterstriche */
+    .sprechzeiten-tabelle.start-animation th .underline-text::after {
+      clip-path: inset(0 0 0 0); /* Macht den Unterstrich sichtbar (von links nach rechts) */
     }
 
     /* Lage & Anfahrt Bereich */
@@ -1352,6 +1365,7 @@
       const navLinksUl = document.querySelector('.nav-links'); // Selektiert das <ul> Element
       const heroBackground = document.querySelector('.hero-background');
       const welcomeText = document.querySelector('.info-section .right-column .welcome-text');
+      const sprechzeitenTabelle = document.querySelector('.sprechzeiten-tabelle');
       // Alle Sektionen auswählen, bei denen der Farbwechsel stattfinden soll
       const sectionsForColorChange = document.querySelectorAll('.leistungen-section, .sprechzeiten-section, .lage-anfahrt-section, .werte-section');
 
@@ -1385,6 +1399,17 @@
         }
       }
 
+      function checkSprechzeitenAnimation() {
+        if (sprechzeitenTabelle && !sprechzeitenTabelle.classList.contains('start-animation')) {
+          const rect = sprechzeitenTabelle.getBoundingClientRect();
+          // Startet die Animation, wenn die Oberkante der Tabelle z.B. bei 85% der Viewport-Höhe ist
+          // oder einfach im Viewport erscheint.
+          if (rect.top < window.innerHeight * 0.85 && rect.bottom >= 0) {
+            sprechzeitenTabelle.classList.add('start-animation');
+          }
+        }
+      }
+
       // Funktion für Menü-Farbwechsel und Hero-Zoom beim Scrollen
       function checkAllAnimations() { // Umbenannt, um mehr Animationen zu handhaben
         // const sectionRect = leistungenSection.getBoundingClientRect(); // Entfernte Zeile
@@ -1410,6 +1435,7 @@
         // Hero Zoom Effekt aufrufen
         handleHeroZoom();
         checkWelcomeTextVisibility(); // Sichtbarkeit des Welcome-Textes prüfen
+        checkSprechzeitenAnimation(); // Animation für Sprechzeiten-Tabelle prüfen
       }
 
       window.addEventListener('scroll', checkAllAnimations);
