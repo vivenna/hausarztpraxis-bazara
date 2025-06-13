@@ -507,6 +507,16 @@
       font-weight: 700; 
     }
 
+    /* Cursor für Typewriter-Effekt */
+    .typing-cursor {
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+      from, to { color: transparent; }
+      50% { color: inherit; } /* Nimmt die Farbe des Elternelements an */
+    }
+
     /* Stile für den Inhalt des Kontaktwege-Bereichs */
     .neue-faq-sektion .kontakt-layout-container {
       display: flex;
@@ -985,7 +995,7 @@
     <div class="faq-content" style="text-align: left;">
       <div class="quote-container">
         <p class="quote-content">
-          Darf ich eine<br><span class="highlight-text">RSV-Impfung</span> bekommen?
+          Darf ich eine<br><span class="highlight-text"><span id="typewriter-rsv-target" data-text="RSV-Impfung"></span></span> bekommen?
         </p>
       </div>
       <div class="answer-button-container">
@@ -1134,6 +1144,7 @@
       const heroBackground = document.querySelector('.hero-background');
       const welcomeText = document.querySelector('.info-section .right-column .welcome-text'); // Selektor für Welcome-Text
       const sectionDividers = document.querySelectorAll('.section-divider'); // Selektor für Section Dividers
+      // const quoteContent = document.querySelector('.quote-content[data-text]'); // Nicht mehr direkt für den Typewriter benötigt
       const footerNewTitle = document.querySelector('.footer-new-title'); // Selektor für Footer-Titel hinzugefügt
       const sectionsForColorChange = document.querySelectorAll('.leistungen-section, .neue-faq-sektion');
 
@@ -1147,6 +1158,7 @@
         console.warn('Keine Sektionen für den dynamischen Menü-Farbwechsel auf dieser Seite definiert. Das Menü behält seine Standardfarben.');
       }
 
+      let quoteAnimationStarted = false; // Stellt sicher, dass die Zitat-Animation nur einmal startet
       // Parallax Zoom für Hero-Background
       function handleHeroZoom() {
         if (heroBackground) {
@@ -1185,6 +1197,56 @@
         });
       }
 
+      function typeWriterEffect(element, fullText, speed = 65) { // Geschwindigkeit angepasst
+        let i = 0;
+        element.innerHTML = ''; // Inhalt leeren, bevor getippt wird
+        const cursorSpan = document.createElement('span');
+        cursorSpan.className = 'typing-cursor';
+        cursorSpan.textContent = '|'; // Cursor-Zeichen
+        
+        let currentHTML = '';
+        let tagBuffer = '';
+        let isInsideTag = false;
+
+        function type() {
+          if (i < fullText.length) {
+            const char = fullText.charAt(i);
+
+            if (char === '<') isInsideTag = true;
+            
+            if (isInsideTag) {
+              tagBuffer += char;
+            } else {
+              currentHTML += char;
+            }
+
+            if (char === '>' && isInsideTag) {
+              currentHTML += tagBuffer;
+              tagBuffer = '';
+              isInsideTag = false;
+            }
+            
+            // Temporären Container verwenden, um HTML zu parsen und Cursor korrekt zu positionieren
+            const tempRenderDiv = document.createElement('div');
+            tempRenderDiv.innerHTML = currentHTML;
+            element.innerHTML = tempRenderDiv.innerHTML; // Nur den geparsten Text setzen
+            element.appendChild(cursorSpan); // Cursor immer ans Ende
+
+            i++;
+            setTimeout(type, speed);
+          } else {
+            // Animation beendet
+            element.classList.add('typing-done');
+            // Cursor nach 2 Sekunden entfernen
+            setTimeout(() => {
+              cursorSpan.remove();
+            }, 2000);
+          }
+        }
+        element.classList.add('is-typing'); // Klasse für Styling während des Tippens (optional)
+        type();
+      }
+
       function checkFooterTitleAnimation() { // Kopiert von index.html/kontakt.html
         if (footerNewTitle && !footerNewTitle.classList.contains('animate-footer-title')) {
           const rect = footerNewTitle.getBoundingClientRect();
@@ -1196,6 +1258,19 @@
         }
       }
 
+      function checkQuoteAnimation() {
+        const rsvTypewriterTarget = document.querySelector('#typewriter-rsv-target'); // Selektor für das spezifische Wort-Span
+
+        if (rsvTypewriterTarget && !quoteAnimationStarted) {
+            const rect = rsvTypewriterTarget.getBoundingClientRect();
+            // Startet Animation, wenn das Element z.B. zu 85% im Viewport ist
+            if (rect.top < window.innerHeight * 0.85 && rect.bottom >= 0) {
+                quoteAnimationStarted = true;
+                const textToType = rsvTypewriterTarget.dataset.text; // Text aus dem data-text des Spans
+                typeWriterEffect(rsvTypewriterTarget, textToType); // Typewriter-Effekt auf das Span anwenden
+            }
+        }
+      }
 
       function checkMenuPosition() {
         let shouldBeDark = false;
@@ -1218,6 +1293,7 @@
         handleHeroZoom();
         checkWelcomeTextVisibility(); // Sichtbarkeit des Welcome-Textes prüfen
         checkSectionDividersVisibility(); // Animation für Section Dividers prüfen
+        checkQuoteAnimation(); // Zitat-Animation prüfen
         checkFooterTitleAnimation(); // Animation für Footer-Titel prüfen
       }
 
