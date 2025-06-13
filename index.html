@@ -452,6 +452,11 @@
       height: 1px; /* Linie dünner gemacht */
       background-color: #6e370e;
       margin: 0 auto 80px auto; /* Zentriert und Abstand nach unten weiter vergrößert */
+      /* Hinzugefügt für die Animation */
+      clip-path: inset(0 100% 0 0); /* Initial von rechts komplett verdeckt (top, right, bottom, left) */
+      transition: clip-path 0.7s ease-out;
+      /* Eine kleine Verzögerung kann gut aussehen, wenn die Sektion gerade erst sichtbar wird */
+      /* transition-delay: 0.2s; */
     }
 
     .sprechzeiten-section .sub-heading-container {
@@ -584,6 +589,12 @@
       background-color: #6e370e;
       margin: 0 auto 80px auto; /* Gleicher Abstand wie Sprechzeiten */
     }
+
+    /* Animationsklasse für alle section-divider */
+    .section-divider.animate {
+      clip-path: inset(0 0 0 0); /* Macht den Divider sichtbar (von links nach rechts) */
+    }
+
 
     .lage-anfahrt-section .sub-heading-container {
       display: flex;
@@ -1369,6 +1380,7 @@
       const heroBackground = document.querySelector('.hero-background');
       const welcomeText = document.querySelector('.info-section .right-column .welcome-text');
       const sprechzeitenTabelle = document.querySelector('.sprechzeiten-tabelle');
+      const sectionDividers = document.querySelectorAll('.section-divider');
       // Alle Sektionen auswählen, bei denen der Farbwechsel stattfinden soll
       const sectionsForColorChange = document.querySelectorAll('.leistungen-section, .sprechzeiten-section, .lage-anfahrt-section, .werte-section');
 
@@ -1413,6 +1425,19 @@
         }
       }
 
+      function checkSectionDividersVisibility() {
+        sectionDividers.forEach(divider => {
+          if (!divider.classList.contains('animate')) {
+            const rect = divider.getBoundingClientRect();
+            // Startet die Animation, wenn der Divider z.B. zu 80% im Viewport ist
+            // oder einfach im Viewport erscheint.
+            if (rect.top < window.innerHeight * 0.9 && rect.bottom >= 0) {
+              divider.classList.add('animate');
+            }
+          }
+        });
+      }
+
       // Funktion für Menü-Farbwechsel und Hero-Zoom beim Scrollen
       function checkAllAnimations() { // Umbenannt, um mehr Animationen zu handhaben
         // const sectionRect = leistungenSection.getBoundingClientRect(); // Entfernte Zeile
@@ -1439,6 +1464,7 @@
         handleHeroZoom();
         checkWelcomeTextVisibility(); // Sichtbarkeit des Welcome-Textes prüfen
         checkSprechzeitenAnimation(); // Animation für Sprechzeiten-Tabelle prüfen
+        checkSectionDividersVisibility(); // Animation für Section Dividers prüfen
       }
 
       window.addEventListener('scroll', checkAllAnimations);
