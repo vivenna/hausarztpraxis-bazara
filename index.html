@@ -9,6 +9,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter&family=Questrial&family=Poppins:wght@300;500;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
   
   <style>
+    ::selection {
+      background-color: #341700;  /* Hintergrundfarbe der Markierung */
+      color: white;               /* Textfarbe der Markierung */
+    }
 
     /* Für WebKit-basierte Browser (Chrome, Safari, Edge) */
     ::-webkit-scrollbar {
@@ -960,9 +964,56 @@
       margin-bottom: 0;
     }
 
+    /* Splash Screen Stile */
+    #splash-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #6e370e;
+      z-index: 2000; /* Höher als die Navigation */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 1;
+      transition: transform 0.7s ease-in-out; /* Nur die Transformation wird animiert */
+      /* Das Logo wird initial unsichtbar gemacht und blendet später ein */
+    }
+
+    #splash-screen.hide {
+      transform: translateY(-100%);
+    }
+
+    /* Stile für das Logo im Splash Screen, basierend auf .footer-logo */
+    #splash-screen .footer-logo {
+      /* Das Logo ist initial unsichtbar und wird per JS-Klasse .show eingeblendet */
+      text-align: center; /* Hilft bei der Zentrierung, falls Kindelemente inline-block sind */
+      opacity: 0; /* Initial unsichtbar */
+      transition: opacity 0.6s ease-in-out 0.5s; /* Logo blendet nach 0.5s ein, Dauer 0.6s */
+    }
+    #splash-screen .footer-logo.show {
+      opacity: 1 !important; /* Macht das Logo sichtbar */
+    }
+
+
+    /* Die spezifischen Logo-Text-Stile werden von .footer-logo .bazara-style etc. geerbt */
+    /* Es ist wichtig, dass die Schriftgrößen und Farben aus .footer-logo hier greifen */
+    /* .footer-logo .bazara-style, .footer-logo .safia-style, .footer-logo .subtitle-style */
+    /* bleiben unverändert und werden hier wiederverwendet. */
   </style>
 </head>
 <body>
+
+  <div id="splash-screen">
+  <div class="footer-logo"> <!-- Wiederverwendung der .footer-logo Struktur und Stile -->
+    <div class="logo-text-container">
+      <div class="bazara-style">BAZARA</div>
+      <div class="safia-style">safia</div>
+    </div>
+    <div class="subtitle-style">Hausarztpraxis</div>
+  </div>
+</div>
 
   <nav class="main-nav">
     <div class="menu-logo">
@@ -1244,6 +1295,35 @@
   </footer>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+            const splashScreen = document.getElementById('splash-screen');
+      const splashLogo = splashScreen ? splashScreen.querySelector('.footer-logo') : null;
+      const body = document.body;
+
+      if (splashScreen && splashLogo) {
+        body.style.overflow = 'hidden'; // Scrollen verhindern, während Splash Screen sichtbar ist
+
+        // Schritt 1: Nach einer kurzen Verzögerung das Logo einblenden
+        setTimeout(() => {
+          splashLogo.classList.add('show');
+        }, 500); // Logo erscheint nach 0.5 Sekunden
+
+        // Schritt 2: Nachdem das Logo erschienen ist und kurz sichtbar war, den gesamten Splash Screen ausblenden
+        setTimeout(() => {
+          if (splashScreen) { // Erneute Prüfung, falls splashScreen zwischenzeitlich entfernt wurde
+            splashScreen.classList.add('hide');
+            
+            splashScreen.addEventListener('transitionend', function handleTransitionEnd(event) {
+              if (event.propertyName === 'transform' && splashScreen) {
+                splashScreen.style.display = 'none';
+                body.style.overflow = ''; 
+                splashScreen.removeEventListener('transitionend', handleTransitionEnd);
+              }
+            });
+          }
+        }, 2500); // Gesamter Splash Screen beginnt nach 2.5s (0.5s Warten + 0.6s Logo-Fade-In + ca. 1.4s Anzeige) zu verschwinden
+      }
+
+      // Bestehendes Skript für die Navigation
       const mainNav = document.querySelector('.main-nav');
       const navLinksUl = document.querySelector('.nav-links'); // Selektiert das <ul> Element
       // Alle Sektionen auswählen, bei denen der Farbwechsel stattfinden soll
