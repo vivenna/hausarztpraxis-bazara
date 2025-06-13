@@ -447,16 +447,21 @@
       text-align: center;
     }
 
-    .sprechzeiten-section .section-divider {
+    /* Allgemeine Stile und Animationsvorbereitung für ALLE section-divider */
+    .section-divider {
       width: 80%;
-      height: 1px; /* Linie dünner gemacht */
+      height: 1px;
       background-color: #6e370e;
-      margin: 0 auto 80px auto; /* Zentriert und Abstand nach unten weiter vergrößert */
-      /* Hinzugefügt für die Animation */
-      clip-path: inset(0 100% 0 0); /* Initial von rechts komplett verdeckt (top, right, bottom, left) */
+      margin-left: auto; /* Für Zentrierung */
+      margin-right: auto; /* Für Zentrierung */
+      /* Animationseigenschaften */
+      clip-path: inset(0 100% 0 0); /* Initial von rechts komplett verdeckt */
       transition: clip-path 0.7s ease-out;
-      /* Eine kleine Verzögerung kann gut aussehen, wenn die Sektion gerade erst sichtbar wird */
-      /* transition-delay: 0.2s; */
+    }
+
+    .sprechzeiten-section .section-divider {
+      margin-top: 0; /* Spezifischer oberer Margin für diesen Divider */
+      margin-bottom: 80px; /* Spezifischer unterer Margin für diesen Divider */
     }
 
     .sprechzeiten-section .sub-heading-container {
@@ -584,10 +589,9 @@
     }
 
     .lage-anfahrt-section .section-divider {
-      width: 80%;
-      height: 1px;
-      background-color: #6e370e;
-      margin: 0 auto 80px auto; /* Gleicher Abstand wie Sprechzeiten */
+      /* Allgemeine Stile kommen von .section-divider */
+      margin-top: 0; /* Spezifischer oberer Margin */
+      margin-bottom: 80px; /* Spezifischer unterer Margin */
     }
 
     /* Animationsklasse für alle section-divider */
@@ -692,10 +696,9 @@
     }
 
     .werte-section .section-divider {
-      width: 80%;
-      height: 1px;
-      background-color: #6e370e;
-      margin: 0 auto 120px auto; /* Beibehaltung der Zentrierung für die Linie */
+      /* Allgemeine Stile kommen von .section-divider */
+      margin-top: 0; /* Spezifischer oberer Margin */
+      margin-bottom: 120px; /* Spezifischer unterer Margin */
     }
 
     .werte-section .sub-heading-container {
