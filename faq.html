@@ -262,6 +262,14 @@
       font-family: 'Poppins', sans-serif; /* Konsistente Schriftart */
       font-weight: 300; /* Poppins Light */
       line-height: 1.3; /* Bessere Lesbarkeit für längeren Text */
+      /* Hinzugefügt für die Animation (kopiert von index.html) */
+      opacity: 0;
+      transform: translateY(30px); /* Startet 30px weiter unten */
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .info-section .right-column .welcome-text.visible { /* Kopiert von index.html */
+      opacity: 1;
+      transform: translateY(0); /* Bewegt sich zur Originalposition */
     }
 
     /* Leistungsbereich Titel Stile (kopiert von index.html) */
@@ -1109,6 +1117,7 @@
       const mainNav = document.querySelector('.main-nav');
       const navLinksUl = document.querySelector('.nav-links');
       const heroBackground = document.querySelector('.hero-background');
+      const welcomeText = document.querySelector('.info-section .right-column .welcome-text'); // Selektor für Welcome-Text
       const footerNewTitle = document.querySelector('.footer-new-title'); // Selektor für Footer-Titel hinzugefügt
       const sectionsForColorChange = document.querySelectorAll('.leistungen-section, .neue-faq-sektion');
 
@@ -1135,6 +1144,17 @@
       }
 
       const menuHeight = mainNav.offsetHeight;
+
+      function checkWelcomeTextVisibility() { // Kopiert von index.html
+        if (welcomeText) {
+          const rect = welcomeText.getBoundingClientRect();
+          // Prüft, ob das Element mindestens zu einem kleinen Teil im Viewport ist
+          // und die Animation noch nicht ausgelöst wurde
+          if (rect.top < window.innerHeight && rect.bottom >= 0 && !welcomeText.classList.contains('visible')) {
+            welcomeText.classList.add('visible');
+          }
+        }
+      }
 
       function checkFooterTitleAnimation() { // Kopiert von index.html/kontakt.html
         if (footerNewTitle && !footerNewTitle.classList.contains('animate-footer-title')) {
@@ -1167,6 +1187,7 @@
         }
 
         handleHeroZoom();
+        checkWelcomeTextVisibility(); // Sichtbarkeit des Welcome-Textes prüfen
         checkFooterTitleAnimation(); // Animation für Footer-Titel prüfen
       }
 
