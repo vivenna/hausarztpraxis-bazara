@@ -926,11 +926,23 @@
       font-weight: 700; /* Bold */
       font-size: 110px; /* Gleiche Schriftgröße wie h1 in hero-section */
       color: #ffffff; /* Helle Schrift für dunklen Footer-Hintergrund */
-      line-height: 1.2;
+      line-height: 1.27; /* Angepasst wie in index.html */
       margin-bottom: 60px; /* Abstand zum Button vergrößert */
       /* Kein Textschatten, da Hintergrund einfarbig ist, kann bei Bedarf hinzugefügt werden */
+
+      /* Hinzugefügt für die Animation (kopiert von index.html) */
+      opacity: 1;
+      transform: translateY(150px);
+      clip-path: inset(100% 0 0 0);
+      transition: transform 0.7s ease-out, clip-path 0.7s ease-out;
+      visibility: hidden;
     }
 
+    .footer-new-title.animate-footer-title { /* Kopiert von index.html */
+      transform: translateY(0);
+      clip-path: inset(0 0 0 0);
+      visibility: visible;
+    }
     .footer-new-button {
       display: inline-block;
       background-color: #ffffff;
@@ -1993,6 +2005,7 @@
       const heroBackground = document.querySelector('.hero-background');
       const welcomeText = document.querySelector('.info-section .right-column .welcome-text');
       // Alle Sektionen auswählen, bei denen der Farbwechsel stattfinden soll
+      const footerNewTitle = document.querySelector('.footer-new-title'); // Selektor für Footer-Titel hinzugefügt
       // Passen Sie diese Selektoren an die Sektionen auf der leistungen.html Seite an,
       // falls der Farbwechseleffekt gewünscht ist.
       const sectionDividers = document.querySelectorAll('.section-divider');
@@ -2041,6 +2054,18 @@
         });
       }
 
+      function checkFooterTitleAnimation() { // Kopiert von index.html
+        if (footerNewTitle && !footerNewTitle.classList.contains('animate-footer-title')) {
+          const rect = footerNewTitle.getBoundingClientRect();
+          // Animation starten, wenn die Oberkante des (verschobenen) Titels in den Viewport kommt.
+          // Die CSS-Transitionen für transform und clip-path laufen dann synchron ab.
+          if (rect.top < window.innerHeight && rect.bottom >= 0) {
+            footerNewTitle.classList.add('animate-footer-title');
+          }
+        }
+      }
+
+
       function checkMenuPosition() {
         let shouldBeDark = false;
 
@@ -2065,6 +2090,7 @@
         handleHeroZoom();
         checkWelcomeTextVisibility(); // Sichtbarkeit des Welcome-Textes prüfen
         checkSectionDividersVisibility(); // Animation für Section Dividers prüfen
+        checkFooterTitleAnimation(); // Animation für Footer-Titel prüfen
       }
 
       window.addEventListener('scroll', checkMenuPosition);
