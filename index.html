@@ -172,9 +172,6 @@
     /* Hero Section für das große Bild */
     .hero-section {
       height: 100vh; /* Volle Viewport-Höhe */
-      background-image: url('/assets/startseite.png'); /* Beispielbild, bitte ersetzen */
-      background-size: cover;
-      background-position: center;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -182,6 +179,22 @@
       text-align: center;
       color: #ffffff; /* Standardtextfarbe für Inhalte im Hero-Bereich */
       position: relative; /* Für absolute Positionierung von Kindelementen */
+      overflow: hidden; /* Wichtig, um den gezoomten Hintergrund zu beschneiden */
+    }
+
+    .hero-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('/assets/startseite.png'); /* Hintergrundbild hierher verschoben */
+      background-size: cover;
+      background-position: center;
+      z-index: -1; /* Stellt sicher, dass es hinter dem Inhalt liegt */
+      /* Sanfter Übergang für die Skalierung, um Ruckeln zu minimieren */
+      /* Kann angepasst oder entfernt werden, je nach gewünschtem Verhalten */
+      transition: transform 0.1s ease-out;
     }
 
     .hero-section h1 {
@@ -1034,6 +1047,7 @@
   </nav>
 
   <div class="hero-section">
+    <div class="hero-background"></div> <!-- Neuer Container für das Hintergrundbild -->
     <div class="hero-text-wrapper">
       <h1>Gesund werden.<br>Gesund bleiben.</h1>
       <h2>Wir begleiten Sie – persönlich, nah und mit Zeit.</h2>
@@ -1326,6 +1340,7 @@
       // Bestehendes Skript für die Navigation
       const mainNav = document.querySelector('.main-nav');
       const navLinksUl = document.querySelector('.nav-links'); // Selektiert das <ul> Element
+      const heroBackground = document.querySelector('.hero-background');
       // Alle Sektionen auswählen, bei denen der Farbwechsel stattfinden soll
       const sectionsForColorChange = document.querySelectorAll('.leistungen-section, .sprechzeiten-section, .lage-anfahrt-section, .werte-section');
 
@@ -1334,8 +1349,20 @@
         return;
       }
 
+      // Parallax Zoom für Hero-Background
+      function handleHeroZoom() {
+        if (heroBackground) {
+          let scrollPosition = window.pageYOffset;
+          // Der Divisor (z.B. 4000) steuert, wie schnell der Zoom erfolgt.
+          // Ein größerer Wert bedeutet langsameren Zoom.
+          let scaleValue = 1 + scrollPosition / 4000; 
+          heroBackground.style.transform = `scale(${scaleValue})`;
+        }
+      }
+
       const menuHeight = mainNav.offsetHeight;
 
+      // Funktion für Menü-Farbwechsel und Hero-Zoom beim Scrollen
       function checkMenuPosition() {
         // const sectionRect = leistungenSection.getBoundingClientRect(); // Entfernte Zeile
         let shouldBeDark = false;
@@ -1356,11 +1383,15 @@
           navLinksUl.classList.remove('dark-text');
           mainNav.classList.remove('strong-blur'); // Stärkeren Blur entfernen
         }
+
+        // Hero Zoom Effekt aufrufen
+        handleHeroZoom();
       }
 
       window.addEventListener('scroll', checkMenuPosition);
       window.addEventListener('resize', checkMenuPosition); // Auch bei Größenänderung prüfen
       checkMenuPosition(); // Initiale Prüfung beim Laden der Seite
+      handleHeroZoom(); // Initialen Zoom-Status setzen (wichtig, falls Seite nicht ganz oben geladen wird)
     });
   </script>
 
