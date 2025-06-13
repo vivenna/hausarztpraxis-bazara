@@ -376,7 +376,7 @@
     .neue-faq-sektion { /* Eigene Klasse für die neue Sektion, um Styling-Konflikte zu vermeiden */
       background-color: #ffffff; 
       color: #000000;
-      padding: 0 40px 80px 40px; /* padding-top auf 0, da die Trennlinie oben ist */
+      padding: 0 40px 160px 40px; /* padding-bottom erhöht für mehr Abstand zur Fußzeile */
       text-align: center;
     }
 
@@ -1013,7 +1013,7 @@
     document.addEventListener('DOMContentLoaded', function() {
       const mainNav = document.querySelector('.main-nav');
       const navLinksUl = document.querySelector('.nav-links');
-      const sectionsForColorChange = document.querySelectorAll('.leistungen-section, .sprechzeiten-section, .lage-anfahrt-section, .werte-section');
+      const sectionsForColorChange = document.querySelectorAll('.leistungen-section, .neue-faq-sektion');
 
       if (!mainNav || !navLinksUl) { // Prüfung auf sectionsForColorChange.length entfernt, um Fehler zu vermeiden, wenn keine Sektionen da sind
         console.error('Erforderliche Menü-Elemente nicht gefunden.');
