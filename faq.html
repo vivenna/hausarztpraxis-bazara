@@ -899,6 +899,7 @@
   </nav>
 
   <div class="hero-section">
+    <div class="hero-background"></div> <!-- Neuer Container für das Hintergrundbild -->
     <div class="hero-text-wrapper">
       <h1>Fragen stellen.<br>Antworten finden.</h1>
       <h2>Was Sie rund um unsere Praxis, Abläufe und Leistungen wissen<br>möchten – klar erklärt und gut verständlich.</h2>
@@ -1075,6 +1076,7 @@
     document.addEventListener('DOMContentLoaded', function() {
       const mainNav = document.querySelector('.main-nav');
       const navLinksUl = document.querySelector('.nav-links');
+      const heroBackground = document.querySelector('.hero-background');
       const sectionsForColorChange = document.querySelectorAll('.leistungen-section, .neue-faq-sektion');
 
       if (!mainNav || !navLinksUl) { // Prüfung auf sectionsForColorChange.length entfernt, um Fehler zu vermeiden, wenn keine Sektionen da sind
@@ -1085,6 +1087,17 @@
       // Wenn keine Sektionen für den Farbwechsel vorhanden sind, wird die Funktion nicht viel tun, aber auch keinen Fehler werfen.
       if (sectionsForColorChange.length === 0) {
         console.warn('Keine Sektionen für den dynamischen Menü-Farbwechsel auf dieser Seite definiert. Das Menü behält seine Standardfarben.');
+      }
+
+      // Parallax Zoom für Hero-Background
+      function handleHeroZoom() {
+        if (heroBackground) {
+          let scrollPosition = window.pageYOffset;
+          // Der Divisor (z.B. 4000) steuert, wie schnell der Zoom erfolgt.
+          // Ein größerer Wert bedeutet langsameren Zoom.
+          let scaleValue = 1 + scrollPosition / 4000; 
+          heroBackground.style.transform = `scale(${scaleValue})`;
+        }
       }
 
       const menuHeight = mainNav.offsetHeight;
@@ -1106,11 +1119,14 @@
           navLinksUl.classList.remove('dark-text');
           mainNav.classList.remove('strong-blur');
         }
+
+        handleHeroZoom();
       }
 
       window.addEventListener('scroll', checkMenuPosition);
       window.addEventListener('resize', checkMenuPosition);
       checkMenuPosition(); 
+      handleHeroZoom(); // Initialen Zoom-Status setzen (wichtig, falls Seite nicht ganz oben geladen wird)
 
       // JavaScript für den Aufklapp-Button
       const toggleButton = document.getElementById('toggleAnswerButton');
