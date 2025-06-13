@@ -444,11 +444,6 @@
       text-align: left;
     }
 
-    .sprechzeiten-tabelle th .underline-text {
-      position: relative; /* Für die Positionierung des Pseudo-Elements */
-      display: inline-block; /* Damit der Unterstrich sich an die Textbreite anpasst */
-    }
-
     .sprechzeiten-tabelle th .underline-text::after {
       content: '';
       position: absolute;
@@ -460,7 +455,11 @@
       background-color: #6e370e; /* Farbe des Unterstrichs angepasst an Spaltenlinien */
     }
 
-
+    /* Neue Regel für die horizontale Linie in der Kopfzeile der Sprechzeiten-Tabelle */
+    .sprechzeiten-tabelle thead th {
+      border-bottom: 0.5px solid #6e370e; /* Horizontale Linie unter den Kopfzellen */
+    }
+    
 
     .sprechzeiten-hinweis {
       font-family: 'Poppins', sans-serif;
@@ -1104,8 +1103,8 @@
       <thead>
         <tr> <!-- Zeile A -->
           <th></th> <!-- A1 - Leer für die Ecke -->
-          <th><span class="underline-text">akute Sprechstunde</span></th> <!-- A2 -->
-          <th><span class="underline-text">reguläre Sprechstunde</span></th> <!-- A3 -->
+          <th>akute Sprechstunde</th> <!-- A2 -->
+          <th>reguläre Sprechstunde</th> <!-- A3 -->
         </tr>
       </thead>
       <tbody>
