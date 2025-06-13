@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Datenschutzerklärung - BAZARA safia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Fonts Einbindung -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter&family=Questrial&family=Poppins:wght@300;500;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    html {
+      background-color: #6e370e; /* Verhindert weiße Linie unter dem Footer */
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #f9f9f9; /* Heller Hintergrund für den Inhalt */
+      font-smooth: always;
+      padding-top: 93px; /* Platz für die fixe Navigation */
+    }
+
+    .main-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgba(230, 230, 230, 0.15); /* #e6e6e6 mit 0.5 Transparenz (weniger transparent) */
+      border-bottom: 1px solid #c8c5c5; /* Linienfarbe geändert */
+      padding: 0 25px; /* Padding links/rechts, vertikales Padding wird durch Höhe und align-items gesteuert */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 93px; /* Feste Höhe für die Navigationsleiste */
+      box-sizing: border-box;
+      z-index: 1000;
+      backdrop-filter: blur(8px); /* Stärkerer Unschärfeeffekt für den Hintergrund */
+      -webkit-backdrop-filter: blur(8px); /* Safari-Präfix für Unschärfeeffekt */
+      transition: backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease; /* Sanfter Übergang für den Blur-Effekt */
+    }
+
+    .main-nav.strong-blur {
+      backdrop-filter: blur(16px); /* Noch stärkerer Unschärfeeffekt */
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    /* Logo Stile für das Menü */
+    .menu-logo .logo-link {
+      text-decoration: none;
+      color: inherit;
+      display: inline-block;
+      padding-top: 5.5px;
+      padding-left: 20px;
+    }
+
+    .menu-logo .logo-text-container {
+      position: relative;
+      display: inline-block;
+      line-height: 1;
+    }
+
+    .menu-logo .bazara-style {
+      font-family: 'Questrial', sans-serif;
+      font-size: 34px;
+      color: #c8c5c5;
+    }
+
+    .menu-logo .safia-style {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Great Vibes', cursive;
+      font-size: 30px;
+      color: #0c0c0c;
+      pointer-events: none;
+      opacity: 0.75;
+      white-space: nowrap;
+    }
+
+    .menu-logo .subtitle-style {
+      margin-top: 4px;
+      font-family: 'Inter', sans-serif;
+      font-size: 10px; /* Lesbare Größe für den Untertitel im Menü */
+      color: #000000;
+      opacity: 0.9;
+      line-height: 1.2; /* Korrigierte Zeilenhöhe für bessere Lesbarkeit */
+      text-align: center;
+    }
+
+    /* Navigationslinks */
+    .nav-links {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links li {
+      margin-left: 60px; /* Weiter vergrößerter Abstand zwischen den Menüpunkten */
+    }
+
+    .nav-links li:last-child {
+      margin-right: 60px; /* Vergrößerter Rand rechts für den letzten Menüpunkt */
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #ffffff; /* Schriftfarbe der Menüpunkte auf Weiß geändert */
+      font-family: 'Poppins', sans-serif; /* Geänderte Schriftart */
+      font-weight: 300; /* Schriftgewicht für Light */
+      font-size: 16px;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* Klasse für dunkle Navigationslinks */
+    .nav-links.dark-text a {
+      color: #000000; /* Schwarz, wenn über hellem Hintergrund */
+    }
+
+    /* Datenschutzerklärung spezifische Stile (analog zu Impressum) */
+    .content-section { /* Allgemeine Klasse für Inhaltsbereiche */
+      padding: 40px 40px 100px 180px; /* Linker Rand und unterer Abstand zur Fußzeile vergrößert */
+      background-color: #ffffff; /* Weißer Hintergrund für den Inhalt */
+      min-height: 0;
+      box-sizing: border-box;
+    }
+    .content-section h1 {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        font-size: 48px;
+        color: #6e370e;
+        margin-bottom: 30px;
+    }
+    .content-section h2 {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500; /* Etwas leichter als h1 */
+        font-size: 28px; /* Größer als p, kleiner als h1 */
+        color: #6e370e;
+        margin-top: 40px; /* Abstand nach oben */
+        margin-bottom: 20px; /* Abstand nach unten */
+    }
+    .content-section p, .content-section ul {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 1.8;
+        color: #333;
+        margin-bottom: 15px;
+    }
+    .content-section ul {
+        list-style-position: inside;
+        padding-left: 20px;
+    }
+    .content-section strong {
+        font-weight: 500;
+    }
+    .content-section a {
+        color: #6e370e; /* Standard-Linkfarbe */
+        text-decoration-color: #6e370e; /* Farbe des Unterstrichs */
+        text-decoration-thickness: 1px; /* Dicke des Unterstrichs */
+    }
+
+    /* Stile für die Fußzeile (kopiert und ggf. angepasst) */
+    .main-footer {
+      background-color: #6e370e;
+      height: 100vh; /* Fußzeile nimmt die komplette Bildschirmhöhe ein */
+      box-sizing: border-box; /* Stellt sicher, dass Padding die 100vh nicht überschreitet */
+      padding: 0; /* Padding wird durch innere Elemente gesteuert oder spezifisch gesetzt */
+      display: flex;
+      justify-content: center;
+      align-items: center; /* Zentriert das Logo vertikal */
+      position: relative; /* Für absolute Positionierung des neuen Inhalts */
+    }
+
+    .footer-top-left-content {
+      position: absolute;
+      top: 130px;
+      left: 140px; /* Abstand vom linken Rand vergrößert */
+      text-align: left;
+      z-index: 5; /* Über dem Logo, falls es überlappt */
+    }
+
+    .footer-new-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700; /* Bold */
+      font-size: 110px; /* Gleiche Schriftgröße wie h1 in hero-section */
+      color: #ffffff; /* Helle Schrift für dunklen Footer-Hintergrund */
+      line-height: 1.2;
+      margin-bottom: 60px; /* Abstand zum Button vergrößert */
+    }
+
+    .footer-new-button {
+      display: inline-block;
+      background-color: #ffffff;
+      color: #6e370e; /* Schriftfarbe geändert */
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; /* Light */
+      font-size: 22px; /* Schriftgröße erhöht */
+      padding: 12px 80px; /* Horizontales Padding verdoppelt */
+      text-decoration: none;
+      border-radius: 0; /* Keine Abrundung */
+      border: none; /* Kein Rand */
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Sanfter Übergang */
+    }
+
+    .footer-new-button:hover {
+      background-color: #6e370e;
+      color: #ffffff;
+      border: 1px solid #ffffff;
+      padding: 11px 79px; /* Padding anpassen, um die Größe durch den Rand beizubehalten */
+    }
+
+    .footer-logo-wrapper {
+      opacity: 0.2; /* Transparenz weiter reduziert */
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-logo .logo-link {
+      text-decoration: none;
+      color: inherit;
+      display: inline-block;
+    }
+
+    .footer-logo .logo-text-container {
+      position: relative;
+      display: inline-block;
+      line-height: 1;
+    }
+
+    .footer-logo .bazara-style {
+      font-family: 'Questrial', sans-serif;
+      font-size: 270px;
+      color: #c8c5c5;
+    }
+
+    .footer-logo .safia-style {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Great Vibes', cursive;
+      font-size: 285px;
+      color: #0c0c0c;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .footer-logo .subtitle-style {
+      margin-top: 22.5px;
+      font-family: 'Inter', sans-serif;
+      font-size: 42px;
+      color: #000000;
+      line-height: 1.2;
+      text-align: center;
+    }
+
+    .footer-bottom-left-text {
+      position: absolute;
+      bottom: 60px;
+      left: 140px;
+      text-align: left;
+      z-index: 5;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300;
+      font-size: 30px;
+      line-height: 1.5;
+    }
+
+    .footer-bottom-left-text .hausarzt-color {
+      color: #d5ad8f;
+    }
+    .footer-bottom-left-text .bazara-color {
+      color: #ffffff;
+    }
+    .footer-contact-hours-container {
+      position: absolute;
+      bottom: 60px;
+      left: 25%;
+      width: 60%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      z-index: 5;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      color: #ffffff;
+    }
+
+    .footer-contact-column,
+    .footer-hours-column {
+      flex-basis: 48%;
+      text-align: left;
+    }
+
+    .footer-contact-column p,
+    .footer-hours-column p {
+      margin: 0 0 5px 0;
+      line-height: 1.6;
+    }
+
+    .footer-contact-column {
+      margin-right: 0px;
+      padding-left: 250px;
+    }
+
+    .footer-contact-column p:last-child,
+    .footer-hours-days p:last-child,
+    .footer-hours-times p:last-child {
+      margin-bottom: 0;
+    }
+
+    .footer-hours-column .hours-title {
+      margin-bottom: 5px;
+    }
+
+    .footer-hours-details {
+      display: flex;
+    }
+
+    .footer-hours-times {
+        text-align: right;
+        padding-right: 130px;
+    }
+
+    .footer-hours-days,
+    .footer-hours-times {
+      flex-basis: 50%;
+    }
+
+    .footer-hours-days p,
+    .footer-hours-times p {
+       margin: 0 0 5px 0;
+       line-height: 1.6;
+    }
+
+    .footer-hours-days {
+      margin-right: -90px;
+    }
+
+    .footer-bottom-right-links {
+      position: absolute;
+      bottom: 60px;
+      right: 140px;
+      text-align: left;
+      z-index: 5;
+    }
+
+    .footer-bottom-right-links a {
+      display: block;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      color: #ffffff;
+      text-decoration: underline;
+      text-decoration-color: #ffffff;
+      text-underline-offset: 3px;
+      margin-bottom: 8px;
+    }
+    .footer-bottom-right-links a:last-child {
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="main-nav">
+    <div class="menu-logo">
+      <a href="/" class="logo-link">
+        <div class="logo-text-container">
+          <div class="bazara-style">BAZARA</div>
+          <div class="safia-style">safia</div>
+        </div>
+        <div class="subtitle-style">Hausarztpraxis</div>
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/leistungen">Leistungen</a></li>
+      <li><a href="/faq">FAQ</a></li>
+      <li><a href="/kontakt">Kontakt</a></li>
+    </ul>
+  </nav>
+
+  <div class="content-section"> <!-- Geändert von impressum-section zu content-section für Allgemeingültigkeit -->
+    <h1>Datenschutzerklärung</h1>
+
+    <h2>1. Einleitung</h2>
+    <p>Der Schutz Ihrer personenbezogenen Daten ist uns ein wichtiges Anliegen. Auf dieser Website werden keine personenbezogenen Daten erhoben, verarbeitet oder gespeichert, es sei denn, dies ist technisch erforderlich.</p>
+    <p>Diese Datenschutzerklärung informiert Sie gemäß Art. 13 DSGVO über die Art, den Umfang und den Zweck der Verarbeitung personenbezogener Daten beim Besuch dieser Website.</p>
+
+    <h2>2. Verantwortliche Stelle</h2>
+    <p>
+      Praxis für Allgemeinmedizin<br>
+      Dr. Safia Bazara<br>
+      Alte Hellersdorfer Str. 123<br>
+      12629 Berlin<br>
+      Telefon: +49 (0) 30 9939 168<br>
+      E-Mail: <a href="mailto:info@praxis-bazara.de">info@praxis-bazara.de</a>
+    </p>
+
+    <h2>3. Hosting</h2>
+    <p>Diese Website wird über GitHub Pages gehostet.<br>
+    Der Anbieter ist:<br>
+    GitHub Inc.<br>
+    88 Colin P. Kelly Jr. Street<br>
+    San Francisco, CA 94107<br>
+    USA</p>
+    <p>Beim Aufruf der Website übermittelt Ihr Browser automatisch Informationen an den Server von GitHub. Dabei handelt es sich insbesondere um:</p>
+    <ul>
+      <li>IP-Adresse</li>
+      <li>Datum und Uhrzeit des Zugriffs</li>
+      <li>Browsertyp und Version</li>
+      <li>Betriebssystem</li>
+      <li>Referrer-URL</li>
+    </ul>
+    <p>Diese Daten werden von GitHub automatisch in sogenannten Server-Logfiles gespeichert. Eine Auswertung durch uns findet nicht statt. Weitere Informationen finden Sie in der <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener noreferrer">Datenschutzerklärung von GitHub</a>.</p>
+
+    <h2>4. Google Fonts</h2>
+    <p>Auf dieser Website werden Schriftarten von Google Fonts verwendet. Diese sind lokal eingebunden. Eine Verbindung zu Google-Servern findet dabei nicht statt. Es werden somit keine personenbezogenen Daten an Google übermittelt.</p>
+
+    <h2>5. Cookies und Tracking</h2>
+    <p>Diese Website verwendet keine Cookies, kein Tracking und keine Analyse-Tools wie Google Analytics. Es findet keine Nutzerverfolgung oder Profilbildung statt.</p>
+
+    <h2>6. Kontaktaufnahme</h2>
+    <p>Es gibt kein Kontaktformular auf dieser Website. Wenn Sie per E-Mail oder Telefon Kontakt aufnehmen, werden Ihre Angaben ausschließlich zur Bearbeitung der Anfrage verwendet.</p>
+
+    <h2>7. Ihre Rechte</h2>
+    <p>Sie haben nach der DSGVO folgende Rechte:</p>
+    <ul>
+      <li>Recht auf Auskunft über gespeicherte Daten (Art. 15 DSGVO)</li>
+      <li>Recht auf Berichtigung (Art. 16 DSGVO)</li>
+      <li>Recht auf Löschung („Recht auf Vergessenwerden“) (Art. 17 DSGVO)</li>
+      <li>Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
+      <li>Recht auf Datenübertragbarkeit (Art. 20 DSGVO)</li>
+      <li>Recht auf Widerspruch gegen die Verarbeitung (Art. 21 DSGVO)</li>
+    </ul>
+    <p>Sie haben zudem das Recht, sich bei einer Aufsichtsbehörde zu beschweren, z. B. bei der Berliner Beauftragten für Datenschutz und Informationsfreiheit.</p>
+
+    <h2>8. Änderungen dieser Datenschutzerklärung</h2>
+    <p>Wir behalten uns vor, diese Datenschutzerklärung gelegentlich anzupassen, damit sie stets den aktuellen rechtlichen Anforderungen entspricht.</p>
+    <p>Stand: Juni 2025</p>
+
+  </div>
+
+  <footer class="main-footer">
+    <div class="footer-top-left-content">
+      <div class="footer-new-title">Ihre Gesundheit.<br>Unser Auftrag.</div>
+      <a href="/kontakt" class="footer-new-button">Kontakt</a>
+    </div>
+    <div class="footer-logo-wrapper">
+      <div class="footer-logo">
+        <a class="logo-link"> <!-- href entfernt, um Weiterleitung zu verhindern -->
+          <div class="logo-text-container">
+            <div class="bazara-style">BAZARA</div>
+            <div class="safia-style">safia</div>
+          </div>
+          <div class="subtitle-style">Hausarztpraxis</div>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom-wrapper">
+      <div class="footer-bottom-left-text">
+        <span class="hausarzt-color">Hausarztpraxis</span><br>
+        <span class="bazara-color">Bazara</span>
+      </div>
+      <div class="footer-contact-hours-container">
+        <div class="footer-contact-column">
+          <p>Kontakt:</p>
+          <p>Alte Hellersdorfer Str.</p>
+          <p>12629 Berlin</p>
+          <p>Telefon: +49 (0) 30 9939 168</p>
+          <p>Telefax: +49 (0) 30 9940 2335</p>
+        </div>
+        <div class="footer-hours-column">
+          <p class="hours-title">Öffnungszeiten:</p>
+          <div class="footer-hours-details">
+            <div class="footer-hours-days">
+              <p>Mo, Di, Fr:</p>
+              <p>Mo:</p>
+              <p>Do:</p>
+              <p>Mi:</p>
+            </div>
+            <div class="footer-hours-times">
+              <p>8:30 - 12 Uhr</p>
+              <p>15:00 - 18 Uhr</p>
+              <p>13:00 - 18 Uhr</p>
+              <p>nach Vereinbarung</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom-right-links">
+        <a href="/impressum">Impressum</a>
+        <a href="/datenschutzerklärung">Datenschutzerklärung</a>
+      </div>
+    </div>
+  </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const mainNav = document.querySelector('.main-nav');
+      const navLinksUl = document.querySelector('.nav-links');
+      const footer = document.querySelector('.main-footer');
+
+      if (!mainNav || !navLinksUl) {
+        console.error('Erforderliche Elemente für Menüanpassung nicht gefunden (mainNav oder navLinksUl).');
+        return;
+      }
+
+      // Standardzustand: schwarzer Text, kein starker Blur
+      navLinksUl.classList.add('dark-text');
+      mainNav.classList.remove('strong-blur');
+
+      if (!footer) {
+        console.warn('Footer-Element (.main-footer) nicht gefunden. Menü behält Standardaussehen (schwarzer Text).');
+        // Keine Event-Listener hinzufügen, wenn kein Footer vorhanden ist, auf den reagiert werden soll.
+        return;
+      }
+
+      const menuHeight = mainNav.offsetHeight;
+
+      function checkMenuPosition() {
+        const footerRect = footer.getBoundingClientRect();
+        // isOverFooter ist true, wenn der obere Rand des Footers über dem unteren Rand der Navigationsleiste liegt.
+        const isOverFooter = footerRect.top < menuHeight;
+
+        if (isOverFooter) {
+          // Footer ist unter der Navigation: Text weiß, starker Blur
+          navLinksUl.classList.remove('dark-text');
+          mainNav.classList.add('strong-blur');
+        } else {
+          // Standardzustand (nicht über dem Footer): Text schwarz, kein starker Blur
+          navLinksUl.classList.add('dark-text');
+          mainNav.classList.remove('strong-blur');
+        }
+      }
+
+      window.addEventListener('scroll', checkMenuPosition);
+      window.addEventListener('resize', checkMenuPosition);
+      checkMenuPosition(); // Zustand beim Laden der Seite prüfen
+    });
+  </script>
+
+</body>
+</html>
