@@ -732,6 +732,14 @@
       border-radius: 0; /* Keine Abrundung */
       border: none; /* Kein Rand */
       cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Sanfter Übergang */
+    }
+
+    .footer-new-button:hover {
+      background-color: #6e370e;
+      color: #ffffff;
+      border: 1px solid #ffffff;
+      padding: 11px 79px; /* Padding anpassen, um die Größe durch den Rand beizubehalten */
     }
 
     .footer-logo-wrapper {
