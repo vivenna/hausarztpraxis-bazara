@@ -608,6 +608,212 @@
       -moz-user-select: none;
       -ms-user-select: none;
     }
+
+    /* Fußzeile */
+    .main-footer {
+      background-color: #6e370e;
+      height: 100vh; /* Fußzeile nimmt die komplette Bildschirmhöhe ein */
+      box-sizing: border-box; /* Stellt sicher, dass Padding die 100vh nicht überschreitet */
+      padding: 0; /* Padding wird durch innere Elemente gesteuert oder spezifisch gesetzt */
+      display: flex;
+      justify-content: center;
+      align-items: center; /* Zentriert das Logo vertikal */
+      position: relative; /* Für absolute Positionierung des neuen Inhalts */
+    }
+
+    .footer-top-left-content {
+      position: absolute;
+      top: 130px;
+      left: 140px; /* Abstand vom linken Rand vergrößert */
+      text-align: left;
+      z-index: 5; /* Über dem Logo, falls es überlappt */
+    }
+
+    .footer-new-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700; /* Bold */
+      font-size: 110px; /* Gleiche Schriftgröße wie h1 in hero-section */
+      color: #ffffff; /* Helle Schrift für dunklen Footer-Hintergrund */
+      line-height: 1.2;
+      margin-bottom: 60px; /* Abstand zum Button vergrößert */
+      /* Kein Textschatten, da Hintergrund einfarbig ist, kann bei Bedarf hinzugefügt werden */
+    }
+
+    .footer-new-button {
+      display: inline-block;
+      background-color: #ffffff;
+      color: #6e370e; /* Schriftfarbe geändert */
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; /* Light */
+      font-size: 22px; /* Schriftgröße erhöht */
+      padding: 12px 80px; /* Horizontales Padding verdoppelt */
+      text-decoration: none;
+      border-radius: 0; /* Keine Abrundung */
+      border: none; /* Kein Rand */
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Sanfter Übergang */
+    }
+
+    .footer-new-button:hover {
+      background-color: #6e370e;
+      color: #ffffff;
+      border: 1px solid #ffffff;
+      padding: 11px 79px; /* Padding anpassen, um die Größe durch den Rand beizubehalten */
+    }
+
+    .footer-logo-wrapper {
+      opacity: 0.2; /* Transparenz weiter reduziert */
+      /* Stellt sicher, dass das Logo hinter dem neuen Inhalt ist, falls es überlappt */
+      position: relative; 
+      z-index: 1; 
+    }
+
+    /* Wiederverwendung der Logo-Struktur, aber mit eigenen Klassen für die Größe */
+    .footer-logo .logo-link {
+      text-decoration: none;
+      color: inherit; /* Farbe wird von Elternelementen im Footer geerbt oder explizit gesetzt */
+      display: inline-block;
+    }
+
+    .footer-logo .logo-text-container {
+      position: relative;
+      display: inline-block;
+      line-height: 1;
+    }
+
+    .footer-logo .bazara-style {
+      font-family: 'Questrial', sans-serif;
+      font-size: 270px; /* 1.5x größer */
+      color: #c8c5c5; /* Farbe wie Menü-Logo */
+    }
+
+    .footer-logo .safia-style {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Great Vibes', cursive;
+      font-size: 285px; /* 1.5x größer */
+      color: #0c0c0c; /* Farbe wie Menü-Logo */
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .footer-logo .subtitle-style {
+      margin-top: 22.5px; /* Angepasster Abstand (1.5x) */
+      font-family: 'Inter', sans-serif;
+      font-size: 42px; /* 1.5x größer */
+      color: #000000; /* Farbe wie Menü-Logo */
+      line-height: 1.2;
+      text-align: center;
+    }
+
+    .footer-bottom-left-text {
+      position: absolute;
+      bottom: 60px; /* Abstand vom unteren Rand */
+      left: 140px;  /* Gleicher linker Abstand wie der Inhalt oben links */
+      text-align: left;
+      z-index: 5; /* Über dem Logo */
+      font-family: 'Poppins', sans-serif; /* Konsistente Schriftart */
+      font-weight: 300; /* Poppins Light */
+      font-size: 30px;
+      line-height: 1.5;
+    }
+
+    .footer-bottom-left-text .hausarzt-color {
+      color: #d5ad8f;
+    }
+    .footer-bottom-left-text .bazara-color {
+      color: #ffffff;
+    }
+    .footer-contact-hours-container {
+      position: absolute;
+      bottom: 60px; /* Gleicher Abstand vom unteren Rand wie die anderen Elemente */
+      left: 25%; /* Weiter nach rechts verschoben, Wert anpassbar */
+      width: 60%; /* Breite des Containers, anpassbar */
+      display: flex;
+      justify-content: flex-start; /* Geändert, um Elemente am Anfang auszurichten */
+      align-items: flex-start; /* Stellt sicher, dass die Spalten oben bündig beginnen */
+      z-index: 5; /* Über dem Logo */
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; /* Poppins Light */
+      font-size: 12px;
+      color: #ffffff; /* Standardtextfarbe für diesen Bereich */
+    }
+
+    .footer-contact-column,
+    .footer-hours-column {
+      flex-basis: 48%; /* Gibt jeder Spalte etwas weniger als die Hälfte für einen kleinen Abstand */
+      /* Die Breite kann bei Bedarf auch auf 'auto' oder einen festen Wert gesetzt werden */
+      text-align: left;
+    }
+
+    .footer-contact-column p,
+    .footer-hours-column p {
+      margin: 0 0 5px 0; /* Kleiner Abstand zwischen den Zeilen */
+      line-height: 1.6; /* Zeilenhöhe angepasst */
+    }
+    
+    .footer-contact-column {
+      margin-right: 0px; /* Abstand zwischen Kontakt- und Öffnungszeiten-Spalte, anpassbar */
+      padding-left: 250px; /* Schiebt den Inhalt der Kontakt-Spalte nach rechts, anpassbar */
+    }
+
+    .footer-contact-column p:last-child,
+    .footer-hours-days p:last-child,
+    .footer-hours-times p:last-child {
+      margin-bottom: 0; /* Entfernt den unteren Abstand vom letzten p-Element */
+    }
+
+    .footer-hours-column .hours-title {
+      margin-bottom: 5px; /* Angepasst, um die Höhe an die Kontakt-Spalte anzugleichen */
+    }
+
+    .footer-hours-details {
+      display: flex;
+    }
+
+    .footer-hours-times {
+        text-align: right;
+        padding-right: 130px;
+    }
+
+    .footer-hours-days,
+    .footer-hours-times {
+      flex-basis: 50%;
+      /* text-align: left; ist bereits Standard für p-Elemente in diesem Kontext */
+    }
+
+    .footer-hours-days p,
+    .footer-hours-times p {
+       margin: 0 0 5px 0;
+       line-height: 1.6; /* Zeilenhöhe angepasst */
+    }
+
+    .footer-hours-days {
+      margin-right: -90px; /* Schiebt die Zeiten-Spalte nach links, anpassbar */
+    }
+
+    .footer-bottom-right-links {
+      position: absolute;
+      bottom: 60px; /* Gleicher Abstand vom unteren Rand wie der Text links */
+      right: 140px; /* Abstand vom rechten Rand */
+      text-align: left; /* Textausrichtung innerhalb des Containers auf links geändert */
+      z-index: 5; /* Über dem Logo */
+    }
+
+    .footer-bottom-right-links a {
+      display: block; /* Damit die Links untereinander stehen */
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300; /* Poppins Light */
+      font-size: 12px; /* Schriftgröße auf 12px gesetzt */
+      color: #ffffff; /* Helle Schrift für dunklen Footer */
+      text-decoration: none;
+      margin-bottom: 8px; /* Abstand zwischen den Links */
+    }
+    .footer-bottom-right-links a:last-child {
+      margin-bottom: 0;
+    }
   </style>
 </head>
 <body>
@@ -749,6 +955,60 @@
       </div>
     </div>
   </div>
+
+  <footer class="main-footer">
+    <div class="footer-top-left-content">
+      <div class="footer-new-title">Ihre Gesundheit.<br>Unser Auftrag.</div>
+      <a href="/kontakt" class="footer-new-button">Kontakt</a>
+    </div>
+    <div class="footer-logo-wrapper">
+      <div class="footer-logo">
+        <a class="logo-link"> <!-- href entfernt, um Weiterleitung zu verhindern -->
+          <div class="logo-text-container">
+            <div class="bazara-style">BAZARA</div>
+            <div class="safia-style">safia</div>
+          </div>
+          <div class="subtitle-style">Hausarztpraxis</div>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom-wrapper">
+      <div class="footer-bottom-left-text">
+        <span class="hausarzt-color">Hausarztpraxis</span><br>
+        <span class="bazara-color">Bazara</span>
+      </div>
+      <div class="footer-contact-hours-container">
+        <div class="footer-contact-column">
+          <p>Kontakt:</p>
+          <p>Alte Hellersdorfer Str.</p>
+          <p>12629 Berlin</p>
+          <p>Telefon: +49 (0) 30 9939 168</p>
+          <p>Telefax: +49 (0) 30 9940 2335</p>
+        </div>
+        <div class="footer-hours-column">
+          <p class="hours-title">Öffnungszeiten:</p>
+          <div class="footer-hours-details">
+            <div class="footer-hours-days">
+              <p>Mo, Di, Fr:</p>
+              <p>Mo:</p>
+              <p>Do:</p>
+              <p>Mi:</p>
+            </div>
+            <div class="footer-hours-times">
+              <p>8:30 - 12 Uhr</p>
+              <p>15:00 - 18 Uhr</p>
+              <p>13:00 - 18 Uhr</p>
+              <p>nach Vereinbarung</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom-right-links">
+        <a href="/impressum">Impressum</a>
+        <a href="/datenschutzerklärung">Datenschutzerklärung</a>
+      </div>
+    </div>
+  </footer>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const mainNav = document.querySelector('.main-nav');
