@@ -1334,7 +1334,7 @@
       // Aktuell sind hier die Sektionen der index.html referenziert.
       // Wenn diese Sektionen auf kontakt.html nicht existieren, wird der Farbwechsel nicht ausgelöst
       // und eine Konsolennachricht (siehe unten) könnte erscheinen.
-      const sectionsForColorChange = document.querySelectorAll('.leistungen-section, .sprechzeiten-section, .lage-anfahrt-section, .werte-section');
+      const sectionsForColorChange = document.querySelectorAll('.leistungen-section, .sprechzeiten-section, .lage-anfahrt-section, .neue-faq-sektion');
 
       if (!mainNav || !navLinksUl) { // Prüfung auf sectionsForColorChange.length entfernt, da es auf kontakt.html leer sein kann
         console.error('Erforderliche Elemente für den Menü-Farbwechsel nicht gefunden (mainNav oder navLinksUl).');
