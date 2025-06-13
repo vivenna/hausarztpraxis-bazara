@@ -1995,6 +1995,9 @@
         let logicalCurrentSlide = 0;
         let actualSlideIndexDOM = totalOriginalSlides > 1 ? 1 : 0; // Startet beim ersten echten Slide (nach dem Klon des letzten)
         let isTransitioning = false;
+        let autoplayIntervalId = null;
+        const AUTOPLAY_DELAY = 5000; // 5 Sekunden
+        let userHasInteracted = false;
 
         function setupInfiniteLoop() {
           if (totalOriginalSlides <= 1) return; // Kein Loop bei 1 oder 0 Slides
@@ -2010,6 +2013,22 @@
           slideshowWrapper.style.transform = `translateX(-${actualSlideIndexDOM * 100}%)`;
         }
 
+        function stopAutoplay() {
+          if (autoplayIntervalId) {
+            clearInterval(autoplayIntervalId);
+            autoplayIntervalId = null;
+          }
+        }
+
+        function startAutoplay() {
+          if (totalOriginalSlides <= 1 || userHasInteracted) return;
+          stopAutoplay(); // Sicherstellen, dass kein alter Timer läuft
+          autoplayIntervalId = setInterval(() => {
+            if (isTransitioning) return; // Nicht wechseln, wenn gerade eine Transition läuft
+            if (nextButton) nextButton.click(); // Simuliert einen Klick auf den "Weiter"-Button
+          }, AUTOPLAY_DELAY);
+        }
+
         function createDots() {
           if (!dotsContainer || totalOriginalSlides === 0) return;
           dotsContainer.innerHTML = ''; // Alte Dots entfernen
@@ -2017,6 +2036,8 @@
             const dot = document.createElement('span');
             dot.classList.add('dot');
             dot.addEventListener('click', () => {
+              userHasInteracted = true;
+              stopAutoplay();
               if (isTransitioning) return;
               if (totalOriginalSlides > 1) isTransitioning = true;
               
@@ -2060,7 +2081,13 @@
         }
 
         if (nextButton) {
-          nextButton.addEventListener('click', () => {
+          nextButton.addEventListener('click', (event) => { // event Parameter hinzugefügt
+            // Autoplay nur stoppen, wenn es ein echter Benutzerklick war und noch nicht interagiert wurde
+            if (event.isTrusted && !userHasInteracted) {
+              userHasInteracted = true;
+              stopAutoplay();
+            }
+
             if (isTransitioning && totalOriginalSlides > 1) return;
             if (totalOriginalSlides > 1) isTransitioning = true;
 
@@ -2071,7 +2098,13 @@
         }
 
         if (prevButton) {
-          prevButton.addEventListener('click', () => {
+          prevButton.addEventListener('click', (event) => { // event Parameter hinzugefügt
+            // Autoplay nur stoppen, wenn es ein echter Benutzerklick war und noch nicht interagiert wurde
+            if (event.isTrusted && !userHasInteracted) {
+              userHasInteracted = true;
+              stopAutoplay();
+            }
+
             if (isTransitioning && totalOriginalSlides > 1) return;
             if (totalOriginalSlides > 1) isTransitioning = true;
 
@@ -2087,6 +2120,7 @@
         }
         createDots(); 
         updateSlideshowVisuals(); // Stellt sicher, dass der erste Slide und der aktive Dot korrekt angezeigt werden
+        startAutoplay(); // Autoplay initial starten
       }
     });
   </script>
