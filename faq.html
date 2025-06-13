@@ -417,11 +417,16 @@
 
     /* FAQ Slideshow Stile */
     .faq-slideshow-container {
-      width: 100%;
+      /* width: 100%; */ /* Ersetzt für volle Viewport-Breite */
+      width: 100vw; /* Nimmt die volle Breite des Ansichtsfensters ein */
+      position: relative; /* Erforderlich für die left/transform Zentrierung */
+      left: 50%;
+      transform: translateX(-50%);
       overflow: hidden; 
       margin-top: 80px; /* Abstand zum Titel vergrößert */
-      padding: 20px 0; /* Etwas Platz oben und unten */
-      background-color: #ffffff; /* Hintergrund der Sektion bleibt weiß */
+      padding: 50px 0px; /* Etwas Platz oben und unten */
+      background-color: #ffffff; 
+      box-sizing: border-box; /* Stellt sicher, dass Padding die Breite nicht beeinflusst */
     }
 
     .faq-slideshow-wrapper {
