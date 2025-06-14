@@ -1587,20 +1587,34 @@
       }
       #chronische-betreuung .card-back {
         position: absolute;
-        width: 100%;
+        /* width: 100%; */ /* Wird unten spezifischer gesetzt */
         height: 100%;
         -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
         top: 0;
-        left: 0;
+        /* left: 0; */ /* Wird unten spezifischer gesetzt */
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: center; /* Beibehalten, da .card-back-info width: 100% hat */
+        /* .card-back ist absolut positioniert und nimmt die Höhe von .card-inner an. */
+        background-color: white;
+        color: #333; /* Dunklerer Text für bessere Lesbarkeit auf weißem Grund */
+        transform: rotateY(180deg);
+        padding: 20px; /* Innenabstand für den Text */
+        /* height: 100%; ist schon oben und korrekt */
+        box-sizing: border-box;
+        justify-content: center; /* Zentriert den Textblock vertikal */
+        overflow-y: auto; /* Falls Text länger ist */
+
+        /* NEU/GEÄNDERT für Breite und Positionierung */
+        width: 340px; /* Feste Breite, z.B. 40px breiter als die Vorderseite (300px) */
+        left: 50%;    /* Zentrierung relativ zum Elternelement .card-inner */
+        margin-left: -170px; /* Hälfte der neuen Breite (340px / 2) negativ */
       }
       #chronische-betreuung .card-front {
         /* Vorderseite bestimmt die Höhe des .card-inner. */
         /* Sie ist NICHT absolut positioniert, damit sie den Fluss und die Höhe beeinflusst. */
-        width: 100%;
+        width: 100%; /* Behält die Breite des .betreuung-bild-item (max-width: 300px) */
         -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
         display: flex;
@@ -1612,23 +1626,13 @@
            .card-front füllt diese Breite. Die Kindelemente von .card-front
            werden durch align-items: center horizontal zentriert. */
       }
-      #chronische-betreuung .card-back {
-        /* .card-back ist absolut positioniert und nimmt die Höhe von .card-inner an. */
-        background-color: white;
-        color: #333; /* Dunklerer Text für bessere Lesbarkeit auf weißem Grund */
-        transform: rotateY(180deg);
-        padding: 20px;
-        height: 100%; /* Nimmt die Höhe des .card-inner (bestimmt durch .card-front) */
-        box-sizing: border-box;
-        justify-content: center; /* Zentriert den Text vertikal */
-        overflow-y: auto; /* Falls Text länger ist */
-      }
       #chronische-betreuung .card-back-info {
         font-family: 'Poppins', sans-serif;
         font-weight: 300; /* Light */
         font-size: 14px;
         line-height: 1.6;
-        text-align: center;
+        text-align: left; /* NEU: Text linksbündig */
+        width: 100%;      /* NEU: Nimmt die volle Breite des gepaddeten .card-back ein */
       }
       /* Ende: Neue Stile für Flip-Card auf Mobilgeräten */
       /* Info-Rechteck und weißes Rechteck auf Mobilgeräten ausblenden, da Klick auf Plus direkt Modal öffnet */
