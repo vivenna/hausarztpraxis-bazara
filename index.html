@@ -2100,10 +2100,12 @@
             const splashScreen = document.getElementById('splash-screen');
       const splashLogo = splashScreen ? splashScreen.querySelector('.footer-logo') : null;
       const body = document.body;
+      const htmlElement = document.documentElement; // HTML-Element abrufen
 
       if (splashScreen && splashLogo) {
         body.style.overflow = 'hidden'; // Scrollen verhindern, während Splash Screen sichtbar ist
-
+        htmlElement.style.overflow = 'hidden'; // Scrollen auch auf dem HTML-Element verhindern
+        
         // Schritt 1: Nach einer kurzen Verzögerung das Logo einblenden
         setTimeout(() => {
           splashLogo.classList.add('show');
@@ -2117,7 +2119,8 @@
             splashScreen.addEventListener('transitionend', function handleTransitionEnd(event) {
               if (event.propertyName === 'transform' && splashScreen) {
                 splashScreen.style.display = 'none';
-                body.style.overflow = ''; 
+                body.style.overflow = '';
+                htmlElement.style.overflow = ''; // Overflow für HTML-Element zurücksetzen
                 splashScreen.removeEventListener('transitionend', handleTransitionEnd);
               }
             });
