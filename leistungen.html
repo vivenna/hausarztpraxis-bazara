@@ -1696,6 +1696,83 @@
         gap: 8px;
       }
 
+      /* Anpassungen für #moderne-diagnostik (Sprechzeiten-Section in leistungen.html) */
+      .sprechzeiten-section#moderne-diagnostik { /* Spezifischer Selektor */
+        padding: 0 20px 40px 20px; /* Weniger Padding */
+      }
+      .sprechzeiten-section#moderne-diagnostik .section-divider {
+        margin-bottom: 40px; /* Weniger Abstand */
+      }
+      .sprechzeiten-section#moderne-diagnostik .sub-heading {
+        font-size: 16px; /* Sub-Heading noch kleiner gemacht */
+      }
+      .sprechzeiten-section#moderne-diagnostik .main-heading {
+        font-size: 36px; /* Kleinere Schrift */
+        line-height: 1.2; /* Zeilenhöhe für bessere Lesbarkeit bei ggf. Umbruch */
+        margin-bottom: 30px; /* Weniger Abstand */
+      }
+      .sprechzeiten-section#moderne-diagnostik .diagnostik-content-wrapper {
+        flex-direction: column;
+        margin-top: 30px; /* Weniger Abstand nach oben */
+        gap: 20px;
+      }
+      .sprechzeiten-section#moderne-diagnostik .diagnostik-content-links {
+        flex-basis: auto;
+        padding-left: 0; /* Kein linker Einzug */
+        order: 2; /* Text und Liste unter dem Icon */
+        width: 100%; /* Stellt sicher, dass der Container die volle Breite einnimmt */
+      }
+      .sprechzeiten-section#moderne-diagnostik .diagnostik-infotext {
+        font-size: 16px; /* Kleinere Schrift */
+        text-align: center; /* Text zentrieren */
+        margin-bottom: 30px; /* Weniger Abstand zur Liste */
+      }
+      .sprechzeiten-section#moderne-diagnostik .diagnostik-punkte-scrollable {
+        width: 100%; /* Volle Breite */
+      }
+      .sprechzeiten-section#moderne-diagnostik .diagnostik-punkt-item {
+        flex-direction: column; /* Nummer und Text untereinander */
+        align-items: flex-start; /* Linksbündig für den gesamten Block */
+        margin-bottom: 30px;
+        /* padding-left: 15px; Optional: Ein kleiner linker Einzug für die Items */
+      }
+      .sprechzeiten-section#moderne-diagnostik .diagnostik-punkt-number {
+        font-size: 28px; /* Kleinere Nummer */
+        min-width: auto;
+        padding-right: 0;
+        margin-bottom: 8px; /* Abstand zum Titel */
+        text-align: left; /* Nummer linksbündig */
+      }
+      .sprechzeiten-section#moderne-diagnostik .diagnostik-punkt-title {
+        font-size: 24px; /* Kleinerer Titel */
+        margin-left: 0;
+        text-align: left; /* Titel linksbündig */
+        margin-bottom: 10px;
+      }
+      .sprechzeiten-section#moderne-diagnostik .diagnostik-punkt-title::after {
+        left: 0; /* Unterstrich linksbündig zum Titel */
+        transform: translateX(0); /* Keine Verschiebung mehr nötig */
+        width: 40px; /* Kürzerer Unterstrich */
+      }
+      .sprechzeiten-section#moderne-diagnostik .diagnostik-punkt-description {
+        font-size: 15px; /* Kleinere Beschreibung */
+        margin-left: 0;
+        text-align: left; /* Beschreibung linksbündig */
+      }
+      .sprechzeiten-section#moderne-diagnostik .diagnostik-icon-sticky-rechts {
+        flex-basis: auto;
+        position: static; /* Sticky-Verhalten aufheben */
+        order: 1; /* Icon oben */
+        width: 100%; /* Nimmt volle Breite ein, um Icon-Zentrierung zu ermöglichen */
+        display: flex; /* Ermöglicht Zentrierung des Kindes */
+        justify-content: center; /* Zentriert das .diagnostik-icon-container horizontal */
+        margin-bottom: 25px; /* Mehr Abstand nach unten zum nächsten Element (Textblock) */
+      }
+      .sprechzeiten-section#moderne-diagnostik .diagnostik-icon-container {
+        padding: 0;
+        max-width: 160px; /* Icon noch kleiner gemacht */
+      }
+
       /* Hintergrundbild der Hero-Section auf Mobilgeräten nach oben verschieben */
       .hero-background {
         background-position: center calc(50% - 15vh); /* Bild um 15vh nach oben verschoben (nur mobil) */
