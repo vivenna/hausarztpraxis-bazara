@@ -2155,11 +2155,14 @@
       // Parallax Zoom für Hero-Background
       function handleHeroZoom() {
         if (heroBackground) {
-          let scrollPosition = window.pageYOffset;
-          // Der Divisor (z.B. 4000) steuert, wie schnell der Zoom erfolgt.
-          // Ein größerer Wert bedeutet langsameren Zoom.
-          // Stelle sicher, dass scaleValue nie kleiner als 1 ist (um Schrumpfen beim Overscroll zu verhindern)
-          let scaleValue = Math.max(1, 1 + scrollPosition / 7000);
+          const scrollPosition = window.pageYOffset;
+          // Standard-Divisor für Desktop
+          let zoomDivisor = 7000; 
+          // Prüfen, ob es sich um ein Mobilgerät handelt (z.B. unter 769px Breite)
+          if (window.innerWidth < 769) {
+            zoomDivisor = 3500; // Stärkerer Zoom für Mobilgeräte (kleinerer Divisor)
+          }
+          const scaleValue = Math.max(1, 1 + scrollPosition / zoomDivisor);
           heroBackground.style.transform = `scale(${scaleValue})`;
         }
       }
