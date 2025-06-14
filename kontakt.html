@@ -1137,8 +1137,18 @@
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      top: -25px; 
-      bottom: -55px; 
+      top: -25px; /* Startpunkt der Linie, 25px über dem Container-Inhalt */
+      /* bottom: -55px; Entfernt, da Höhe die Länge steuert */
+      height: 0; /* Initial keine Höhe, für die Animation */
+      transition: height 0.8s ease-out; /* Animation für die Höhe */
+    }
+
+    /* Klasse zum Auslösen der Linienanimation (analog zu faq.html) */
+    .neue-faq-sektion .kontakt-vertikale-linie-element.animate-draw {
+      /* Die volle Höhe der Linie.
+         100% = Höhe des .kontakt-layout-container
+         + 25px (Abstand oben) + 55px (Abstand unten) = 100% + 80px */
+      height: calc(100% + 80px);
     }
 
     .neue-faq-sektion .kontakt-info-rechts {
@@ -1172,6 +1182,29 @@
     }
     .neue-faq-sektion .kontakt-info-rechts a:hover {
       text-decoration: underline; /* Unterstreichung bei Hover für bessere Nutzererfahrung */
+    }
+
+    /* Responsive Anpassung für kleinere Bildschirme (analog zu faq.html) */
+    @media (max-width: 768px) {
+      .neue-faq-sektion .kontakt-layout-container {
+        flex-direction: column; /* Untereinander anordnen */
+        align-items: center; /* Zentriert die Blöcke, wenn sie untereinander sind */
+      }
+      .neue-faq-sektion .kontakt-vertikale-linie-element {
+        position: static; /* Absolute Positionierung aufheben */
+        left: auto;
+        top: auto;
+        bottom: auto;
+        transform: none; /* Transform zurücksetzen */
+        width: 80%; /* Linie wird horizontal, wenn Spalten gestapelt sind */
+        height: 1px !important; /* Feste Höhe für horizontale Linie, !important zur Sicherheit ggü. .animate-draw */
+        margin: 25px 0; /* Abstand um die horizontale Linie */
+        align-self: center;
+        transition: none; /* Keine Höhenanimation für die horizontale Linie */
+      }
+      .neue-faq-sektion .kontakt-text-links {
+        margin-bottom: 0; /* Kein doppelter Margin mit der Linie */
+      }
     }
 
   </style>
@@ -1506,6 +1539,34 @@
         checkWelcomeTextVisibility(); // Animation für Welcome-Text prüfen
         checkSectionDividersVisibility(); // Animation für Section Dividers prüfen
         checkSprechzeitenAnimation(); // Animation für Sprechzeiten-Tabelle prüfen
+      }
+
+      // Animation für die vertikale Linie im "SCHNELLER KONTAKT"-Bereich (analog zu faq.html)
+      const kontaktSectionForLine = document.querySelector('.neue-faq-sektion'); // In kontakt.html ist dies die relevante Sektion
+
+      if (kontaktSectionForLine) {
+        const kontaktLinieElement = kontaktSectionForLine.querySelector('.kontakt-vertikale-linie-element');
+        // Beobachte den Layout-Container oder die Sektion selbst
+        const elementToObserveForLine = kontaktSectionForLine.querySelector('.kontakt-layout-container') || kontaktSectionForLine;
+
+        if (kontaktLinieElement && elementToObserveForLine) {
+          const lineObserverOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1 // Animation starten, wenn 10% des Elements sichtbar sind
+          };
+
+          const lineAnimationObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                kontaktLinieElement.classList.add('animate-draw');
+                observer.unobserve(entry.target); // Animation nur einmal auslösen
+              }
+            });
+          }, lineObserverOptions);
+
+          lineAnimationObserver.observe(elementToObserveForLine);
+        }
       }
 
       window.addEventListener('scroll', checkMenuPosition);
