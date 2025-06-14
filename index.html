@@ -1434,9 +1434,8 @@
       function checkSprechzeitenAnimation() {
         if (sprechzeitenTabelle && !sprechzeitenTabelle.classList.contains('start-animation')) {
           const rect = sprechzeitenTabelle.getBoundingClientRect();
-          // Startet die Animation, wenn die Oberkante der Tabelle z.B. bei 85% der Viewport-Höhe ist
-          // oder einfach im Viewport erscheint.
-          if (rect.top < window.innerHeight * 0.85 && rect.bottom >= 0) {
+          // Startet die Animation, wenn die Oberkante der Tabelle die 70%-Marke der Viewport-Höhe (von oben gezählt) überschreitet.
+          if (rect.top < window.innerHeight * 0.70 && rect.bottom >= 0) {
             sprechzeitenTabelle.classList.add('start-animation');
           }
         }
