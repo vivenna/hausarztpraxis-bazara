@@ -398,8 +398,10 @@
 
     .leistung-image-wrapper {
       position: relative;
-      overflow: hidden; /* Wichtig für den Zoom-Effekt und um den Button sauber zu halten */
-      height: 250px; /* Höhe vom ursprünglichen .leistung-icon */
+      /* overflow: hidden; entfernt, damit der Blur-Effekt nicht abgeschnitten wird */
+      box-sizing: border-box; /* Stellt sicher, dass Padding in die Höhe/Breite einberechnet wird */
+      height: 250px; /* Gesamt-Höhe des Wrappers bleibt gleich */
+      /* padding: 10px; Entfernt, da das Bild selbst verkleinert wird */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -416,7 +418,9 @@
       max-width: 100%;
       max-height: 100%;
       object-fit: contain; /* Stellt sicher, dass das Bild passt, ohne es zu verzerren */
-      transition: transform 0.35s ease-in-out, filter 0.35s ease-in-out;
+      box-sizing: border-box; /* Wichtig, damit Padding korrekt verrechnet wird */
+      /* Übergang für Padding und Filter anpassen */
+      transition: padding 0.35s ease-in-out, filter 0.35s ease-in-out;
     }
 
     .mehr-erfahren-button {
@@ -451,7 +455,7 @@
     }
     
     .leistung-item-link:hover .leistung-image-wrapper .leistung-icon {
-      transform: scale(0.9); /* Herauszoomen */
+      padding: 10px; /* Fügt inneren Abstand hinzu, Bildinhalt wird durch object-fit kleiner */
       filter: blur(3px); /* Nur noch unscharf */
     }
 
