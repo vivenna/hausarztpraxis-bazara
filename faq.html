@@ -949,6 +949,7 @@
       /* --- Mobile Click-Toggle for FAQ Slides --- */
       .faq-slide-item {
         cursor: pointer; /* Zeige an, dass das Element klickbar ist auf Mobilgeräten */
+        /* Die globale .faq-slide-item hat bereits background-color: #8a5a34; und transition. */
       }
 
       /* Basis-Status für Mobilgeräte: Frage sichtbar, Antwort verborgen */
@@ -966,6 +967,9 @@
       }
 
       /* Status, wenn .answer-visible aktiv ist (durch Klick, Antwort sichtbar) */
+      .faq-slide-item.answer-visible {
+        background-color: #6e370e; /* Hintergrund dunkler, wie Desktop-Hover */
+      }
       .faq-slide-item.answer-visible .question-text {
         opacity: 0;
         visibility: hidden;
@@ -976,7 +980,11 @@
         visibility: visible;
       }
 
-      /* Desktop-Hover-Effekt auf Mobilgeräten neutralisieren, wenn die Antwort nicht aktiv angezeigt wird */
+      /* Desktop-Hover-Effekt auf Mobilgeräten neutralisieren */
+      /* Wenn Antwort NICHT aktiv angezeigt wird (Frage ist sichtbar): */
+      .faq-slide-item:not(.answer-visible):hover {
+        background-color: #8a5a34; /* Behalte Originalfarbe bei Hover, überschreibe Desktop-Hover */
+      }
       .faq-slide-item:not(.answer-visible):hover .question-text {
         opacity: 1; /* Frage bleibt sichtbar */
         visibility: visible;
