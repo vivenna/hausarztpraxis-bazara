@@ -889,6 +889,53 @@
       .neue-faq-sektion .kontakt-text-links {
         margin-bottom: 0; /* Kein doppelter Margin mit der Linie */
       }
+
+      /* Titelanpassungen für .neue-faq-sektion auf Mobilgeräten */
+      .neue-faq-sektion .sub-heading {
+        font-size: 18px; 
+      }
+      .neue-faq-sektion .main-heading {
+        font-size: 42px; 
+        margin-bottom: 40px; /* Angepasster Abstand zum Inhalt */
+      }
+
+
+      /* Das Elternelement der Slideshow soll auf Mobilgeräten kein horizontales Padding haben */
+      .neue-faq-sektion {
+        padding-left: 0;
+        padding-right: 0;
+        /* Vertikales Padding kann beibehalten oder angepasst werden, z.B.: */
+        /* padding-top: 0; */
+        /* padding-bottom: 80px; */ /* Beispiel für reduziertes unteres Padding */
+      }
+
+      /* FAQ Slideshow Anpassungen für Mobilgeräte */
+      .faq-slideshow-container {
+        width: 100vw; /* Container ist so breit wie der Bildschirm */
+        /* left: 0; und transform: none; sind bereits korrekt von vorherigen Anpassungen */
+        padding: 30px 0px; /* Vertikales Padding beibehalten, horizontales ist 0 */
+        overflow-x: scroll; /* Erlaube horizontales Scrollen des breiteren Wrappers */
+        -webkit-overflow-scrolling: touch; /* Sanfteres Scrollen auf iOS */
+        scrollbar-width: none; /* Firefox: Scrollbar ausblenden */
+      }
+      .faq-slideshow-container::-webkit-scrollbar { /* Webkit: Scrollbar ausblenden */
+        display: none;
+      }
+
+      .faq-slideshow-container::before,
+      .faq-slideshow-container::after {
+        display: none !important; /* Nebel-Effekt auf Mobilgeräten komplett ausblenden */
+      }
+
+      .faq-slideshow-wrapper {
+        width: 140vw; /* Inhalt ist breiter als der Container */
+        display: flex; /* Stellt sicher, dass es ein Flex-Container ist */
+        transform: translateX(-20vw); /* Startet 20vw links vom linken Rand des Containers */
+        animation: none; /* Deaktiviert die Desktop-Scroll-Animation für Mobilgeräte */
+        /* Die .faq-slide-item behalten ihre Desktop-Größe und -Abstände,
+           horizontales Scrollen ist nun manuell.
+        */
+      }
     }
 
     /* FAQ Slideshow Stile */
