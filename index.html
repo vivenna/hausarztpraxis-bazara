@@ -186,7 +186,7 @@
       height: 100%;
       background-image: url('/assets/startseite.png'); /* Hintergrundbild hierher verschoben */
       background-size: cover;
-      background-position: center;
+      background-position: center; /* Standardposition für Desktop */
       z-index: -1; /* Stellt sicher, dass es hinter dem Inhalt liegt */
       /* Sanfter Übergang für die Skalierung, um Ruckeln zu minimieren */
       /* Kann angepasst oder entfernt werden, je nach gewünschtem Verhalten */
@@ -1274,7 +1274,9 @@
         justify-content: flex-start;
         padding-top: 220px; /* Abstand nach oben deutlich vergrößert */
         padding-left: 20px;   /* Seitlicher Abstand für den Inhalt */
+        margin-bottom: -15vh;
         padding-right: 0;  /* Rechter Rand für h1 entfernt (übernimmt jetzt die volle Breite) */
+        height: 85vh; /* Höhe reduzieren, um die Lücke durch Bildverschiebung zu schließen */
         text-align: left;     /* Standard-Textausrichtung für Kinder (h1, h2) */
       }
 
@@ -1300,6 +1302,13 @@
         padding-right: 20px; /* Rechten Innenabstand für h2 auf Mobilgeräten wiederherstellen */
         /* text-align: left; wird von .hero-section geerbt */
         /* padding-left und padding-right sind nicht mehr nötig, da .hero-section Padding hat */
+      }
+
+      /* Hintergrundbild der Hero-Section auf Mobilgeräten nach oben verschieben */
+      .hero-background {
+        background-position: center calc(50% - 15vh); /* Bild um 15vh nach oben verschoben (nur mobil) */
+        min-height: 100%; /* Stellt sicher, dass min-height sich an die 85vh der .hero-section anpasst */
+                          /* Überschreibt die globale min-height: 100vh; für Mobilgeräte */
       }
       
       /* Anpassungen für die dynamischen Phrasen auf Mobilgeräten */
