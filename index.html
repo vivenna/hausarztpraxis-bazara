@@ -1533,6 +1533,8 @@
         let currentPhraseIdx = 0; // Index des nächsten anzuzeigenden Satzes
         const displayTime = 3000; // Zeit, die ein Satz sichtbar bleibt (3 Sekunden)
         const animationTime = 1000; // Dauer der Animation (1 Sekunde)
+        let isFirstAnimationCycle = true; // Flag für den ersten Animationszyklus
+        const initialDisplayTime = 2000; // Anzeigedauer für die erste Phrase auf 2 Sekunden erhöht
 
         function animatePhraseChange() {
           const currentSpan = dynamicH1LineContainer.querySelector('.dynamic-phrase.visible');
@@ -1558,7 +1560,15 @@
           }, 20); // Kurze Verzögerung, damit die 'entering'-Klasse für die Transition angewendet wird
 
           currentPhraseIdx = (currentPhraseIdx + 1) % phrases.length;
-          setTimeout(animatePhraseChange, displayTime + animationTime);
+
+          let delayForNextPhrase;
+          if (isFirstAnimationCycle) {
+            delayForNextPhrase = initialDisplayTime + animationTime;
+            isFirstAnimationCycle = false; // Nach dem ersten Zyklus auf false setzen
+          } else {
+            delayForNextPhrase = displayTime + animationTime;
+          }
+          setTimeout(animatePhraseChange, delayForNextPhrase);
         }
 
         if (phrases.length > 0) {
