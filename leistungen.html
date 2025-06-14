@@ -2043,9 +2043,9 @@
       function checkWelcomeTextVisibility() {
         if (welcomeText) {
           const rect = welcomeText.getBoundingClientRect();
-          // Prüft, ob das Element mindestens zu einem kleinen Teil im Viewport ist
-          // und die Animation noch nicht ausgelöst wurde
-          if (rect.top < window.innerHeight && rect.bottom >= 0 && !welcomeText.classList.contains('visible')) {
+          // Startet die Animation, wenn die Oberkante des Textes z.B. die 80%-Marke
+          // der Viewport-Höhe (von oben gezählt) überschreitet.
+          if (rect.top < window.innerHeight * 0.8 && rect.bottom >= 0 && !welcomeText.classList.contains('visible')) {
             welcomeText.classList.add('visible');
           }
         }
