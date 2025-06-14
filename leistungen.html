@@ -1723,7 +1723,7 @@
       .leistungen-section .slide {
         flex-direction: column;
         padding: 20px 15px; /* Weniger Padding */
-        min-height: auto; /* Höhe passt sich Inhalt an */
+        min-height: 490px; /* Erhöht, damit der Container hoch genug für die Dots ist */
         gap: 15px;
       }
       .leistungen-section .slide-image-container {
@@ -1760,8 +1760,8 @@
         right: 8px;
       }
       .leistungen-section .slide-dots {
-        bottom: 10px; /* Abstand der Dots von unten */
-        top: auto; /* `top` zurücksetzen */
+        bottom: 10px;
+        top: 480px; /* Erhöhter Abstand oben für Mobilgeräte */
       }
       .leistungen-section .slide-dots .dot {
         width: 10px;
@@ -2751,7 +2751,7 @@
       .slide-dots {
         position: absolute;
         bottom: 25px;
-        top: 460px;
+        top: 460px; /* Zurückgesetzt auf ursprünglichen Wert für Desktop */
         left: 50%;
         transform: translateX(-50%);
         display: flex;
