@@ -215,6 +215,28 @@
       margin-bottom: 20px;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Textschatten für bessere Lesbarkeit */
       line-height: 1.2; /* Für bessere Lesbarkeit bei mehrzeiligem Text */
+      /* Animations-Eigenschaften vom h1 entfernt, werden auf .hero-line spans angewendet */
+    }
+
+    /* Stile für die zeilenweise Animation von h1 (kopiert von leistungen.html/faq.html) */
+    .hero-section h1 .hero-line {
+      display: inline-block; /* Wichtig für transform und um <br> zu respektieren */
+      opacity: 0;
+      transform: translateY(30px); /* Jede Zeile startet etwas tiefer */
+    }
+
+    .hero-section h1.animate-hero-title .hero-line {
+      opacity: 1;
+      transform: translateY(0);
+      transition-property: opacity, transform;
+      transition-duration: 0.7s;
+      transition-timing-function: ease-out;
+    }
+    .hero-section h1.animate-hero-title .hero-line:nth-of-type(1) {
+      transition-delay: 0.3s; /* Verzögerung für die erste Zeile */
+    }
+    .hero-section h1.animate-hero-title .hero-line:nth-of-type(2) {
+      transition-delay: 0.45s; /* Gestaffelte Verzögerung für die zweite Zeile */
     }
     .hero-section h2 {
       font-family: 'Poppins', sans-serif;
@@ -1159,7 +1181,10 @@
   <div class="hero-section">
     <div class="hero-background"></div> <!-- Neuer Container für das Hintergrundbild -->
     <div class="hero-text-wrapper">
-      <h1>Schnell erreicht.<br>Gut verbunden.</h1>
+      <h1>
+        <span class="hero-line">Schnell erreicht.</span><br>
+        <span class="hero-line">Gut verbunden.</span>
+      </h1>
       <h2>So einfach nehmen Sie mit uns Kontakt auf.</h2>
     </div>
   </div>
@@ -1344,6 +1369,7 @@
       const navLinksUl = document.querySelector('.nav-links'); // Selektiert das <ul> Element
       const footerNewTitle = document.querySelector('.footer-new-title'); // Selektor für Footer-Titel hinzugefügt
       const heroBackground = document.querySelector('.hero-background');
+      const heroTitle = document.querySelector('.hero-section h1'); // Hinzugefügt für h1 Animation
       const welcomeText = document.querySelector('.info-section .right-column .welcome-text'); // Selektor für Welcome-Text
       const sectionDividers = document.querySelectorAll('.section-divider'); // Selektor für Section Dividers hinzugefügt
       // Alle Sektionen auswählen, bei denen der Farbwechsel stattfinden soll
@@ -1412,11 +1438,18 @@
       function checkWelcomeTextVisibility() { // Kopiert von index.html
         if (welcomeText) {
           const rect = welcomeText.getBoundingClientRect();
-          // Prüft, ob das Element mindestens zu einem kleinen Teil im Viewport ist
-          // und die Animation noch nicht ausgelöst wurde
-          if (rect.top < window.innerHeight && rect.bottom >= 0 && !welcomeText.classList.contains('visible')) {
+          // Startet die Animation, wenn die Oberkante des Textes z.B. die 80%-Marke
+          // der Viewport-Höhe (von oben gezählt) überschreitet.
+          if (rect.top < window.innerHeight * 0.9 && rect.bottom >= 0 && !welcomeText.classList.contains('visible')) {
             welcomeText.classList.add('visible');
           }
+        }
+      }
+
+      // Funktion, um die Animation für den Hero-Titel auszulösen (kopiert von leistungen.html/faq.html)
+      function triggerHeroTitleAnimation() {
+        if (heroTitle && !heroTitle.classList.contains('animate-hero-title')) {
+          heroTitle.classList.add('animate-hero-title');
         }
       }
 
@@ -1446,6 +1479,7 @@
 
       window.addEventListener('scroll', checkMenuPosition);
       window.addEventListener('resize', checkMenuPosition);
+      triggerHeroTitleAnimation(); // Hero-Titel Animation beim Laden auslösen
       checkMenuPosition(); // Initiale Prüfung beim Laden der Seite
       handleHeroZoom(); // Initialen Zoom-Status setzen
       // checkSectionDividersVisibility(); // Initiale Prüfung, falls Divider direkt sichtbar sind (wird durch checkMenuPosition() abgedeckt)
