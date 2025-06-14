@@ -1005,6 +1005,13 @@
            Die Opacity/Visibility-Transition kommt von der Basis .faq-slide-item .hover-answer. */
         transition-delay: 0s;
       }
+
+      /* Anpassung für den Pause/Play-Button der Slideshow auf Mobilgeräten */
+      .faq-slideshow-toggle-animation {
+        position: sticky; /* Sorgt dafür, dass der Button am sichtbaren Rand des scrollenden Containers bleibt */
+        /* right: 10px; und bottom: 10px; sowie z-index werden von der globalen Regel geerbt */
+        /* und wirken nun relativ zum sichtbaren Bereich des .faq-slideshow-container. */
+      }
     }
 
     /* Klasse zum Pausieren der Slideshow-Animation */
