@@ -779,6 +779,29 @@
       }
       /* Ende Hero Section Anpassungen für Mobilgeräte */
 
+      /* Info Section Anpassungen für Mobilgeräte (kopiert von index.html) */
+      .info-section {
+        flex-direction: column; /* Spalten untereinander anordnen */
+        padding: 40px 20px; /* Weniger Padding auf Mobilgeräten */
+        gap: 20px; /* Reduzierter Abstand zwischen den Spalten */
+      }
+
+      .info-section .left-column {
+        flex-basis: auto; /* Breite automatisch anpassen */
+        padding-top: 0; /* Kein extra Abstand oben */
+        justify-content: flex-start; /* Inhalt linksbündig */
+        margin-bottom: 10px; /* Kleiner Abstand zur rechten Spalte */
+      }
+
+      .info-section .right-column {
+        flex-basis: auto; /* Breite automatisch anpassen */
+        padding-right: 0; /* Kein extra Abstand rechts */
+        padding-top: 0; /* Kein extra Abstand oben */
+      }
+
+      .info-section .right-column .welcome-text {
+        font-size: 36px; /* Deutlich kleinere Schriftgröße für den Willkommenstext */
+      }
 
 
       .neue-faq-sektion .kontakt-layout-container {
