@@ -207,22 +207,57 @@
       text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Textschatten für bessere Lesbarkeit */
       line-height: 1.2; /* Für bessere Lesbarkeit bei mehrzeiligem Text */
     }
-    .hero-section h2 {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 300; /* Light */
-      font-size: 30.1px;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Textschatten für bessere Lesbarkeit */
-      margin-top: 10px;
+
+    /* Styles for the dynamic second line of h1 */
+    .dynamic-h1-line {
+      display: block; /* Ensures it takes its own line */
+      position: relative; /* For absolute positioning of phrases */
+      height: 1.3em; /* Slightly increased height to accommodate descenders */
+      overflow-y: hidden; /* Clips phrases vertically for animation */
+      /* Font styles are inherited from h1 */
+      /* Make this container wider than h1's natural width and center it */
+      width: 200%; /* e.g., twice the width of "Gesund werden." */
+      left: 50%;
+      transform: translateX(-50%); /* Centers this 200% wide block within the h1 */
     }
 
-    .hero-new-title {
+    .hero-section h2 {
       font-family: 'Poppins', sans-serif;
-      font-weight: 700; /* Bold */
-      font-size: 110px; /* Gleiche Schriftgröße wie h1 */
+      font-weight: 300; /* Light weight for the subtitle */
+      font-size: 30.1px; /* Subtitle font size */
       color: #ffffff;
-      line-height: 1.2;
-      margin-bottom: 30px; /* Abstand zum Button */
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Gleicher Textschatten wie h1 */
+      line-height: 1.3; /* Line height for the subtitle */
+      margin-top: 15px; /* Space above the subtitle */
+      margin-bottom: 25px; /* Space below the subtitle */
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Text shadow for subtitle */
+    }
+
+    .dynamic-phrase {
+      position: absolute;
+      left: 50%; /* Start positioning from the center */
+      width: max-content; /* Phrase takes the width of its actual content */
+      transform: translateX(-50%); /* Center the phrase horizontally */
+      display: block;
+      /* text-align: center; is still fine, ensures content within is centered if ever needed */
+      text-align: center;
+      /* Inherit font properties from parent (.dynamic-h1-line, which inherits from h1) */
+      font-family: inherit;
+      font-weight: inherit;
+      font-size: inherit;
+      color: inherit;
+      text-shadow: inherit;
+      line-height: inherit;
+      white-space: nowrap; /* Verhindert Zeilenumbruch innerhalb der Phrase */
+      transition: transform 1s ease-in-out, opacity 1s ease-in-out; /* Animation duration */
+    }
+
+    .dynamic-phrase.entering {
+      opacity: 0;
+      transform: translateX(-50%) translateY(100%); /* Combine with horizontal centering */
+    }
+    .dynamic-phrase.visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0); /* Combine with horizontal centering */
     }
 
     .hero-new-button {
@@ -237,6 +272,10 @@
       border-radius: 0; /* Keine Abrundung */
       border: none; /* Kein Rand */
       cursor: pointer;
+    }
+    .dynamic-phrase.exiting {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-100%); /* Combine with horizontal centering */
     }
 
     /* Neuer Bereich unter Hero */
@@ -1102,11 +1141,15 @@
   <div class="hero-section">
     <div class="hero-background"></div> <!-- Neuer Container für das Hintergrundbild -->
     <div class="hero-text-wrapper">
-      <h1>Gesund werden.<br>Gesund bleiben.</h1>
+      <h1>
+        Gesund werden.
+        <span class="dynamic-h1-line">
+          <!-- Dynamische Sätze werden hier per JS eingefügt -->
+        </span>
+      </h1>
       <h2>Wir begleiten Sie – persönlich, nah und mit Zeit.</h2>
     </div>
   </div>
-
   <div class="info-section">
     <div class="left-column">
       <span class="bullet-point">&bull;</span>
@@ -1393,6 +1436,56 @@
       // Bestehendes Skript für die Navigation
       const mainNav = document.querySelector('.main-nav');
       const navLinksUl = document.querySelector('.nav-links'); // Selektiert das <ul> Element
+
+      // Dynamischer Effekt für die zweite Zeile von H1
+      const dynamicH1LineContainer = document.querySelector('.dynamic-h1-line');
+      if (dynamicH1LineContainer) {
+        const phrases = [
+          "Gesund bleiben.",
+          "Leben genießen.",
+          "Alltag meistern.",
+          "Kraft tanken.",
+          "Freude empfinden.",
+          "Ruhe finden."
+        ];
+        let currentPhraseIdx = 0; // Index des nächsten anzuzeigenden Satzes
+        const displayTime = 3000; // Zeit, die ein Satz sichtbar bleibt (3 Sekunden)
+        const animationTime = 1000; // Dauer der Animation (1 Sekunde)
+
+        function animatePhraseChange() {
+          const currentSpan = dynamicH1LineContainer.querySelector('.dynamic-phrase.visible');
+          if (currentSpan) {
+            currentSpan.classList.remove('visible');
+            currentSpan.classList.add('exiting');
+            setTimeout(() => {
+              if (currentSpan.parentNode === dynamicH1LineContainer) {
+                  dynamicH1LineContainer.removeChild(currentSpan);
+              }
+            }, animationTime);
+          }
+
+          const nextPhraseText = phrases[currentPhraseIdx];
+          const nextSpan = document.createElement('span');
+          nextSpan.classList.add('dynamic-phrase', 'entering');
+          nextSpan.textContent = nextPhraseText;
+          dynamicH1LineContainer.appendChild(nextSpan);
+          
+          setTimeout(() => { 
+              nextSpan.classList.remove('entering');
+              nextSpan.classList.add('visible');
+          }, 20); // Kurze Verzögerung, damit die 'entering'-Klasse für die Transition angewendet wird
+
+          currentPhraseIdx = (currentPhraseIdx + 1) % phrases.length;
+          setTimeout(animatePhraseChange, displayTime + animationTime);
+        }
+
+        if (phrases.length > 0) {
+          // Ersten Satz initial anzeigen und Zyklus starten
+          animatePhraseChange(); 
+        }
+      }
+      // ENDE Dynamischer Effekt für die zweite Zeile von H1
+
       const heroBackground = document.querySelector('.hero-background');
       const welcomeText = document.querySelector('.info-section .right-column .welcome-text');
       const sprechzeitenTabelle = document.querySelector('.sprechzeiten-tabelle');
