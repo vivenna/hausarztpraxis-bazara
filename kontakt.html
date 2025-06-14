@@ -543,23 +543,18 @@
       font-size: 18px; /* Schriftgröße erhöht */
       color: #333333; /* Schriftfarbe etwas dunkler gemacht */
     }
+    /* Die Tabelle selbst benötigt overflow:hidden, damit die "zu langen" Linien korrekt abgeschnitten werden */
+    .sprechzeiten-tabelle {
+      overflow: hidden; /* Schneidet überstehende Teile der animierten Linien ab */
+      position: relative; /* Für das thead::after Pseudo-Element */
+    }
 
     .sprechzeiten-tabelle th,
     .sprechzeiten-tabelle td {
       padding: 18px 15px; /* Innenabstand (Zeilenhöhe) erhöht */
       text-align: center; /* Textausrichtung in den Zellen zentriert */
-      border-bottom: none; /* Keine horizontalen Linien */
-      border-top: none; /* Keine horizontalen Linien */
-    }
-
-    .sprechzeiten-tabelle th:not(:first-child),
-    .sprechzeiten-tabelle td:not(:first-child) {
-      border-left: 0.5px solid #6e370e; /* Sehr feine vertikale Linie für Spalten ab der zweiten */
-    }
-
-    .sprechzeiten-tabelle th:first-child,
-    .sprechzeiten-tabelle td:first-child {
-      border-left: none; /* Keine Linie für die erste Spalte links */
+      border: none; /* Entfernt alle Standard-Ränder, wir steuern sie manuell/mit Pseudo-Elementen */
+      position: relative; /* Wichtig für die Positionierung der Pseudo-Elemente */
     }
     
     .sprechzeiten-tabelle th {
@@ -571,22 +566,37 @@
       text-align: left;
     }
 
-    .sprechzeiten-tabelle th .underline-text::after {
+    /* Horizontale Linie unter jeder Kopfzelle (th) im thead.
+       Da die th-Elemente nebeneinander liegen, erscheint dies als eine durchgehende Linie. */
+    .sprechzeiten-tabelle thead th::after {
       content: '';
       position: absolute;
-      bottom: -3px; /* Abstand des Unterstrichs zum Text */
-      left: 50%;
-      transform: translateX(-50%);
-      width: 85%; /* Breite des Unterstrichs */
-      height: 0.5px; /* Dicke des Unterstrichs angepasst */
-      background-color: #6e370e; /* Farbe des Unterstrichs angepasst an Spaltenlinien */
+      bottom: 0; /* Positioniert die Linie am unteren Rand der th-Zelle */
+      left: 0;
+      width: 100%;
+      height: 0.5px;
+      background-color: #6e370e;
+      clip-path: inset(0 100% 0 0); /* Initial von rechts komplett verdeckt */
+      transition: clip-path 0.5s 0.3s ease-out; /* Verzögerung, damit sie nach den vertikalen Spaltenlinien erscheint */
+    }
+    .sprechzeiten-tabelle.start-animation thead th::after {
+      clip-path: inset(0 0 0 0); /* Macht die Linie sichtbar (von links nach rechts) */
     }
 
-    /* Neue Regel für die horizontale Linie in der Kopfzeile der Sprechzeiten-Tabelle */
-    .sprechzeiten-tabelle thead th {
-      border-bottom: 0.5px solid #6e370e; /* Horizontale Linie unter den Kopfzellen */
+    /* Vertikale Spaltentrenner (animiert, nur im thead, aber lang genug, wie in index.html) */
+    .sprechzeiten-tabelle thead th:not(:first-child)::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0; /* Linie am linken Rand der th-Zelle */
+      width: 0.5px; /* Dicke der Linie */
+      background-color: #6e370e;
+      height: 0; /* Initial keine Höhe */
+      transition: height 0.5s ease-out;
     }
-    
+    .sprechzeiten-tabelle.start-animation thead th:not(:first-child)::before {
+      height: 350px; /* Feste Höhe, die die Tabelle abdeckt (ggf. anpassen an Tabellenhöhe) */
+    }
 
     .sprechzeiten-hinweis {
       font-family: 'Poppins', sans-serif;
@@ -1371,6 +1381,7 @@
       const heroBackground = document.querySelector('.hero-background');
       const heroTitle = document.querySelector('.hero-section h1'); // Hinzugefügt für h1 Animation
       const welcomeText = document.querySelector('.info-section .right-column .welcome-text'); // Selektor für Welcome-Text
+      const sprechzeitenTabelle = document.querySelector('.sprechzeiten-tabelle'); // Selektor für Sprechzeiten-Tabelle
       const sectionDividers = document.querySelectorAll('.section-divider'); // Selektor für Section Dividers hinzugefügt
       // Alle Sektionen auswählen, bei denen der Farbwechsel stattfinden soll
       // Für die Kontaktseite müssen ggf. andere oder keine Sektionen definiert werden,
@@ -1446,6 +1457,17 @@
         }
       }
 
+      // Funktion, um die Animation für die Sprechzeiten-Tabelle auszulösen
+      function checkSprechzeitenAnimation() {
+        if (sprechzeitenTabelle && !sprechzeitenTabelle.classList.contains('start-animation')) {
+          const rect = sprechzeitenTabelle.getBoundingClientRect();
+          // Startet die Animation, wenn die Oberkante der Tabelle z.B. die 85%-Marke
+          // der Viewport-Höhe (von oben gezählt) überschreitet.
+          if (rect.top < window.innerHeight * 0.85 && rect.bottom >= 0) {
+            sprechzeitenTabelle.classList.add('start-animation');
+          }
+        }
+      }
       // Funktion, um die Animation für den Hero-Titel auszulösen (kopiert von leistungen.html/faq.html)
       function triggerHeroTitleAnimation() {
         if (heroTitle && !heroTitle.classList.contains('animate-hero-title')) {
@@ -1475,6 +1497,7 @@
         checkFooterTitleAnimation(); // Animation für Footer-Titel prüfen
         checkWelcomeTextVisibility(); // Animation für Welcome-Text prüfen
         checkSectionDividersVisibility(); // Animation für Section Dividers prüfen
+        checkSprechzeitenAnimation(); // Animation für Sprechzeiten-Tabelle prüfen
       }
 
       window.addEventListener('scroll', checkMenuPosition);
@@ -1482,8 +1505,6 @@
       triggerHeroTitleAnimation(); // Hero-Titel Animation beim Laden auslösen
       checkMenuPosition(); // Initiale Prüfung beim Laden der Seite
       handleHeroZoom(); // Initialen Zoom-Status setzen
-      // checkSectionDividersVisibility(); // Initiale Prüfung, falls Divider direkt sichtbar sind (wird durch checkMenuPosition() abgedeckt)
-      // checkWelcomeTextVisibility(); // Initiale Prüfung für Welcome-Text, falls er direkt sichtbar sein könnte
     });
   </script>
 
