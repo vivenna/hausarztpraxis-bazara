@@ -1204,6 +1204,11 @@
       transform: rotate(45deg) translate(-5px, -6px);
     }
 
+    /* Farbe des Hamburger-Icons (X) wenn das mobile Menü aktiv ist, auf dunklem Hintergrund */
+    .main-nav.nav-active .hamburger-menu .bar {
+      background-color: #0c0c0c; /* Dunkle Farbe für das X auf weißem Menühintergrund */
+    }
+
     /* Responsive Anpassungen für das Menü */
     @media (max-width: 768px) {
       /* Entfernt das blaue Aufleuchten beim Antippen auf Mobilgeräten */
@@ -1228,7 +1233,7 @@
         left: 0;
         width: 100%; /* Nimmt die volle Breite ein (war 100%, ist ok für fixed) */
         /* height: 100dvh; Wird im active-Status gesetzt, max-height für Animation */
-        background-color: rgb(40, 40, 40); /* Hintergrund für das mobile Menü, jetzt voll opak */
+        background-color: #ffffff; /* Hintergrund für das mobile Menü auf Weiß geändert */
         /* box-shadow: 0 4px 8px rgba(0,0,0,0.2); Entfernt, da Vollbild */
         z-index: 1000; /* Auf gleicher Ebene wie main-nav, damit Hamburger (1001) darüber liegt */
 
@@ -1262,7 +1267,7 @@
         display: block;
         width: 100%;
         box-sizing: border-box;
-        color: #ffffff !important; /* Textfarbe im mobilen Menü immer weiß */
+        color: #0c0c0c !important; /* Textfarbe im mobilen Menü auf Dunkel geändert */
         font-size: 18px;
       }
       .main-nav .nav-links li a::after { /* Hover-Linie im mobilen Menü entfernen */
