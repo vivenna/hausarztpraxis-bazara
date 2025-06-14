@@ -2045,7 +2045,7 @@
           const rect = welcomeText.getBoundingClientRect();
           // Startet die Animation, wenn die Oberkante des Textes z.B. die 80%-Marke
           // der Viewport-Höhe (von oben gezählt) überschreitet.
-          if (rect.top < window.innerHeight * 0.8 && rect.bottom >= 0 && !welcomeText.classList.contains('visible')) {
+          if (rect.top < window.innerHeight * 0.9 && rect.bottom >= 0 && !welcomeText.classList.contains('visible')) {
             welcomeText.classList.add('visible');
           }
         }
