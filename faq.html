@@ -937,11 +937,14 @@
       }
 
       .faq-slideshow-wrapper {
-        width: 140vw; /* Inhalt ist breiter als der Container */
-        display: flex; /* Stellt sicher, dass es ein Flex-Container ist */
-        transform: translateX(-20vw); /* Startet 20vw links vom linken Rand des Containers */
-        animation: none; /* Deaktiviert die Desktop-Scroll-Animation für Mobilgeräte */
-        /* Die .faq-slide-item behalten ihre Desktop-Größe und -Abstände,
+        /* width: 140vw; Ersetzt durch max-content für dynamische Breite basierend auf Inhalt */
+        width: max-content; /* Passt sich der Breite aller Kinder an, ermöglicht Scrollen des gesamten Inhalts */
+        display: flex; /* Stellt sicher, dass es ein Flex-Container ist. Die globale .faq-slideshow-wrapper hat bereits display:flex und die Animation. */
+        /* transform: translateX(0); Entfernt, damit die Animation den Transform steuern kann */
+        /* animation: none; Entfernt, damit die globale Animation auch auf Mobilgeräten initial greift */
+        padding-left: 20px; /* Kleiner Abstand, damit das erste Item nicht direkt unter dem linken "Nebel" klebt */
+        padding-right: 20px; /* Abstand am Ende des scrollbaren Bereichs */
+        /* Die .faq-slide-item behalten ihre mobile Größe und -Abstände,
            horizontales Scrollen ist nun manuell.
         */
       }
@@ -1004,6 +1007,11 @@
       }
     }
 
+    /* Klasse zum Pausieren der Slideshow-Animation */
+    .faq-slideshow-wrapper.animation-paused {
+      animation-play-state: paused !important;
+    }
+
     /* FAQ Slideshow Stile */
     .faq-slideshow-container {
       /* width: 100%; */ /* Ersetzt für volle Viewport-Breite */
@@ -1016,6 +1024,37 @@
       padding: 50px 0px; /* Etwas Platz oben und unten */
       background-color: #ffffff; 
       box-sizing: border-box; /* Stellt sicher, dass Padding die Breite nicht beeinflusst */
+    }
+
+    .faq-slideshow-toggle-animation {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background-color: #ffffff; /* Hintergrundfarbe weiß */
+      color: #6e370e; /* Schriftfarbe braun */
+      border: 1px solid #6e370e; /* Rahmen braun */
+      border-radius: 50%; /* Kreisform */
+      width: 50px; /* Größe erhöht */
+      height: 50px; /* Größe erhöht */
+      box-sizing: border-box; /* Stellt sicher, dass Breite/Höhe den Rahmen einschließen */
+      font-size: 18px; /* Größe der Icons anpassen */
+      font-weight: 300; /* Schriftgewicht auf Light gesetzt */
+      line-height: 50px; /* Vertikale Zentrierung der Icons an neue Höhe angepasst */
+      text-align: center;
+      cursor: pointer;
+      z-index: 10; /* Über dem Nebel-Effekt */
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+      padding: 0; /* Kein internes Padding, da Icons zentriert werden */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .faq-slideshow-toggle-animation:hover {
+      background-color: #6e370e; /* Hintergrundfarbe braun bei Hover */
+      color: #ffffff; /* Schriftfarbe weiß bei Hover */
+      border: 1px solid #6e370e; /* Rahmen bleibt, aber in der Farbe des Hintergrunds, um Größe zu halten */
+      /* Alternativ, wenn der Rahmen komplett weg soll und eine minimale Größenänderung ok ist: border: none; */
     }
 
     .faq-slideshow-container::before,
@@ -1483,6 +1522,10 @@
           originalSlides.forEach(slide => wrapper.appendChild(slide.cloneNode(true)).classList.add('clone'));
         </script>
       </div>
+      <button type="button" class="faq-slideshow-toggle-animation" aria-label="Animation pausieren" title="Animation pausieren">
+        <span class="icon-pause">❚❚</span>
+        <span class="icon-play" style="display: none;">▶</span>
+      </button>
     </div>
   </div>
 
@@ -1787,6 +1830,63 @@
         });
       } else {
         console.warn('Button oder Antwortkasten für RSV-Frage nicht gefunden.');
+      }
+
+      // FAQ Slideshow: Animation steuern (Pause/Play Button und Stopp bei Nutzer-Scroll auf Mobilgeräten)
+      const faqSlideshowContainer = document.querySelector('.faq-slideshow-container');
+      const faqSlideshowWrapper = document.querySelector('.faq-slideshow-wrapper');
+      const toggleAnimationButton = document.querySelector('.faq-slideshow-toggle-animation');
+      let autoScrollStoppedByInteraction = false;
+
+      if (faqSlideshowContainer && faqSlideshowWrapper && toggleAnimationButton) {
+        const iconPauseElement = toggleAnimationButton.querySelector('.icon-pause');
+        const iconPlayElement = toggleAnimationButton.querySelector('.icon-play');
+
+        function updateToggleButtonVisuals(isPaused) {
+          if (isPaused) {
+            iconPauseElement.style.display = 'none';
+            iconPlayElement.style.display = 'inline';
+            toggleAnimationButton.setAttribute('aria-label', 'Animation starten');
+            toggleAnimationButton.setAttribute('title', 'Animation starten');
+          } else {
+            iconPauseElement.style.display = 'inline';
+            iconPlayElement.style.display = 'none';
+            toggleAnimationButton.setAttribute('aria-label', 'Animation pausieren');
+            toggleAnimationButton.setAttribute('title', 'Animation pausieren');
+          }
+        }
+
+        toggleAnimationButton.addEventListener('click', function() {
+          const currentlyPaused = faqSlideshowWrapper.classList.contains('animation-paused');
+          if (currentlyPaused) {
+            faqSlideshowWrapper.classList.remove('animation-paused');
+            updateToggleButtonVisuals(false);
+          } else {
+            faqSlideshowWrapper.classList.add('animation-paused');
+            updateToggleButtonVisuals(true);
+          }
+        });
+
+        const stopAutoScrollOnMobileInteraction = () => {
+          if (window.matchMedia("(max-width: 768px)").matches && !autoScrollStoppedByInteraction) {
+            // Nur pausieren und Button aktualisieren, wenn nicht bereits durch Button pausiert
+            if (!faqSlideshowWrapper.classList.contains('animation-paused')) {
+              faqSlideshowWrapper.classList.add('animation-paused');
+              updateToggleButtonVisuals(true); // Button auf "Play" setzen
+            }
+            autoScrollStoppedByInteraction = true;
+            // Entfernen den Event-Listener, da er nur einmal benötigt wird.
+            faqSlideshowContainer.removeEventListener('scroll', stopAutoScrollOnMobileInteraction);
+          }
+        };
+
+        faqSlideshowContainer.addEventListener('scroll', stopAutoScrollOnMobileInteraction);
+
+        // Initialen Zustand des Buttons setzen (Animation spielt standardmäßig)
+        updateToggleButtonVisuals(faqSlideshowWrapper.classList.contains('animation-paused'));
+
+      } else {
+        console.warn('FAQ Slideshow Elemente für Pausen-Button oder Scroll-Interaktion nicht gefunden.');
       }
 
       // FAQ Slideshow Klick-Verhalten für Mobilgeräte
