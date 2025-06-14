@@ -1731,17 +1731,24 @@
         width: 100%; /* Volle Breite */
       }
       .sprechzeiten-section#moderne-diagnostik .diagnostik-punkt-item {
-        flex-direction: column; /* Nummer und Text untereinander */
-        align-items: flex-start; /* Linksbündig für den gesamten Block */
+        display: flex; /* Ermöglicht Nummer und Text-Block nebeneinander */
+        /* flex-direction: row; ist Standard für display: flex */
+        align-items: baseline; /* Richtet die Grundlinie der Nummer und des Titels aus */
         margin-bottom: 30px;
+        gap: 8px; /* Kleiner Abstand zwischen Nummer und dem Text-Block (Titel + Beschreibung) */
         /* padding-left: 15px; Optional: Ein kleiner linker Einzug für die Items */
       }
       .sprechzeiten-section#moderne-diagnostik .diagnostik-punkt-number {
         font-size: 28px; /* Kleinere Nummer */
         min-width: auto;
         padding-right: 0;
-        margin-bottom: 8px; /* Abstand zum Titel */
+        margin-bottom: 0; /* Entfernt, da nicht mehr übereinander */
         text-align: left; /* Nummer linksbündig */
+        flex-shrink: 0; /* Verhindert, dass die Nummer schrumpft, falls der Titel lang ist */
+      }
+      .sprechzeiten-section#moderne-diagnostik .diagnostik-punkt-text-content {
+        /* Dieser Container umschließt Titel und Beschreibung. */
+        /* Titel und Beschreibung werden standardmäßig untereinander dargestellt. */
       }
       .sprechzeiten-section#moderne-diagnostik .diagnostik-punkt-title {
         font-size: 24px; /* Kleinerer Titel */
