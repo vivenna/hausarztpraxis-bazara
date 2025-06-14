@@ -404,8 +404,8 @@
       justify-content: center;
       align-items: center;
       margin-bottom: 15px; /* Abstand nach unten, wie beim ursprünglichen .leistung-icon */
-      background-color: #ffffff; /* Geändert zu Weiß */
-      border-radius: 4px; /* Leichte Abrundung für den Wrapper */
+      background-color: #ffffff; 
+      /* border-radius: 4px; entfernt, um den "Rahmen"-Effekt beim Herauszoomen zu vermeiden */
     }
 
     .leistung-icon {
@@ -424,19 +424,21 @@
       bottom: 15px; /* Abstand von unten */
       right: 15px; /* Abstand von rechts */
       /* transform: translate(-50%, -50%); wird entfernt */
-      background-color: #6e370e; /* #6e370e ohne Transparenz (Alpha = 1) */
-      color: white;
+      background-color: #ffffff; /* Standard: Hintergrund weiß */
+      color: #6e370e; /* Standard: Schriftfarbe #6e370e */
+      border: 1px solid #6e370e; /* Standard: Rand #6e370e */
       padding: 12px 24px;
       border-radius: 50px; /* Pillenform */
       opacity: 0;
       /* visibility: hidden; wird entfernt, Steuerung nur über opacity */
       /* Nur die Deckkraft animieren; visibility schaltet beim Hover sofort um. */
-      transition: opacity 0.35s ease-in-out;
+      transition: opacity 0.35s ease-in-out, background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-color 0.35s ease-in-out;
       font-family: 'Poppins', sans-serif;
       font-weight: 500; /* Medium */
       font-size: 16px;
       text-align: center;
       pointer-events: none; /* Damit der Klick auf den Link durchgeht */
+  z-index: 10; /* Sicherstellen, dass der Button über dem Bild und anderen Elementen im Wrapper liegt */
       white-space: nowrap;
     }
 
@@ -455,7 +457,17 @@
 
     .leistung-item-link:hover .leistung-image-wrapper .mehr-erfahren-button {
       opacity: 1;
-      /* visibility: visible; wird entfernt */
+      pointer-events: auto; /* Ermöglicht Hover-Events für den Button, wenn er sichtbar ist */
+      /* Die folgenden Stiländerungen werden entfernt und in .mehr-erfahren-button:hover verschoben */
+      /* background-color: #6e370e; */
+      /* color: #ffffff; */
+      /* border-color: transparent; */
+    }
+
+    .mehr-erfahren-button:hover { /* Neue Regel für den direkten Hover über den Button */
+      background-color: #6e370e; /* Hover: Hintergrund #6e370e */
+      color: #ffffff; /* Hover: Schriftfarbe weiß */
+      border-color: transparent; /* Hover: Rand transparent (visuell "keiner") */
     }
 
     /* Individuelle Positionierung der Linien */
