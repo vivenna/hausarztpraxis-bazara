@@ -924,7 +924,16 @@
 
       .faq-slideshow-container::before,
       .faq-slideshow-container::after {
-        display: none !important; /* Nebel-Effekt auf Mobilgeräten komplett ausblenden */
+        /* Nebel-Effekt wird nun auch auf Mobilgeräten angezeigt, aber schmaler */
+        display: block; /* Sicherstellen, dass die Pseudo-Elemente angezeigt werden */
+        width: 40px !important; /* Extrem schmale Breite für den Nebel */
+        /* Vereinfachter Farbverlauf für mobile Geräte, um sicherzustellen, dass der Effekt sichtbar ist */
+      }
+      .faq-slideshow-container::before {
+        background: linear-gradient(to right, #ffffff 20%, rgba(255,255,255,0) 100%);
+      }
+      .faq-slideshow-container::after {
+        background: linear-gradient(to left, #ffffff 20%, rgba(255,255,255,0) 100%);
       }
 
       .faq-slideshow-wrapper {
