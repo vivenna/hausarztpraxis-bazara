@@ -657,6 +657,29 @@
       box-sizing: border-box; /* Stellt sicher, dass Padding die Breite nicht beeinflusst */
     }
 
+    .faq-slideshow-container::before,
+    .faq-slideshow-container::after {
+      content: "";
+      position: absolute;
+      top: -20px; /* Lässt den Nebel 20px über dem Container beginnen */
+      height: calc(100% + 40px); /* Macht den Nebel insgesamt 40px höher als den Container */
+      width: 170px; /* Breite des "Nebels" extrem erhöht */
+      z-index: 2; /* Stellt sicher, dass der Nebel über den Slideshow-Items liegt */
+      pointer-events: none; /* Erlaubt Klicks/Hover auf Elemente unter dem Nebel */
+    }
+
+    .faq-slideshow-container::before {
+      left: 0;
+      /* Neuer Farbverlauf: außen sanft, dann schneller clean */
+      background: linear-gradient(to right, #ffffff 0%, rgba(255,255,255,0.85) 35%, rgba(255,255,255,0.3) 70%, rgba(255,255,255,0) 100%);
+    }
+
+    .faq-slideshow-container::after {
+      right: 0;
+      /* Neuer Farbverlauf: außen sanft, dann schneller clean */
+      background: linear-gradient(to left, #ffffff 0%, rgba(255,255,255,0.85) 35%, rgba(255,255,255,0.3) 70%, rgba(255,255,255,0) 100%);
+    }
+
     .faq-slideshow-wrapper {
       display: flex;
       /* Animation: Name, Dauer, Timing-Funktion, Iterationsanzahl */
