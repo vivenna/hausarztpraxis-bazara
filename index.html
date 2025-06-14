@@ -1688,7 +1688,7 @@
         position: static; /* Positionierung aufheben */
         display: flex;
         flex-direction: column;
-        align-items: center; /* Alle unteren Elemente zentrieren */
+        align-items: flex-start; /* Alle unteren Elemente linksbündig ausrichten */
         width: 100%;
       }
 
@@ -1702,7 +1702,7 @@
       .footer-contact-hours-container {
         position: static;
         flex-direction: column; /* Kontakt und Öffnungszeiten untereinander */
-        align-items: center; /* Zentriert die Spalten */
+        align-items: flex-start; /* Spalten linksbündig ausrichten */
         width: 100%;
         font-size: 14px; /* Etwas größere Basisschrift für Lesbarkeit */
         margin-bottom: 30px; /* Abstand zum nächsten Block */
@@ -1723,7 +1723,7 @@
 
       .footer-hours-details {
         flex-direction: column; /* Tage und Zeiten untereinander */
-        align-items: center;
+        align-items: flex-start; /* Tage und Zeiten Blöcke linksbündig */
       }
       .footer-hours-days,
       .footer-hours-times {
