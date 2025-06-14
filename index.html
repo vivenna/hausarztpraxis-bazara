@@ -1284,11 +1284,13 @@
         position: relative; /* Erforderlich für z-index */
         z-index: 10;        /* Stellt sicher, dass es über dem Link-Text liegt */
         display: block;
-        font-size: 2rem;  /* Testweise sehr große Schriftgröße */
+        font-size: 1rem;  /* Zurück zur kleinen Schriftgröße */
         color: #6e370e;
-        margin-bottom: 2px; /* Kleiner Abstand, um Nummer über dem Text zu positionieren */
+        /* margin-bottom: 2px; /* Kleiner Abstand, um Nummer über dem Text zu positionieren - wird durch top/left ersetzt/ergänzt */
         font-weight: 300; /* Gleiches Gewicht wie der Link */
         line-height: 1; /* Enge Zeilenhöhe für die Nummer */
+        top: 6px; /* Verschiebt die Nummer 10px nach unten */
+        left: 3px; /* Verschiebt die Nummer 3px nach rechts */
       }
       .main-nav .nav-links li a::after { /* Hover-Linie im mobilen Menü entfernen */
         display: none;
