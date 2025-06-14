@@ -1012,6 +1012,21 @@
         /* right: 10px; und bottom: 10px; sowie z-index werden von der globalen Regel geerbt */
         /* und wirken nun relativ zum sichtbaren Bereich des .faq-slideshow-container. */
       }
+
+      /* Spezifische Stile für den Pause/Play-Button auf Mobilgeräten, kein Hover-Effekt */
+      .faq-slideshow-toggle-animation.mobile-state-pause,
+      .faq-slideshow-toggle-animation.mobile-state-pause:hover {
+        background-color: #ffffff;
+        color: #6e370e; /* Icon-Farbe */
+        border: 1px solid #6e370e;
+      }
+
+      .faq-slideshow-toggle-animation.mobile-state-play,
+      .faq-slideshow-toggle-animation.mobile-state-play:hover {
+        background-color: #6e370e;
+        color: #ffffff; /* Icon-Farbe */
+        border: 1px solid #6e370e; /* Rahmenfarbe gleich Hintergrund = kein sichtbarer Rahmen, Größe bleibt konstant */
+      }
     }
 
     /* Klasse zum Pausieren der Slideshow-Animation */
@@ -1862,11 +1877,15 @@
             iconPlayElement.style.display = 'inline';
             toggleAnimationButton.setAttribute('aria-label', 'Animation starten');
             toggleAnimationButton.setAttribute('title', 'Animation starten');
+            toggleAnimationButton.classList.remove('mobile-state-pause');
+            toggleAnimationButton.classList.add('mobile-state-play');
           } else {
             iconPauseElement.style.display = 'inline';
             iconPlayElement.style.display = 'none';
             toggleAnimationButton.setAttribute('aria-label', 'Animation pausieren');
             toggleAnimationButton.setAttribute('title', 'Animation pausieren');
+            toggleAnimationButton.classList.remove('mobile-state-play');
+            toggleAnimationButton.classList.add('mobile-state-pause');
           }
         }
 
