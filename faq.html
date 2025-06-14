@@ -1057,6 +1057,12 @@
       align-items: center;
     }
 
+    /* Anpassung für die Dicke der Pause-Balken */
+    .faq-slideshow-toggle-animation .icon-pause {
+      display: inline-block; /* Stellt sicher, dass Transformationen korrekt angewendet werden */
+      transform: scaleX(0.6); /* Macht die Balken auf dem Desktop dünner */
+    }
+
     .faq-slideshow-toggle-animation:hover {
       background-color: #6e370e; /* Hintergrundfarbe braun bei Hover */
       color: #ffffff; /* Schriftfarbe weiß bei Hover */
