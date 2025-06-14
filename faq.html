@@ -945,6 +945,46 @@
            horizontales Scrollen ist nun manuell.
         */
       }
+
+      /* --- Mobile Click-Toggle for FAQ Slides --- */
+      .faq-slide-item {
+        cursor: pointer; /* Zeige an, dass das Element klickbar ist auf Mobilgeräten */
+      }
+
+      /* Basis-Status für Mobilgeräte: Frage sichtbar, Antwort verborgen */
+      /* Übergänge für sanftes Ein-/Ausblenden */
+      .faq-slide-item .question-text {
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.2s ease, visibility 0s linear 0s; /* Übergang für das Anzeigen */
+      }
+      .faq-slide-item .hover-answer {
+        opacity: 0;
+        visibility: hidden;
+        /* Übergang für das Anzeigen der Antwort (mit leichter Verzögerung) */
+        transition: opacity 0.3s ease 0.1s, visibility 0s linear 0.1s;
+      }
+
+      /* Status, wenn .answer-visible aktiv ist (durch Klick, Antwort sichtbar) */
+      .faq-slide-item.answer-visible .question-text {
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.2s ease, visibility 0s linear 0.2s; /* Übergang für das Verbergen */
+      }
+      .faq-slide-item.answer-visible .hover-answer {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      /* Desktop-Hover-Effekt auf Mobilgeräten neutralisieren, wenn die Antwort nicht aktiv angezeigt wird */
+      .faq-slide-item:not(.answer-visible):hover .question-text {
+        opacity: 1; /* Frage bleibt sichtbar */
+        visibility: visible;
+      }
+      .faq-slide-item:not(.answer-visible):hover .hover-answer {
+        opacity: 0; /* Antwort bleibt verborgen */
+        visibility: hidden;
+      }
     }
 
     /* FAQ Slideshow Stile */
@@ -1731,6 +1771,20 @@
       } else {
         console.warn('Button oder Antwortkasten für RSV-Frage nicht gefunden.');
       }
+
+      // FAQ Slideshow Klick-Verhalten für Mobilgeräte
+      const faqSlideItems = document.querySelectorAll('.faq-slideshow-wrapper .faq-slide-item');
+      faqSlideItems.forEach(item => {
+        item.addEventListener('click', function() {
+          // Prüfen, ob die Ansicht mobil ist (gleicher Breakpoint wie im CSS)
+          if (window.matchMedia("(max-width: 768px)").matches) {
+            this.classList.toggle('answer-visible');
+          }
+          // Auf dem Desktop hat dieser Klick keine Auswirkungen auf das Umschalten,
+          // da dies über CSS :hover gehandhabt wird.
+        });
+      });
+
 
     });
   </script>
