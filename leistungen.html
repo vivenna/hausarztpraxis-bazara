@@ -1450,6 +1450,251 @@
         /* padding-left und padding-right sind nicht mehr nötig, da .hero-section Padding hat */
       }
 
+      /* Allgemeine Anpassungen für .leistungen-section auf Mobilgeräten */
+      .leistungen-section {
+        padding: 40px 20px; /* Weniger Padding */
+      }
+      .leistungen-section .sub-heading-container {
+        /* Ggf. Anpassungen, falls der Container anders auf Mobilgeräten aussehen soll */
+      }
+      .leistungen-section .sub-heading {
+        font-size: 18px; /* Kleinere Schriftgröße */
+      }
+      .leistungen-section .main-heading {
+        font-size: 36px; /* Deutlich kleinere Schriftgröße */
+        line-height: 1.2;
+        margin-bottom: 30px; /* Weniger Abstand nach unten */
+      }
+      .leistungen-section .section-divider {
+        margin-bottom: 40px; /* Weniger Abstand nach unten für Divider in dieser Sektion */
+      }
+
+      /* Anpassungen für #akute-behandlung (Notfall-Info) */
+      #akute-behandlung .notfall-info-wrapper {
+        flex-direction: column;
+        gap: 30px;
+        align-items: center; /* Zentriert die Kinder horizontal */
+      }
+      #akute-behandlung .notfall-info-links,
+      #akute-behandlung .notfall-info-rechts {
+        flex-basis: auto;
+        width: 100%;
+      }
+      #akute-behandlung .notfall-info-rechts {
+        order: -1; /* Icon oben anzeigen */
+        margin-bottom: 20px; /* Abstand zum Text darunter */
+      }
+      #akute-behandlung .platzhalter-icon-gross {
+        width: 180px; /* Kleinere Größe für das Icon */
+        height: 180px;
+        font-size: 28px;
+        margin: 0 auto; /* Zentrieren, falls .notfall-info-rechts breiter ist */
+      }
+      #akute-behandlung .notfall-ubersicht-tabelle {
+        margin-right: 0;
+        align-self: center; /* Zentriert die Tabelle im .notfall-info-links Container */
+        width: auto; /* Passt sich dem Inhalt an */
+      }
+      #akute-behandlung .notfall-ubersicht-tabelle td {
+        padding: 6px 10px; /* Weniger Padding */
+      }
+      #akute-behandlung .notfall-ubersicht-tabelle td:nth-child(2) { /* Mittlere Spalte */
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+      #akute-behandlung .notfall-icon-svg {
+        width: 35px; /* Kleinere Icons */
+      }
+      #akute-behandlung .notfall-text-label {
+        font-size: 14px; /* Kleinere Schrift */
+      }
+      #akute-behandlung .notfall-nummer {
+        font-size: 28px; /* Kleinere Schrift */
+      }
+      #akute-behandlung .akut-sprechstd-titel {
+        font-size: 28px; /* Kleinere Schrift */
+        margin-right: 0;
+        text-align: center;
+        margin-top: 30px;
+        margin-bottom: 20px;
+      }
+      #akute-behandlung .akut-sprechstd-zeiten-container {
+        align-items: center; /* Zentriert die Zeit-Zeilen */
+      }
+      #akute-behandlung .akut-zeiten-zeile {
+        font-size: 15px; /* Kleinere Schrift */
+        width: 230px; /* Schmaler */
+        line-height: 1.8;
+        margin-bottom: 8px;
+      }
+
+      /* Anpassungen für #chronische-betreuung (DMP-Bilder) */
+      #chronische-betreuung .chronische-betreuung-bilder-container {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px; /* Weniger Abstand nach oben */
+      }
+      #chronische-betreuung .betreuung-bild-item {
+        flex-basis: 100%;
+        max-width: 300px; /* Maximale Breite für die Items */
+        margin-top: 30px; /* Abstand zwischen den Items */
+        margin-bottom: 20px;
+      }
+      #chronische-betreuung .betreuung-bild {
+        max-width: 100%;
+        height: auto; /* Automatische Höhe basierend auf Breite */
+        max-height: 220px; /* Maximale Höhe für die Bilder */
+        margin-bottom: 15px;
+      }
+      #chronische-betreuung .betreuung-bild-beschriftung {
+        font-size: 20px; /* Kleinere Schrift */
+      }
+      /* Anpassung für Plus-Kreis und Info-Rechteck auf Mobilgeräten */
+      #chronische-betreuung .plus-kreis {
+        width: 40px;
+        height: 40px;
+        font-size: 24px;
+        bottom: 10px; /* Position angepasst */
+        right: 5px;  /* Position angepasst */
+        transform: translate(0,0); /* Keine Verschiebung mehr */
+      }
+       #chronische-betreuung .plus-kreis span {
+        line-height: 40px; /* An Kreis Höhe anpassen */
+        top: -1px;
+      }
+      #chronische-betreuung .plus-kreis:hover { /* Hover-Effekt für Mobil ggf. anpassen oder entfernen */
+        transform: rotate(180deg); /* Nur Drehung */
+      }
+      /* Info-Rechteck und weißes Rechteck auf Mobilgeräten ausblenden, da Klick auf Plus direkt Modal öffnet */
+      #chronische-betreuung .info-rechteck,
+      #chronische-betreuung .neues-weisses-rechteck {
+        display: none;
+      }
+      /* Modal Anpassungen für Mobilgeräte */
+      .modal-content { /* Gilt für alle Modals */
+        width: 90%;
+        height: auto;
+        max-height: 85vh; /* Etwas mehr Höhe erlaubt */
+        flex-direction: column;
+        padding: 20px;
+      }
+      .modal-image-container {
+        flex: 0 0 auto; /* Passt sich der Bildgröße an */
+        margin-right: 0;
+        margin-bottom: 15px;
+        max-height: 35vh; /* Höhe des Bildes im Modal begrenzen */
+      }
+      .modal-text-container h4 {
+        font-size: 22px; /* Kleinere Schrift für Modal-Titel */
+        margin-bottom: 10px;
+      }
+      .modal-text-container p.poppins-light {
+        font-size: 14px; /* Kleinere Schrift für Modal-Text */
+        line-height: 1.6;
+      }
+      .modal-close-button {
+        font-size: 28px;
+        top: 10px;
+        right: 15px;
+      }
+
+      /* Anpassungen für #vorsorge-impfschutz */
+      #vorsorge-impfschutz .vorsorge-impfschutz-content-wrapper {
+        flex-direction: column;
+        gap: 30px;
+        margin-top: 30px; /* Weniger Abstand nach oben */
+        padding: 0 10px; /* Kleineres seitliches Padding */
+      }
+      #vorsorge-impfschutz .vorsorge-impfschutz-icon-container {
+        flex-basis: auto; /* Automatische Breite */
+      }
+      #vorsorge-impfschutz .vorsorge-impfschutz-icon {
+        max-width: 180px; /* Kleineres Icon */
+      }
+      #vorsorge-impfschutz .vorsorge-impfschutz-text-container {
+        flex-basis: auto; /* Automatische Breite */
+        text-align: center; /* Text zentrieren */
+      }
+      #vorsorge-impfschutz .vorsorge-impfschutz-intro {
+        font-size: 18px; /* Kleinere Schrift */
+        margin-bottom: 25px;
+      }
+      #vorsorge-impfschutz .vorsorge-impfschutz-liste {
+        margin-left: 0; /* Kein linker Einzug */
+        /* align-items: center; /* Zentriert die Listenelemente, falls gewünscht */
+      }
+      #vorsorge-impfschutz .vorsorge-impfschutz-liste li {
+        flex-direction: column; /* Nummer und Text untereinander */
+        align-items: center;    /* Zentriert Nummer und Text */
+        margin-bottom: 20px;
+      }
+      #vorsorge-impfschutz .vorsorge-impfschutz-nummer {
+        font-size: 28px; /* Kleinere Nummer */
+        margin-right: 0;
+        margin-bottom: 8px; /* Abstand zum Text darunter */
+        padding-top: 0;
+      }
+      #vorsorge-impfschutz .vorsorge-impfschutz-punkt {
+        font-size: 18px; /* Kleinere Schrift */
+        text-align: center;
+        line-height: 1.5;
+      }
+
+      /* Anpassungen für die Slideshow-Sektion (Persönliche Begleitung) */
+      .leistungen-section .slideshow-container { /* Spezifischer für Slideshow in leistungen-section */
+        margin-top: 30px;
+        padding: 0 5px; /* Sehr kleines Padding, Pfeile überlagern leicht */
+        max-width: 100%; /* Volle Breite nutzen */
+      }
+      .leistungen-section .slide {
+        flex-direction: column;
+        padding: 20px 15px; /* Weniger Padding */
+        min-height: auto; /* Höhe passt sich Inhalt an */
+        gap: 15px;
+      }
+      .leistungen-section .slide-image-container {
+        flex-basis: auto;
+        order: -1; /* Bild oben */
+        margin-bottom: 10px;
+      }
+      .leistungen-section .slide-image-container img {
+        max-height: 200px; /* Kleinere Bilder */
+      }
+      .leistungen-section .slide-text-container {
+        flex-basis: auto;
+        text-align: center;
+      }
+      .leistungen-section .slide-text-container h4 {
+        font-size: 24px; /* Kleinere Überschrift */
+        margin-bottom: 10px;
+      }
+      .leistungen-section .slide-text-container p {
+        font-size: 15px; /* Kleinerer Text */
+        line-height: 1.6;
+      }
+      .leistungen-section .slide-nav {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+        /* Positionierung der Pfeile, damit sie nicht zu weit außen sind */
+        top: 40%; /* Etwas höher, da Slides kürzer sind */
+      }
+      .leistungen-section .slide-nav.prev {
+        left: 8px;
+      }
+      .leistungen-section .slide-nav.next {
+        right: 8px;
+      }
+      .leistungen-section .slide-dots {
+        bottom: 10px; /* Abstand der Dots von unten */
+        top: auto; /* `top` zurücksetzen */
+      }
+      .leistungen-section .slide-dots .dot {
+        width: 10px;
+        height: 10px;
+        gap: 8px;
+      }
+
       /* Hintergrundbild der Hero-Section auf Mobilgeräten nach oben verschieben */
       .hero-background {
         background-position: center calc(50% - 15vh); /* Bild um 15vh nach oben verschoben (nur mobil) */
