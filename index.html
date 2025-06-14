@@ -145,6 +145,11 @@
       padding-bottom: 1px; /* Etwas Platz für die Linie unter dem Text */
     }
 
+    /* Nummerierung im Desktop-Menü standardmäßig ausblenden */
+    .main-nav .nav-links a .menu-item-number {
+      display: none;
+    }
+
     .nav-links a:hover {
       text-decoration: none; /* Entfernt die Standard-Unterstreichung */
     }
@@ -1275,6 +1280,16 @@
         font-weight: 300; /* Schriftgewicht auf Light (300) gesetzt */
         line-height: 1.3; /* Angepasste Zeilenhöhe für große Schrift */
       }
+      .main-nav .nav-links li a .menu-item-number {
+        position: relative; /* Erforderlich für z-index */
+        z-index: 10;        /* Stellt sicher, dass es über dem Link-Text liegt */
+        display: block;
+        font-size: 2rem;  /* Testweise sehr große Schriftgröße */
+        color: #6e370e;
+        margin-bottom: 2px; /* Kleiner Abstand, um Nummer über dem Text zu positionieren */
+        font-weight: 300; /* Gleiches Gewicht wie der Link */
+        line-height: 1; /* Enge Zeilenhöhe für die Nummer */
+      }
       .main-nav .nav-links li a::after { /* Hover-Linie im mobilen Menü entfernen */
         display: none;
       }
@@ -1806,10 +1821,10 @@
       </a>
     </div>
     <ul class="nav-links">
-      <li><a href="/">Home</a></li>
-      <li><a href="/leistungen">Leistungen</a></li>
-      <li><a href="/faq">FAQ</a></li>
-      <li><a href="/kontakt">Kontakt</a></li>
+      <li><a href="/"><span class="menu-item-number">01</span>Home</a></li>
+      <li><a href="/leistungen"><span class="menu-item-number">02</span>Leistungen</a></li>
+      <li><a href="/faq"><span class="menu-item-number">03</span>FAQ</a></li>
+      <li><a href="/kontakt"><span class="menu-item-number">04</span>Kontakt</a></li>
     </ul>
     <div class="hamburger-menu" role="button" aria-label="Menü umschalten" aria-expanded="false" aria-controls="nav-links-list">
       <span class="bar bar1"></span>
