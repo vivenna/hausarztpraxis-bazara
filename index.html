@@ -1223,29 +1223,32 @@
       .main-nav .nav-links {
         display: flex;
         flex-direction: column;
-        position: absolute;
-        top: 93px; /* Höhe der Navigationsleiste */
+        position: fixed; /* Geändert von absolute zu fixed */
+        top: 0; /* Geändert von 93px zu 0, um oben zu starten */
         left: 0;
-        width: 100%;
-        background-color: rgba(40, 40, 40, 0.97); /* Hintergrund für das mobile Menü */
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        z-index: 999; /* Unter der Navigationsleiste, aber über dem Seiteninhalt */
+        width: 100%; /* Nimmt die volle Breite ein (war 100%, ist ok für fixed) */
+        /* height: 100dvh; Wird im active-Status gesetzt, max-height für Animation */
+        background-color: rgb(40, 40, 40); /* Hintergrund für das mobile Menü, jetzt voll opak */
+        /* box-shadow: 0 4px 8px rgba(0,0,0,0.2); Entfernt, da Vollbild */
+        z-index: 1000; /* Auf gleicher Ebene wie main-nav, damit Hamburger (1001) darüber liegt */
 
         opacity: 0;
         max-height: 0;
-        overflow: hidden;
+        overflow-y: auto; /* Erlaube Scrollen, falls Inhalt länger als Bildschirmhöhe */
         visibility: hidden;
         padding-top: 0;
         padding-bottom: 0;
+        box-sizing: border-box; /* Wichtig für Padding und Höhe */
         transition: opacity 0.35s ease-in-out, max-height 0.35s ease-in-out, padding-top 0.35s ease-in-out, padding-bottom 0.35s ease-in-out, visibility 0s linear 0.35s;
       }
 
       .main-nav.nav-active .nav-links {
         opacity: 1;
-        max-height: 100vh; /* Ausreichend Höhe für alle Menüpunkte */
+        max-height: 100dvh; /* Volle dynamische Viewport-Höhe als Ziel für Animation */
+        height: 100dvh; /* Stellt sicher, dass es immer die volle Höhe einnimmt */
         visibility: visible;
-        padding-top: 10px;
-        padding-bottom: 20px; /* Etwas mehr Platz unten */
+        padding-top: 80px; /* Mehr Platz oben für Statusbar etc. */
+        padding-bottom: 20px;
         transition: opacity 0.35s ease-in-out, max-height 0.35s ease-in-out, padding-top 0.35s ease-in-out, padding-bottom 0.35s ease-in-out, visibility 0s linear 0s;
       }
 
