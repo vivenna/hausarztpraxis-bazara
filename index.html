@@ -2314,22 +2314,27 @@
       const hamburgerMenu = document.querySelector('.hamburger-menu');
       const navLinksList = document.getElementById('nav-links-list'); // ul.nav-links
       const body = document.body;
+      const htmlElement = document.documentElement; // HTML-Element abrufen
 
       if (hamburgerMenu && mainNav && navLinksList) {
         hamburgerMenu.addEventListener('click', () => {
           mainNav.classList.toggle('nav-active');
           const isExpanded = mainNav.classList.contains('nav-active');
           hamburgerMenu.setAttribute('aria-expanded', isExpanded);
+          // Scrollen verhindern/erlauben
           body.style.overflow = isExpanded ? 'hidden' : '';
+          htmlElement.style.overflow = isExpanded ? 'hidden' : '';
         });
 
         // Menü schließen, wenn ein Link geklickt wird (im mobilen Menü)
         navLinksList.querySelectorAll('a').forEach(link => {
           link.addEventListener('click', () => {
             if (mainNav.classList.contains('nav-active')) {
+              // Scrollen wieder erlauben
               mainNav.classList.remove('nav-active');
               hamburgerMenu.setAttribute('aria-expanded', 'false');
               body.style.overflow = '';
+              htmlElement.style.overflow = '';
             }
           });
         });
