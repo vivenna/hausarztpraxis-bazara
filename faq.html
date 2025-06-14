@@ -949,6 +949,8 @@
       /* --- Mobile Click-Toggle for FAQ Slides --- */
       .faq-slide-item {
         cursor: pointer; /* Zeige an, dass das Element klickbar ist auf Mobilgeräten */
+        flex: 0 0 140px; /* Breite der Kästen auf Mobilgeräten auf 140px gesetzt */
+        height: 260px; /* Höhe leicht angepasst, falls nötig */
         /* Die globale .faq-slide-item hat bereits background-color: #8a5a34; und transition. */
       }
 
@@ -962,8 +964,9 @@
       .faq-slide-item .hover-answer {
         opacity: 0;
         visibility: hidden;
-        /* Übergang für das Anzeigen der Antwort (mit leichter Verzögerung) */
-        transition: opacity 0.3s ease 0.1s, visibility 0s linear 0.1s;
+        font-size: 48px; /* Mobile Schriftgröße als Standard, verhindert Flash zu Desktop-Größe */
+        /* Basis-Transition ohne initialen Delay. Delay für Einblenden kommt von .answer-visible. */
+        transition: opacity 0.3s ease, visibility 0s linear; /* visibility 0s, damit transition-delay korrekt wirkt */
       }
 
       /* Status, wenn .answer-visible aktiv ist (durch Klick, Antwort sichtbar) */
@@ -978,6 +981,8 @@
       .faq-slide-item.answer-visible .hover-answer {
         opacity: 1;
         visibility: visible;
+        /* font-size: 48px; ist nun oben in der Basisregel für .hover-answer innerhalb der MQ gesetzt */
+        transition-delay: 0.1s; /* Verzögerung für opacity und visibility beim Sichtbarwerden */
       }
 
       /* Desktop-Hover-Effekt auf Mobilgeräten neutralisieren */
@@ -992,6 +997,10 @@
       .faq-slide-item:not(.answer-visible):hover .hover-answer {
         opacity: 0; /* Antwort bleibt verborgen */
         visibility: hidden;
+        /* Stelle sicher, dass der Desktop-Hover-Transition-Delay hier nicht wirkt,
+           wenn die Antwort nicht durch Klick (.answer-visible) aktiv ist.
+           Die Opacity/Visibility-Transition kommt von der Basis .faq-slide-item .hover-answer. */
+        transition-delay: 0s;
       }
     }
 
@@ -1075,7 +1084,7 @@
       align-items: center;
       font-family: 'Great Vibes', cursive;
       font-size: 60px; /* Große Schrift für das Antwortwort */
-      color: #ffffff;
+      color: #ffffff; /* Wird für Mobilgeräte in .faq-slide-item.answer-visible .hover-answer überschrieben */
       opacity: 0;
       visibility: hidden;
       transition: opacity 0.3s ease, visibility 0s linear 0.3s;
