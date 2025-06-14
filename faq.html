@@ -803,6 +803,70 @@
         font-size: 36px; /* Deutlich kleinere Schriftgröße für den Willkommenstext */
       }
 
+      /* Anpassungen für die "Leistungen"-Sektion (FAQ-Titel, Zitat, Antwort) für Mobilgeräte */
+      .leistungen-section {
+        padding-top: 80px; /* Reduzierter oberer Abstand */
+        padding-left: 20px; /* Seitenabstand wie andere Sektionen */
+        padding-right: 20px;
+        padding-bottom: 60px; /* Reduzierter unterer Abstand */
+      }
+
+      .leistungen-section .sub-heading {
+        font-size: 18px; /* Kleinere Schriftgröße, konsistent mit index.html */
+      }
+
+      .leistungen-section .main-heading {
+        font-size: 42px; /* Deutlich kleinere Schriftgröße, konsistent mit index.html */
+        margin-bottom: 40px; /* Reduzierter Abstand zum Zitat-Container */
+      }
+
+      /* Anpassungen für das Zitat auf Mobilgeräten */
+      .quote-container {
+        margin-top: 30px; /* Angepasster Abstand */
+        margin-bottom: 30px; /* Angepasster Abstand */
+      }
+
+      .quote-content {
+        font-size: 28px; /* Kleinere Schriftgröße für das Zitat */
+        padding: 0 15px; /* Symmetrisches Padding für zentrierten Text */
+        text-align: center; /* Zitat mittig zentrieren */
+        max-width: 100%; /* Erlaubt dem Zitat, sich an kleinere Bildschirme anzupassen */
+      }
+
+      .quote-content::before,
+      .quote-content::after {
+        font-size: 100px; /* Kleinere Anführungszeichen */
+        /* Positionen angepasst für kleinere Schrift und weniger Padding */
+      }
+
+      .quote-content::before {
+        top: -15px; 
+        left: -15px; /* Um 20px nach rechts verschoben, um Abschneiden zu verhindern */
+      }
+      .quote-content::after {
+        bottom: -55px; 
+        right: -15px; /* Angepasst für Symmetrie mit ::before bei zentriertem Text */
+      }
+
+      /* Anpassungen für Button und Antwortkasten */
+      .answer-button-container {
+        margin-top: 30px; /* Reduzierter Abstand */
+      }
+
+      .answer-button {
+        font-size: 16px; /* Kleinere Schrift */
+        padding: 10px 25px; /* Angepasstes Padding */
+      }
+      .answer-button .arrow {
+        margin-left: 12px; /* Etwas weniger Abstand für den Pfeil */
+      }
+
+      .answer-box {
+        font-size: 16px; /* Kleinere Schrift */
+        padding: 20px; /* Angepasstes Padding */
+        max-width: calc(100% - 40px); /* Nimmt fast die volle Breite ein, berücksichtigt Padding der Sektion */
+        /* margin-left und margin-right sind bereits auto */
+      }
 
       .neue-faq-sektion .kontakt-layout-container {
         flex-direction: column; /* Untereinander anordnen */
