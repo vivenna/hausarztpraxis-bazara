@@ -1735,11 +1735,11 @@
         /* flex-direction: row; ist Standard für display: flex */
         align-items: baseline; /* Richtet die Grundlinie der Nummer und des Titels aus */
         margin-bottom: 30px;
-        gap: 8px; /* Kleiner Abstand zwischen Nummer und dem Text-Block (Titel + Beschreibung) */
+        gap: 15px; /* Abstand zwischen Nummer und Text-Block leicht vergrößert */
         /* padding-left: 15px; Optional: Ein kleiner linker Einzug für die Items */
       }
       .sprechzeiten-section#moderne-diagnostik .diagnostik-punkt-number {
-        font-size: 28px; /* Kleinere Nummer */
+        font-size: 24px; /* Schriftgröße der Nummer an Titel angepasst (war 28px) */
         min-width: auto;
         padding-right: 0;
         margin-bottom: 0; /* Entfernt, da nicht mehr übereinander */
@@ -1757,7 +1757,7 @@
         margin-bottom: 10px;
       }
       .sprechzeiten-section#moderne-diagnostik .diagnostik-punkt-title::after {
-        left: 0; /* Unterstrich linksbündig zum Titel */
+        left: -7px; /* Unterstrich leicht nach links verschoben (war 0) */
         transform: translateX(0); /* Keine Verschiebung mehr nötig */
         width: 40px; /* Kürzerer Unterstrich */
       }
