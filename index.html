@@ -1138,7 +1138,7 @@
       top: 0;
       left: 0;
       width: 100vw;
-      height: 100vh;
+      height: 100dvh; /* Dynamische Viewport-Höhe für bessere mobile Darstellung */
       background-color: #6e370e;
       z-index: 2000; /* Höher als die Navigation */
       display: flex;
@@ -1146,6 +1146,7 @@
       align-items: center;
       opacity: 1;
       transition: transform 0.7s ease-in-out; /* Nur die Transformation wird animiert */
+      overflow: hidden; /* Verhindert internes Scrollen des Splash-Screens */
       /* Das Logo wird initial unsichtbar gemacht und blendet später ein */
     }
 
@@ -1297,7 +1298,7 @@
       /* Sicherstellen, dass das Logo im Splash-Screen auch auf Mobilgeräten zentriert bleibt
          und die show-Klasse die Opazität korrekt steuert. */
       #splash-screen .footer-logo {
-        transform: scale(0.8); /* Das gesamte Logo etwas verkleinern, falls die Schriftgrößenanpassung nicht ausreicht */
+        transform: scale(0.4); /* Logo deutlich stärker verkleinern (halb so groß wie vorherige 0.8 Skalierung) */
         /* Die Opacity-Transition und .show-Klasse bleiben wie sie sind. */
       }
 
@@ -1686,14 +1687,14 @@
 <body>
 
   <div id="splash-screen">
-  <div class="footer-logo"> <!-- Wiederverwendung der .footer-logo Struktur und Stile -->
-    <div class="logo-text-container">
-      <div class="bazara-style">BAZARA</div>
-      <div class="safia-style">safia</div>
+    <div class="footer-logo"> <!-- Wiederverwendung der .footer-logo Struktur und Stile -->
+      <div class="logo-text-container">
+        <div class="bazara-style">BAZARA</div>
+        <div class="safia-style">safia</div>
+      </div>
+      <div class="subtitle-style">Hausarztpraxis</div>
     </div>
-    <div class="subtitle-style">Hausarztpraxis</div>
   </div>
-</div>
 
   <nav class="main-nav">
     <div class="menu-logo">
