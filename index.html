@@ -1205,6 +1205,10 @@
 
     /* Responsive Anpassungen für das Menü */
     @media (max-width: 768px) {
+      body {
+        overflow-x: hidden; /* Verhindert horizontales Scrollen auf dem Handy */
+      }
+
       .main-nav .nav-links {
         display: flex;
         flex-direction: column;
@@ -1258,6 +1262,415 @@
       /* Standard Desktop Navigationslinks ausblenden, da sie durch das mobile Menü ersetzt werden */
       /* Dies wird erreicht, indem .nav-links oben für mobile Geräte neu gestylt wird. */
       /* Die Desktop-spezifischen Abstände etc. werden durch die mobilen Styles überschrieben. */
+
+      /* Hero Section Anpassungen für Mobilgeräte */
+      .hero-section h1 {
+        font-size: 56px; /* Deutlich kleinere Schriftgröße für h1 */
+        margin-bottom: 15px; /* Angepasster Abstand */
+      }
+
+      .dynamic-h1-line {
+        height: 1.2em; /* Höhe an die kleinere Schriftgröße anpassen */
+        /* Die Breite von 200% und translateX(-50%) sollte weiterhin funktionieren,
+           da die Schriftgröße des Elternelements (h1) reduziert wurde. */
+      }
+
+      .hero-section h2 {
+        font-size: 20px; /* Kleinere Schriftgröße für h2 */
+        line-height: 1.4; /* Ggf. Zeilenhöhe anpassen */
+        margin-top: 10px; /* Angepasster Abstand oben */
+        margin-bottom: 20px; /* Angepasster Abstand unten */
+      }
+
+      /* Splash Screen Anpassungen für Mobilgeräte */
+      #splash-screen .footer-logo .bazara-style {
+        font-size: 180px; /* Deutlich kleiner als Desktop (war 270px) */
+      }
+      #splash-screen .footer-logo .safia-style {
+        font-size: 190px; /* Deutlich kleiner als Desktop (war 285px) */
+      }
+      #splash-screen .footer-logo .subtitle-style {
+        font-size: 28px; /* Deutlich kleiner als Desktop (war 42px) */
+        margin-top: 15px; /* Angepasster Abstand */
+      }
+
+      /* Sicherstellen, dass das Logo im Splash-Screen auch auf Mobilgeräten zentriert bleibt
+         und die show-Klasse die Opazität korrekt steuert. */
+      #splash-screen .footer-logo {
+        transform: scale(0.8); /* Das gesamte Logo etwas verkleinern, falls die Schriftgrößenanpassung nicht ausreicht */
+        /* Die Opacity-Transition und .show-Klasse bleiben wie sie sind. */
+      }
+
+      /* Info Section Anpassungen für Mobilgeräte */
+      .info-section {
+        flex-direction: column; /* Spalten untereinander anordnen */
+        padding: 40px 20px; /* Weniger Padding auf Mobilgeräten */
+        gap: 20px; /* Reduzierter Abstand zwischen den Spalten */
+      }
+
+      .info-section .left-column {
+        flex-basis: auto; /* Breite automatisch anpassen */
+        padding-top: 0; /* Kein extra Abstand oben */
+        justify-content: flex-start; /* Inhalt linksbündig */
+        margin-bottom: 10px; /* Kleiner Abstand zur rechten Spalte */
+      }
+
+      .info-section .right-column {
+        flex-basis: auto; /* Breite automatisch anpassen */
+        padding-right: 0; /* Kein extra Abstand rechts */
+        padding-top: 0; /* Kein extra Abstand oben */
+      }
+
+      .info-section .right-column .welcome-text {
+        font-size: 36px; /* Deutlich kleinere Schriftgröße für den Willkommenstext */
+      }
+
+      /* Leistungen Section Anpassungen für Mobilgeräte */
+      .leistungen-section {
+        padding: 40px 20px; /* Weniger Padding */
+      }
+
+      .leistungen-section .sub-heading {
+        font-size: 18px; /* Kleinere Schriftgröße */
+      }
+
+      .leistungen-section .main-heading {
+        font-size: 42px; /* Deutlich kleinere Schriftgröße */
+        margin-bottom: 30px; /* Weniger Abstand nach unten */
+      }
+
+      .leistungen-items-container {
+        flex-direction: column; /* Items untereinander anordnen */
+        align-items: center; /* Items zentrieren */
+        margin-top: 40px; /* Angepasster Abstand */
+      }
+
+      .leistung-item {
+        flex-basis: 100%; /* Volle Breite für jedes Item */
+        max-width: 320px; /* Maximale Breite für die Items, um sie nicht zu breit werden zu lassen */
+        margin-bottom: 50px; /* Mehr Abstand zwischen den gestapelten Items */
+      }
+
+      .leistung-image-wrapper {
+        height: 200px; /* Höhe der Bild-Wrapper reduzieren */
+      }
+
+      .mehr-erfahren-button {
+        padding: 10px 20px; /* Button-Padding anpassen */
+        font-size: 14px; /* Kleinere Schrift für Button */
+      }
+
+      .leistung-line {
+        width: 80px; /* Kürzere Linie */
+        height: 3px; /* Etwas dünnere Linie */
+        margin-top: 30px; /* Angepasster Abstand */
+        margin-bottom: 10px; /* Angepasster Abstand */
+        /* Individuelle margin-left für Linien entfernen/zurücksetzen für mobile Ansicht */
+        margin-left: 0 !important;
+      }
+
+      /* Entferne die individuellen Verschiebungen der Linien auf Mobilgeräten */
+      .leistungen-items-container .leistung-item:nth-of-type(1) .leistung-line,
+      .leistungen-items-container .leistung-item:nth-of-type(2) .leistung-line,
+      .leistungen-items-container .leistung-item:nth-of-type(3) .leistung-line {
+        margin-left: auto !important; /* Zentriert die Linie unter dem Bild */
+        margin-right: auto !important; /* Zentriert die Linie unter dem Bild */
+      }
+
+      .leistung-label {
+        font-size: 20px; /* Kleinere Schriftgröße */
+      }
+
+      .leistungen-beschreibung,
+      .leistungen-button-container {
+        margin-left: 0; /* Linken Einzug entfernen */
+        margin-right: 0; /* Rechten Einzug entfernen (falls auto war) */
+        padding-left: 10px; /* Kleines Padding für Text und Button */
+        padding-right: 10px; /* Kleines Padding für Text und Button */
+        text-align: center; /* Text und Button zentrieren */
+        max-width: 100%; /* Volle Breite erlauben */
+      }
+
+      .leistungen-beschreibung {
+        font-size: 16px; /* Kleinere Schriftgröße für Beschreibung */
+        margin-top: 20px;
+        margin-bottom: 30px;
+      }
+
+      .leistungen-button {
+        font-size: 16px; /* Kleinere Schriftgröße für Button */
+        padding: 10px 20px; /* Padding anpassen */
+      }
+
+      /* Sprechzeiten Section Anpassungen für Mobilgeräte */
+      .sprechzeiten-section {
+        padding: 0 20px 40px 20px; /* Weniger Padding, besonders oben und unten */
+      }
+
+      .sprechzeiten-section .section-divider {
+        margin-bottom: 40px; /* Weniger Abstand nach unten */
+      }
+
+      .sprechzeiten-section .sub-heading {
+        font-size: 18px; /* Konsistente kleinere Schriftgröße */
+      }
+
+      .sprechzeiten-section .main-heading {
+        font-size: 42px; /* Deutlich kleinere Schriftgröße, konsistent mit Leistungen */
+        margin-bottom: 30px; /* Weniger Abstand zur Tabelle */
+      }
+
+      .sprechzeiten-tabelle {
+        width: 100%; /* Tabelle nimmt volle verfügbare Breite ein */
+        font-size: 14px; /* Kleinere Schriftgröße für Tabelleninhalt */
+        margin-top: 30px; /* Weniger Abstand nach oben */
+      }
+
+      .sprechzeiten-tabelle th,
+      .sprechzeiten-tabelle td {
+        padding: 12px 8px; /* Weniger Padding in den Zellen */
+      }
+
+      /* Höhe der animierten vertikalen Linien anpassen */
+      .sprechzeiten-tabelle.start-animation thead th:not(:first-child)::before {
+        height: 250px; /* Reduzierte Höhe für mobile Ansicht, ggf. anpassen */
+      }
+
+      .sprechzeiten-hinweis {
+        font-size: 13px; /* Etwas kleinere Schrift */
+        margin-top: 30px; /* Weniger Abstand nach oben */
+        margin-bottom: 20px; /* Weniger Abstand nach unten */
+      }
+
+      /* Lage & Anfahrt Section Anpassungen für Mobilgeräte */
+      .lage-anfahrt-section {
+        padding: 0 20px 40px 20px; /* Weniger Padding */
+      }
+
+      .lage-anfahrt-section .section-divider {
+        margin-bottom: 40px; /* Weniger Abstand */
+      }
+
+      .lage-anfahrt-section .sub-heading {
+        font-size: 18px; /* Konsistente kleinere Schriftgröße */
+      }
+
+      .lage-anfahrt-section .main-heading {
+        font-size: 42px; /* Deutlich kleinere Schriftgröße */
+        margin-bottom: 30px; /* Weniger Abstand */
+      }
+
+      .anfahrt-details-container {
+        width: 100%; /* Volle Breite */
+        margin-top: 40px; /* Angepasster Abstand */
+      }
+
+      .anfahrt-row {
+        flex-direction: column; /* Spalten untereinander anordnen */
+        margin-bottom: 20px; /* Abstand zwischen den Zeilen */
+      }
+
+      .anfahrt-row .left-col,
+      .anfahrt-row .right-col {
+        flex-basis: auto; /* Automatische Breite */
+        text-align: left; /* Text linksbündig */
+        padding-right: 0; /* Kein rechter Abstand mehr nötig */
+      }
+
+      .anfahrt-row.adresse-row .left-col {
+        font-size: 36px; /* Kleinere Schriftgröße */
+        margin-bottom: 5px;
+      }
+      .anfahrt-row.adresse-row .right-col {
+        font-size: 18px; /* Kleinere Schriftgröße */
+        padding-top: 0; /* Kein oberer Abstand */
+      }
+
+      .anfahrt-row.gap-row {
+        margin-bottom: 20px; /* Reduzierter Abstand */
+      }
+
+      .anfahrt-row:not(.adresse-row) .left-col,
+      .anfahrt-row:not(.adresse-row) .right-col {
+        font-size: 16px; /* Kleinere Schriftgröße */
+        padding-top: 5px;
+        padding-bottom: 5px;
+      }
+      .anfahrt-row:not(.adresse-row) .left-col {
+        font-weight: 500; /* Etwas fetter für die Labels */
+        margin-bottom: 3px;
+      }
+
+      /* Werte Section Anpassungen für Mobilgeräte */
+      .werte-section {
+        padding: 0 20px 40px 20px; /* Weniger Padding */
+      }
+
+      .werte-section .section-divider {
+        margin-bottom: 40px; /* Weniger Abstand */
+      }
+
+      .werte-content-layout {
+        flex-direction: column; /* Titel und Liste untereinander */
+        gap: 30px; /* Reduzierter Abstand zwischen Titelblock und Liste */
+        margin-top: 20px; /* Weniger Abstand nach oben */
+      }
+
+      .werte-sticky-titles {
+        position: static; /* Sticky-Verhalten aufheben */
+        height: auto; /* Automatische Höhe */
+        padding-left: 0; /* Keinen linken Einzug für die Titel */
+        text-align: center; /* Titel zentrieren */
+        margin-bottom: 20px; /* Abstand zur Werteliste */
+      }
+
+      .werte-section .sub-heading-container {
+        justify-content: center; /* Sub-Heading zentrieren */
+        padding-left: 0; /* Keinen linken Einzug */
+      }
+
+      .werte-section .main-heading {
+        font-size: 36px; /* Kleinere Schriftgröße für Hauptüberschrift */
+        text-align: center; /* Hauptüberschrift zentrieren */
+      }
+
+      .werte-list-scrollable {
+        padding-right: 0; /* Keinen rechten Einzug */
+        padding-left: 0; /* Keinen linken Einzug */
+      }
+
+      .wert-item {
+        margin-bottom: 40px; /* Weniger Abstand zwischen den Items */
+        align-items: flex-start; /* Beibehalten, aber Nummer und Text könnten enger zusammenrücken */
+      }
+
+      .wert-item .wert-number {
+        font-size: 32px; /* Kleinere Nummer */
+        min-width: 40px; /* Weniger Mindestbreite */
+        padding-left: 0; /* Kein linker Einzug für Nummer */
+        padding-right: 10px; /* Weniger Abstand zur Trennlinie */
+      }
+
+      .wert-item .wert-separator {
+        margin-right: 15px; /* Weniger Abstand zum Text */
+        min-height: 40px; /* Kleinere Mindesthöhe */
+      }
+
+      .wert-item .wert-title {
+        font-size: 28px; /* Kleinere Schriftgröße für den Titel des Werts */
+        margin-bottom: 10px; /* Weniger Abstand zur Beschreibung */
+      }
+
+      .wert-item .wert-description {
+        font-size: 15px; /* Etwas kleinere Schrift für Beschreibung */
+        max-width: 100%; /* Volle Breite erlauben */
+      }
+
+      /* Footer Anpassungen für Mobilgeräte */
+      .main-footer {
+        height: auto; /* Höhe automatisch anpassen */
+        padding: 40px 20px; /* Padding für Mobilgeräte */
+        flex-direction: column; /* Elemente untereinander anordnen */
+        text-align: center; /* Standard-Textausrichtung für den Footer-Inhalt */
+      }
+
+      .footer-top-left-content {
+        position: static; /* Positionierung aufheben */
+        text-align: center; /* Inhalt zentrieren */
+        margin-bottom: 40px; /* Abstand zum nächsten Element */
+      }
+
+      .footer-new-title {
+        font-size: 48px; /* Deutlich kleinere Schriftgröße */
+        line-height: 1.3;
+        margin-bottom: 30px; /* Weniger Abstand zum Button */
+        /* Animation bleibt, aber Startposition und Sichtbarkeit werden beibehalten */
+        transform: translateY(50px); /* Kleinere Startverschiebung */
+      }
+
+      .footer-new-button {
+        font-size: 18px; /* Kleinere Schriftgröße */
+        padding: 10px 40px; /* Angepasstes Padding */
+      }
+      .footer-new-button:hover {
+        padding: 9px 39px; /* Hover-Padding anpassen */
+      }
+
+      .footer-logo-wrapper {
+        opacity: 0.1; /* Logo noch transparenter oder ggf. ausblenden (display: none;) */
+        margin-bottom: 30px; /* Abstand zum nächsten Element */
+        order: 2; /* Reihenfolge ändern, falls gewünscht, z.B. nach dem Text */
+      }
+
+      .footer-logo .bazara-style {
+        font-size: 120px; /* Deutlich kleiner */
+      }
+      .footer-logo .safia-style {
+        font-size: 125px; /* Deutlich kleiner */
+      }
+      .footer-logo .subtitle-style {
+        font-size: 20px; /* Deutlich kleiner */
+        margin-top: 10px;
+      }
+
+      .footer-bottom-wrapper {
+        position: static; /* Positionierung aufheben */
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Alle unteren Elemente zentrieren */
+        width: 100%;
+      }
+
+      .footer-bottom-left-text {
+        position: static;
+        font-size: 20px; /* Kleinere Schriftgröße */
+        margin-bottom: 30px; /* Abstand zum nächsten Block */
+        text-align: center;
+      }
+
+      .footer-contact-hours-container {
+        position: static;
+        flex-direction: column; /* Kontakt und Öffnungszeiten untereinander */
+        align-items: center; /* Zentriert die Spalten */
+        width: 100%;
+        font-size: 14px; /* Etwas größere Basisschrift für Lesbarkeit */
+        margin-bottom: 30px; /* Abstand zum nächsten Block */
+      }
+
+      .footer-contact-column,
+      .footer-hours-column {
+        flex-basis: auto; /* Automatische Breite */
+        padding-left: 0; /* Linken Einzug entfernen */
+        margin-right: 0; /* Rechten Abstand entfernen */
+        text-align: center; /* Text in den Spalten zentrieren */
+        margin-bottom: 20px; /* Abstand zwischen Kontakt und Öffnungszeiten */
+      }
+      .footer-contact-column:last-child,
+      .footer-hours-column:last-child {
+        margin-bottom: 0;
+      }
+
+      .footer-hours-details {
+        flex-direction: column; /* Tage und Zeiten untereinander */
+        align-items: center;
+      }
+      .footer-hours-days,
+      .footer-hours-times {
+        text-align: center; /* Zentriert Tage und Zeiten */
+        padding-right: 0; /* Rechten Einzug entfernen */
+        margin-right: 0; /* Rechten Abstand entfernen */
+      }
+      .footer-hours-days { margin-bottom: 5px; }
+
+      .footer-bottom-right-links {
+        position: static;
+        text-align: center; /* Links zentrieren */
+        margin-top: 20px; /* Abstand nach oben, falls es das letzte Element ist */
+      }
+      .footer-bottom-right-links a {
+        font-size: 14px; /* Etwas größere Schrift */
+        margin-bottom: 10px; /* Mehr Abstand zwischen den Links */
+      }
     }
 
     /* Anpassung für Navigationslink-Farbe basierend auf .main-nav.nav-text-dark */
