@@ -549,6 +549,15 @@
       position: relative; /* Für das thead::after Pseudo-Element */
     }
 
+    .sprechzeiten-tabelle thead {
+      position: relative; /* Notwendig für das ::after Pseudo-Element des thead */
+    }
+
+    /* Die Tabellenzeile im thead relativ positionieren, damit ::after daran ausgerichtet werden kann */
+    .sprechzeiten-tabelle thead tr {
+      position: relative;
+    }
+
     .sprechzeiten-tabelle th,
     .sprechzeiten-tabelle td {
       padding: 18px 15px; /* Innenabstand (Zeilenhöhe) erhöht */
@@ -566,20 +575,19 @@
       text-align: left;
     }
 
-    /* Horizontale Linie unter jeder Kopfzelle (th) im thead.
-       Da die th-Elemente nebeneinander liegen, erscheint dies als eine durchgehende Linie. */
-    .sprechzeiten-tabelle thead th::after {
+    /* Horizontale Linie unter der Kopfzeile (tr im thead), animiert als eine Linie */
+    .sprechzeiten-tabelle thead tr::after {
       content: '';
       position: absolute;
-      bottom: 0; /* Positioniert die Linie am unteren Rand der th-Zelle */
+      bottom: 320px; /* Positioniert die Linie am unteren Rand der tr */
       left: 0;
       width: 100%;
-      height: 0.5px;
+      height: 0.5px; /* Höhe auf 1px für bessere Sichtbarkeit/Robustheit */
       background-color: #6e370e;
       clip-path: inset(0 100% 0 0); /* Initial von rechts komplett verdeckt */
-      transition: clip-path 0.5s 0.3s ease-out; /* Verzögerung, damit sie nach den vertikalen Spaltenlinien erscheint */
+      transition: clip-path 0.5s 0.3s ease-out; /* Verzögerung, um nach den vertikalen Linien zu animieren */
     }
-    .sprechzeiten-tabelle.start-animation thead th::after {
+    .sprechzeiten-tabelle.start-animation thead tr::after {
       clip-path: inset(0 0 0 0); /* Macht die Linie sichtbar (von links nach rechts) */
     }
 
