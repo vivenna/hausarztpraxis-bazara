@@ -1244,6 +1244,7 @@
         padding-top: 0;
         padding-bottom: 0;
         box-sizing: border-box; /* Wichtig für Padding und Höhe */
+        /* Übergang für justify-content ist nicht direkt animierbar, aber die anderen Eigenschaften schon */
         transition: opacity 0.35s ease-in-out, max-height 0.35s ease-in-out, padding-top 0.35s ease-in-out, padding-bottom 0.35s ease-in-out, visibility 0s linear 0.35s;
       }
 
@@ -1252,23 +1253,27 @@
         max-height: 100dvh; /* Volle dynamische Viewport-Höhe als Ziel für Animation */
         height: 100dvh; /* Stellt sicher, dass es immer die volle Höhe einnimmt */
         visibility: visible;
-        padding-top: 80px; /* Mehr Platz oben für Statusbar etc. */
-        padding-bottom: 20px;
+        padding-top: 60px; /* Oberen Abstand etwas reduziert, da die Schrift größer wird */
+        padding-bottom: 60px; /* Mehr Abstand unten für die größeren Links und den gewünschten Freiraum */
+        justify-content: flex-end; /* Schiebt die Menüpunkte nach unten */
         transition: opacity 0.35s ease-in-out, max-height 0.35s ease-in-out, padding-top 0.35s ease-in-out, padding-bottom 0.35s ease-in-out, visibility 0s linear 0s;
       }
 
       .main-nav .nav-links li {
         margin: 0;
         width: 100%;
-        text-align: center;
+        text-align: left; /* Linksbündige Ausrichtung für den Text in li */
       }
       .main-nav .nav-links li a {
-        padding: 18px 20px; /* Größere Klickflächen */
+        padding: 10px 30px; /* Vertikales Padding reduziert, horizontales Padding für linken Einzug */
+        /* padding-bottom: 15px; /* Erhöht den Abstand unter jedem Link-Text, falls gewünscht */
         display: block;
         width: 100%;
         box-sizing: border-box;
         color: #0c0c0c !important; /* Textfarbe im mobilen Menü auf Dunkel geändert */
-        font-size: 18px;
+        font-size: 3.5rem; /* Schriftgröße weiter erhöht */
+        font-weight: 300; /* Schriftgewicht auf Light (300) gesetzt */
+        line-height: 1.3; /* Angepasste Zeilenhöhe für große Schrift */
       }
       .main-nav .nav-links li a::after { /* Hover-Linie im mobilen Menü entfernen */
         display: none;
