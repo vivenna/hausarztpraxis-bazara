@@ -1961,8 +1961,10 @@
       <div class="werte-list-scrollable">
         <script>
           // JavaScript, um 10 Wert-Items zu generieren
+          const isMobile = window.innerWidth <= 768;
+          const numberOfWerte = isMobile ? 5 : 10;
           const werteContainer = document.currentScript.parentElement; // Nimmt das Elternelement des Skript-Tags
-          for (let i = 1; i <= 10; i++) {
+          for (let i = 1; i <= numberOfWerte; i++) {
             let title = "Vertrauen";
             let description = "Wir schaffen eine Atmosphäre, in der sich Patientinnen und Patienten sicher und ernst genommen fühlen.";
 
