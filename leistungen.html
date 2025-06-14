@@ -204,6 +204,15 @@
       margin-bottom: 20px;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Textschatten für bessere Lesbarkeit */
       line-height: 1.2; /* Für bessere Lesbarkeit bei mehrzeiligem Text */
+      /* Neue Animation: Initialzustand */
+      opacity: 0;
+      transform: translateY(50px); /* Startet 50px weiter unten */
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      transition-delay: 0.4s; /* Etwas längere Verzögerung für einen sanfteren Start */
+    }
+    .hero-section h1.animate-hero-title {
+      opacity: 1;
+      transform: translateY(0); /* Endposition */
     }
     .hero-section h2 {
       font-family: 'Poppins', sans-serif;
@@ -2003,6 +2012,7 @@
       const mainNav = document.querySelector('.main-nav');
       const navLinksUl = document.querySelector('.nav-links'); // Selektiert das <ul> Element
       const heroBackground = document.querySelector('.hero-background');
+      const heroTitle = document.querySelector('.hero-section h1'); // Bleibt für die neue Animation
       const welcomeText = document.querySelector('.info-section .right-column .welcome-text');
       // Alle Sektionen auswählen, bei denen der Farbwechsel stattfinden soll
       const footerNewTitle = document.querySelector('.footer-new-title'); // Selektor für Footer-Titel hinzugefügt
@@ -2065,6 +2075,13 @@
         }
       }
 
+      // Funktion, um die Animation für den Hero-Titel auszulösen
+      function triggerHeroTitleAnimation() { // Umbenannt für Klarheit, da es nicht nur "init" ist
+        if (heroTitle && !heroTitle.classList.contains('animate-hero-title')) {
+          heroTitle.classList.add('animate-hero-title');
+        }
+      }
+
 
       function checkMenuPosition() {
         let shouldBeDark = false;
@@ -2095,8 +2112,8 @@
 
       window.addEventListener('scroll', checkMenuPosition);
       window.addEventListener('resize', checkMenuPosition); // Auch bei Größenänderung prüfen
+      triggerHeroTitleAnimation(); // Hero-Titel Animation beim Laden auslösen
       checkMenuPosition(); // Initiale Prüfung beim Laden der Seite
-      handleHeroZoom(); // Initialen Zoom-Status setzen
 
       // Modal-Logik
       const modalOverlay = document.getElementById('infoModalOverlay');
