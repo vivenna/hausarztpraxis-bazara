@@ -742,6 +742,45 @@
         display: block; /* Hamburger-Icon auf Mobilgeräten anzeigen */
       }
 
+      /* Hero Section Anpassungen für Mobilgeräte (kopiert von index.html) */
+      .hero-section {
+        align-items: flex-start; /* Inhalt linksbündig ausrichten */
+        justify-content: flex-start;
+        padding-top: 220px; /* Abstand nach oben deutlich vergrößert */
+        padding-left: 20px;   /* Seitlicher Abstand für den Inhalt */
+        margin-bottom: -15vh;
+        padding-right: 0;  /* Rechter Rand für h1 entfernt (übernimmt jetzt die volle Breite) */
+        height: 85vh; /* Höhe reduzieren, um die Lücke durch Bildverschiebung zu schließen */
+        text-align: left;     /* Standard-Textausrichtung für Kinder (h1, h2) */
+      }
+
+      /* Hero Section h1 Anpassungen für Mobilgeräte (kopiert von index.html) */
+      .hero-section h1 {
+        font-size: 39px; /* Schriftgröße für h1 reduziert */
+        margin-bottom: 15px; /* Angepasster Abstand */
+        /* text-align: left; wird von .hero-section geerbt */
+      }
+
+      /* Hero Section h2 Anpassungen für Mobilgeräte (kopiert von index.html) */
+      .hero-section h2 {
+        font-size: 20px; /* Kleinere Schriftgröße für h2 */
+        line-height: 1.4; /* Ggf. Zeilenhöhe anpassen */
+        margin-top: 10px; /* Angepasster Abstand oben */
+        margin-bottom: 20px; /* Angepasster Abstand unten */
+        padding-right: 20px; /* Rechten Innenabstand für h2 auf Mobilgeräten wiederherstellen */
+        /* text-align: left; wird von .hero-section geerbt */
+      }
+
+      /* Hintergrundbild der Hero-Section auf Mobilgeräten nach oben verschieben (kopiert von index.html) */
+      .hero-background {
+        background-position: center calc(50% - 15vh); /* Bild um 15vh nach oben verschoben (nur mobil) */
+        min-height: 100%; /* Stellt sicher, dass min-height sich an die 85vh der .hero-section anpasst */
+                          /* Überschreibt die globale min-height: 100vh; für Mobilgeräte */
+      }
+      /* Ende Hero Section Anpassungen für Mobilgeräte */
+
+
+
       .neue-faq-sektion .kontakt-layout-container {
         flex-direction: column; /* Untereinander anordnen */
         align-items: center; /* Zentriert die Blöcke, wenn sie untereinander sind */
