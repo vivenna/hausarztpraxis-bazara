@@ -2900,7 +2900,8 @@
           if (isMobile) {
             bildItem.classList.toggle('is-flipped');
             const cardInner = bildItem.querySelector('.card-inner');
-            const cardBackInfo = cardInner ? cardInner.querySelector('.card-back-info') : null;
+            const cardBack = cardInner ? cardInner.querySelector('.card-back') : null;
+            const cardBackInfo = cardBack ? cardBack.querySelector('.card-back-info') : null;
 
             if (cardBackInfo) {
               if (bildItem.classList.contains('is-flipped')) {
@@ -2908,6 +2909,13 @@
                 if (!cardBackInfo.textContent.trim()) {
                   const infoText = bildItem.dataset.infoText;
                   cardBackInfo.textContent = infoText || "Keine weiteren Informationen verfügbar.";
+                }
+                // Event Listener für Klick auf Rückseite hinzufügen, um zurückzudrehen
+                if (cardBack && !cardBack.dataset.clickListenerAdded) {
+                  cardBack.addEventListener('click', function() {
+                    bildItem.classList.remove('is-flipped');
+                  });
+                  cardBack.dataset.clickListenerAdded = 'true'; // Markieren, dass Listener hinzugefügt wurde
                 }
               }
             }
