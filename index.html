@@ -1477,6 +1477,12 @@
         padding: 12px 8px; /* Weniger Padding in den Zellen */
       }
 
+      /* Unterstrich bei spezifischen Tabellenüberschriften auf Mobilgeräten entfernen */
+      #akute-sprechstunde-text::after,
+      #regulaere-sprechstunde-text::after {
+        display: none;
+      }
+
       /* Höhe der animierten vertikalen Linien anpassen */
       .sprechzeiten-tabelle.start-animation thead th:not(:first-child)::before {
         height: 250px; /* Reduzierte Höhe für mobile Ansicht, ggf. anpassen */
@@ -1848,8 +1854,8 @@
       <thead>
         <tr> <!-- Zeile A -->
           <th></th> <!-- A1 - Leer für die Ecke -->
-          <th><span class="underline-text">akute Sprechstunde</span></th> <!-- A2 -->
-          <th><span class="underline-text">reguläre Sprechstunde</span></th> <!-- A3 -->
+          <th><span class="underline-text" id="akute-sprechstunde-text">akute Sprechstunde</span></th> <!-- A2 -->
+          <th><span class="underline-text" id="regulaere-sprechstunde-text">reguläre Sprechstunde</span></th> <!-- A3 -->
         </tr>
       </thead>
       <tbody>
