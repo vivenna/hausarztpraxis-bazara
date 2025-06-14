@@ -1734,16 +1734,20 @@
       }
 
       .footer-hours-details {
-        flex-direction: column; /* Tage und Zeiten untereinander */
-        align-items: flex-start; /* Tage und Zeiten Blöcke linksbündig */
+        display: flex; /* Sicherstellen, dass es ein Flex-Container ist */
+        flex-direction: row; /* Tage und Zeiten nebeneinander */
+        justify-content: space-between; /* Verteilt den Platz zwischen den Elementen */
+        width: 100%; /* Nimmt die volle Breite des Elternelements ein */
       }
       .footer-hours-days,
       .footer-hours-times {
+        flex-basis: auto; /* Lässt die Breite sich an den Inhalt anpassen, kann bei Bedarf angepasst werden */
         text-align: left; /* Tage und Zeiten linksbündig */
         padding-right: 0; /* Rechten Einzug entfernen */
         margin-right: 0; /* Rechten Abstand entfernen */
       }
-      .footer-hours-days { margin-bottom: 5px; }
+      .footer-hours-days { margin-bottom: 0; } /* Entfernt den unteren Abstand, da sie jetzt nebeneinander sind */
+      .footer-hours-times { text-align: right; } /* Zeiten rechtsbündig innerhalb ihres Containers */
 
       .footer-bottom-right-links {
         position: static;
