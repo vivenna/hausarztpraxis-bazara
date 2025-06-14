@@ -1406,6 +1406,9 @@
         font-size: 14px; /* Kleinere Schrift für Button */
         opacity: 1; /* Button immer sichtbar machen */
         pointer-events: auto; /* Button immer klickbar machen */
+        bottom: -10px; /* Weiter nach unten verschieben (war 3px geerbt) */
+        right: -10px;   /* Weiter nach links verschieben */
+        left: auto;  /* `right` zurücksetzen, da `left` verwendet wird */
       }
 
       .leistung-line {
