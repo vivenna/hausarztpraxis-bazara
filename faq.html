@@ -650,7 +650,7 @@
       position: relative; /* Erforderlich für die left/transform Zentrierung */
       left: 50%;
       transform: translateX(-50%);
-      overflow: hidden; 
+      overflow-x: hidden; /* Nur horizontales Überlaufen für die Slideshow verbergen */
       margin-top: 80px; /* Abstand zum Titel vergrößert */
       padding: 50px 0px; /* Etwas Platz oben und unten */
       background-color: #ffffff; 
@@ -671,13 +671,13 @@
     .faq-slideshow-container::before {
       left: 0;
       /* Neuer Farbverlauf: außen sanft, dann schneller clean */
-      background: linear-gradient(to right, #ffffff 0%, #ffffff 35%, rgba(255,255,255,0.9) 50%, rgba(255,255,255,0.7) 65%, rgba(255,255,255,0.4) 80%, rgba(255,255,255,0) 100%);
+      background: linear-gradient(to right, #ffffff 25%, rgba(255,255,255,0.95) 35%, rgba(255,255,255,0.90) 45%, rgba(255,255,255,0.80) 55%, rgba(255,255,255,0.65) 65%, rgba(255,255,255,0.45) 75%, rgba(255,255,255,0.25) 85%, rgba(255,255,255,0.05) 95%, rgba(255,255,255,0) 100%);
     }
 
     .faq-slideshow-container::after {
       right: 0;
       /* Neuer Farbverlauf: außen sanft, dann schneller clean */
-      background: linear-gradient(to left, #ffffff 0%, #ffffff 35%, rgba(255,255,255,0.9) 50%, rgba(255,255,255,0.7) 65%, rgba(255,255,255,0.4) 80%, rgba(255,255,255,0) 100%);
+      background: linear-gradient(to left, #ffffff 25%, rgba(255,255,255,0.95) 35%, rgba(255,255,255,0.90) 45%, rgba(255,255,255,0.80) 55%, rgba(255,255,255,0.65) 65%, rgba(255,255,255,0.45) 75%, rgba(255,255,255,0.25) 85%, rgba(255,255,255,0.05) 95%, rgba(255,255,255,0) 100%);
     }
 
     .faq-slideshow-wrapper {
