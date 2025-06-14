@@ -1571,6 +1571,66 @@
       #chronische-betreuung .plus-kreis:hover { /* Hover-Effekt für Mobil ggf. anpassen oder entfernen */
         transform: rotate(180deg); /* Nur Drehung */
       }
+      /* Beginn: Neue Stile für Flip-Card auf Mobilgeräten */
+      #chronische-betreuung .betreuung-bild-item {
+        perspective: 1000px;
+      }
+      #chronische-betreuung .card-inner {
+        position: relative;
+        width: 100%;
+        /* height: 100%; Entfernt -> Höhe wird von .card-front bestimmt */
+        transition: transform 0.6s;
+        transform-style: preserve-3d;
+      }
+      #chronische-betreuung .betreuung-bild-item.is-flipped .card-inner {
+        transform: rotateY(180deg);
+      }
+      #chronische-betreuung .card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        top: 0;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      #chronische-betreuung .card-front {
+        /* Vorderseite bestimmt die Höhe des .card-inner. */
+        /* Sie ist NICHT absolut positioniert, damit sie den Fluss und die Höhe beeinflusst. */
+        width: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* Die bestehenden Inhalte (.bild-mit-overlay-container, .betreuung-bild-beschriftung)
+           behalten ihr ursprüngliches mobiles Styling und Layout bei.
+           Das .betreuung-bild-item (Elternteil von .card-inner) hat max-width: 300px.
+           .card-front füllt diese Breite. Die Kindelemente von .card-front
+           werden durch align-items: center horizontal zentriert. */
+      }
+      #chronische-betreuung .card-back {
+        /* .card-back ist absolut positioniert und nimmt die Höhe von .card-inner an. */
+        background-color: white;
+        color: #333; /* Dunklerer Text für bessere Lesbarkeit auf weißem Grund */
+        transform: rotateY(180deg);
+        padding: 20px;
+        height: 100%; /* Nimmt die Höhe des .card-inner (bestimmt durch .card-front) */
+        box-sizing: border-box;
+        justify-content: center; /* Zentriert den Text vertikal */
+        overflow-y: auto; /* Falls Text länger ist */
+      }
+      #chronische-betreuung .card-back-info {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 300; /* Light */
+        font-size: 14px;
+        line-height: 1.6;
+        text-align: center;
+      }
+      /* Ende: Neue Stile für Flip-Card auf Mobilgeräten */
       /* Info-Rechteck und weißes Rechteck auf Mobilgeräten ausblenden, da Klick auf Plus direkt Modal öffnet */
       #chronische-betreuung .info-rechteck,
       #chronische-betreuung .neues-weisses-rechteck {
@@ -2112,38 +2172,62 @@
       CHRONISCHE <span class="highlight">BETREUUNG</span>
     </h2>
     <div class="chronische-betreuung-bilder-container">
+      <!-- Item 1 -->
       <div class="betreuung-bild-item" data-info-text="Das strukturierte DMP für Koronare Herzkrankheit (KHK) unterstützt Patientinnen und Patienten dabei, Risikofaktoren zu erkennen, Herzbeschwerden zu beobachten und einem Herzinfarkt gezielt vorzubeugen – durch regelmäßige Betreuung und klare Therapieziele.">
-        <div class="bild-mit-overlay-container">
-          <img src="/assets/KHK.png" alt="DMP für KHK" class="betreuung-bild">
-          <div class="neues-weisses-rechteck"></div>
-          <div class="info-rechteck">Mehr erfahren</div>
-          <div class="plus-kreis"><span>+</span></div>
+        <div class="card-inner">
+          <div class="card-front">
+            <div class="bild-mit-overlay-container">
+              <img src="/assets/KHK.png" alt="DMP für KHK" class="betreuung-bild">
+              <div class="neues-weisses-rechteck"></div>
+              <div class="info-rechteck">Mehr erfahren</div>
+              <div class="plus-kreis"><span>+</span></div>
+            </div>
+            <p class="betreuung-bild-beschriftung">
+              DMP für <span class="highlight-krankheit">KHK</span>
+            </p>
+          </div>
+          <div class="card-back">
+            <p class="card-back-info"></p>
+          </div>
         </div>
-        <p class="betreuung-bild-beschriftung">
-          DMP für <span class="highlight-krankheit">KHK</span>
-        </p>
       </div>
+      <!-- Item 2 -->
       <div class="betreuung-bild-item" data-info-text="Das strukturierte DMP für Asthma bronchiale unterstützt Patientinnen und Patienten dabei, ihre Atemwege besser zu verstehen, Auslöser gezielt zu vermeiden und Atemnot frühzeitig zu erkennen – durch regelmäßige Kontrollen, individuelle Beratung und festgelegte Behandlungsschritte.">
-        <div class="bild-mit-overlay-container">
-          <img src="/assets/asthma.png" alt="DMP für Asthma" class="betreuung-bild">
-          <div class="neues-weisses-rechteck"></div>
-          <div class="info-rechteck">Mehr erfahren</div>
-          <div class="plus-kreis"><span>+</span></div>
+        <div class="card-inner">
+          <div class="card-front">
+            <div class="bild-mit-overlay-container">
+              <img src="/assets/asthma.png" alt="DMP für Asthma" class="betreuung-bild">
+              <div class="neues-weisses-rechteck"></div>
+              <div class="info-rechteck">Mehr erfahren</div>
+              <div class="plus-kreis"><span>+</span></div>
+            </div>
+            <p class="betreuung-bild-beschriftung">
+              DMP für <span class="highlight-krankheit">Asthma</span>
+            </p>
+          </div>
+          <div class="card-back">
+            <p class="card-back-info"></p>
+          </div>
         </div>
-        <p class="betreuung-bild-beschriftung">
-          DMP für <span class="highlight-krankheit">Asthma</span>
-        </p>
       </div>
+      <!-- Item 3 -->
       <div class="betreuung-bild-item" data-info-text="Das Behandlungsprogramm für Typ-2-Diabetes unterstützt dabei, den Blutzuckerspiegel langfristig stabil zu halten, Folgeerkrankungen zu vermeiden und die Therapie individuell abzustimmen – durch kontinuierliche Untersuchungen, verständliche Information und persönliche Betreuung.">
-        <div class="bild-mit-overlay-container">
-          <img src="/assets/diabetes dmp.png" alt="DMP für Diabetes" class="betreuung-bild">
-          <div class="neues-weisses-rechteck"></div>
-          <div class="info-rechteck">Mehr erfahren</div>
-          <div class="plus-kreis"><span>+</span></div>
+        <div class="card-inner">
+          <div class="card-front">
+            <div class="bild-mit-overlay-container">
+              <img src="/assets/diabetes dmp.png" alt="DMP für Diabetes" class="betreuung-bild">
+              <div class="neues-weisses-rechteck"></div>
+              <div class="info-rechteck">Mehr erfahren</div>
+              <div class="plus-kreis"><span>+</span></div>
+            </div>
+            <p class="betreuung-bild-beschriftung">
+              DMP für <span class="highlight-krankheit">Diabetes</span>
+            </p>
+          </div>
+          <div class="card-back">
+            <p class="card-back-info"></p>
+          </div>
         </div>
-        <p class="betreuung-bild-beschriftung">
-          DMP für <span class="highlight-krankheit">Diabetes</span>
-        </p>
       </div>
     </div>
   </div>
@@ -2805,10 +2889,29 @@
         plusKreis.addEventListener('click', function(event) {
           event.stopPropagation(); 
 
+          const isMobile = window.matchMedia("(max-width: 768px)").matches;
           const bildItem = this.closest('.betreuung-bild-item');
           if (!bildItem) return;
 
-          const imageElement = bildItem.querySelector('.betreuung-bild');
+          if (isMobile) {
+            bildItem.classList.toggle('is-flipped');
+            const cardInner = bildItem.querySelector('.card-inner');
+            const cardBackInfo = cardInner ? cardInner.querySelector('.card-back-info') : null;
+
+            if (cardBackInfo) {
+              if (bildItem.classList.contains('is-flipped')) {
+                // Nur befüllen, wenn noch nicht befüllt oder Inhalt aktualisiert werden soll
+                if (!cardBackInfo.textContent.trim()) {
+                  const infoText = bildItem.dataset.infoText;
+                  cardBackInfo.textContent = infoText || "Keine weiteren Informationen verfügbar.";
+                }
+              }
+            }
+            return; // Verhindert das Öffnen des Modals auf Mobilgeräten
+          }
+
+          // Bestehende Modal-Logik für Desktop
+          const imageElement = bildItem.querySelector('.betreuung-bild'); // Suche im Kontext von bildItem
           const titleElement = bildItem.querySelector('.betreuung-bild-beschriftung');
           
           if (!imageElement || !titleElement) return;
