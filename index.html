@@ -1268,17 +1268,28 @@
       /* Standard Desktop Navigationslinks ausblenden, da sie durch das mobile Menü ersetzt werden */
       /* Dies wird erreicht, indem .nav-links oben für mobile Geräte neu gestylt wird. */
       /* Die Desktop-spezifischen Abstände etc. werden durch die mobilen Styles überschrieben. */
+      /* Hero Section Anpassungen für Mobilgeräte */
+      .hero-section {
+        align-items: flex-start; /* Inhalt linksbündig ausrichten */
+        justify-content: flex-start;
+        padding-top: 220px; /* Abstand nach oben deutlich vergrößert */
+        padding-left: 20px;   /* Seitlicher Abstand für den Inhalt */
+        padding-right: 0;  /* Rechter Rand für h1 entfernt (übernimmt jetzt die volle Breite) */
+        text-align: left;     /* Standard-Textausrichtung für Kinder (h1, h2) */
+      }
 
       /* Hero Section Anpassungen für Mobilgeräte */
       .hero-section h1 {
-        font-size: 40px; /* Schriftgröße für h1 noch weiter reduziert */
+        font-size: 39px; /* Schriftgröße für h1 um 1px reduziert */
         margin-bottom: 15px; /* Angepasster Abstand */
+        /* text-align: left; wird von .hero-section geerbt */
       }
 
       .dynamic-h1-line {
-        height: 1.2em; /* Höhe an die kleinere Schriftgröße anpassen */
-        /* Die Breite von 200% und translateX(-50%) sollte weiterhin funktionieren,
-           da die Schriftgröße des Elternelements (h1) reduziert wurde. */
+        height: 1.2em; 
+        width: auto; /* Passt sich dem Inhalt an */
+        left: 0;     /* Linksbündig zum Elternelement (h1) */
+        transform: none; /* Keine horizontale Zentrierung mehr */
       }
 
       .hero-section h2 {
@@ -1286,8 +1297,25 @@
         line-height: 1.4; /* Ggf. Zeilenhöhe anpassen */
         margin-top: 10px; /* Angepasster Abstand oben */
         margin-bottom: 20px; /* Angepasster Abstand unten */
-        padding-left: 15px; /* Rand links für h2 hinzugefügt */
-        padding-right: 15px; /* Rand rechts für h2 hinzugefügt */
+        /* text-align: left; wird von .hero-section geerbt */
+        /* padding-left und padding-right sind nicht mehr nötig, da .hero-section Padding hat */
+      }
+      
+      /* Anpassungen für die dynamischen Phrasen auf Mobilgeräten */
+      .dynamic-phrase {
+        left: 0; /* Positionierung am linken Rand des .dynamic-h1-line Containers */
+        transform: translateX(0); /* Keine horizontale Zentrierung mehr */
+        text-align: left; /* Text innerhalb der Phrase linksbündig */
+      }
+
+      .dynamic-phrase.entering {
+        transform: translateX(0) translateY(100%); /* Nur Y-Transformation für Animation beibehalten */
+      }
+      .dynamic-phrase.visible {
+        transform: translateX(0) translateY(0); /* Nur Y-Transformation für Animation beibehalten */
+      }
+      .dynamic-phrase.exiting {
+        transform: translateX(0) translateY(-100%); /* Nur Y-Transformation für Animation beibehalten */
       }
 
       /* Splash Screen Anpassungen für Mobilgeräte */
