@@ -1480,8 +1480,13 @@
         padding: 12px 8px; /* Weniger Padding in den Zellen */
       }
 
+      /* Vertikale Spaltentrenner oben kürzer machen für Mobilgeräte */
+      .sprechzeiten-tabelle thead th:not(:first-child)::before {
+        top: 14px; /* Linie startet 25px tiefer */
+      }
+
       .sprechzeiten-tabelle.start-animation thead th:not(:first-child)::before {
-        height: 350px; /* Angepasste Höhe für mobile Ansicht, wie in index.html */
+        height: 340px; /* Ursprüngliche mobile Höhe (300px) - 25px (durch top verschoben), damit sie unten gleich bleibt */
       }
 
       .sprechzeiten-hinweis {
