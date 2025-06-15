@@ -168,9 +168,53 @@
       width: 100%; /* Linie dehnt sich auf volle Breite aus */
     }
 
-    /* Klasse für dunkle Navigationslinks */
-    .nav-links.dark-text a {
-      color: #000000; /* Schwarz, wenn über hellem Hintergrund */
+    /* Nummerierung im Desktop-Menü standardmäßig ausblenden (von index.html übernommen) */
+    .main-nav .nav-links a .menu-item-number {
+      display: none;
+    }
+
+    /* Hamburger Menu Styles (von index.html übernommen) */
+    .hamburger-menu {
+      display: none; /* Standardmäßig auf Desktop ausgeblendet */
+      cursor: pointer;
+      padding: 10px; /* Etwas Klickfläche */
+      margin-right: 10px; /* Abstand zum rechten Rand, falls .main-nav padding nicht ausreicht */
+      z-index: 1001; /* Über dem Rest der Navigationsleiste, falls nötig */
+    }
+
+    .hamburger-menu .bar {
+      display: block;
+      width: 25px;
+      height: 3px;
+      margin: 5px auto;
+      transition: all 0.3s ease-in-out;
+      background-color: #ffffff; /* Standardfarbe für Bars (wenn Nav-Text weiß ist) */
+    }
+
+    .main-nav.nav-text-dark .hamburger-menu .bar {
+      background-color: #0c0c0c; /* Farbe für Bars (wenn Nav-Text dunkel ist) */
+    }
+
+    /* Animation für Hamburger zu X (von index.html übernommen) */
+    .main-nav.nav-active .hamburger-menu .bar1 {
+      transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    .main-nav.nav-active .hamburger-menu .bar2 {
+      opacity: 0;
+    }
+    .main-nav.nav-active .hamburger-menu .bar3 {
+      transform: rotate(45deg) translate(-5px, -6px);
+    }
+
+    /* Farbe des Hamburger-Icons (X) wenn das mobile Menü aktiv ist, auf dunklem Hintergrund (von index.html übernommen) */
+    .main-nav.nav-active .hamburger-menu .bar {
+      background-color: #0c0c0c; /* Dunkle Farbe für das X auf weißem Menühintergrund */
+    }
+
+    /* Anpassung für Navigationslink-Farbe basierend auf .main-nav.nav-text-dark (von index.html übernommen) */
+    /* .main-nav .nav-links a ist bereits oben mit color: #ffffff definiert */
+    .main-nav.nav-text-dark .nav-links a { /* Gilt für Desktop */
+      color: #000000; /* Schwarz, wenn .nav-text-dark gesetzt ist */
     }
 
     /* Hero Section für das große Bild */
@@ -1207,6 +1251,88 @@
       }
     }
 
+    /* Responsive Anpassungen für das Menü (von index.html übernommen) */
+    @media (max-width: 768px) {
+      /* Entfernt das blaue Aufleuchten beim Antippen auf Mobilgeräten */
+      * {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      html, body {
+        overflow-x: hidden; /* Verhindert horizontales Scrollen auf dem Handy */
+      }
+
+      /* Linken Abstand des Logos im Menü auf Mobilgeräten reduzieren */
+      .menu-logo .logo-link {
+        padding-left: 0; /* Entfernt den zusätzlichen linken Abstand des Logos */
+      }
+
+      .main-nav .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: fixed; /* Geändert von absolute zu fixed */
+        top: 0; /* Geändert von 93px zu 0, um oben zu starten */
+        left: 0;
+        width: 100%; /* Nimmt die volle Breite ein (war 100%, ist ok für fixed) */
+        background-color: #ffffff; /* Hintergrund für das mobile Menü auf Weiß geändert */
+        z-index: 1000; /* Auf gleicher Ebene wie main-nav, damit Hamburger (1001) darüber liegt */
+
+        opacity: 0;
+        max-height: 0;
+        overflow-y: auto; /* Erlaube Scrollen, falls Inhalt länger als Bildschirmhöhe */
+        visibility: hidden;
+        padding-top: 0;
+        padding-bottom: 0;
+        box-sizing: border-box; /* Wichtig für Padding und Höhe */
+        transition: opacity 0.35s ease-in-out, max-height 0.35s ease-in-out, padding-top 0.35s ease-in-out, padding-bottom 0.35s ease-in-out, visibility 0s linear 0.35s;
+      }
+
+      .main-nav.nav-active .nav-links {
+        opacity: 1;
+        max-height: 100dvh; /* Volle dynamische Viewport-Höhe als Ziel für Animation */
+        height: 100dvh; /* Stellt sicher, dass es immer die volle Höhe einnimmt */
+        visibility: visible;
+        padding-top: 60px; /* Oberen Abstand etwas reduziert, da die Schrift größer wird */
+        padding-bottom: 60px; /* Mehr Abstand unten für die größeren Links und den gewünschten Freiraum */
+        justify-content: flex-end; /* Schiebt die Menüpunkte nach unten */
+        transition: opacity 0.35s ease-in-out, max-height 0.35s ease-in-out, padding-top 0.35s ease-in-out, padding-bottom 0.35s ease-in-out, visibility 0s linear 0s;
+      }
+
+      .main-nav .nav-links li {
+        margin: 0;
+        width: 100%;
+        text-align: left; /* Linksbündige Ausrichtung für den Text in li */
+      }
+      .main-nav .nav-links li a {
+        padding: 10px 30px; /* Vertikales Padding reduziert, horizontales Padding für linken Einzug */
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        color: #0c0c0c !important; /* Textfarbe im mobilen Menü auf Dunkel geändert */
+        font-size: 3.5rem; /* Schriftgröße weiter erhöht */
+        font-weight: 300; /* Schriftgewicht auf Light (300) gesetzt */
+        line-height: 1.3; /* Angepasste Zeilenhöhe für große Schrift */
+      }
+      .main-nav .nav-links li a .menu-item-number { /* Stile für menu-item-number, falls diese im HTML verwendet werden */
+        position: relative; 
+        z-index: 10;       
+        display: block;
+        font-size: 1rem;  
+        color: #6e370e;
+        font-weight: 300; 
+        line-height: 1; 
+        top: 6px; 
+        left: 3px; 
+      }
+      .main-nav .nav-links li a::after { /* Hover-Linie im mobilen Menü entfernen */
+        display: none;
+      }
+
+      .hamburger-menu {
+        display: block; /* Hamburger-Icon auf Mobilgeräten anzeigen */
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -1227,6 +1353,11 @@
       <li><a href="/faq">FAQ</a></li>
       <li><a href="/kontakt">Kontakt</a></li>
     </ul>
+    <div class="hamburger-menu" role="button" aria-label="Menü umschalten" aria-expanded="false" aria-controls="nav-links-list">
+      <span class="bar bar1"></span>
+      <span class="bar bar2"></span>
+      <span class="bar bar3"></span>
+    </div>
   </nav>
 
   <div class="hero-section">
@@ -1418,6 +1549,7 @@
     document.addEventListener('DOMContentLoaded', function() {
       const mainNav = document.querySelector('.main-nav');
       const navLinksUl = document.querySelector('.nav-links'); // Selektiert das <ul> Element
+      if (navLinksUl) navLinksUl.id = 'nav-links-list'; // ID für aria-controls hinzufügen (von index.html)
       const footerNewTitle = document.querySelector('.footer-new-title'); // Selektor für Footer-Titel hinzugefügt
       const heroBackground = document.querySelector('.hero-background');
       const heroTitle = document.querySelector('.hero-section h1'); // Hinzugefügt für h1 Animation
@@ -1431,7 +1563,7 @@
       // Aktuell sind hier die Sektionen der index.html referenziert.
       // Wenn diese Sektionen auf kontakt.html nicht existieren, wird der Farbwechsel nicht ausgelöst
       // und eine Konsolennachricht (siehe unten) könnte erscheinen.
-      const sectionsForColorChange = document.querySelectorAll('.leistungen-section, .sprechzeiten-section, .lage-anfahrt-section, .neue-faq-sektion');
+      const sectionsForColorChange = document.querySelectorAll('.sprechzeiten-section, .lage-anfahrt-section, .neue-faq-sektion');
 
       if (!mainNav || !navLinksUl) { // Prüfung auf sectionsForColorChange.length entfernt, da es auf kontakt.html leer sein kann
         console.error('Erforderliche Elemente für den Menü-Farbwechsel nicht gefunden (mainNav oder navLinksUl).');
@@ -1443,7 +1575,7 @@
       if (sectionsForColorChange.length === 0) {
         console.warn('Keine Sektionen für dynamischen Menü-Farbwechsel auf dieser Seite definiert. Menü behält Standardaussehen.');
         // Ggf. Standardverhalten setzen, z.B. immer heller Text, falls gewünscht
-        // navLinksUl.classList.remove('dark-text');
+        // mainNav.classList.remove('nav-text-dark'); // Angepasst an die neue Logik
         // mainNav.classList.remove('strong-blur');
         // return; // Frühzeitiger Ausstieg, wenn keine Sektionen vorhanden sind und keine weitere Logik benötigt wird.
       }
@@ -1527,10 +1659,10 @@
         });
 
         if (shouldBeDark) {
-          navLinksUl.classList.add('dark-text');
+          mainNav.classList.add('nav-text-dark'); // Klasse auf mainNav setzen
           mainNav.classList.add('strong-blur');
         } else {
-          navLinksUl.classList.remove('dark-text');
+          mainNav.classList.remove('nav-text-dark'); // Klasse von mainNav entfernen
           mainNav.classList.remove('strong-blur');
         }
         // Hero Zoom Effekt aufrufen
@@ -1574,6 +1706,39 @@
       triggerHeroTitleAnimation(); // Hero-Titel Animation beim Laden auslösen
       checkMenuPosition(); // Initiale Prüfung beim Laden der Seite
       handleHeroZoom(); // Initialen Zoom-Status setzen
+    });
+
+    // Hamburger Menu Toggle Logik (von index.html übernommen)
+    document.addEventListener('DOMContentLoaded', function() {
+      const mainNav = document.querySelector('.main-nav');
+      const hamburgerMenu = document.querySelector('.hamburger-menu');
+      const navLinksList = document.getElementById('nav-links-list'); // ul.nav-links
+      const body = document.body;
+      const htmlElement = document.documentElement; // HTML-Element abrufen
+
+      if (hamburgerMenu && mainNav && navLinksList) {
+        hamburgerMenu.addEventListener('click', () => {
+          mainNav.classList.toggle('nav-active');
+          const isExpanded = mainNav.classList.contains('nav-active');
+          hamburgerMenu.setAttribute('aria-expanded', isExpanded);
+          // Scrollen verhindern/erlauben
+          body.style.overflow = isExpanded ? 'hidden' : '';
+          htmlElement.style.overflow = isExpanded ? 'hidden' : '';
+        });
+
+        // Menü schließen, wenn ein Link geklickt wird (im mobilen Menü)
+        navLinksList.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            if (mainNav.classList.contains('nav-active')) {
+              // Scrollen wieder erlauben
+              mainNav.classList.remove('nav-active');
+              hamburgerMenu.setAttribute('aria-expanded', 'false');
+              body.style.overflow = '';
+              htmlElement.style.overflow = '';
+            }
+          });
+        });
+      }
     });
   </script>
 
