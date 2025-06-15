@@ -1395,6 +1395,55 @@
       .info-section .right-column .welcome-text {
         font-size: 36px; /* Deutlich kleinere Schriftgröße für den Willkommenstext */
       }
+
+      /* Responsive Anpassungen für .neue-faq-sektion (kopiert von faq.html) */
+      .neue-faq-sektion {
+        padding-left: 0; /* Seiten-Padding für die Sektion selbst entfernen */
+        padding-right: 0;
+        /* Vertikales Padding kann beibehalten oder angepasst werden, z.B.: */
+        /* padding-top: 60px; */ /* Beispiel für angepasstes oberes Padding */
+        /* padding-bottom: 60px; */ /* Beispiel für angepasstes unteres Padding */
+      }
+
+      .neue-faq-sektion .sub-heading {
+        font-size: 18px; 
+      }
+      .neue-faq-sektion .main-heading {
+        font-size: 42px; 
+        margin-bottom: 40px; /* Angepasster Abstand zum Inhalt */
+      }
+
+      .neue-faq-sektion .kontakt-layout-container {
+        flex-direction: column; /* Untereinander anordnen */
+        align-items: center; /* Zentriert die Blöcke, wenn sie untereinander sind */
+      }
+      .neue-faq-sektion .kontakt-vertikale-linie-element {
+        position: static; /* Absolute Positionierung aufheben */
+        left: auto;
+        top: auto;
+        bottom: auto;
+        transform: none; /* Transform zurücksetzen */
+        width: 80%; /* Linie wird horizontal, wenn Spalten gestapelt sind */
+        height: 1px !important; /* Feste Höhe für horizontale Linie, !important zur Sicherheit ggü. .animate-draw */
+        margin: 25px 0; /* Abstand um die horizontale Linie */
+        align-self: center;
+        transition: none; /* Keine Höhenanimation für die horizontale Linie */
+      }
+      .neue-faq-sektion .kontakt-text-links {
+        margin-bottom: 0; /* Kein doppelter Margin mit der Linie */
+        padding-left: 25px; /* Beibehaltung des linken Paddings für den Textblock */
+        padding-right: 25px; /* Hinzufügen eines rechten Paddings für Symmetrie */
+        text-align: center; /* Text zentrieren für mobile Ansicht */
+      }
+      .neue-faq-sektion .kontakt-layout-container .kontakt-info-rechts {
+        padding-left: 0px; /* Kein linker Einzug für die Kontaktinfos */
+        font-size: 15px; /* Kleinere Schrift für Kontaktinfos */
+        width: 100%; /* Volle Breite für den Kontaktinfo-Block */
+        text-align: center; /* Kontaktinfos zentrieren */
+      }
+      .neue-faq-sektion .kontakt-info-rechts p {
+        justify-content: center; /* Zentriert Label und Wert innerhalb des p-Tags */
+      }
     }
 
   </style>
