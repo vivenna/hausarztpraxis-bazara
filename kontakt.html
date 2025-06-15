@@ -1494,6 +1494,68 @@
         margin-top: 30px; /* Weniger Abstand nach oben */
         margin-bottom: 20px; /* Weniger Abstand nach unten */
       }
+
+      /* Lage & Anfahrt Section Anpassungen für Mobilgeräte (von index.html übernommen) */
+      .lage-anfahrt-section {
+        padding: 0 20px 40px 20px; /* Globaler linker Padding für die Sektion auf 20px gesetzt */
+      }
+
+      .lage-anfahrt-section .section-divider {
+        margin-bottom: 40px; /* Weniger Abstand */
+      }
+
+      .lage-anfahrt-section .sub-heading {
+        font-size: 18px; /* Konsistente kleinere Schriftgröße */
+      }
+
+      .lage-anfahrt-section .main-heading {
+        font-size: 42px; /* Deutlich kleinere Schriftgröße */
+        margin-bottom: 30px; /* Weniger Abstand */
+      }
+
+      .anfahrt-details-container {
+        width: 100%; /* Volle Breite */
+        margin-top: 40px; /* Angepasster Abstand */
+        padding-left: 30px; /* Erhöht den linken Padding des Inhaltsbereichs */
+        padding-right: 30px; /* Erhöht den rechten Padding des Inhaltsbereichs */
+        box-sizing: border-box; /* Stellt sicher, dass Padding in der Breite berücksichtigt wird */
+      }
+
+      .anfahrt-row {
+        flex-direction: column; /* Spalten untereinander anordnen */
+        margin-bottom: 20px; /* Abstand zwischen den Zeilen */
+      }
+
+      .anfahrt-row .left-col,
+      .anfahrt-row .right-col {
+        flex-basis: auto; /* Automatische Breite */
+        text-align: left; /* Text linksbündig */
+        padding-right: 0; /* Kein rechter Abstand mehr nötig */
+      }
+
+      .anfahrt-row.adresse-row .left-col {
+        font-size: 36px; /* Kleinere Schriftgröße */
+        margin-bottom: 5px;
+      }
+      .anfahrt-row.adresse-row .right-col {
+        font-size: 18px; /* Kleinere Schriftgröße */
+        padding-top: 0; /* Kein oberer Abstand */
+      }
+
+      .anfahrt-row.gap-row {
+        margin-bottom: 20px; /* Reduzierter Abstand */
+      }
+
+      .anfahrt-row:not(.adresse-row) .left-col,
+      .anfahrt-row:not(.adresse-row) .right-col {
+        font-size: 16px; /* Kleinere Schriftgröße */
+        padding-top: 5px;
+        padding-bottom: 5px;
+      }
+      .anfahrt-row:not(.adresse-row) .left-col {
+        font-weight: 500; /* Etwas fetter für die Labels */
+        margin-bottom: 3px;
+      }
     }
 
   </style>
@@ -1511,10 +1573,10 @@
       </a>
     </div>
     <ul class="nav-links">
-      <li><a href="/">Home</a></li>
-      <li><a href="/leistungen">Leistungen</a></li>
-      <li><a href="/faq">FAQ</a></li>
-      <li><a href="/kontakt">Kontakt</a></li>
+      <li><a href="/"><span class="menu-item-number">01</span>Home</a></li>
+      <li><a href="/leistungen"><span class="menu-item-number">02</span>Leistungen</a></li>
+      <li><a href="/faq"><span class="menu-item-number">03</span>FAQ</a></li>
+      <li><a href="/kontakt"><span class="menu-item-number">04</span>Kontakt</a></li>
     </ul>
     <div class="hamburger-menu" role="button" aria-label="Menü umschalten" aria-expanded="false" aria-controls="nav-links-list">
       <span class="bar bar1"></span>
