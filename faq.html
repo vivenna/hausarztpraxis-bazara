@@ -1045,6 +1045,127 @@
         color: #ffffff; /* Icon-Farbe */
         border: 1px solid #6e370e; /* Rahmenfarbe gleich Hintergrund = kein sichtbarer Rahmen, Größe bleibt konstant */
       }
+
+      /* Footer Anpassungen für Mobilgeräte */
+      .main-footer {
+        height: auto !important; /* Höhe automatisch anpassen */
+        padding: 100px 20px 20px 20px !important; /* Oberes Padding erhöht für mehr "Lücke oben", unten 20px */
+        flex-direction: column !important; /* Elemente untereinander anordnen */
+        text-align: left !important; /* Standard-Textausrichtung für den Footer-Inhalt auf links geändert */
+      }
+
+      .footer-top-left-content {
+        position: static !important; /* Positionierung aufheben */
+        margin-top: -90px !important; /* Titel und Button um 40px nach oben verschieben */
+        margin-bottom: 80px !important; /* Abstand zum nächsten Element */
+        text-align: left !important; /* Inhalt linksbündig */
+      }
+
+      .footer-new-title {
+        font-size: 48px !important; /* Deutlich kleinere Schriftgröße */
+        line-height: 1.2 !important;
+        margin-bottom: 70px !important; /* Weiter vergrößerter Abstand zum Button */
+        /* Animation bleibt, aber Startposition und Sichtbarkeit werden beibehalten */
+        transform: translateY(50px) !important; /* Kleinere Startverschiebung */
+      }
+
+      .footer-new-button {
+        font-size: 18px !important; /* Kleinere Schriftgröße */
+        padding: 10px 40px !important; /* Angepasstes Padding */
+      }
+      .footer-new-button:hover {
+        padding: 9px 39px !important; /* Hover-Padding anpassen */
+      }
+
+      .footer-logo-wrapper {
+        position: static !important; /* Zurück zu static, um im Fluss zu bleiben */
+        width: 100% !important;
+        height: auto !important; /* Höhe an Inhalt anpassen, nicht 100% des Elternelements */
+        display: flex !important;
+        justify-content: center !important;
+        align-items: flex-end !important; /* Logo am unteren Rand des Wrappers ausrichten */
+        /* z-index nicht relevant für static positioning in diesem Kontext */
+        opacity: 0.1 !important; /* Logo noch transparenter oder ggf. ausblenden (display: none;) */
+        overflow-x: hidden !important; /* Verhindert, dass das Logo horizontales Scrollen verursacht */
+        margin-bottom: 40px !important; /* Abstand zum nächsten Element im Flex-Flow */
+        padding-bottom: 20px !important; /* Abstand des Logos zum unteren Rand des Footers */
+        box-sizing: border-box !important; /* Stellt sicher, dass Padding die Höhe nicht beeinflusst */
+      }
+
+      .footer-logo .bazara-style {
+        font-size: 80px !important; /* Weiter verkleinert für mobile Ansicht */
+      }
+      .footer-logo .safia-style {
+        font-size: 85px !important; /* Weiter verkleinert für mobile Ansicht */
+      }
+      .footer-logo .subtitle-style {
+        font-size: 16px !important; /* Weiter verkleinert für mobile Ansicht */
+        margin-top: 8px !important; /* Angepasster Abstand nach oben */
+      }
+
+      .footer-bottom-wrapper {
+        position: relative !important; /* Notwendig für z-index und um über dem Logo zu liegen */
+        z-index: 1 !important; /* Stellt sicher, dass dieser Container über dem Logo-Wrapper liegt */
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important; /* Alle unteren Elemente linksbündig ausrichten */
+        width: 100% !important;
+      }
+
+      .footer-bottom-left-text {
+        position: static !important;
+        font-size: 20px !important; /* Kleinere Schriftgröße */
+        margin-bottom: 30px !important; /* Abstand zum nächsten Block */
+        text-align: left !important; /* Text linksbündig */
+      }
+
+      .footer-contact-hours-container {
+        position: static;
+        flex-direction: column; /* Kontakt und Öffnungszeiten untereinander */
+        align-items: flex-start; /* Spalten linksbündig ausrichten */
+        width: 100%;
+        font-size: 14px !important; /* Etwas größere Basisschrift für Lesbarkeit */
+        margin-bottom: 30px !important; /* Abstand zum nächsten Block */
+      }
+
+      .footer-contact-column,
+      .footer-hours-column {
+        flex-basis: auto !important; /* Automatische Breite */
+        padding-left: 0 !important; /* Linken Einzug entfernen */
+        margin-right: 0 !important; /* Rechten Abstand entfernen */
+        text-align: left !important; /* Text in den Spalten linksbündig */
+        margin-bottom: 20px !important; /* Abstand zwischen Kontakt und Öffnungszeiten */
+      }
+      .footer-contact-column:last-child,
+      .footer-hours-column:last-child {
+        margin-bottom: 0 !important;
+      }
+
+      .footer-hours-details {
+        display: flex !important; /* Sicherstellen, dass es ein Flex-Container ist */
+        flex-direction: row !important; /* Tage und Zeiten nebeneinander */
+        justify-content: space-between !important; /* Verteilt den Platz zwischen den Elementen */
+        width: 100% !important; /* Nimmt die volle Breite des Elternelements ein */
+      }
+      .footer-hours-days,
+      .footer-hours-times {
+        flex-basis: auto !important; /* Lässt die Breite sich an den Inhalt anpassen, kann bei Bedarf angepasst werden */
+        text-align: left !important; /* Tage und Zeiten linksbündig */
+        padding-right: 0 !important; /* Rechten Einzug entfernen */
+        margin-right: 0 !important; /* Rechten Abstand entfernen */
+      }
+      .footer-hours-days { margin-bottom: 0 !important; } /* Entfernt den unteren Abstand, da sie jetzt nebeneinander sind */
+      .footer-hours-times { text-align: right !important; } /* Zeiten rechtsbündig innerhalb ihres Containers */
+
+      .footer-bottom-right-links {
+        position: static !important;
+        text-align: left !important; /* Links linksbündig */
+        margin-top: 20px !important; /* Abstand nach oben, falls es das letzte Element ist */
+      }
+      .footer-bottom-right-links a {
+        font-size: 14px !important; /* Etwas größere Schrift */
+        margin-bottom: 10px !important; /* Mehr Abstand zwischen den Links */
+      }
     }
 
     /* Klasse zum Pausieren der Slideshow-Animation */
