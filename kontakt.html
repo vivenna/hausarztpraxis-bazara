@@ -239,7 +239,6 @@
       background-image: url('/assets/kontakt.png'); /* Hintergrundbild hierher verschoben */
       background-size: cover;
       background-position: center;
-      z-index: 0; /* Hintergrund auf z-index 0 setzen, damit er über html/body background liegt */
       /* Sanfter Übergang für die Skalierung, um Ruckeln zu minimieren */
       transition: transform 0.1s ease-out;
       min-width: 100vw; /* Verhindert, dass das Bild schmaler als der Viewport wird */
@@ -1332,28 +1331,29 @@
         display: block; /* Hamburger-Icon auf Mobilgeräten anzeigen */
       }
 
-      /* Hero Section Anpassungen für Mobilgeräte (von index.html kopiert) */
+      /* Hero Section Anpassungen für Mobilgeräte (kopiert von leistungen.html) */
       .hero-section {
         align-items: flex-start; /* Inhalt linksbündig ausrichten */
         justify-content: flex-start;
         padding-top: 220px; /* Abstand nach oben deutlich vergrößert */
         padding-left: 20px;   /* Seitlicher Abstand für den Inhalt */
-        margin-bottom: -15vh;
+        margin-bottom: -15vh; /* Beibehalten von vorheriger kontakt.html Anpassung, falls spezifisch gewünscht */
         padding-right: 0;  /* Rechter Rand für h1 entfernt (übernimmt jetzt die volle Breite) */
         height: 85vh; /* Höhe reduzieren, um die Lücke durch Bildverschiebung zu schließen */
         text-align: left;     /* Standard-Textausrichtung für Kinder (h1, h2) */
       }
 
       .hero-section h1 {
-        font-size: 39px; /* Schriftgröße für h1 angepasst */
+        font-size: 39px; /* Schriftgröße für h1 reduziert (von leistungen.html) */
         margin-bottom: 15px; /* Angepasster Abstand */
         /* text-align: left; wird von .hero-section geerbt */
       }
 
-      /* Anpassung für .hero-line in kontakt.html, um sicherzustellen, dass sie linksbündig sind */
+      /* .hero-line Stile bleiben für die Animation relevant, keine spezifischen responsiven Änderungen von leistungen.html nötig,
+         da die Hauptanpassungen über .hero-section und .hero-section h1 erfolgen.
+         Die text-align: left; Vererbung von .hero-section sollte ausreichen. */
       .hero-section h1 .hero-line {
-        /* display: inline-block; ist bereits gesetzt */
-        text-align: left; /* Stellt sicher, dass der Text innerhalb des Spans linksbündig ist */
+        /* display: inline-block; ist bereits global gesetzt */
       }
 
       .hero-section h2 {
@@ -1367,7 +1367,33 @@
 
       .hero-background {
         background-position: center calc(50% - 15vh); /* Bild um 15vh nach oben verschoben (nur mobil) */
-        min-height: 100%; /* Stellt sicher, dass min-height sich an die 85vh der .hero-section anpasst */
+        min-height: 100%; /* Stellt sicher, dass min-height sich an die (reduzierte) Höhe der .hero-section anpasst */
+      }
+
+      /* Info Section Anpassungen für Mobilgeräte (von index.html kopiert) */
+      .info-section {
+        flex-direction: column; /* Spalten untereinander anordnen */
+        padding: 40px 20px; /* Weniger Padding auf Mobilgeräten */
+        gap: 20px; /* Reduzierter Abstand zwischen den Spalten */
+        position: relative; /* Erzeugt einen neuen Stapelkontext */
+        z-index: 1;         /* Stellt sicher, dass es über Elementen mit z-index < 1 liegt */
+      }
+
+      .info-section .left-column {
+        flex-basis: auto; /* Breite automatisch anpassen */
+        padding-top: 0; /* Kein extra Abstand oben */
+        justify-content: flex-start; /* Inhalt linksbündig */
+        margin-bottom: 10px; /* Kleiner Abstand zur rechten Spalte */
+      }
+
+      .info-section .right-column {
+        flex-basis: auto; /* Breite automatisch anpassen */
+        padding-right: 0; /* Kein extra Abstand rechts */
+        padding-top: 0; /* Kein extra Abstand oben */
+      }
+
+      .info-section .right-column .welcome-text {
+        font-size: 36px; /* Deutlich kleinere Schriftgröße für den Willkommenstext */
       }
     }
 
