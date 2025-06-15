@@ -2887,70 +2887,79 @@
       triggerHeroTitleAnimation(); // Hero-Titel Animation beim Laden auslösen
       checkMenuPosition(); // Initiale Prüfung beim Laden der Seite
 
-      // Modal-Logik
+      // Modal-Elemente
       const modalOverlay = document.getElementById('infoModalOverlay');
       const modalImage = document.getElementById('modalImage');
       const modalTitle = document.getElementById('modalTitle');
       const modalInfoText = document.getElementById('modalInfoText');
       const modalCloseButton = document.querySelector('.modal-close-button');
 
-      const plusKreise = document.querySelectorAll('.plus-kreis');
+      // Helper function for mobile card flip logic
+      function handleMobileCardFlip(bildItemInstance) {
+        bildItemInstance.classList.toggle('is-flipped');
+        const cardInner = bildItemInstance.querySelector('.card-inner');
+        const cardBack = cardInner ? cardInner.querySelector('.card-back') : null;
+        const cardBackInfo = cardBack ? cardBack.querySelector('.card-back-info') : null;
 
-      plusKreise.forEach(plusKreis => {
-        plusKreis.addEventListener('click', function(event) {
-          event.stopPropagation(); 
+        if (cardBackInfo) {
+            if (bildItemInstance.classList.contains('is-flipped')) {
+                // Populate text if not already populated
+                if (!cardBackInfo.textContent.trim()) {
+                    const infoText = bildItemInstance.dataset.infoText;
+                    cardBackInfo.textContent = infoText || "Keine weiteren Informationen verfügbar.";
+                }
+                // Add listener to card-back to flip back, if not already added
+                if (cardBack && !cardBack.dataset.clickListenerAdded) {
+                    cardBack.addEventListener('click', function(e_card_back_click) {
+                        if (e_card_back_click.target.closest('.card-back')) {
+                           bildItemInstance.classList.remove('is-flipped');
+                           e_card_back_click.stopPropagation();
+                        }
+                    });
+                    cardBack.dataset.clickListenerAdded = 'true';
+                }
+            }
+        }
+      }
 
+      const betreuungBildItems = document.querySelectorAll('.betreuung-bild-item');
+
+      betreuungBildItems.forEach(bildItem => {
+        bildItem.addEventListener('click', function(event) {
           const isMobile = window.matchMedia("(max-width: 768px)").matches;
-          const bildItem = this.closest('.betreuung-bild-item');
-          if (!bildItem) return;
+          const targetIsPlusKreis = event.target.closest('.plus-kreis');
 
           if (isMobile) {
-            bildItem.classList.toggle('is-flipped');
-            const cardInner = bildItem.querySelector('.card-inner');
-            const cardBack = cardInner ? cardInner.querySelector('.card-back') : null;
-            const cardBackInfo = cardBack ? cardBack.querySelector('.card-back-info') : null;
-
-            if (cardBackInfo) {
-              if (bildItem.classList.contains('is-flipped')) {
-                // Nur befüllen, wenn noch nicht befüllt oder Inhalt aktualisiert werden soll
-                if (!cardBackInfo.textContent.trim()) {
-                  const infoText = bildItem.dataset.infoText;
-                  cardBackInfo.textContent = infoText || "Keine weiteren Informationen verfügbar.";
-                }
-                // Event Listener für Klick auf Rückseite hinzufügen, um zurückzudrehen
-                if (cardBack && !cardBack.dataset.clickListenerAdded) {
-                  cardBack.addEventListener('click', function() {
-                    bildItem.classList.remove('is-flipped');
-                  });
-                  cardBack.dataset.clickListenerAdded = 'true'; // Markieren, dass Listener hinzugefügt wurde
-                }
-              }
+            const clickedOnCardFront = event.target.closest('.card-front');
+            if (clickedOnCardFront) {
+              handleMobileCardFlip(this); // 'this' is bildItem
+              event.stopPropagation(); 
             }
-            return; // Verhindert das Öffnen des Modals auf Mobilgeräten
-          }
+          } else {
+            // Desktop logic: only plus-kreis opens the modal.
+            if (targetIsPlusKreis) {
+              event.stopPropagation(); 
 
-          // Bestehende Modal-Logik für Desktop
-          const imageElement = bildItem.querySelector('.betreuung-bild'); // Suche im Kontext von bildItem
-          const titleElement = bildItem.querySelector('.betreuung-bild-beschriftung');
-          
-          if (!imageElement || !titleElement) return;
+              const parentBildItem = this; // 'this' is bildItem
+              if (!parentBildItem || !modalOverlay) return;
 
-          const imageSrc = imageElement.src;
-          const titleHTML = titleElement.innerHTML; // HTML-Inhalt für korrekte Formatierung übernehmen
-          const infoText = bildItem.dataset.infoText;
+              const imageElement = parentBildItem.querySelector('.betreuung-bild');
+              const titleElement = parentBildItem.querySelector('.betreuung-bild-beschriftung');
+              if (!imageElement || !titleElement) return;
 
-          modalImage.src = imageSrc;
-          modalImage.alt = titleElement.textContent.trim(); // Alt-Text bleibt reiner Text
-          
-          // Modifiziere titleHTML, um "DMP für " in Schwarz darzustellen
-          const modifiedTitleHTML = titleHTML.replace("DMP für ", '<span style="color: #000000;">DMP für </span>');
-          modalTitle.innerHTML = modifiedTitleHTML;
+              const imageSrc = imageElement.src;
+              const titleHTML = titleElement.innerHTML;
+              const infoText = parentBildItem.dataset.infoText;
 
-          modalInfoText.textContent = infoText || "Keine weiteren Informationen verfügbar."; // Fallback
-          
-          if (modalOverlay) {
-            modalOverlay.classList.add('modal-active');
-            // modalOverlay.style.display = 'flex'; // Ersetzt durch Klassen-Toggle
+              if (modalImage) modalImage.src = imageSrc;
+              if (modalImage && titleElement) modalImage.alt = titleElement.textContent.trim();
+              
+              const modifiedTitleHTML = titleHTML.replace("DMP für ", '<span style="color: #000000;">DMP für </span>');
+              if (modalTitle) modalTitle.innerHTML = modifiedTitleHTML;
+              if (modalInfoText) modalInfoText.textContent = infoText || "Keine weiteren Informationen verfügbar.";
+              
+              modalOverlay.classList.add('modal-active');
+            }
           }
         });
       });
