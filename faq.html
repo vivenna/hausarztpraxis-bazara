@@ -568,7 +568,7 @@
       line-height: 1.1;
       margin-top: 0;
     }
-
+    
     .neue-faq-sektion .main-heading .highlight {
       color: #6e370e;
       font-weight: 700; 
@@ -888,6 +888,7 @@
       }
       .neue-faq-sektion .kontakt-text-links {
         margin-bottom: 0; /* Kein doppelter Margin mit der Linie */
+        padding-left: 25px;
       }
 
       /* Titelanpassungen für .neue-faq-sektion auf Mobilgeräten */
@@ -899,6 +900,16 @@
         margin-bottom: 40px; /* Angepasster Abstand zum Inhalt */
       }
 
+      /* Spezifische Anpassung für den Titel der letzten FAQ-Sektion ("Ihre Kontaktwege") auf Mobilgeräten */
+      .neue-faq-sektion + .neue-faq-sektion .main-heading {
+        font-size: 35px; /* Kleinere Schriftgröße für Mobilgeräte */
+        margin-bottom: -70px;
+      }
+
+      .kontakt-layout-container .kontakt-info-rechts {
+        padding-left: 0px;
+        font-size: 15px;
+      }
 
       /* Das Elternelement der Slideshow soll auf Mobilgeräten kein horizontales Padding haben */
       .neue-faq-sektion {
