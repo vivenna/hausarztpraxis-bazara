@@ -9,6 +9,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter&family=Questrial&family=Poppins:wght@300;500;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
+    ::selection {
+      background-color: #341700;  /* Hintergrundfarbe der Markierung */
+      color: white;               /* Textfarbe der Markierung */
+    }
+
         /* Für WebKit-basierte Browser (Chrome, Safari, Edge) */
     ::-webkit-scrollbar {
       width: 8px;          /* schmaler */
@@ -144,6 +149,11 @@
       padding-bottom: 1px; /* Platz für die Linie unter dem Text */
     }
 
+    /* Nummerierung im Desktop-Menü standardmäßig ausblenden */
+    .main-nav .nav-links a .menu-item-number {
+      display: none;
+    }
+
     .nav-links a:hover {
       text-decoration: none; /* Entfernt die Standard-Unterstreichung */
     }
@@ -152,7 +162,7 @@
       content: '';
       position: absolute;
       width: 0;
-      height: 1.3px; /* Dicke der Linie angepasst */
+      height: 1.3px; /* Dicke der Linie */
       bottom: 0;
       left: 0;
       background-color: currentColor; /* Nimmt die Textfarbe des Links an */
@@ -164,8 +174,41 @@
     }
 
     /* Klasse für dunkle Navigationslinks */
-    .nav-links.dark-text a {
+    .main-nav.nav-text-dark .nav-links a {
       color: #000000; /* Schwarz, wenn über hellem Hintergrund */
+    }
+
+    /* Hamburger Menu Styles */
+    .hamburger-menu {
+      display: none; /* Standardmäßig auf Desktop ausgeblendet */
+      cursor: pointer;
+      padding: 10px; /* Etwas Klickfläche */
+      margin-right: 10px; /* Abstand zum rechten Rand, falls .main-nav padding nicht ausreicht */
+      z-index: 1001; /* Über dem Rest der Navigationsleiste, falls nötig */
+    }
+
+    .hamburger-menu .bar {
+      display: block;
+      width: 25px;
+      height: 3px;
+      margin: 5px auto;
+      transition: all 0.3s ease-in-out;
+      background-color: #ffffff; /* Standardfarbe für Bars (wenn Nav-Text weiß ist) */
+    }
+
+    .main-nav.nav-text-dark .hamburger-menu .bar {
+      background-color: #0c0c0c; /* Farbe für Bars (wenn Nav-Text dunkel ist) */
+    }
+
+    /* Animation für Hamburger zu X */
+    .main-nav.nav-active .hamburger-menu .bar1 {
+      transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    .main-nav.nav-active .hamburger-menu .bar2 {
+      opacity: 0;
+    }
+    .main-nav.nav-active .hamburger-menu .bar3 {
+      transform: rotate(45deg) translate(-5px, -6px);
     }
 
     /* Impressum spezifische Stile */
@@ -418,6 +461,236 @@
     .footer-bottom-right-links a:last-child {
       margin-bottom: 0;
     }
+
+    /* Farbe des Hamburger-Icons (X) wenn das mobile Menü aktiv ist, auf dunklem Hintergrund */
+    .main-nav.nav-active .hamburger-menu .bar {
+      background-color: #0c0c0c; /* Dunkle Farbe für das X auf weißem Menühintergrund */
+    }
+@media (max-width: 768px) {
+      /* Entfernt das blaue Aufleuchten beim Antippen auf Mobilgeräten */
+      * {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      html, body {
+        overflow-x: hidden; /* Verhindert horizontales Scrollen auf dem Handy */
+      }
+
+      /* Linken Abstand des Logos im Menü auf Mobilgeräten reduzieren */
+      .menu-logo .logo-link {
+        padding-left: 0; /* Entfernt den zusätzlichen linken Abstand des Logos */
+      }
+
+      .main-nav .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: fixed; /* Geändert von absolute zu fixed */
+        top: 0; /* Geändert von 93px zu 0, um oben zu starten */
+        left: 0;
+        width: 100%; /* Nimmt die volle Breite ein (war 100%, ist ok für fixed) */
+        /* height: 100dvh; Wird im active-Status gesetzt, max-height für Animation */
+        background-color: #ffffff; /* Hintergrund für das mobile Menü auf Weiß geändert */
+        /* box-shadow: 0 4px 8px rgba(0,0,0,0.2); Entfernt, da Vollbild */
+        z-index: 1000; /* Auf gleicher Ebene wie main-nav, damit Hamburger (1001) darüber liegt */
+
+        opacity: 0;
+        max-height: 0;
+        overflow-y: auto; /* Erlaube Scrollen, falls Inhalt länger als Bildschirmhöhe */
+        visibility: hidden;
+        padding-top: 0;
+        padding-bottom: 0;
+        box-sizing: border-box; /* Wichtig für Padding und Höhe */
+        /* Übergang für justify-content ist nicht direkt animierbar, aber die anderen Eigenschaften schon */
+        transition: opacity 0.35s ease-in-out, max-height 0.35s ease-in-out, padding-top 0.35s ease-in-out, padding-bottom 0.35s ease-in-out, visibility 0s linear 0.35s;
+      }
+
+      .main-nav.nav-active .nav-links {
+        opacity: 1;
+        max-height: 100dvh; /* Volle dynamische Viewport-Höhe als Ziel für Animation */
+        height: 100dvh; /* Stellt sicher, dass es immer die volle Höhe einnimmt */
+        visibility: visible;
+        padding-top: 60px; /* Oberen Abstand etwas reduziert, da die Schrift größer wird */
+        padding-bottom: 60px; /* Mehr Abstand unten für die größeren Links und den gewünschten Freiraum */
+        justify-content: flex-end; /* Schiebt die Menüpunkte nach unten */
+        transition: opacity 0.35s ease-in-out, max-height 0.35s ease-in-out, padding-top 0.35s ease-in-out, padding-bottom 0.35s ease-in-out, visibility 0s linear 0s;
+      }
+
+      .main-nav .nav-links li {
+        margin: 0;
+        width: 100%;
+        text-align: left; /* Linksbündige Ausrichtung für den Text in li */
+      }
+      .main-nav .nav-links li a {
+        padding: 10px 30px; /* Vertikales Padding reduziert, horizontales Padding für linken Einzug */
+        /* padding-bottom: 15px; /* Erhöht den Abstand unter jedem Link-Text, falls gewünscht */
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        color: #0c0c0c !important; /* Textfarbe im mobilen Menü auf Dunkel geändert */
+        font-size: 3.5rem; /* Schriftgröße weiter erhöht */
+        font-weight: 300; /* Schriftgewicht auf Light (300) gesetzt */
+        line-height: 1.3; /* Angepasste Zeilenhöhe für große Schrift */
+      }
+      .main-nav .nav-links li a .menu-item-number {
+        position: relative; /* Erforderlich für z-index */
+        z-index: 10;        /* Stellt sicher, dass es über dem Link-Text liegt */
+        display: block;
+        font-size: 1rem;  /* Zurück zur kleinen Schriftgröße */
+        color: #6e370e;
+        /* margin-bottom: 2px; /* Kleiner Abstand, um Nummer über dem Text zu positionieren - wird durch top/left ersetzt/ergänzt */
+        font-weight: 300; /* Gleiches Gewicht wie der Link */
+        line-height: 1; /* Enge Zeilenhöhe für die Nummer */
+        top: 6px; /* Verschiebt die Nummer 10px nach unten */
+        left: 3px; /* Verschiebt die Nummer 3px nach rechts */
+      }
+      .main-nav .nav-links li a::after { /* Hover-Linie im mobilen Menü entfernen */
+        display: none;
+      }
+
+      .hamburger-menu {
+        display: block; /* Hamburger-Icon auf Mobilgeräten anzeigen */
+      }
+
+      /* Impressum Section Anpassungen für Mobilgeräte */
+      .impressum-section {
+        padding: 40px 20px 60px 20px; /* Angepasstes Padding für Mobilgeräte */
+      }
+      .impressum-section h1 {
+        font-size: 36px; /* Kleinere Schriftgröße für h1 */
+        margin-bottom: 20px; /* Angepasster Abstand */
+      }
+      .impressum-section p,
+      .impressum-section ul {
+        font-size: 15px; /* Etwas kleinere Schriftgröße für Textblöcke */
+        line-height: 1.7; /* Leicht erhöhte Zeilenhöhe für bessere Lesbarkeit */
+      }
+      .impressum-section ul {
+        padding-left: 15px; /* Einzug für Listen etwas reduziert */
+      }
+
+      /* Footer Anpassungen für Mobilgeräte */
+      .main-footer {
+        height: auto; /* Höhe automatisch anpassen */
+        padding: 40px 20px; /* Padding für Mobilgeräte */
+        flex-direction: column; /* Elemente untereinander anordnen */
+        text-align: left; /* Standard-Textausrichtung für den Footer-Inhalt auf links geändert */
+      }
+
+      .footer-top-left-content {
+        position: static; /* Positionierung aufheben */
+        margin-bottom: 40px; /* Abstand zum nächsten Element */
+        text-align: left; /* Inhalt linksbündig */
+      }
+
+      .footer-new-title {
+        font-size: 48px; /* Deutlich kleinere Schriftgröße */
+        line-height: 1.3;
+        margin-bottom: 30px; /* Weniger Abstand zum Button */
+        /* Animation bleibt, aber Startposition und Sichtbarkeit werden beibehalten */
+        transform: translateY(50px); /* Kleinere Startverschiebung */
+      }
+
+      .footer-new-button {
+        font-size: 18px; /* Kleinere Schriftgröße */
+        padding: 10px 40px; /* Angepasstes Padding */
+      }
+      .footer-new-button:hover {
+        padding: 9px 39px; /* Hover-Padding anpassen */
+      }
+
+      .footer-logo-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end; /* Logo am unteren Rand des Wrappers ausrichten */
+        z-index: 0; /* Stellt sicher, dass es hinter dem anderen Inhalt liegt */
+        opacity: 0.1; /* Logo noch transparenter oder ggf. ausblenden (display: none;) */
+        overflow-x: hidden; /* Verhindert, dass das Logo horizontales Scrollen verursacht */
+        margin-bottom: 0; /* Entfernt, da absolute Positionierung */
+        order: unset; /* Entfernt, da absolute Positionierung */
+        padding-bottom: 20px; /* Abstand des Logos zum unteren Rand des Footers */
+        box-sizing: border-box; /* Stellt sicher, dass Padding die Höhe nicht beeinflusst */
+      }
+
+      .footer-logo .bazara-style {
+        font-size: 80px; /* Weiter verkleinert für mobile Ansicht */
+      }
+      .footer-logo .safia-style {
+        font-size: 85px; /* Weiter verkleinert für mobile Ansicht */
+      }
+      .footer-logo .subtitle-style {
+        font-size: 16px; /* Weiter verkleinert für mobile Ansicht */
+        margin-top: 8px; /* Angepasster Abstand nach oben */
+      }
+
+      .footer-bottom-wrapper {
+        position: relative; /* Notwendig für z-index und um über dem Logo zu liegen */
+        z-index: 1; /* Stellt sicher, dass dieser Container über dem Logo-Wrapper liegt */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* Alle unteren Elemente linksbündig ausrichten */
+        width: 100%;
+      }
+
+      .footer-bottom-left-text {
+        position: static;
+        font-size: 20px; /* Kleinere Schriftgröße */
+        margin-bottom: 30px; /* Abstand zum nächsten Block */
+        text-align: left; /* Text linksbündig */
+      }
+
+      .footer-contact-hours-container {
+        position: static;
+        flex-direction: column; /* Kontakt und Öffnungszeiten untereinander */
+        align-items: flex-start; /* Spalten linksbündig ausrichten */
+        width: 100%;
+        font-size: 14px; /* Etwas größere Basisschrift für Lesbarkeit */
+        margin-bottom: 30px; /* Abstand zum nächsten Block */
+      }
+
+      .footer-contact-column,
+      .footer-hours-column {
+        flex-basis: auto; /* Automatische Breite */
+        padding-left: 0; /* Linken Einzug entfernen */
+        margin-right: 0; /* Rechten Abstand entfernen */
+        text-align: left; /* Text in den Spalten linksbündig */
+        margin-bottom: 20px; /* Abstand zwischen Kontakt und Öffnungszeiten */
+      }
+      .footer-contact-column:last-child,
+      .footer-hours-column:last-child {
+        margin-bottom: 0;
+      }
+
+      .footer-hours-details {
+        display: flex; /* Sicherstellen, dass es ein Flex-Container ist */
+        flex-direction: row; /* Tage und Zeiten nebeneinander */
+        justify-content: space-between; /* Verteilt den Platz zwischen den Elementen */
+        width: 100%; /* Nimmt die volle Breite des Elternelements ein */
+      }
+      .footer-hours-days,
+      .footer-hours-times {
+        flex-basis: auto; /* Lässt die Breite sich an den Inhalt anpassen, kann bei Bedarf angepasst werden */
+        text-align: left; /* Tage und Zeiten linksbündig */
+        padding-right: 0; /* Rechten Einzug entfernen */
+        margin-right: 0; /* Rechten Abstand entfernen */
+      }
+      .footer-hours-days { margin-bottom: 0; } /* Entfernt den unteren Abstand, da sie jetzt nebeneinander sind */
+      .footer-hours-times { text-align: right; } /* Zeiten rechtsbündig innerhalb ihres Containers */
+
+      .footer-bottom-right-links {
+        position: static;
+        text-align: left; /* Links linksbündig */
+        margin-top: 20px; /* Abstand nach oben, falls es das letzte Element ist */
+      }
+      .footer-bottom-right-links a {
+        font-size: 14px; /* Etwas größere Schrift */
+        margin-bottom: 10px; /* Mehr Abstand zwischen den Links */
+      }
+    }
   </style>
 </head>
 <body>
@@ -432,12 +705,17 @@
         <div class="subtitle-style">Hausarztpraxis</div>
       </a>
     </div>
-    <ul class="nav-links">
-      <li><a href="/">Home</a></li>
-      <li><a href="/leistungen">Leistungen</a></li>
-      <li><a href="/faq">FAQ</a></li>
-      <li><a href="/kontakt">Kontakt</a></li>
+    <ul class="nav-links" id="nav-links-list">
+      <li><a href="/"><span class="menu-item-number">01</span>Home</a></li>
+      <li><a href="/leistungen"><span class="menu-item-number">02</span>Leistungen</a></li>
+      <li><a href="/faq"><span class="menu-item-number">03</span>FAQ</a></li>
+      <li><a href="/kontakt"><span class="menu-item-number">04</span>Kontakt</a></li>
     </ul>
+    <div class="hamburger-menu" role="button" aria-label="Menü umschalten" aria-expanded="false" aria-controls="nav-links-list">
+      <span class="bar bar1"></span>
+      <span class="bar bar2"></span>
+      <span class="bar bar3"></span>
+    </div>
   </nav>
 
   <div class="impressum-section">
@@ -446,7 +724,7 @@
     <p><strong>Angaben gemäß § 5 TMG:</strong></p>
     <p>
       Safia Bazara<br>
-      Praxis für Allgemeinmedizin<br>
+      Hausarztpraxis Bazara<br>
       Alte Hellersdorfer Str. 123<br>
       12629 Berlin
     </p>
@@ -455,7 +733,7 @@
     <p>
       Telefon: +49 (0) 30 9939 168<br>
       Telefax: +49 (0) 30 9940 2335<br>
-      E-Mail: <a href="mailto:info@praxis-bazara.de">info@praxis-bazara.de</a>
+      E-Mail: <a href="mailto:arztpraxisbazara@gmail.com" target="_blank" rel="noopener noreferrer">arztpraxisbazara@gmail.com</a>
     </p>
 
     <p><strong>Gesetzliche Berufsbezeichnung:</strong></p>
@@ -558,18 +836,23 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const mainNav = document.querySelector('.main-nav');
-      const navLinksUl = document.querySelector('.nav-links');
+      const navLinksList = document.getElementById('nav-links-list'); // War navLinksUl
       const footer = document.querySelector('.main-footer');
       const footerNewTitle = document.querySelector('.footer-new-title'); // Selektor für Footer-Titel hinzugefügt
+      const hamburgerMenu = document.querySelector('.hamburger-menu');
+      const body = document.body;
+      const htmlElement = document.documentElement;
 
-      if (!mainNav || !navLinksUl) {
-        console.error('Erforderliche Elemente für Menüanpassung nicht gefunden (mainNav oder navLinksUl).');
+      if (!mainNav || !navLinksList) { // navLinksList statt navLinksUl
+        console.error('Erforderliche Elemente für Menüanpassung nicht gefunden (mainNav oder navLinksList).');
         return;
       }
 
       // Standardzustand: schwarzer Text, kein starker Blur
-      navLinksUl.classList.add('dark-text');
+      // navLinksList.classList.add('dark-text'); // Alte Methode
+      mainNav.classList.add('nav-text-dark'); // Neue Methode für Textfarbe
       mainNav.classList.remove('strong-blur');
+
 
       if (!footer) {
         console.warn('Footer-Element (.main-footer) nicht gefunden. Menü behält Standardaussehen (schwarzer Text).');
@@ -598,14 +881,40 @@
 
         if (isOverFooter) {
           // Footer ist unter der Navigation: Text weiß, starker Blur
-          navLinksUl.classList.remove('dark-text');
+          // navLinksList.classList.remove('dark-text'); // Alte Methode
+          mainNav.classList.remove('nav-text-dark'); // Neue Methode
           mainNav.classList.add('strong-blur');
         } else {
           // Standardzustand (nicht über dem Footer): Text schwarz, kein starker Blur
-          navLinksUl.classList.add('dark-text');
+          // navLinksList.classList.add('dark-text'); // Alte Methode
+          mainNav.classList.add('nav-text-dark'); // Neue Methode
           mainNav.classList.remove('strong-blur');
         }
         checkFooterTitleAnimation(); // Animation für Footer-Titel prüfen
+      }
+
+      // Hamburger Menu Toggle Logik
+      if (hamburgerMenu && navLinksList) { // mainNav ist bereits oben geprüft
+        hamburgerMenu.addEventListener('click', () => {
+          mainNav.classList.toggle('nav-active');
+          const isExpanded = mainNav.classList.contains('nav-active');
+          hamburgerMenu.setAttribute('aria-expanded', isExpanded);
+          // Scrollen verhindern/erlauben
+          body.style.overflow = isExpanded ? 'hidden' : '';
+          htmlElement.style.overflow = isExpanded ? 'hidden' : '';
+        });
+
+        // Menü schließen, wenn ein Link geklickt wird (im mobilen Menü)
+        navLinksList.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            if (mainNav.classList.contains('nav-active')) {
+              mainNav.classList.remove('nav-active');
+              hamburgerMenu.setAttribute('aria-expanded', 'false');
+              body.style.overflow = '';
+              htmlElement.style.overflow = '';
+            }
+          });
+        });
       }
 
       window.addEventListener('scroll', checkMenuPosition);
@@ -613,6 +922,5 @@
       checkMenuPosition(); // Zustand beim Laden der Seite prüfen
     });
   </script>
-
 </body>
 </html>
