@@ -922,6 +922,13 @@
         display: none;
       }
 
+      /* Pause-Balken auf Mobilgeräten noch dünner machen */
+      .faq-slideshow-toggle-animation .icon-pause {
+        transform: scaleX(0.35); /* Balken auf Mobilgeräten noch dünner (war 0.4), keine horizontale Verschiebung */
+        letter-spacing: 4px; /* Abstand zwischen den Balken auf Mobilgeräten weiter erhöht */
+        letter-spacing: 10px; /* Abstand zwischen den Balken auf Mobilgeräten noch weiter erhöht */
+      }
+
       .faq-slideshow-container::before,
       .faq-slideshow-container::after {
         /* Nebel-Effekt wird nun auch auf Mobilgeräten angezeigt, aber schmaler */
@@ -1075,7 +1082,7 @@
     /* Anpassung für die Dicke der Pause-Balken */
     .faq-slideshow-toggle-animation .icon-pause {
       display: inline-block; /* Stellt sicher, dass Transformationen korrekt angewendet werden */
-      transform: scaleX(0.6) translateX(2px); /* Macht die Balken dünner und verschiebt sie 2px nach rechts */
+      transform: scaleX(0.5) translateX(2px); /* Balken auf Desktop dünner (war 0.6) und 2px nach rechts verschoben */
       letter-spacing: 3px; /* Vergrößert den Abstand zwischen den Balken */
     }
 
