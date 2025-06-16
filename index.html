@@ -416,6 +416,21 @@
       /* border-radius: 4px; entfernt, um den "Rahmen"-Effekt beim Herauszoomen zu vermeiden */
     }
 
+    .leistung-image-wrapper#DMP {
+      aspect-ratio: 226 / 250;
+      object-fit: cover;
+    }
+
+    .leistung-image-wrapper#diagnostik {
+      aspect-ratio: 291 / 250;
+      object-fit: cover;
+    }
+
+    .leistung-image-wrapper#vorsorge {
+      aspect-ratio: 218 / 250;
+      object-fit: cover;
+    }
+
     .leistung-icon {
       /* width: fit-content; wird durch max-width ersetzt */
       /* height: 250px; wird vom Wrapper übernommen */
@@ -1457,6 +1472,22 @@
         height: 200px; /* Höhe der Bild-Wrapper reduzieren */
       }
 
+      .leistung-image-wrapper#DMP {
+        aspect-ratio: 180.8 / 200;
+        object-fit: cover;
+      }
+
+      .leistung-image-wrapper#diagnostik {
+        aspect-ratio: 232.8 / 200;
+        object-fit: cover;
+      }
+
+      .leistung-image-wrapper#vorsorge {
+        aspect-ratio: 174.4 / 200;
+        object-fit: cover;
+      }
+      
+
       .mehr-erfahren-button {
         padding: 10px 20px; /* Button-Padding anpassen */
         font-size: 14px; /* Kleinere Schrift für Button */
@@ -1891,7 +1922,7 @@
       <div class="leistung-item">
         <a href="/leistungen#akute-behandlung" class="leistung-item-link">
           <div class="leistung-image-wrapper">
-            <img src="/assets/dmp.webp" alt="DMP-Betreuung Icon" class="leistung-icon">
+            <img src="/assets/dmp.webp" alt="DMP-Betreuung Icon" id="DMP" class="leistung-icon" loading="lazy">
             <div class="mehr-erfahren-button">Mehr erfahren</div>
           </div>
         </a>
@@ -1901,7 +1932,7 @@
       <div class="leistung-item">
         <a href="/leistungen#moderne-diagnostik" class="leistung-item-link">
           <div class="leistung-image-wrapper">
-            <img src="/assets/diagnostik.webp" alt="Diagnostik & Überwachung Icon" class="leistung-icon">
+            <img src="/assets/diagnostik.webp" alt="Diagnostik & Überwachung Icon" class="leistung-icon" id="diagnostik" loading="lazy">
             <div class="mehr-erfahren-button">Mehr erfahren</div>
           </div>
         </a>
@@ -1911,7 +1942,7 @@
       <div class="leistung-item">
         <a href="/leistungen#chronische-betreuung" class="leistung-item-link">
           <div class="leistung-image-wrapper">
-            <img src="/assets/diabetes.webp" alt="Vorsorge und Impfungen Icon" class="leistung-icon">
+            <img src="/assets/diabetes.webp" alt="Vorsorge und Impfungen Icon" class="leistung-icon" id="vorsorge" loading="lazy">
             <div class="mehr-erfahren-button">Mehr erfahren</div>
           </div>
         </a>
