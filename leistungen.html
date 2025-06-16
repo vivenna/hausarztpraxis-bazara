@@ -1774,6 +1774,12 @@
         gap: 8px;
       }
 
+      /* Mehr Abstand für die Sektion "Persönliche Begleitung" zur Fußzeile auf Mobilgeräten */
+      .leistungen-section.persoenliche-begleitung-section {
+        margin-bottom: 80px; /* Beibehaltung des äußeren Abstands zur Fußzeile */
+        padding-bottom: 40px; /* NEU: Innerer Abstand unten in der Sektion, um die Kreise höher zu positionieren */
+      }
+
       /* Anpassungen für #moderne-diagnostik (Sprechzeiten-Section in leistungen.html) */
       .sprechzeiten-section#moderne-diagnostik { /* Spezifischer Selektor */
         padding: 0 20px 5px 20px; /* Kleinen unteren Abstand (5px) wieder eingefügt, um grauen Bereich zu vermeiden */
@@ -1892,7 +1898,7 @@
       /* Footer Anpassungen für Mobilgeräte */
       .main-footer {
         height: auto; /* Höhe automatisch anpassen */
-        padding: 40px 20px; /* Padding für Mobilgeräte */
+        padding: 20px 20px 40px; /* Oberes Padding reduziert, seitlich 20px, unten 40px */
         flex-direction: column; /* Elemente untereinander anordnen */
         text-align: left; /* Standard-Textausrichtung für den Footer-Inhalt auf links geändert */
       }
@@ -2755,7 +2761,7 @@
 
       .slide-dots {
         position: absolute;
-        bottom: 25px;
+        bottom: 40px; /* Abstand nach unten vergrößert */
         top: 460px; /* Zurückgesetzt auf ursprünglichen Wert für Desktop */
         left: 50%;
         transform: translateX(-50%);
