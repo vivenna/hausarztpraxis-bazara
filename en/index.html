@@ -2277,48 +2277,58 @@
       // }
 
       if (splashScreen && splashLogo) {
-        body.style.overflow = 'hidden';
-        htmlElement.style.overflow = 'hidden';
+        const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
-        const logoFadeInDuration = 600; // Muss mit der CSS transition-duration für opacity übereinstimmen
-        const logoVisibleTime = 900;    // Zeit, die das Logo sichtbar bleibt, nachdem es eingeblendet wurde
+        if (isMobile) {
+          // Auf Mobilgeräten: Splash-Screen explizit ausblenden und Scrollen sicherstellen.
+          // Die CSS Media Query sollte dies bereits tun, dies ist eine zusätzliche Absicherung.
+          splashScreen.style.display = 'none';
+          body.style.overflow = '';
+          htmlElement.style.overflow = '';
+        } else {
+          // Auf Desktop-Geräten: Splash-Screen-Sequenz ausführen.
+          body.style.overflow = 'hidden';
+          htmlElement.style.overflow = 'hidden';
 
-        const completeSplashScreenSequence = () => {
-          if (splashLogo) splashLogo.classList.add('show');
-          setTimeout(() => {
-            if (splashScreen) {
-              splashScreen.classList.add('hide');
-              splashScreen.addEventListener('transitionend', function handleTransitionEnd(event) {
-                if (event.propertyName === 'transform' && splashScreen) {
-                  splashScreen.style.display = 'none';
-                  body.style.overflow = '';
-                  htmlElement.style.overflow = '';
-                  splashScreen.removeEventListener('transitionend', handleTransitionEnd);
-                }
-              });
-            }
-          }, logoFadeInDuration + logoVisibleTime);
-        };
+          const logoFadeInDuration = 600; // Muss mit der CSS transition-duration für opacity übereinstimmen
+          const logoVisibleTime = 900;    // Zeit, die das Logo sichtbar bleibt, nachdem es eingeblendet wurde
 
-        document.fonts.ready.then(completeSplashScreenSequence).catch(error => {
-          console.warn('Schriftarten konnten nicht geladen werden oder Zeitüberschreitung:', error);
-          // Fallback: Sequenz trotzdem starten, ähnlich dem ursprünglichen Verhalten
-          // Hier könnten Sie die ursprünglichen Timeouts verwenden oder leicht anpassen
-          setTimeout(() => { if (splashLogo) splashLogo.classList.add('show'); }, 200);
-          setTimeout(() => {
-            if (splashScreen) {
-              splashScreen.classList.add('hide');
-              splashScreen.addEventListener('transitionend', function handleTransitionEnd(event) {
-                if (event.propertyName === 'transform' && splashScreen) {
-                  splashScreen.style.display = 'none';
-                  body.style.overflow = '';
-                  htmlElement.style.overflow = '';
-                  splashScreen.removeEventListener('transitionend', handleTransitionEnd);
-                }
-              });
-            }
-          }, 1700); // Ursprüngliche Gesamtzeit
-        });
+          const completeSplashScreenSequence = () => {
+            if (splashLogo) splashLogo.classList.add('show');
+            setTimeout(() => {
+              if (splashScreen) {
+                splashScreen.classList.add('hide');
+                splashScreen.addEventListener('transitionend', function handleTransitionEnd(event) {
+                  if (event.propertyName === 'transform' && splashScreen) {
+                    splashScreen.style.display = 'none';
+                    body.style.overflow = '';
+                    htmlElement.style.overflow = '';
+                    splashScreen.removeEventListener('transitionend', handleTransitionEnd);
+                  }
+                }, { once: true }); // Event-Listener nach einmaliger Ausführung entfernen
+              }
+            }, logoFadeInDuration + logoVisibleTime);
+          };
+
+          document.fonts.ready.then(completeSplashScreenSequence).catch(error => {
+            console.warn('Fonts could not be loaded or timeout:', error); // Englische Warnung
+            // Fallback: Sequenz trotzdem starten, ähnlich dem ursprünglichen Verhalten
+            setTimeout(() => { if (splashLogo) splashLogo.classList.add('show'); }, 200);
+            setTimeout(() => {
+              if (splashScreen) {
+                splashScreen.classList.add('hide');
+                splashScreen.addEventListener('transitionend', function handleTransitionEnd(event) {
+                  if (event.propertyName === 'transform' && splashScreen) {
+                    splashScreen.style.display = 'none';
+                    body.style.overflow = '';
+                    htmlElement.style.overflow = '';
+                    splashScreen.removeEventListener('transitionend', handleTransitionEnd);
+                  }
+                }, { once: true }); // Event-Listener nach einmaliger Ausführung entfernen
+              }
+            }, 1700); // Ursprüngliche Gesamtzeit
+          });
+        }
       }
 
       // Bestehendes Skript für die Navigation
