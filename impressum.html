@@ -156,6 +156,38 @@
       padding-bottom: 1px; /* Platz für die Linie unter dem Text */
     }
 
+    /* Language Switcher Styles (kopiert von index.html) */
+    .nav-links li.lang-switcher {
+      margin-left: 40px; /* Abstand zum vorherigen Menüpunkt "Kontakt" */
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links li.lang-switcher a.lang-option {
+      font-size: 13px; /* Kleinere Schriftgröße */
+      font-family: 'Poppins', sans-serif; /* Poppins Schriftart */
+      font-weight: 300; /* Light Gewicht */
+      padding: 0 6px; /* Padding auf 6px gesetzt */
+      color: #b0b0b0; /* Grau für inaktive Sprache (EN), heller für weißen Nav-Text */
+      text-decoration: none;
+    }
+
+    .nav-links li.lang-switcher a.lang-option::after {
+      display: none; /* Keine Unterstreichungsanimation für Sprachoptionen */
+    }
+
+    .nav-links li.lang-switcher a.lang-option.active-lang {
+      color: #ffffff; /* Standard Weiß für aktive Sprache (DE) bei hellem Nav-Text */
+    }
+
+    /* Language switcher dark mode adjustment (kopiert von index.html) */
+    .main-nav.nav-text-dark .nav-links li.lang-switcher a.lang-option {
+      color: #777777; /* Dunkleres Grau für inaktive Sprache (EN) bei dunklem Nav-Text */
+    }
+    .main-nav.nav-text-dark .nav-links li.lang-switcher a.lang-option.active-lang {
+      color: #000000; /* Schwarz für aktive Sprache (DE) bei dunklem Nav-Text */
+    }
+
     /* Nummerierung im Desktop-Menü standardmäßig ausblenden */
     .main-nav .nav-links a .menu-item-number {
       display: none;
@@ -516,9 +548,9 @@
         max-height: 100dvh; /* Volle dynamische Viewport-Höhe als Ziel für Animation */
         height: 100dvh; /* Stellt sicher, dass es immer die volle Höhe einnimmt */
         visibility: visible;
-        padding-top: 60px; /* Oberen Abstand etwas reduziert, da die Schrift größer wird */
+        padding-top: 20px; /* Reduziert von 60px, um Sprachwechsler weiter nach oben zu schieben */
         padding-bottom: 60px; /* Mehr Abstand unten für die größeren Links und den gewünschten Freiraum */
-        justify-content: flex-end; /* Schiebt die Menüpunkte nach unten */
+        justify-content: flex-start; /* Geändert zu flex-start wie in index.html/faq.html */
         transition: opacity 0.35s ease-in-out, max-height 0.35s ease-in-out, padding-top 0.35s ease-in-out, padding-bottom 0.35s ease-in-out, visibility 0s linear 0s;
       }
 
@@ -552,6 +584,40 @@
       }
       .main-nav .nav-links li a::after { /* Hover-Linie im mobilen Menü entfernen */
         display: none;
+      }
+
+      /* Ersten Hauptmenüpunkt nach unten schieben, um Platz für Sprachwechsler oben zu machen (kopiert von index.html/faq.html) */
+      .main-nav.nav-active .nav-links > li:not(.lang-switcher):first-of-type {
+        margin-top: auto;
+      }
+
+      /* Sprachwechsler im mobilen Menü nach oben links verschieben (kopiert von index.html/faq.html) */
+      .main-nav .nav-links li.lang-switcher {
+        order: -1; /* Stellt sicher, dass es das erste Element in der Flex-Spalte ist */
+        margin-left: 0; /* Entfernt den Desktop-Margin */
+        padding: 10px 30px 10px 32px; /* Passt das Padding an, linker Padding um 2px erhöht für Verschiebung nach rechts */
+        width: 100%; /* Nimmt die volle Breite ein */
+        box-sizing: border-box; /* Stellt sicher, dass Padding in die Breite einberechnet wird */
+        justify-content: flex-start; /* Richtet die Sprachoptionen linksbündig aus */
+        margin-bottom: 15px; /* Abstand unter dem Sprachwechsler leicht reduziert */
+        display: flex; /* Stellt sicher, dass es ein Flex-Container für die a-Tags ist */
+        align-items: center; /* Vertikale Ausrichtung der Sprachoptionen */
+      }
+
+      /* Spezifische Stile für die Sprachoptionen im mobilen Menü (kopiert von index.html/faq.html) */
+      .main-nav .nav-links li.lang-switcher a.lang-option {
+        font-size: 1.1rem;   /* Schriftgröße auf 1.1rem gesetzt */
+        font-weight: 300;    /* Konsistentes Schriftgewicht */
+        line-height: 1.2;    /* Angepasste Zeilenhöhe */
+        padding: 5px 0;      /* Vertikales Padding, kein horizontales Padding hier */
+        display: inline-block; /* Damit sie nebeneinander stehen und nicht die volle Breite einnehmen */
+        width: auto;           /* Automatische Breite basierend auf Inhalt */
+        color: #757575 !important; /* Dunkelgraue Farbe für inaktive Sprache (EN) */
+        margin: 0; /* Zurücksetzen von Margins anderer Regeln */
+      }
+      .main-nav .nav-links li.lang-switcher a.lang-option.active-lang {
+        color: #0c0c0c !important; /* Schwarze Farbe für aktive Sprache (DE), passend zu Menüpunkten */
+        margin-right: 12px;      /* Abstand zwischen DE und EN, um 2px vergrößert */
       }
 
       .hamburger-menu {
@@ -717,6 +783,11 @@
       <li><a href="/leistungen"><span class="menu-item-number">02</span>Leistungen</a></li>
       <li><a href="/faq"><span class="menu-item-number">03</span>FAQ</a></li>
       <li><a href="/kontakt"><span class="menu-item-number">04</span>Kontakt</a></li>
+      <!-- Language Switcher (kopiert von index.html/faq.html) -->
+      <li class="lang-switcher">
+        <a href="#" class="lang-option active-lang" hreflang="de" aria-label="Sprache auf Deutsch wechseln">DE</a>
+        <a href="/en/imprint" class="lang-option" hreflang="en" aria-label="Switch language to English">EN</a>
+      </li>
     </ul>
     <div class="hamburger-menu" role="button" aria-label="Menü umschalten" aria-expanded="false" aria-controls="nav-links-list">
       <span class="bar bar1"></span>

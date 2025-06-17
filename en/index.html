@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Kontakt - BAZARA safia</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex, follow">
+<title>General Practice Bazara – Safia Bazara | Internal Medicine & Transfusion Medicine in Berlin Hellersdorf</title>  <meta name="description" content="Hausarztpraxis Bazara – Ihre freundliche Praxis für Innere Medizin und Transfusionsmedizin in Berlin-Hellersdorf. Safia Bazara bietet umfassende hausärztliche Versorgung, Vorsorge, Diagnostik und chronische Betreuung. Termine telefonisch vereinbaren.">
+  <meta name="author" content="Hausarztpraxis Bazara – Safia Bazara">
+  <meta name="keywords" content="Hausarzt Berlin, Allgemeinmedizin Berlin, Innere Medizin, Hausarztpraxis Bazara, Safia Bazara, Arztpraxis Hellersdorf, Vorsorgeuntersuchungen, Blutdruckmessung, Impfungen, chronische Erkrankungen, Langzeit-EKG, DMP-Programme, Patientenservice Berlin">  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
   <meta name="apple-mobile-web-app-title" content="Hausarztpraxis Bazara" />
+  <link rel="canonical" href="https://hausarztpraxis-bazara.de/" />
   <link rel="manifest" href="/favicon/site.webmanifest" />
+  <meta name="robots" content="noindex, follow">
 
   <!-- Google Fonts Einbindung -->
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter&family=Questrial&family=Poppins:wght@300;500;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
@@ -19,6 +21,7 @@
       background-color: #341700;  /* Hintergrundfarbe der Markierung */
       color: white;               /* Textfarbe der Markierung */
     }
+
     /* Für WebKit-basierte Browser (Chrome, Safari, Edge) */
     ::-webkit-scrollbar {
       width: 8px;          /* schmaler */
@@ -45,10 +48,6 @@
     * {
       scrollbar-width: thin;
       scrollbar-color: #8a5a34 transparent;
-    }
-    
-    html {
-      background-color: #6e370e; /* Verhindert weiße Linie unter dem Footer */
     }
 
     body {
@@ -151,7 +150,12 @@
       font-weight: 300; /* Schriftgewicht für Light */
       font-size: 16px;
       position: relative; /* Notwendig für die Positionierung des Pseudo-Elements */
-      padding-bottom: 1px; /* Platz für die Linie unter dem Text */
+      padding-bottom: 1px; /* Etwas Platz für die Linie unter dem Text */
+    }
+
+    /* Nummerierung im Desktop-Menü standardmäßig ausblenden */
+    .main-nav .nav-links a .menu-item-number {
+      display: none;
     }
 
     .nav-links a:hover {
@@ -173,85 +177,36 @@
       width: 100%; /* Linie dehnt sich auf volle Breite aus */
     }
 
-    /* Language Switcher Styles (kopiert von index.html) */
+    /* Language Switcher Styles (copied from German index.html) */
     .nav-links li.lang-switcher {
-      margin-left: 40px; /* Abstand zum vorherigen Menüpunkt "Kontakt" */
+      margin-left: 40px; 
       display: flex;
       align-items: center;
     }
 
     .nav-links li.lang-switcher a.lang-option {
-      font-size: 13px; /* Kleinere Schriftgröße */
-      font-family: 'Poppins', sans-serif; /* Poppins Schriftart */
-      font-weight: 300; /* Light Gewicht */
-      padding: 0 6px; /* Padding auf 6px gesetzt */
-      color: #b0b0b0; /* Grau für inaktive Sprache (EN), heller für weißen Nav-Text */
+      font-size: 13px; 
+      font-family: 'Poppins', sans-serif; 
+      font-weight: 300; 
+      padding: 0 6px; 
+      color: #b0b0b0; /* Grey for inactive language */
       text-decoration: none;
     }
 
     .nav-links li.lang-switcher a.lang-option::after {
-      display: none; /* Keine Unterstreichungsanimation für Sprachoptionen */
+      display: none; 
     }
 
     .nav-links li.lang-switcher a.lang-option.active-lang {
-      color: #ffffff; /* Standard Weiß für aktive Sprache (DE) bei hellem Nav-Text */
+      color: #ffffff; /* White for active language */
     }
 
-    /* Language switcher dark mode adjustment (kopiert von index.html) */
+    /* Language switcher dark mode adjustment (copied from German index.html) */
     .main-nav.nav-text-dark .nav-links li.lang-switcher a.lang-option {
-      color: #777777; /* Dunkleres Grau für inaktive Sprache (EN) bei dunklem Nav-Text */
+      color: #777777; 
     }
     .main-nav.nav-text-dark .nav-links li.lang-switcher a.lang-option.active-lang {
-      color: #000000; /* Schwarz für aktive Sprache (DE) bei dunklem Nav-Text */
-    }
-
-    /* Nummerierung im Desktop-Menü standardmäßig ausblenden (von index.html übernommen) */
-    .main-nav .nav-links a .menu-item-number {
-      display: none;
-    }
-
-    /* Hamburger Menu Styles (von index.html übernommen) */
-    .hamburger-menu {
-      display: none; /* Standardmäßig auf Desktop ausgeblendet */
-      cursor: pointer;
-      padding: 10px; /* Etwas Klickfläche */
-      margin-right: 10px; /* Abstand zum rechten Rand, falls .main-nav padding nicht ausreicht */
-      z-index: 1001; /* Über dem Rest der Navigationsleiste, falls nötig */
-    }
-
-    .hamburger-menu .bar {
-      display: block;
-      width: 25px;
-      height: 3px;
-      margin: 5px auto;
-      transition: all 0.3s ease-in-out;
-      background-color: #ffffff; /* Standardfarbe für Bars (wenn Nav-Text weiß ist) */
-    }
-
-    .main-nav.nav-text-dark .hamburger-menu .bar {
-      background-color: #0c0c0c; /* Farbe für Bars (wenn Nav-Text dunkel ist) */
-    }
-
-    /* Animation für Hamburger zu X (von index.html übernommen) */
-    .main-nav.nav-active .hamburger-menu .bar1 {
-      transform: rotate(-45deg) translate(-5px, 6px);
-    }
-    .main-nav.nav-active .hamburger-menu .bar2 {
-      opacity: 0;
-    }
-    .main-nav.nav-active .hamburger-menu .bar3 {
-      transform: rotate(45deg) translate(-5px, -6px);
-    }
-
-    /* Farbe des Hamburger-Icons (X) wenn das mobile Menü aktiv ist, auf dunklem Hintergrund (von index.html übernommen) */
-    .main-nav.nav-active .hamburger-menu .bar {
-      background-color: #0c0c0c; /* Dunkle Farbe für das X auf weißem Menühintergrund */
-    }
-
-    /* Anpassung für Navigationslink-Farbe basierend auf .main-nav.nav-text-dark (von index.html übernommen) */
-    /* .main-nav .nav-links a ist bereits oben mit color: #ffffff definiert */
-    .main-nav.nav-text-dark .nav-links a { /* Gilt für Desktop */
-      color: #000000; /* Schwarz, wenn .nav-text-dark gesetzt ist */
+      color: #000000; 
     }
 
     /* Hero Section für das große Bild */
@@ -273,20 +228,16 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-image: url('/assets/kontakt.webp'); /* Hintergrundbild hierher verschoben */
+      background-image: url('/assets/startseite.webp'); /* Hintergrundbild hierher verschoben */
       background-size: cover;
-      background-position: center;
+      background-position: center; /* Standardposition für Desktop */
+      z-index: -1; /* Stellt sicher, dass es hinter dem Inhalt liegt */
       /* Sanfter Übergang für die Skalierung, um Ruckeln zu minimieren */
+      /* Kann angepasst oder entfernt werden, je nach gewünschtem Verhalten */
       transition: transform 0.1s ease-out;
       min-width: 100vw; /* Verhindert, dass das Bild schmaler als der Viewport wird */
       min-height: 100vh; /* Verhindert, dass das Bild niedriger als der Viewport wird */
     }
-
-    .hero-text-wrapper {
-      position: relative; /* Notwendig, damit z-index wirkt */
-      z-index: 1;         /* Stellt sicher, dass der Text über dem .hero-background liegt */
-    }
-
 
     .hero-section h1 {
       font-family: 'Poppins', sans-serif;
@@ -295,57 +246,58 @@
       margin-bottom: 20px;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Textschatten für bessere Lesbarkeit */
       line-height: 1.2; /* Für bessere Lesbarkeit bei mehrzeiligem Text */
-      /* Animations-Eigenschaften vom h1 entfernt, werden auf .hero-line spans angewendet */
     }
 
-    /* Stile für die zeilenweise Animation von h1 (kopiert von leistungen.html/faq.html) */
-    .hero-section h1 .hero-line {
-      display: inline-block; /* Wichtig für transform und um <br> zu respektieren */
-      opacity: 0;
-      transform: translateY(30px); /* Jede Zeile startet etwas tiefer */
+    /* Styles for the dynamic second line of h1 */
+    .dynamic-h1-line {
+      display: block; /* Ensures it takes its own line */
+      position: relative; /* For absolute positioning of phrases */
+      height: 1.3em; /* Slightly increased height to accommodate descenders */
+      overflow-y: hidden; /* Clips phrases vertically for animation */
+      /* Font styles are inherited from h1 */
+      /* Make this container wider than h1's natural width and center it */
+      width: 200%; /* e.g., twice the width of "Gesund werden." */
+      left: 50%;
+      transform: translateX(-50%); /* Centers this 200% wide block within the h1 */
     }
 
-    .hero-section h1.animate-hero-title .hero-line {
-      opacity: 1;
-      transform: translateY(0);
-      transition-property: opacity, transform;
-      transition-duration: 0.7s;
-      transition-timing-function: ease-out;
-    }
-    .hero-section h1.animate-hero-title .hero-line:nth-of-type(1) {
-      transition-delay: 0.3s; /* Verzögerung für die erste Zeile */
-    }
-    .hero-section h1.animate-hero-title .hero-line:nth-of-type(2) {
-      transition-delay: 0.45s; /* Gestaffelte Verzögerung für die zweite Zeile */
-    }
     .hero-section h2 {
       font-family: 'Poppins', sans-serif;
-      font-weight: 300; /* Light */
-      font-size: 30.1px;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Textschatten für bessere Lesbarkeit */
-      margin-top: 10px;
-    }
-
-    .footer-new-title { /* Korrigierter Selektor für den initialen Zustand */
-      font-family: 'Poppins', sans-serif;
-      font-weight: 700; /* Bold */
-      font-size: 110px; /* Gleiche Schriftgröße wie h1 */
+      font-weight: 300; /* Light weight for the subtitle */
+      font-size: 30.1px; /* Subtitle font size */
       color: #ffffff;
-      line-height: 1.27;
-            margin-bottom: 60px; /* Abstand zum Button vergrößert */
-      /* Kein Textschatten, da Hintergrund einfarbig ist, kann bei Bedarf hinzugefügt werden */
-
-      /* Hinzugefügt für die Animation (kopiert von index.html) */
-      opacity: 1; 
-      transform: translateY(150px); 
-      clip-path: inset(100% 0 0 0); 
-      transition: transform 0.7s ease-out, clip-path 0.7s ease-out; 
-      visibility: hidden; 
+      line-height: 1.3; /* Line height for the subtitle */
+      margin-top: 15px; /* Space above the subtitle */
+      margin-bottom: 25px; /* Space below the subtitle */
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Text shadow for subtitle */
     }
-    .footer-new-title.animate-footer-title { 
-      transform: translateY(0); 
-      clip-path: inset(0 0 0 0); 
-      visibility: visible;
+
+    .dynamic-phrase {
+      position: absolute;
+      left: 50%; /* Start positioning from the center */
+      width: max-content; /* Phrase takes the width of its actual content */
+      transform: translateX(-50%); /* Center the phrase horizontally */
+      display: block;
+      /* text-align: center; is still fine, ensures content within is centered if ever needed */
+      text-align: center;
+      /* Inherit font properties from parent (.dynamic-h1-line, which inherits from h1) */
+      font-family: inherit;
+      font-weight: inherit;
+      font-size: inherit;
+      color: inherit;
+      text-shadow: inherit;
+      line-height: inherit;
+      white-space: nowrap; /* Verhindert Zeilenumbruch innerhalb der Phrase */
+      transition: transform 1s ease-in-out, opacity 1s ease-in-out; /* Animation duration */
+    }
+
+    .dynamic-phrase.entering {
+      opacity: 0;
+      transform: translateX(-50%) translateY(100%); /* Combine with horizontal centering */
+    }
+    .dynamic-phrase.visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0); /* Combine with horizontal centering */
     }
 
     .hero-new-button {
@@ -360,6 +312,10 @@
       border-radius: 0; /* Keine Abrundung */
       border: none; /* Kein Rand */
       cursor: pointer;
+    }
+    .dynamic-phrase.exiting {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-100%); /* Combine with horizontal centering */
     }
 
     /* Neuer Bereich unter Hero */
@@ -405,12 +361,12 @@
       font-family: 'Poppins', sans-serif; /* Konsistente Schriftart */
       font-weight: 300; /* Poppins Light */
       line-height: 1.3; /* Bessere Lesbarkeit für längeren Text */
-      /* Hinzugefügt für die Animation (kopiert von index.html) */
+      /* Hinzugefügt für die Animation */
       opacity: 0;
       transform: translateY(30px); /* Startet 30px weiter unten */
       transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     }
-    .info-section .right-column .welcome-text.visible { /* Kopiert von index.html */
+    .info-section .right-column .welcome-text.visible {
       opacity: 1;
       transform: translateY(0); /* Bewegt sich zur Originalposition */
     }
@@ -473,14 +429,76 @@
       margin-bottom: 40px; /* Abstand zwischen den Reihen, falls umgebrochen wird */
     }
 
-    .leistung-icon {
-      width: fit-content; /* Beispielbreite für das Icon */
-      height: 250px; /* Gleiche Höhe für alle Icons */
+    .leistung-item-link {
+      text-decoration: none;
+      color: inherit;
+      display: block; /* Wichtig, damit der Link den Bereich einnimmt */
+      position: relative; /* Für den Button */
+    }
+
+    .leistung-image-wrapper {
+      position: relative;
+      /* overflow: hidden; entfernt, damit der Blur-Effekt nicht abgeschnitten wird */
+      box-sizing: border-box; /* Stellt sicher, dass Padding in die Höhe/Breite einberechnet wird */
+      height: 250px; /* Gesamt-Höhe des Wrappers bleibt gleich */
+      /* padding: 10px; Entfernt, da das Bild selbst verkleinert wird */
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-bottom: 15px;
+      margin-bottom: 15px; /* Abstand nach unten, wie beim ursprünglichen .leistung-icon */
+      background-color: #ffffff; 
+      /* border-radius: 4px; entfernt, um den "Rahmen"-Effekt beim Herauszoomen zu vermeiden */
+    }
+
+    .leistung-image-wrapper#DMP {
+      aspect-ratio: 226 / 250;
+      object-fit: cover;
+    }
+
+    .leistung-image-wrapper#diagnostik {
+      aspect-ratio: 291 / 250;
+      object-fit: cover;
+    }
+
+    .leistung-image-wrapper#vorsorge {
+      aspect-ratio: 218 / 250;
+      object-fit: cover;
+    }
+
+    .leistung-icon {
+      /* width: fit-content; wird durch max-width ersetzt */
+      /* height: 250px; wird vom Wrapper übernommen */
+      /* display: flex; etc. wird vom Wrapper übernommen */
+      /* margin-bottom: 15px; wird vom Wrapper übernommen */
+      max-width: 100%;
+      max-height: 100%;
       object-fit: contain; /* Stellt sicher, dass das Bild passt, ohne es zu verzerren */
+      box-sizing: border-box; /* Wichtig, damit Padding korrekt verrechnet wird */
+      /* Übergang für Padding und Filter anpassen */
+      transition: padding 0.35s ease-in-out, filter 0.35s ease-in-out;
+    }
+
+    .mehr-erfahren-button {
+      position: absolute;
+      bottom: 3px; /* Abstand von unten erhöht */
+      right: 3px; /* Abstand von rechts erhöht */
+      /* transform: translate(-50%, -50%); wird entfernt */
+      background-color: #ffffff; /* Standard: Hintergrund weiß */
+      color: #6e370e; /* Standard: Schriftfarbe #6e370e */
+      border: 1px solid #6e370e; /* Standard: Rand #6e370e */
+      padding: 12px 24px;
+      border-radius: 50px; /* Pillenform */
+      opacity: 0;
+      /* visibility: hidden; wird entfernt, Steuerung nur über opacity */
+      /* Nur die Deckkraft animieren; visibility schaltet beim Hover sofort um. */
+      transition: opacity 0.35s ease-in-out, background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-color 0.35s ease-in-out;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500; /* Medium */
+      font-size: 16px;
+      text-align: center;
+      pointer-events: none; /* Damit der Klick auf den Link durchgeht */
+  z-index: 10; /* Sicherstellen, dass der Button über dem Bild und anderen Elementen im Wrapper liegt */
+      white-space: nowrap;
     }
 
     .leistung-line {
@@ -489,6 +507,26 @@
       background-color: #6e370e; /* Farbe der Linie */
       margin-top: 60px; /* Weiter nach unten verschoben */
       margin-bottom: -5px; /* Weiter reduzierter Abstand zur Beschriftung */
+    }
+    
+    .leistung-item-link:hover .leistung-image-wrapper .leistung-icon {
+      padding: 10px; /* Fügt inneren Abstand hinzu, Bildinhalt wird durch object-fit kleiner */
+      filter: blur(3px); /* Nur noch unscharf */
+    }
+
+    .leistung-item-link:hover .leistung-image-wrapper .mehr-erfahren-button {
+      opacity: 1;
+      pointer-events: auto; /* Ermöglicht Hover-Events für den Button, wenn er sichtbar ist */
+      /* Die folgenden Stiländerungen werden entfernt und in .mehr-erfahren-button:hover verschoben */
+      /* background-color: #6e370e; */
+      /* color: #ffffff; */
+      /* border-color: transparent; */
+    }
+
+    .mehr-erfahren-button:hover { /* Neue Regel für den direkten Hover über den Button */
+      background-color: #6e370e; /* Hover: Hintergrund #6e370e */
+      color: #ffffff; /* Hover: Schriftfarbe weiß */
+      border-color: transparent; /* Hover: Rand transparent (visuell "keiner") */
     }
 
     /* Individuelle Positionierung der Linien */
@@ -545,11 +583,20 @@
       padding: 12px 25px;
       text-decoration: none;
       border-radius: 50px; /* Starke Abrundung für Pillenform */
+      border: 1px solid transparent; /* Platzhalter für den Rand im Normalzustand */
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Sanfter Übergang */
+    }
+
+    .leistungen-button:hover {
+      background-color: #ffffff; /* Hintergrund weiß */
+      color: #6e370e; /* Schriftfarbe ändern */
+      border-color: #6e370e; /* Randfarbe setzen */
+      padding: 11px 24px; /* Padding anpassen, um die Größe durch den Rand beizubehalten */
     }
 
     .leistungen-button .arrow {
       font-size: 24px; /* Größerer Pfeil */
-      font-weight: bold; /* Dickerer Pfeil */
+      font-weight: 300; /* Pfeil nicht mehr fett darstellen */
       margin-left: 8px; /* Kleiner Abstand zum Text */
     }
 
@@ -561,7 +608,7 @@
       text-align: center;
     }
 
-    /* Allgemeine Stile und Animationsvorbereitung für ALLE section-divider (kopiert von index.html) */
+    /* Allgemeine Stile und Animationsvorbereitung für ALLE section-divider */
     .section-divider {
       width: 80%;
       height: 1px;
@@ -573,8 +620,7 @@
       transition: clip-path 0.7s ease-out;
     }
 
-    .sprechzeiten-section .section-divider,
-    .lage-anfahrt-section .section-divider { /* Hinzugefügt für Konsistenz mit index.html */
+    .sprechzeiten-section .section-divider {
       margin-top: 0; /* Spezifischer oberer Margin für diesen Divider */
       margin-bottom: 80px; /* Spezifischer unterer Margin für diesen Divider */
     }
@@ -623,19 +669,10 @@
       font-size: 18px; /* Schriftgröße erhöht */
       color: #333333; /* Schriftfarbe etwas dunkler gemacht */
     }
+
     /* Die Tabelle selbst benötigt overflow:hidden, damit die "zu langen" Linien korrekt abgeschnitten werden */
     .sprechzeiten-tabelle {
       overflow: hidden; /* Schneidet überstehende Teile der animierten Linien ab */
-      position: relative; /* Für das thead::after Pseudo-Element */
-    }
-
-    .sprechzeiten-tabelle thead {
-      position: relative; /* Notwendig für das ::after Pseudo-Element des thead */
-    }
-
-    /* Die Tabellenzeile im thead relativ positionieren, damit ::after daran ausgerichtet werden kann */
-    .sprechzeiten-tabelle thead tr {
-      position: relative;
     }
 
     .sprechzeiten-tabelle th,
@@ -643,7 +680,23 @@
       padding: 18px 15px; /* Innenabstand (Zeilenhöhe) erhöht */
       text-align: center; /* Textausrichtung in den Zellen zentriert */
       border: none; /* Entfernt alle Standard-Ränder, wir steuern sie manuell/mit Pseudo-Elementen */
-      position: relative; /* Wichtig für die Positionierung der Pseudo-Elemente */
+      position: relative; /* Wichtig für die Positionierung der Pseudo-Elemente (Unterstriche und Spaltentrenner) */
+    }
+
+    /* Vertikale Spaltentrenner (animiert) */
+    .sprechzeiten-tabelle thead th:not(:first-child)::before { /* Gilt nur für Kopfzellen, nicht für jede einzelne td */
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0; /* Linie am linken Rand der th-Zelle (da th position:relative hat) */
+      width: 0.5px; /* Dicke der Linie */
+      background-color: #6e370e;
+      height: 0; /* Initial keine Höhe */
+      transition: height 0.5s ease-out;
+    }
+
+    .sprechzeiten-tabelle.start-animation thead th:not(:first-child)::before {
+      height: 350px; /* Eine Höhe, die sicher die gesamte Tabelle abdeckt. Ggf. anpassen, falls Tabelleninhalt wächst. */
     }
     
     .sprechzeiten-tabelle th {
@@ -655,37 +708,24 @@
       text-align: left;
     }
 
-    /* Horizontale Linie unter der Kopfzeile (tr im thead), animiert als eine Linie */
-    .sprechzeiten-tabelle thead tr::after {
-      content: '';
-      position: absolute;
-      bottom: 320px; /* Desktop: Positioniert die Linie relativ weiter oben */
-      left: 0;
-      width: calc(100% - 10px); /* Linie rechts um 20px gekürzt */
-      height: 0.5px; /* Höhe auf 1px für bessere Sichtbarkeit/Robustheit */
-      background-color: #6e370e;
-      clip-path: inset(0 100% 0 0); /* Initial von rechts komplett verdeckt */
-      transition: clip-path 0.5s 0.3s ease-out; /* Verzögerung, um nach den vertikalen Linien zu animieren */
-    }
-    .sprechzeiten-tabelle.start-animation thead tr::after {
-      clip-path: inset(0 0 0 0); /* Macht die Linie sichtbar (von links nach rechts) */
+    .sprechzeiten-tabelle th .underline-text {
+      position: relative; /* Für die Positionierung des Pseudo-Elements */
+      display: inline-block; /* Damit der Unterstrich sich an die Textbreite anpasst */
     }
 
-    /* Vertikale Spaltentrenner (animiert, nur im thead, aber lang genug, wie in index.html) */
-    .sprechzeiten-tabelle thead th:not(:first-child)::before {
+    .sprechzeiten-tabelle th .underline-text::after {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0; /* Linie am linken Rand der th-Zelle */
-      width: 0.5px; /* Dicke der Linie */
-      background-color: #6e370e;
-      height: 0; /* Initial keine Höhe */
-      transition: height 0.5s ease-out;
+      bottom: -3px; /* Abstand des Unterstrichs zum Text */
+      /* Positionierung für einen zentrierten 85% breiten Unterstrich */
+      left: 7.5%; /* (100% - 85%) / 2, um den 85% breiten Strich zu zentrieren */
+      width: 85%;   /* Finale Breite des Unterstrichs, relativ zum .underline-text */
+      height: 0.5px; /* Dicke des Unterstrichs angepasst */
+      background-color: #6e370e; /* Farbe des Unterstrichs angepasst an Spaltenlinien */
+      /* Animation über clip-path für den "von links zeichnen" Effekt */
+      clip-path: inset(0 100% 0 0); /* Initial von rechts komplett verdeckt (top, right, bottom, left) */
+      transition: clip-path 0.5s 0.3s ease-out; /* Verzögerung beibehalten, damit vertikale Linien zuerst kommen */
     }
-    .sprechzeiten-tabelle.start-animation thead th:not(:first-child)::before {
-      height: 380px; /* Feste Höhe, die die Tabelle abdeckt (ggf. anpassen an Tabellenhöhe) - Wert erhöht */
-    }
-
     .sprechzeiten-hinweis {
       font-family: 'Poppins', sans-serif;
       font-weight: 300; /* Poppins Light */
@@ -696,6 +736,11 @@
       margin-bottom: 40px;
     }
 
+    /* Animierter Zustand für die Unterstriche */
+    .sprechzeiten-tabelle.start-animation th .underline-text::after {
+      clip-path: inset(0 0 0 0); /* Macht den Unterstrich sichtbar (von links nach rechts) */
+    }
+
     /* Lage & Anfahrt Bereich */
     .lage-anfahrt-section {
       background-color: #ffffff; /* Hintergrundfarbe wie vorherige Sektionen */
@@ -704,10 +749,17 @@
       text-align: center;
     }
 
-    /* Animationsklasse für alle section-divider (kopiert von index.html) */
+    .lage-anfahrt-section .section-divider {
+      /* Allgemeine Stile kommen von .section-divider */
+      margin-top: 0; /* Spezifischer oberer Margin */
+      margin-bottom: 80px; /* Spezifischer unterer Margin */
+    }
+
+    /* Animationsklasse für alle section-divider */
     .section-divider.animate {
       clip-path: inset(0 0 0 0); /* Macht den Divider sichtbar (von links nach rechts) */
     }
+
 
     .lage-anfahrt-section .sub-heading-container {
       display: flex;
@@ -748,9 +800,6 @@
       margin: 80px auto 0 auto; /* Abstand nach oben vergrößert, zentriert */
       font-family: 'Poppins', sans-serif; /* Standard-Schriftart für diesen Bereich */
       font-weight: 300; /* Poppins Light als Standard */
-      padding-left: 80px; /* Inhalt um 50px nach rechts einrücken */
-      padding-top: 10px;
-      box-sizing: border-box; /* Stellt sicher, dass padding in der width-Berechnung enthalten ist */
     }
 
     .anfahrt-row {
@@ -808,10 +857,9 @@
     }
 
     .werte-section .section-divider {
-      width: 80%;
-      height: 1px;
-      background-color: #6e370e;
-      margin: 0 auto 120px auto; /* Beibehaltung der Zentrierung für die Linie */
+      /* Allgemeine Stile kommen von .section-divider */
+      margin-top: 0; /* Spezifischer oberer Margin */
+      margin-bottom: 120px; /* Spezifischer unterer Margin */
     }
 
     .werte-section .sub-heading-container {
@@ -940,9 +988,22 @@
       font-weight: 700; /* Bold */
       font-size: 110px; /* Gleiche Schriftgröße wie h1 in hero-section */
       color: #ffffff; /* Helle Schrift für dunklen Footer-Hintergrund */
-      line-height: 1.27;
+      line-height: 1.27; /* Leicht erhöht für mehr Platz für Unterlängen */
       margin-bottom: 60px; /* Abstand zum Button vergrößert */
       /* Kein Textschatten, da Hintergrund einfarbig ist, kann bei Bedarf hinzugefügt werden */
+
+      /* Hinzugefügt für die Animation */
+      opacity: 1; /* Nicht mehr über Opazität, sondern clip-path gesteuert */
+      transform: translateY(150px); /* Startet ca. eine Zeilenhöhe tiefer (110px * 1.2 = 132px) */
+      clip-path: inset(100% 0 0 0); /* Initial von unten komplett verdeckt (top, right, bottom, left) */
+      transition: transform 0.7s ease-out, clip-path 0.7s ease-out; /* Bewegung und Sichtbarwerden animieren */
+      visibility: hidden; /* Verhindert Interaktion/Darstellung bevor Animation startet */
+    }
+
+    .footer-new-title.animate-footer-title { /* Geänderter Klassenname für Klarheit */
+      transform: translateY(0); /* Bewegt sich zur finalen Position */
+      clip-path: inset(0 0 0 0); /* Wird von unten nach oben sichtbar */
+      visibility: visible;
     }
 
     .footer-new-button {
@@ -1130,164 +1191,119 @@
       margin-bottom: 0;
     }
 
-    /* Placeholder for Kontakt page specific styles */
-    .kontakt-content {
-      padding-top: 120px; /* Adjust to be below fixed nav */
-      padding-left: 40px;
-      padding-right: 40px;
-      padding-bottom: 40px;
-      min-height: calc(100vh - 93px); /* Example to fill viewport height below nav */
-    }
-
-    /* Stile für neue Sektionstitel (kopiert von faq.html für Kontaktwege) */
-    .neue-faq-sektion { 
-      background-color: #ffffff; 
-      color: #000000;
-      padding: 0 40px 160px 40px; /* padding-bottom erhöht für mehr Abstand zur Fußzeile */
-      text-align: center;
-    }
-
-    .neue-faq-sektion .section-divider {
-      /* Allgemeine Stile kommen von .section-divider */
-      /* Spezifische Margins können hier bei Bedarf überschrieben werden,
-         aber für den Animationseffekt sind die allgemeinen Stile entscheidend. */
-      margin-top: 0; /* Beispiel, falls benötigt */
-      margin-bottom: 80px; /* Beispiel, falls benötigt */    }
-
-    .neue-faq-sektion .sub-heading-container {
+    /* Splash Screen Stile */
+    #splash-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100dvh; /* Dynamische Viewport-Höhe für bessere mobile Darstellung */
+      background-color: #6e370e;
+      z-index: 2000; /* Höher als die Navigation */
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-bottom: 15px;
+      opacity: 1;
+      transition: transform 0.7s ease-in-out; /* Nur die Transformation wird animiert */
+      overflow: hidden; /* Verhindert internes Scrollen des Splash-Screens */
+      /* Das Logo wird initial unsichtbar gemacht und blendet später ein */
+      /* Mobile First: Logo-Skalierung und -Größen standardmäßig für Mobilgeräte */
     }
 
-    .neue-faq-sektion .sub-heading-bullet {
-      font-size: 24px; 
-      color: #6e370e;
-      margin-right: 10px;
-      line-height: 1;
+    #splash-screen.hide {
+      transform: translateY(-100%);
     }
 
-    .neue-faq-sektion .sub-heading {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 300; /* Poppins Light */
-      font-size: 20px;
+    /* Mobile First: Basis-Skalierung für das Logo im Splash Screen */
+    #splash-screen .footer-logo {
+      transform: scale(0.4);
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.6s ease-in-out;
+    }
+    /* Stile für das Logo im Splash Screen, basierend auf .footer-logo */
+    #splash-screen .footer-logo {
+      /* Das Logo ist initial unsichtbar und wird per JS-Klasse .show eingeblendet */
+      text-align: center; /* Hilft bei der Zentrierung, falls Kindelemente inline-block sind */
+      opacity: 0; /* Initial unsichtbar */
+      transition: opacity 0.6s ease-in-out; /* Logo blendet ein über 0.6s, sobald .show aktiv ist */
+    }
+    #splash-screen .footer-logo.show {
+      opacity: 0.8 !important; /* Macht das Logo sichtbar */
     }
 
-    .neue-faq-sektion .main-heading {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 700; /* Poppins Bold */
-      font-size: 70px; 
-      line-height: 1.1;
-      margin-top: 0;
+    /* Die spezifischen Logo-Text-Stile werden von .footer-logo .bazara-style etc. geerbt */
+    /* Es ist wichtig, dass die Schriftgrößen und Farben aus .footer-logo hier greifen */
+    /* .footer-logo .bazara-style, .footer-logo .safia-style, .footer-logo .subtitle-style */
+    /* bleiben unverändert und werden hier wiederverwendet. */
+    /* Mobile First: Schriftgrößen für Splash Screen Logo */
+    #splash-screen .footer-logo .bazara-style {
+      font-size: 180px;
+    }
+    #splash-screen .footer-logo .safia-style {
+      font-size: 190px;
+    }
+    #splash-screen .footer-logo .subtitle-style {
+      font-size: 28px;
+      margin-top: 15px;
     }
 
-    .neue-faq-sektion .main-heading .highlight {
-      color: #6e370e;
-      font-weight: 700; 
-    }
-
-    /* Stile für den Inhalt des Kontaktwege-Bereichs (kopiert von faq.html) */
-    .neue-faq-sektion .kontakt-layout-container {
-      display: flex;
-      align-items: flex-start; 
-      max-width: 950px; 
-      margin: 120px auto 0 auto; 
-      padding: 0 15px;        
-      text-align: left;       
-      position: relative; 
-    }
-
-    .neue-faq-sektion .kontakt-text-links {
-      flex: 1; 
-      font-family: 'Poppins', sans-serif;
-      font-weight: 300; 
-      font-size: 20px;  
-      line-height: 1.9; 
-      padding-right: 55px; 
-      box-sizing: border-box;
-    }
-    .neue-faq-sektion .kontakt-text-links p {
-      margin-top: 0; 
-    }
-
-    .neue-faq-sektion .kontakt-vertikale-linie-element {
-      width: 0.7px; 
-      background-color: #6e370e;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      top: -25px; /* Startpunkt der Linie, 25px über dem Container-Inhalt */
-      /* bottom: -55px; Entfernt, da Höhe die Länge steuert */
-      height: 0; /* Initial keine Höhe, für die Animation */
-      transition: height 0.8s ease-out; /* Animation für die Höhe */
-    }
-
-    /* Klasse zum Auslösen der Linienanimation (analog zu faq.html) */
-    .neue-faq-sektion .kontakt-vertikale-linie-element.animate-draw {
-      /* Die volle Höhe der Linie.
-         100% = Höhe des .kontakt-layout-container
-         + 25px (Abstand oben) + 55px (Abstand unten) = 100% + 80px */
-      height: calc(100% + 80px);
-    }
-
-    .neue-faq-sektion .kontakt-info-rechts {
-      flex: 1; 
-      font-family: 'Poppins', sans-serif;
-      font-weight: 300; 
-      font-size: 20px; 
-      padding-left: 55px; 
-      box-sizing: border-box;
-    }
-
-    .neue-faq-sektion .kontakt-info-rechts p {
-      display: flex; /* Macht das p-Element zum Flex-Container */
-      align-items: baseline; /* Richtet Label und Wert an der Grundlinie aus */
-      margin: 0 0 20px 0;
-      line-height: 1.9;
-    }
-    .neue-faq-sektion .kontakt-info-rechts p:last-child {
-      margin-bottom: 0; 
-    }
-
-    .neue-faq-sektion .kontakt-label {
-      min-width: 110px; /* Feste Mindestbreite für die Labels erhöht für stärkere Einrückung */
-      display: inline-block; /* Erforderlich für min-width */
-    }
-
-    /* Stil für anklickbare Links in Kontaktinfos, um Standard-Blau zu vermeiden */
-    .neue-faq-sektion .kontakt-info-rechts a {
-      color: inherit; /* Erbt die Textfarbe vom Elternelement */
-      text-decoration: none; /* Entfernt Unterstreichung, kann bei Bedarf angepasst werden */
-    }
-    .neue-faq-sektion .kontakt-info-rechts a:hover {
-      text-decoration: underline; /* Unterstreichung bei Hover für bessere Nutzererfahrung */
-    }
-
-    /* Responsive Anpassung für kleinere Bildschirme (analog zu faq.html) */
-    @media (max-width: 768px) {
-      .neue-faq-sektion .kontakt-layout-container {
-        flex-direction: column; /* Untereinander anordnen */
-        align-items: center; /* Zentriert die Blöcke, wenn sie untereinander sind */
+    /* Desktop-Anpassungen für den Splash Screen */
+    @media (min-width: 769px) {
+      #splash-screen .footer-logo {
+        transform: scale(1); /* Ursprüngliche Skalierung für Desktop wiederherstellen */
       }
-      .neue-faq-sektion .kontakt-vertikale-linie-element {
-        position: static; /* Absolute Positionierung aufheben */
-        left: auto;
-        top: auto;
-        bottom: auto;
-        transform: none; /* Transform zurücksetzen */
-        width: 80%; /* Linie wird horizontal, wenn Spalten gestapelt sind */
-        height: 1px !important; /* Feste Höhe für horizontale Linie, !important zur Sicherheit ggü. .animate-draw */
-        margin: 25px 0; /* Abstand um die horizontale Linie */
-        align-self: center;
-        transition: none; /* Keine Höhenanimation für die horizontale Linie */
+      #splash-screen .footer-logo .bazara-style {
+        font-size: 270px; /* Desktop-Schriftgröße */
       }
-      .neue-faq-sektion .kontakt-text-links {
-        margin-bottom: 0; /* Kein doppelter Margin mit der Linie */
+      #splash-screen .footer-logo .safia-style {
+        font-size: 285px; /* Desktop-Schriftgröße */
+      }
+      #splash-screen .footer-logo .subtitle-style {
+        font-size: 42px; /* Desktop-Schriftgröße */
+        margin-top: 22.5px; /* Desktop-Abstand */
       }
     }
 
-    /* Responsive Anpassungen für das Menü (von index.html übernommen) */
+    /* Hamburger Menu Styles */
+    .hamburger-menu {
+      display: none; /* Standardmäßig auf Desktop ausgeblendet */
+      cursor: pointer;
+      padding: 10px; /* Etwas Klickfläche */
+      margin-right: 10px; /* Abstand zum rechten Rand, falls .main-nav padding nicht ausreicht */
+      z-index: 1001; /* Über dem Rest der Navigationsleiste, falls nötig */
+    }
+
+    .hamburger-menu .bar {
+      display: block;
+      width: 25px;
+      height: 3px;
+      margin: 5px auto;
+      transition: all 0.3s ease-in-out;
+      background-color: #ffffff; /* Standardfarbe für Bars (wenn Nav-Text weiß ist) */
+    }
+
+    .main-nav.nav-text-dark .hamburger-menu .bar {
+      background-color: #0c0c0c; /* Farbe für Bars (wenn Nav-Text dunkel ist) */
+    }
+
+    /* Animation für Hamburger zu X */
+    .main-nav.nav-active .hamburger-menu .bar1 {
+      transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    .main-nav.nav-active .hamburger-menu .bar2 {
+      opacity: 0;
+    }
+    .main-nav.nav-active .hamburger-menu .bar3 {
+      transform: rotate(45deg) translate(-5px, -6px);
+    }
+
+    /* Farbe des Hamburger-Icons (X) wenn das mobile Menü aktiv ist, auf dunklem Hintergrund */
+    .main-nav.nav-active .hamburger-menu .bar {
+      background-color: #0c0c0c; /* Dunkle Farbe für das X auf weißem Menühintergrund */
+    }
+
+    /* Responsive Anpassungen für das Menü */
     @media (max-width: 768px) {
       /* Entfernt das blaue Aufleuchten beim Antippen auf Mobilgeräten */
       * {
@@ -1310,7 +1326,9 @@
         top: 0; /* Geändert von 93px zu 0, um oben zu starten */
         left: 0;
         width: 100%; /* Nimmt die volle Breite ein (war 100%, ist ok für fixed) */
+        /* height: 100dvh; Wird im active-Status gesetzt, max-height für Animation */
         background-color: #ffffff; /* Hintergrund für das mobile Menü auf Weiß geändert */
+        /* box-shadow: 0 4px 8px rgba(0,0,0,0.2); Entfernt, da Vollbild */
         z-index: 1000; /* Auf gleicher Ebene wie main-nav, damit Hamburger (1001) darüber liegt */
 
         opacity: 0;
@@ -1320,6 +1338,7 @@
         padding-top: 0;
         padding-bottom: 0;
         box-sizing: border-box; /* Wichtig für Padding und Höhe */
+        /* Übergang für justify-content ist nicht direkt animierbar, aber die anderen Eigenschaften schon */
         transition: opacity 0.35s ease-in-out, max-height 0.35s ease-in-out, padding-top 0.35s ease-in-out, padding-bottom 0.35s ease-in-out, visibility 0s linear 0.35s;
       }
 
@@ -1328,9 +1347,9 @@
         max-height: 100dvh; /* Volle dynamische Viewport-Höhe als Ziel für Animation */
         height: 100dvh; /* Stellt sicher, dass es immer die volle Höhe einnimmt */
         visibility: visible;
-        padding-top: 20px; /* Reduziert von 60px, um Sprachwechsler weiter nach oben zu schieben */
+        padding-top: 20px; /* Adjusted to match German index.html for top language switcher */
         padding-bottom: 60px; /* Mehr Abstand unten für die größeren Links und den gewünschten Freiraum */
-        justify-content: flex-start; /* Geändert zu flex-start wie in index.html/faq.html */
+        justify-content: flex-start; /* Adjusted to match German index.html */
         transition: opacity 0.35s ease-in-out, max-height 0.35s ease-in-out, padding-top 0.35s ease-in-out, padding-bottom 0.35s ease-in-out, visibility 0s linear 0s;
       }
 
@@ -1341,6 +1360,7 @@
       }
       .main-nav .nav-links li a {
         padding: 10px 30px; /* Vertikales Padding reduziert, horizontales Padding für linken Einzug */
+        /* padding-bottom: 15px; /* Erhöht den Abstand unter jedem Link-Text, falls gewünscht */
         display: block;
         width: 100%;
         box-sizing: border-box;
@@ -1349,82 +1369,86 @@
         font-weight: 300; /* Schriftgewicht auf Light (300) gesetzt */
         line-height: 1.3; /* Angepasste Zeilenhöhe für große Schrift */
       }
-      .main-nav .nav-links li a .menu-item-number { /* Stile für menu-item-number, falls diese im HTML verwendet werden */
-        position: relative; 
-        z-index: 10;       
+      .main-nav .nav-links li a .menu-item-number {
+        position: relative; /* Erforderlich für z-index */
+        z-index: 10;        /* Stellt sicher, dass es über dem Link-Text liegt */
         display: block;
-        font-size: 1rem;  
+        font-size: 1rem;  /* Zurück zur kleinen Schriftgröße */
         color: #6e370e;
-        font-weight: 300; 
-        line-height: 1; 
-        top: 6px; 
-        left: 3px; 
+        /* margin-bottom: 2px; /* Kleiner Abstand, um Nummer über dem Text zu positionieren - wird durch top/left ersetzt/ergänzt */
+        font-weight: 300; /* Gleiches Gewicht wie der Link */
+        line-height: 1; /* Enge Zeilenhöhe für die Nummer */
+        top: 6px; /* Verschiebt die Nummer 10px nach unten */
+        left: 3px; /* Verschiebt die Nummer 3px nach rechts */
       }
       .main-nav .nav-links li a::after { /* Hover-Linie im mobilen Menü entfernen */
         display: none;
       }
 
-      /* Ersten Hauptmenüpunkt nach unten schieben, um Platz für Sprachwechsler oben zu machen (kopiert von index.html/faq.html) */
+      /* Copied from German index.html for mobile language switcher */
       .main-nav.nav-active .nav-links > li:not(.lang-switcher):first-of-type {
         margin-top: auto;
       }
 
-      /* Sprachwechsler im mobilen Menü nach oben links verschieben (kopiert von index.html/faq.html) */
       .main-nav .nav-links li.lang-switcher {
-        order: -1; /* Stellt sicher, dass es das erste Element in der Flex-Spalte ist */
-        margin-left: 0; /* Entfernt den Desktop-Margin */
-        padding: 10px 30px 10px 32px; /* Passt das Padding an, linker Padding um 2px erhöht für Verschiebung nach rechts */
-        width: 100%; /* Nimmt die volle Breite ein */
-        box-sizing: border-box; /* Stellt sicher, dass Padding in die Breite einberechnet wird */
-        justify-content: flex-start; /* Richtet die Sprachoptionen linksbündig aus */
-        margin-bottom: 15px; /* Abstand unter dem Sprachwechsler leicht reduziert */
-        display: flex; /* Stellt sicher, dass es ein Flex-Container für die a-Tags ist */
-        align-items: center; /* Vertikale Ausrichtung der Sprachoptionen */
+        order: -1; 
+        margin-left: 0; 
+        padding: 10px 30px 10px 32px; 
+        width: 100%; 
+        box-sizing: border-box; 
+        justify-content: flex-start; 
+        margin-bottom: 15px; 
+        display: flex; 
+        align-items: center; 
       }
 
-      /* Spezifische Stile für die Sprachoptionen im mobilen Menü (kopiert von index.html/faq.html) */
       .main-nav .nav-links li.lang-switcher a.lang-option {
-        font-size: 1.1rem;   /* Schriftgröße auf 1.1rem gesetzt */
-        font-weight: 300;    /* Konsistentes Schriftgewicht */
-        line-height: 1.2;    /* Angepasste Zeilenhöhe */
-        padding: 5px 0;      /* Vertikales Padding, kein horizontales Padding hier */
-        display: inline-block; /* Damit sie nebeneinander stehen und nicht die volle Breite einnehmen */
-        width: auto;           /* Automatische Breite basierend auf Inhalt */
-        color: #757575 !important; /* Dunkelgraue Farbe für inaktive Sprache (EN) */
-        margin: 0; /* Zurücksetzen von Margins anderer Regeln */
+        font-size: 1.1rem;   
+        font-weight: 300;    
+        line-height: 1.2;    
+        padding: 5px 0;      
+        display: inline-block; 
+        width: auto;           
+        color: #757575 !important; /* Dark grey for inactive language in mobile menu */
+        margin: 0; 
       }
+
       .main-nav .nav-links li.lang-switcher a.lang-option.active-lang {
-        color: #0c0c0c !important; /* Schwarze Farbe für aktive Sprache (DE), passend zu Menüpunkten */
-        margin-right: 12px;      /* Abstand zwischen DE und EN, um 2px vergrößert */
+        color: #0c0c0c !important; /* Black for active language in mobile menu */
+        margin-right: 12px;      
       }
 
       .hamburger-menu {
         display: block; /* Hamburger-Icon auf Mobilgeräten anzeigen */
       }
 
-      /* Hero Section Anpassungen für Mobilgeräte (kopiert von leistungen.html) */
+      /* Standard Desktop Navigationslinks ausblenden, da sie durch das mobile Menü ersetzt werden */
+      /* Dies wird erreicht, indem .nav-links oben für mobile Geräte neu gestylt wird. */
+      /* Die Desktop-spezifischen Abstände etc. werden durch die mobilen Styles überschrieben. */
+      /* Hero Section Anpassungen für Mobilgeräte */
       .hero-section {
         align-items: flex-start; /* Inhalt linksbündig ausrichten */
         justify-content: flex-start;
         padding-top: 220px; /* Abstand nach oben deutlich vergrößert */
         padding-left: 20px;   /* Seitlicher Abstand für den Inhalt */
-        margin-bottom: -15vh; /* Beibehalten von vorheriger kontakt.html Anpassung, falls spezifisch gewünscht */
+        margin-bottom: -15vh;
         padding-right: 0;  /* Rechter Rand für h1 entfernt (übernimmt jetzt die volle Breite) */
         height: 85vh; /* Höhe reduzieren, um die Lücke durch Bildverschiebung zu schließen */
         text-align: left;     /* Standard-Textausrichtung für Kinder (h1, h2) */
       }
 
+      /* Hero Section Anpassungen für Mobilgeräte */
       .hero-section h1 {
-        font-size: 39px; /* Schriftgröße für h1 reduziert (von leistungen.html) */
+        font-size: 39px; /* Schriftgröße für h1 um 1px reduziert */
         margin-bottom: 15px; /* Angepasster Abstand */
         /* text-align: left; wird von .hero-section geerbt */
       }
 
-      /* .hero-line Stile bleiben für die Animation relevant, keine spezifischen responsiven Änderungen von leistungen.html nötig,
-         da die Hauptanpassungen über .hero-section und .hero-section h1 erfolgen.
-         Die text-align: left; Vererbung von .hero-section sollte ausreichen. */
-      .hero-section h1 .hero-line {
-        /* display: inline-block; ist bereits global gesetzt */
+      .dynamic-h1-line {
+        height: 1.3em; /* Angepasst an Desktop-Wert für Unterlängen */
+        width: auto; /* Passt sich dem Inhalt an */
+        left: 0;     /* Linksbündig zum Elternelement (h1) */
+        transform: none; /* Keine horizontale Zentrierung mehr */
       }
 
       .hero-section h2 {
@@ -1434,20 +1458,38 @@
         margin-bottom: 20px; /* Angepasster Abstand unten */
         padding-right: 20px; /* Rechten Innenabstand für h2 auf Mobilgeräten wiederherstellen */
         /* text-align: left; wird von .hero-section geerbt */
+        /* padding-left und padding-right sind nicht mehr nötig, da .hero-section Padding hat */
       }
 
+      /* Hintergrundbild der Hero-Section auf Mobilgeräten nach oben verschieben */
       .hero-background {
         background-position: center calc(50% - 15vh); /* Bild um 15vh nach oben verschoben (nur mobil) */
-        min-height: 100%; /* Stellt sicher, dass min-height sich an die (reduzierte) Höhe der .hero-section anpasst */
+        min-height: 100%; /* Stellt sicher, dass min-height sich an die 85vh der .hero-section anpasst */
+                          /* Überschreibt die globale min-height: 100vh; für Mobilgeräte */
+      }
+      
+      /* Anpassungen für die dynamischen Phrasen auf Mobilgeräten */
+      .dynamic-phrase {
+        left: 0; /* Positionierung am linken Rand des .dynamic-h1-line Containers */
+        transform: translateX(0); /* Keine horizontale Zentrierung mehr */
+        text-align: left; /* Text innerhalb der Phrase linksbündig */
       }
 
-      /* Info Section Anpassungen für Mobilgeräte (von index.html kopiert) */
+      .dynamic-phrase.entering {
+        transform: translateX(0) translateY(100%); /* Nur Y-Transformation für Animation beibehalten */
+      }
+      .dynamic-phrase.visible {
+        transform: translateX(0) translateY(0); /* Nur Y-Transformation für Animation beibehalten */
+      }
+      .dynamic-phrase.exiting {
+        transform: translateX(0) translateY(-100%); /* Nur Y-Transformation für Animation beibehalten */
+      }
+
+      /* Info Section Anpassungen für Mobilgeräte */
       .info-section {
         flex-direction: column; /* Spalten untereinander anordnen */
         padding: 40px 20px; /* Weniger Padding auf Mobilgeräten */
         gap: 20px; /* Reduzierter Abstand zwischen den Spalten */
-        position: relative; /* Erzeugt einen neuen Stapelkontext */
-        z-index: 1;         /* Stellt sicher, dass es über Elementen mit z-index < 1 liegt */
       }
 
       .info-section .left-column {
@@ -1467,56 +1509,105 @@
         font-size: 36px; /* Deutlich kleinere Schriftgröße für den Willkommenstext */
       }
 
-      /* Responsive Anpassungen für .neue-faq-sektion (kopiert von faq.html) */
-      .neue-faq-sektion {
-        padding-left: 0; /* Seiten-Padding für die Sektion selbst entfernen */
-        padding-right: 0;
-        /* Vertikales Padding kann beibehalten oder angepasst werden, z.B.: */
-        /* padding-top: 60px; */ /* Beispiel für angepasstes oberes Padding */
-        /* padding-bottom: 60px; */ /* Beispiel für angepasstes unteres Padding */
+      /* Leistungen Section Anpassungen für Mobilgeräte */
+      .leistungen-section {
+        padding: 40px 20px; /* Weniger Padding */
       }
 
-      .neue-faq-sektion .sub-heading {
-        font-size: 18px; 
-      }
-      .neue-faq-sektion .main-heading {
-        font-size: 42px; 
-        margin-bottom: -60px; /* Reduzierter Abstand zum Inhalt für Mobilgeräte */
+      .leistungen-section .sub-heading {
+        font-size: 18px; /* Kleinere Schriftgröße */
       }
 
-      .neue-faq-sektion .kontakt-layout-container {
-        flex-direction: column; /* Untereinander anordnen */
-        align-items: center; /* Zentriert die Blöcke, wenn sie untereinander sind */
-      }
-      .neue-faq-sektion .kontakt-vertikale-linie-element {
-        position: static; /* Absolute Positionierung aufheben */
-        left: auto;
-        top: auto;
-        bottom: auto;
-        transform: none; /* Transform zurücksetzen */
-        width: 80%; /* Linie wird horizontal, wenn Spalten gestapelt sind */
-        height: 1px !important; /* Feste Höhe für horizontale Linie, !important zur Sicherheit ggü. .animate-draw */
-        margin: 25px 0; /* Abstand um die horizontale Linie */
-        align-self: center;
-        transition: none; /* Keine Höhenanimation für die horizontale Linie */
-      }
-      .neue-faq-sektion .kontakt-text-links {
-        margin-bottom: 0; /* Kein doppelter Margin mit der Linie */
-        padding-left: 25px; /* Beibehaltung des linken Paddings für den Textblock */
-        padding-right: 25px; /* Hinzufügen eines rechten Paddings für Symmetrie */
-        text-align: center; /* Text zentrieren für mobile Ansicht */
-      }
-      .neue-faq-sektion .kontakt-layout-container .kontakt-info-rechts {
-        padding-left: 0px; /* Kein linker Einzug für die Kontaktinfos */
-        font-size: 15px; /* Kleinere Schrift für Kontaktinfos */
-        width: 100%; /* Volle Breite für den Kontaktinfo-Block */
-        text-align: center; /* Kontaktinfos zentrieren */
-      }
-      .neue-faq-sektion .kontakt-info-rechts p {
-        justify-content: center; /* Zentriert Label und Wert innerhalb des p-Tags */
+      .leistungen-section .main-heading {
+        font-size: 42px; /* Deutlich kleinere Schriftgröße */
+        margin-bottom: 30px; /* Weniger Abstand nach unten */
       }
 
-      /* Sprechzeiten Section Anpassungen für Mobilgeräte (von index.html übernommen) */
+      .leistungen-items-container {
+        flex-direction: column; /* Items untereinander anordnen */
+        align-items: center; /* Items zentrieren */
+        margin-top: 40px; /* Angepasster Abstand */
+      }
+
+      .leistung-item {
+        flex-basis: 100%; /* Volle Breite für jedes Item */
+        max-width: 320px; /* Maximale Breite für die Items, um sie nicht zu breit werden zu lassen */
+        margin-bottom: 50px; /* Mehr Abstand zwischen den gestapelten Items */
+      }
+
+      .leistung-image-wrapper {
+        height: 200px; /* Höhe der Bild-Wrapper reduzieren */
+      }
+
+      .leistung-image-wrapper#DMP {
+        aspect-ratio: 180.8 / 200;
+        object-fit: cover;
+      }
+
+      .leistung-image-wrapper#diagnostik {
+        aspect-ratio: 232.8 / 200;
+        object-fit: cover;
+      }
+
+      .leistung-image-wrapper#vorsorge {
+        aspect-ratio: 174.4 / 200;
+        object-fit: cover;
+      }
+      
+
+      .mehr-erfahren-button {
+        padding: 10px 20px; /* Button-Padding anpassen */
+        font-size: 14px; /* Kleinere Schrift für Button */
+        opacity: 1; /* Button immer sichtbar machen */
+        pointer-events: auto; /* Button immer klickbar machen */
+        bottom: -10px; /* Weiter nach unten verschieben (war 3px geerbt) */
+        right: -10px;   /* Weiter nach links verschieben */
+        left: auto;  /* `right` zurücksetzen, da `left` verwendet wird */
+      }
+
+      .leistung-line {
+        width: 80px; /* Kürzere Linie */
+        height: 3px; /* Etwas dünnere Linie */
+        margin-top: 30px; /* Angepasster Abstand */
+        margin-bottom: 10px; /* Angepasster Abstand */
+        /* Individuelle margin-left für Linien entfernen/zurücksetzen für mobile Ansicht */
+        margin-left: 0 !important;
+      }
+
+      /* Entferne die individuellen Verschiebungen der Linien auf Mobilgeräten */
+      .leistungen-items-container .leistung-item:nth-of-type(1) .leistung-line,
+      .leistungen-items-container .leistung-item:nth-of-type(2) .leistung-line,
+      .leistungen-items-container .leistung-item:nth-of-type(3) .leistung-line {
+        margin-left: auto !important; /* Zentriert die Linie unter dem Bild */
+        margin-right: auto !important; /* Zentriert die Linie unter dem Bild */
+      }
+
+      .leistung-label {
+        font-size: 20px; /* Kleinere Schriftgröße */
+      }
+
+      .leistungen-beschreibung,
+      .leistungen-button-container {
+        margin-left: 0; /* Linken Einzug entfernen */
+        margin-right: 0; /* Rechten Einzug entfernen (falls auto war) */
+        padding-left: 10px; /* Kleines Padding für Text und Button */
+        padding-right: 10px; /* Kleines Padding für Text und Button */
+        text-align: center; /* Text und Button zentrieren */
+        max-width: 100%; /* Volle Breite erlauben */
+      }
+
+      .leistungen-beschreibung {
+        font-size: 16px; /* Kleinere Schriftgröße für Beschreibung */
+        margin-top: 20px;
+        margin-bottom: 30px;
+      }
+
+      .leistungen-button {
+        font-size: 16px; /* Kleinere Schriftgröße für Button */
+        padding: 10px 20px; /* Padding anpassen */
+      }
+
+      /* Sprechzeiten Section Anpassungen für Mobilgeräte */
       .sprechzeiten-section {
         padding: 0 20px 40px 20px; /* Weniger Padding, besonders oben und unten */
       }
@@ -1530,7 +1621,7 @@
       }
 
       .sprechzeiten-section .main-heading {
-        font-size: 42px; /* Deutlich kleinere Schriftgröße */
+        font-size: 42px; /* Deutlich kleinere Schriftgröße, konsistent mit Leistungen */
         margin-bottom: 30px; /* Weniger Abstand zur Tabelle */
       }
 
@@ -1540,24 +1631,20 @@
         margin-top: 30px; /* Weniger Abstand nach oben */
       }
 
-      /* Linie unter Kopfzeile für Mobile anpassen */
-      .sprechzeiten-tabelle thead tr::after {
-        bottom: 0; /* Mobile: Linie am unteren Rand der Kopfzeile */
-        width: 100%; /* Mobile: Linie über die volle Breite */
-      }
-
       .sprechzeiten-tabelle th,
       .sprechzeiten-tabelle td {
         padding: 12px 8px; /* Weniger Padding in den Zellen */
       }
 
-      /* Vertikale Spaltentrenner oben kürzer machen für Mobilgeräte */
-      .sprechzeiten-tabelle thead th:not(:first-child)::before {
-        top: 14px; /* Linie startet 25px tiefer */
+      /* Unterstrich bei spezifischen Tabellenüberschriften auf Mobilgeräten entfernen */
+      #akute-sprechstunde-text::after,
+      #regulaere-sprechstunde-text::after {
+        display: none;
       }
 
+      /* Höhe der animierten vertikalen Linien anpassen */
       .sprechzeiten-tabelle.start-animation thead th:not(:first-child)::before {
-        height: 340px; /* Ursprüngliche mobile Höhe (300px) - 25px (durch top verschoben), damit sie unten gleich bleibt */
+        height: 350px; /* Erhöhte Höhe für mobile Ansicht, ggf. anpassen */
       }
 
       .sprechzeiten-hinweis {
@@ -1566,7 +1653,7 @@
         margin-bottom: 20px; /* Weniger Abstand nach unten */
       }
 
-      /* Lage & Anfahrt Section Anpassungen für Mobilgeräte (von index.html übernommen) */
+      /* Lage & Anfahrt Section Anpassungen für Mobilgeräte */
       .lage-anfahrt-section {
         padding: 0 20px 40px 20px; /* Globaler linker Padding für die Sektion auf 20px gesetzt */
       }
@@ -1587,9 +1674,8 @@
       .anfahrt-details-container {
         width: 100%; /* Volle Breite */
         margin-top: 40px; /* Angepasster Abstand */
-        padding-left: 30px; /* Erhöht den linken Padding des Inhaltsbereichs */
-        padding-right: 30px; /* Erhöht den rechten Padding des Inhaltsbereichs */
-        box-sizing: border-box; /* Stellt sicher, dass Padding in der Breite berücksichtigt wird */
+        padding-left: 30px; /* Erhöht den linken Padding des Inhaltsbereichs (40px gesamt - 20px von Sektion) */
+        padding-right: 30px;
       }
 
       .anfahrt-row {
@@ -1628,7 +1714,78 @@
         margin-bottom: 3px;
       }
 
-      /* Footer Anpassungen für Mobilgeräte (von index.html übernommen) */
+      /* Werte Section Anpassungen für Mobilgeräte */
+      .werte-section {
+        padding: 0 20px 40px 20px; /* Weniger Padding */
+      }
+
+      .werte-section .section-divider {
+        margin-bottom: 40px; /* Weniger Abstand */
+      }
+
+      .werte-content-layout {
+        flex-direction: column; /* Titel und Liste untereinander */
+        gap: 30px; /* Reduzierter Abstand zwischen Titelblock und Liste */
+        margin-top: 20px; /* Weniger Abstand nach oben */
+      }
+
+      .werte-sticky-titles {
+        position: -webkit-sticky; /* Für Safari-Kompatibilität */
+        position: sticky;
+        top: 93px; /* Höhe deiner Navigationsleiste .main-nav */
+        background-color: #ffffff; /* Hintergrundfarbe der Sektion, um durchscheinenden Text zu verhindern */
+        z-index: 2; /* Stellt sicher, dass es über dem scrollenden Inhalt der Liste liegt, aber unter der Hauptnavigation */
+        height: auto; /* Automatische Höhe */
+        padding-left: 0; /* Keinen linken Einzug für die Titel */
+        padding-top: 15px; /* Etwas Abstand oben innerhalb des sticky Blocks */
+        padding-bottom: 15px; /* Abstand nach unten, bevor die Liste beginnt */
+        text-align: center; /* Titel zentrieren */
+        /* margin-bottom: 20px; /* Wird durch sticky-Positionierung und padding-bottom gehandhabt */
+      }
+
+      .werte-section .sub-heading-container {
+        justify-content: center; /* Sub-Heading zentrieren */
+        padding-left: 0; /* Keinen linken Einzug */
+      }
+
+      .werte-section .main-heading {
+        font-size: 36px; /* Kleinere Schriftgröße für Hauptüberschrift */
+        text-align: center; /* Hauptüberschrift zentrieren */
+      }
+
+      .werte-list-scrollable {
+        padding-right: 0; /* Keinen rechten Einzug */
+        padding-left: 0; /* Keinen linken Einzug */
+      }
+
+      .wert-item {
+        margin-bottom: 60px; /* Vergrößerter Abstand zwischen den Items auf Mobilgeräten */
+        align-items: flex-start; /* Beibehalten, aber Nummer und Text könnten enger zusammenrücken */
+      }
+
+      .wert-item .wert-number {
+        font-size: 32px; /* Kleinere Nummer */
+        min-width: 40px; /* Weniger Mindestbreite */
+        padding-left: 0; /* Kein linker Einzug für Nummer */
+        padding-right: 10px; /* Weniger Abstand zur Trennlinie */
+      }
+
+      .wert-item .wert-separator {
+        margin-right: 15px; /* Weniger Abstand zum Text */
+        min-height: 40px; /* Kleinere Mindesthöhe */
+      }
+
+      .wert-item .wert-title {
+        font-size: 28px; /* Kleinere Schriftgröße für den Titel des Werts */
+        margin-bottom: 10px; /* Weniger Abstand zur Beschreibung */
+      }
+
+      .wert-item .wert-description {
+        font-size: 15px; /* Etwas kleinere Schrift für Beschreibung */
+        max-width: 100%; /* Volle Breite erlauben */
+      }
+
+      /* Footer Anpassungen für Mobilgeräte */
       .main-footer {
         height: auto; /* Höhe automatisch anpassen */
         padding: 40px 20px; /* Padding für Mobilgeräte */
@@ -1640,6 +1797,7 @@
         position: static; /* Positionierung aufheben */
         margin-bottom: 40px; /* Abstand zum nächsten Element */
         text-align: left; /* Inhalt linksbündig */
+        margin-left: -60px; /* Titel ein bisschen nach links verschieben */
       }
 
       .footer-new-title {
@@ -1671,7 +1829,7 @@
         opacity: 0.1; /* Logo noch transparenter oder ggf. ausblenden (display: none;) */
         overflow-x: hidden; /* Verhindert, dass das Logo horizontales Scrollen verursacht */
         margin-bottom: 0; /* Entfernt, da absolute Positionierung */
-        /* order: unset; /* Entfernt, da absolute Positionierung - in index.html nicht vorhanden, hier auch nicht nötig */
+        order: unset; /* Entfernt, da absolute Positionierung */
         padding-bottom: 20px; /* Abstand des Logos zum unteren Rand des Footers */
         box-sizing: border-box; /* Stellt sicher, dass Padding die Höhe nicht beeinflusst */
       }
@@ -1752,13 +1910,31 @@
       }
     }
 
+    /* Anpassung für Navigationslink-Farbe basierend auf .main-nav.nav-text-dark */
+    .main-nav .nav-links a { /* Gilt für Desktop */
+      color: #ffffff; /* Standard Weiß */
+    }
+    .main-nav.nav-text-dark .nav-links a { /* Gilt für Desktop */
+      color: #000000; /* Schwarz, wenn .nav-text-dark gesetzt ist */
+    }
+    /* bleiben unverändert und werden hier wiederverwendet. */
   </style>
 </head>
 <body>
 
+  <div id="splash-screen">
+    <div class="footer-logo"> <!-- Wiederverwendung der .footer-logo Struktur und Stile -->
+      <div class="logo-text-container">
+        <div class="bazara-style">BAZARA</div>
+        <div class="safia-style">safia</div>
+      </div>
+      <div class="subtitle-style">Hausarztpraxis</div>
+    </div>
+  </div>
+
   <nav class="main-nav">
     <div class="menu-logo">
-      <a href="/" class="logo-link">
+      <a href="/en/" class="logo-link">
         <div class="logo-text-container">
           <div class="bazara-style">BAZARA</div>
           <div class="safia-style">safia</div>
@@ -1767,14 +1943,14 @@
       </a>
     </div>
     <ul class="nav-links">
-      <li><a href="/"><span class="menu-item-number">01</span>Home</a></li>
-      <li><a href="/leistungen"><span class="menu-item-number">02</span>Leistungen</a></li>
-      <li><a href="/faq"><span class="menu-item-number">03</span>FAQ</a></li>
-      <li><a href="/kontakt"><span class="menu-item-number">04</span>Kontakt</a></li>
-      <!-- Language Switcher (kopiert von index.html/faq.html) -->
+      <li><a href="/en/"><span class="menu-item-number">01</span>Home</a></li>
+      <li><a href="/en/services"><span class="menu-item-number">02</span>Services</a></li>
+      <li><a href="/en/faq"><span class="menu-item-number">03</span>FAQ</a></li>
+      <li><a href="/en/contact"><span class="menu-item-number">04</span>Contact</a></li>
+      <!-- Language Switcher -->
       <li class="lang-switcher">
-        <a href="#" class="lang-option active-lang" hreflang="de" aria-label="Sprache auf Deutsch wechseln">DE</a>
-        <a href="/en/kontakt" class="lang-option" hreflang="en" aria-label="Switch language to English">EN</a>
+        <a href="/" class="lang-option" hreflang="de" aria-label="Sprache auf Deutsch wechseln">DE</a>
+        <a href="#" class="lang-option active-lang" hreflang="en" aria-label="Switch language to English">EN</a>
       </li>
     </ul>
     <div class="hamburger-menu" role="button" aria-label="Menü umschalten" aria-expanded="false" aria-controls="nav-links-list">
@@ -1788,43 +1964,70 @@
     <div class="hero-background"></div> <!-- Neuer Container für das Hintergrundbild -->
     <div class="hero-text-wrapper">
       <h1>
-        <span class="hero-line">Schnell erreicht.</span><br>
-        <span class="hero-line">Gut verbunden.</span>
+        Get healthy.
+        <span class="dynamic-h1-line">
+          <!-- Dynamische Sätze werden hier per JS eingefügt -->
+        </span>
       </h1>
-      <h2>So einfach nehmen Sie mit uns Kontakt auf.</h2>
+      <h2>We’re here for you – personally, close by, and with time.</h2>
     </div>
   </main>
 
   <section class="info-section">
     <div class="left-column">
       <span class="bullet-point">&bull;</span>
-      <span class="practice-name">Ihre Nachricht</span>
+      <span class="practice-name">Family practice Bazara</span>
     </div>
     <div class="right-column">
-      <p class="welcome-text">Ob Rückfrage, Rezeptwunsch oder Terminvereinbarung – wir sind auf verschiedenen Wegen erreichbar. Ganz unkompliziert, ganz nah.</p>
+      <p class="welcome-text">Welcome to our practice. We take time for your health – with experience, empathy, and a dedicated team you can rely on.</p>
     </div>
   </section>
 
-  <!-- Neuer Bereich: Ihre Kontaktwege (kopiert von faq.html) -->
-  <section class="neue-faq-sektion">
-    <div class="section-divider"></div>
+  <section class="leistungen-section">
     <div class="sub-heading-container">
       <span class="sub-heading-bullet">&bull;</span>
-      <h3 class="sub-heading">Weil persönlicher Kontakt zählt</h3>
+      <h3 class="sub-heading">This is how we support your health</h3>
     </div>
     <h2 class="main-heading">
-      SCHNELLER <span class="highlight">KONTAKT</span>
+      <span class="highlight">OUR</span> SERVICES
     </h2>
-    <div class="kontakt-layout-container">
-      <div class="kontakt-text-links">
-        <p>Bei Fragen oder Anliegen erreichen Sie uns schnell und unkompliziert – wir sind persönlich für Sie da.</p>
+    <div class="leistungen-items-container">
+      <div class="leistung-item">
+        <a href="/services#akute-behandlung" class="leistung-item-link">
+          <div class="leistung-image-wrapper">
+            <img src="/assets/dmp.webp" alt="DMP-Betreuung Icon" id="DMP" class="leistung-icon" loading="lazy">
+            <div class="mehr-erfahren-button">Learn more</div>
+          </div>
+        </a>
+        <div class="leistung-line"></div>
+        <p class="leistung-label">DMP care</p>
       </div>
-      <div class="kontakt-vertikale-linie-element"></div>
-      <div class="kontakt-info-rechts">
-        <p><span class="kontakt-label">E-Mail:</span> <a href="mailto:arztpraxisbazara@gmail.com">arztpraxisbazara@gmail.com</a></p>
-        <p><span class="kontakt-label">Telefon:</span> <a href="tel:+49309939168">+49 (0) 30 9939 168</a></p>
-        <p><span class="kontakt-label">Telefax:</span> +49 (0) 30 9940 2335</p>
+      <div class="leistung-item">
+        <a href="/services#moderne-diagnostik" class="leistung-item-link">
+          <div class="leistung-image-wrapper">
+            <img src="/assets/diagnostik.webp" alt="Diagnostik & Überwachung Icon" class="leistung-icon" id="diagnostik" loading="lazy">
+            <div class="mehr-erfahren-button">Learn more</div>
+          </div>
+        </a>
+        <div class="leistung-line"></div>
+        <p class="leistung-label">Diagnostics & Monitoring</p>
       </div>
+      <div class="leistung-item">
+        <a href="/leistungen#chronische-betreuung" class="leistung-item-link">
+          <div class="leistung-image-wrapper">
+            <img src="/assets/diabetes.webp" alt="Vorsorge und Impfungen Icon" class="leistung-icon" id="vorsorge" loading="lazy">
+            <div class="mehr-erfahren-button">Learn more</div>
+          </div>
+        </a>
+        <div class="leistung-line"></div>
+        <p class="leistung-label">Prevention and Immunizations</p>
+      </div>
+    </div>
+    <div class="leistungen-beschreibung">
+      In our practice, we offer a wide range of general medical services – from preventive check-ups and modern diagnostics to <span class="highlight-beratung">individualized consultation</span> and treatment of chronic conditions. Your well-being and personalized care are always our top priorities.
+    </div>
+    <div class="leistungen-button-container">
+      <a href="/leistungen" class="leistungen-button">All services <span class="arrow">&#10140;</span></a>
     </div>
   </section>
 
@@ -1832,49 +2035,49 @@
     <div class="section-divider"></div>
     <div class="sub-heading-container">
       <span class="sub-heading-bullet">&bull;</span>
-      <h3 class="sub-heading">Wann wir für Sie da sind</h3>
+      <h3 class="sub-heading">When we are here for you</h3>
     </div>
     <h2 class="main-heading">
-      <span class="highlight">UNSERE</span> SPRECHSTUNDE
+      <span class="highlight">OFFICE</span> HOURS
     </h2>
     <table class="sprechzeiten-tabelle">
       <thead>
         <tr> <!-- Zeile A -->
           <th></th> <!-- A1 - Leer für die Ecke -->
-          <th>akute Sprechstunde</th> <!-- A2 -->
-          <th>reguläre Sprechstunde</th> <!-- A3 -->
+          <th><span class="underline-text" id="akute-sprechstunde-text">Urgent office hours</span></th> <!-- A2 -->
+          <th><span class="underline-text" id="regulaere-sprechstunde-text">Regular office hours</span></th> <!-- A3 -->
         </tr>
       </thead>
       <tbody>
         <tr> <!-- Zeile B -->
-          <th>Montag</th> <!-- B1 - Jetzt Zeilenüberschrift -->
-          <td>8 - 9 Uhr</td> <!-- B2 -->
-          <td>8:30 - 12 Uhr und 15 - 18 Uhr</td> <!-- B3 -->
+          <th>Monday</th> <!-- B1 - Jetzt Zeilenüberschrift -->
+          <td>8 - 9 a.m.</td> <!-- B2 -->
+          <td>8:30 - 12 a.m. und 15 - 18 a.m.</td> <!-- B3 -->
         </tr>
         <tr> <!-- Zeile C -->
-          <th>Dienstag</th> <!-- C1 -->
-          <td>8 - 9 Uhr</td> <!-- C2 -->
-          <td>8:30 - 12 Uhr</td> <!-- C3 -->
+          <th>Tuesday</th> <!-- C1 -->
+          <td>8 a.m. - 9 a.m.</td> <!-- C2 -->
+          <td>8:30 a.m. - 12 p.m.</td> <!-- C3 -->
         </tr>
         <tr> <!-- Zeile D -->
-          <th>Mittwoch</th> <!-- D1 -->
+          <th>Wednesday</th> <!-- D1 -->
           <td>/</td> <!-- D2 -->
-          <td>nach Vereinbarung</td> <!-- D3 -->
+          <td>By appointment</td> <!-- D3 -->
         </tr>
         <tr> <!-- Zeile E -->
-          <th>Donnerstag</th> <!-- E1 -->
-          <td>13 - 14 Uhr</td> <!-- E2 -->
-          <td>13:30 - 18 Uhr</td> <!-- E3 -->
+          <th>Thursday</th> <!-- E1 -->
+          <td>1 p.m. - 2 p.m.</td> <!-- E2 -->
+          <td>1:30 p.m. - 6 p.m.</td> <!-- E3 -->
         </tr>
         <tr> <!-- Zeile F -->
-          <th>Freitag</th> <!-- F1 -->
-          <td>8 - 9 Uhr</td> <!-- F2 -->
-          <td>8:30 - 12 Uhr</td> <!-- F3 -->
+          <th>Friday</th> <!-- F1 -->
+          <td>8 a.m. - 9 a.m.</td> <!-- F2 -->
+          <td>8:30 a.m. - 12 a.m.</td> <!-- F3 -->
         </tr>
       </tbody>
     </table>
     <p class="sprechzeiten-hinweis">
-      Bitte beachten Sie die Urlaubszeiten und Feiertage.
+        Please be aware of our vacation times and public holidays.
     </p>
   </section>
 
@@ -1882,14 +2085,14 @@
     <div class="section-divider"></div>
     <div class="sub-heading-container">
       <span class="sub-heading-bullet">&bull;</span>
-      <h3 class="sub-heading">So finden Sie uns</h3>
+      <h3 class="sub-heading">How you can find us</h3>
     </div>
     <h2 class="main-heading">
-      <span class="highlight">LAGE &</span> ANFAHRT
+      <span class="highlight">LOCATION &</span> DIRECTION
     </h2>
     <div class="anfahrt-details-container">
       <div class="anfahrt-row adresse-row">
-        <div class="left-col">Adresse:</div>
+        <div class="left-col">Adress:</div>
         <div class="right-col">Alte Hellersdorfer Str. 123</div>
       </div>
       <div class="anfahrt-row gap-row"> <!-- Nur für den Abstand -->
@@ -1897,28 +2100,100 @@
         <div class="right-col"></div>
       </div>
       <div class="anfahrt-row">
-        <div class="left-col">Straßenbahn:</div>
-        <div class="right-col">Linie 6 oder 18</div>
+        <div class="left-col">Tram:</div>
+        <div class="right-col">Line 6 oder 18</div>
       </div>
       <div class="anfahrt-row">
         <div class="left-col">Bus:</div>
-        <div class="right-col">Nr. 197 Haltestelle Alte Hellersdorfer Str. / Zossener Str.</div>
+        <div class="right-col">Bus line 197, stop at Alte Hellersdorfer Str. / Zossener Str.</div>
       </div>
       <div class="anfahrt-row">
-        <div class="left-col">U-Bahn:</div>
-        <div class="right-col">Linie U5 Hellersdorf</div>
+        <div class="left-col">Metro:</div>
+        <div class="right-col">Line U5 Hellersdorf</div>
       </div>
       <div class="anfahrt-row">
-        <div class="left-col">Auto:</div>
-        <div class="right-col">gute Parkmöglichkeiten</div>
+        <div class="left-col">Car:</div>
+        <div class="right-col">Good parking facilities</div>
       </div>
     </div>
   </section>
 
+  <section class="werte-section">
+    <div class="section-divider"></div>
+    <div class="werte-content-layout">
+      <div class="werte-sticky-titles">
+        <div class="sub-heading-container">
+          <span class="sub-heading-bullet">&bull;</span>
+          <h3 class="sub-heading">What we stand for</h3>
+        </div>
+        <h2 class="main-heading">
+          <span class="highlight">OUR</span> VALUES
+        </h2>
+      </div>
+      <div class="werte-list-scrollable">
+        <script>
+          // JavaScript, um 10 Wert-Items zu generieren
+          const isMobile = window.innerWidth <= 768;
+          const numberOfWerte = isMobile ? 5 : 10;
+          const werteContainer = document.currentScript.parentElement; // Nimmt das Elternelement des Skript-Tags
+          for (let i = 1; i <= numberOfWerte; i++) {
+            let title = "Trust";
+            let description = "We create an atmosphere in which patients feel safe and taken seriously.";
+
+            if (i === 2) {
+              title = "Empathy";
+              description = "We listen, take concerns seriously, and treat every person with respect and compassion.";
+            } else if (i === 3) {
+              title = "Competence";
+              description = "Our medical decisions are based on up-to-date knowledge and many years of experience.";
+            } else if (i === 4) {
+              title = "Transparency";
+              description = "We explain diagnoses and treatments in a clear and understandable way.";
+            } else if (i === 5) {
+              title = "Reliability";
+              description = "We are reliable – in appointment scheduling, patient care, and aftercare.";
+            } else if (i === 6) {
+              title = "Discretion";
+              description = "Protecting your personal data and privacy is a matter of course for us.";
+            } else if (i === 7) {
+              title = "Dedication";
+              description = "We are fully committed to your health every day.";
+            } else if (i === 8) {
+              title = "Teamwork";
+              description = "Good teamwork creates quality in patient care.";
+            } else if (i === 9) {
+              title = "Presence";
+              description = "Staying healthy is just as important as getting healthy – we actively advise on preventive care.";
+            } else if (i === 10) {
+              title = "Continuing education";
+              description = "We continuously pursue further training to provide you with up-to-date medical care.";
+            }
+
+            const wertItemHTML = `
+              <div class="wert-item">
+                <div class="wert-number">${String(i).padStart(2, '0')}</div>
+                <div class="wert-separator"></div>
+                <div class="wert-text-content">
+                  <h4 class="wert-title">${title}</h4>
+                  <p class="wert-description">${description}</p>
+                </div>
+              </div>
+            `;
+            werteContainer.innerHTML += wertItemHTML;
+          }
+          // Entferne das Skript-Tag selbst, nachdem es ausgeführt wurde
+          document.currentScript.remove();
+        </script>
+        <!-- Die 10 Wert-Items werden hier per JavaScript eingefügt -->
+        <!-- Beispiel für ein Item (wird durch JS ersetzt):
+        -->
+      </div>
+    </div>
+  </section>
   <footer class="main-footer">
     <div class="footer-top-left-content">
-      <div class="footer-new-title">Ihre Gesundheit.<br>Unser Auftrag.</div>
-      <a href="/kontakt" class="footer-new-button">Kontakt</a>
+      <div class="footer-new-title">Your health.<br>Our mission.</div>
+      <a href="/en/contact" class="footer-new-button">Contact</a>
     </div>
     <div class="footer-logo-wrapper">
       <div class="footer-logo">
@@ -1933,117 +2208,214 @@
     </div>
     <div class="footer-bottom-wrapper">
       <div class="footer-bottom-left-text">
-        <span class="hausarzt-color">Hausarztpraxis</span><br>
+        <span class="hausarzt-color">General practice</span><br>
         <span class="bazara-color">Bazara</span>
       </div>
       <div class="footer-contact-hours-container">
         <div class="footer-contact-column">
-          <p>Kontakt:</p>
+          <p>Contact:</p>
           <p>Alte Hellersdorfer Str.</p>
           <p>12629 Berlin</p>
-          <p>Telefon: +49 (0) 30 9939 168</a></p>
-          <p>Telefax: +49 (0) 30 9940 2335</p>
+          <p>Phone: +49 (0) 30 9939 168</p>
+          <p>Fax number: +49 (0) 30 9940 2335</p>
         </div>
         <div class="footer-hours-column">
-          <p class="hours-title">Öffnungszeiten:</p>
+          <p class="hours-title">Office hours:</p>
           <div class="footer-hours-details">
             <div class="footer-hours-days">
-              <p>Mo, Di, Fr:</p>
+              <p>Mo, Tu, Fr:</p>
               <p>Mo:</p>
-              <p>Do:</p>
-              <p>Mi:</p>
+              <p>Th:</p>
+              <p>We:</p>
             </div>
             <div class="footer-hours-times">
-              <p>8:30 - 12 Uhr</p>
-              <p>15:00 - 18 Uhr</p>
-              <p>13:00 - 18 Uhr</p>
-              <p>nach Vereinbarung</p>
+              <p>8:30 a.m. - 12 p.m.</p>
+              <p>3 p.m. - 6 p.m.</p>
+              <p>1 p.m. - 6 p.m.</p>
+              <p>by appointment</p>
             </div>
           </div>
         </div>
       </div>
       <div class="footer-bottom-right-links">
-        <a href="/impressum">Impressum</a>
-        <a href="/datenschutzerklärung">Datenschutzerklärung</a>
+        <a href="/imprint">Imprint</a>
+        <a href="/privacypolicy">Privacy Policy</a>
       </div>
     </div>
   </footer>
-
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+            const splashScreen = document.getElementById('splash-screen');
+      const splashLogo = splashScreen ? splashScreen.querySelector('.footer-logo') : null;
+      const body = document.body;
+      const htmlElement = document.documentElement; // HTML-Element abrufen
+
+      // if (splashScreen && splashLogo) {
+      //   body.style.overflow = 'hidden'; // Scrollen verhindern, während Splash Screen sichtbar ist
+      //   htmlElement.style.overflow = 'hidden'; // Scrollen auch auf dem HTML-Element verhindern
+        
+      //   // Schritt 1: Nach einer kurzen Verzögerung das Logo einblenden
+      //   setTimeout(() => {
+      //     splashLogo.classList.add('show');
+      //   }, 200); // Logo beginnt nach 0.2 Sekunden zu erscheinen
+
+      //   // Schritt 2: Nachdem das Logo erschienen ist und kurz sichtbar war, den gesamten Splash Screen ausblenden
+      //   setTimeout(() => { // Neuer Wert: 0.2s (Logo Start) + 0.6s (Logo Fade-In) + 0.9s (Anzeigezeit) = 1.7s
+      //     if (splashScreen) { // Erneute Prüfung, falls splashScreen zwischenzeitlich entfernt wurde
+      //       splashScreen.classList.add('hide');
+            
+      //       splashScreen.addEventListener('transitionend', function handleTransitionEnd(event) {
+      //         if (event.propertyName === 'transform' && splashScreen) {
+      //           splashScreen.style.display = 'none';
+      //           body.style.overflow = '';
+      //           htmlElement.style.overflow = ''; // Overflow für HTML-Element zurücksetzen
+      //           splashScreen.removeEventListener('transitionend', handleTransitionEnd);
+      //         }
+      //       });
+      //     }
+      //   }, 1700); // Splash Screen beginnt nach 1.7s zu verschwinden
+      // }
+
+      if (splashScreen && splashLogo) {
+        body.style.overflow = 'hidden';
+        htmlElement.style.overflow = 'hidden';
+
+        const logoFadeInDuration = 600; // Muss mit der CSS transition-duration für opacity übereinstimmen
+        const logoVisibleTime = 900;    // Zeit, die das Logo sichtbar bleibt, nachdem es eingeblendet wurde
+
+        const completeSplashScreenSequence = () => {
+          if (splashLogo) splashLogo.classList.add('show');
+          setTimeout(() => {
+            if (splashScreen) {
+              splashScreen.classList.add('hide');
+              splashScreen.addEventListener('transitionend', function handleTransitionEnd(event) {
+                if (event.propertyName === 'transform' && splashScreen) {
+                  splashScreen.style.display = 'none';
+                  body.style.overflow = '';
+                  htmlElement.style.overflow = '';
+                  splashScreen.removeEventListener('transitionend', handleTransitionEnd);
+                }
+              });
+            }
+          }, logoFadeInDuration + logoVisibleTime);
+        };
+
+        document.fonts.ready.then(completeSplashScreenSequence).catch(error => {
+          console.warn('Schriftarten konnten nicht geladen werden oder Zeitüberschreitung:', error);
+          // Fallback: Sequenz trotzdem starten, ähnlich dem ursprünglichen Verhalten
+          // Hier könnten Sie die ursprünglichen Timeouts verwenden oder leicht anpassen
+          setTimeout(() => { if (splashLogo) splashLogo.classList.add('show'); }, 200);
+          setTimeout(() => {
+            if (splashScreen) {
+              splashScreen.classList.add('hide');
+              splashScreen.addEventListener('transitionend', function handleTransitionEnd(event) {
+                if (event.propertyName === 'transform' && splashScreen) {
+                  splashScreen.style.display = 'none';
+                  body.style.overflow = '';
+                  htmlElement.style.overflow = '';
+                  splashScreen.removeEventListener('transitionend', handleTransitionEnd);
+                }
+              });
+            }
+          }, 1700); // Ursprüngliche Gesamtzeit
+        });
+      }
+
+      // Bestehendes Skript für die Navigation
       const mainNav = document.querySelector('.main-nav');
       const navLinksUl = document.querySelector('.nav-links'); // Selektiert das <ul> Element
-      if (navLinksUl) navLinksUl.id = 'nav-links-list'; // ID für aria-controls hinzufügen (von index.html)
-      const footerNewTitle = document.querySelector('.footer-new-title'); // Selektor für Footer-Titel hinzugefügt
-      const heroBackground = document.querySelector('.hero-background');
-      const heroTitle = document.querySelector('.hero-section h1'); // Hinzugefügt für h1 Animation
-      const welcomeText = document.querySelector('.info-section .right-column .welcome-text'); // Selektor für Welcome-Text
-      const sprechzeitenTabelle = document.querySelector('.sprechzeiten-tabelle'); // Selektor für Sprechzeiten-Tabelle
-      const sectionDividers = document.querySelectorAll('.section-divider'); // Selektor für Section Dividers hinzugefügt
-      // Alle Sektionen auswählen, bei denen der Farbwechsel stattfinden soll
-      // Für die Kontaktseite müssen ggf. andere oder keine Sektionen definiert werden,
-      // wenn das dynamische Verhalten der Navigationsleiste (Textfarbe, Blur)
-      // auf spezifische Sektionen dieser Seite reagieren soll.
-      // Aktuell sind hier die Sektionen der index.html referenziert.
-      // Wenn diese Sektionen auf kontakt.html nicht existieren, wird der Farbwechsel nicht ausgelöst
-      // und eine Konsolennachricht (siehe unten) könnte erscheinen.
-      const sectionsForColorChange = document.querySelectorAll('.sprechzeiten-section, .lage-anfahrt-section, .neue-faq-sektion');
+      if (navLinksUl) navLinksUl.id = 'nav-links-list'; // ID für aria-controls hinzufügen
 
-      if (!mainNav || !navLinksUl) { // Prüfung auf sectionsForColorChange.length entfernt, da es auf kontakt.html leer sein kann
-        console.error('Erforderliche Elemente für den Menü-Farbwechsel nicht gefunden (mainNav oder navLinksUl).');
+      // Dynamischer Effekt für die zweite Zeile von H1
+      const dynamicH1LineContainer = document.querySelector('.dynamic-h1-line');
+      if (dynamicH1LineContainer) {
+        const phrases = [
+          "Stay healthy.",
+          "Feel better.",
+          "Thrive again.",
+          "Live better.",
+          "Clear mind.",
+          "Our priority."
+        ];
+        let currentPhraseIdx = 0; // Index des nächsten anzuzeigenden Satzes
+        const displayTime = 3000; // Zeit, die ein Satz sichtbar bleibt (3 Sekunden)
+        const animationTime = 1000; // Dauer der Animation (1 Sekunde)
+        let isFirstAnimationCycle = true; // Flag für den ersten Animationszyklus
+        const initialDisplayTime = 2000; // Anzeigedauer für die erste Phrase auf 2 Sekunden erhöht
+
+        function animatePhraseChange() {
+          const currentSpan = dynamicH1LineContainer.querySelector('.dynamic-phrase.visible');
+          if (currentSpan) {
+            currentSpan.classList.remove('visible');
+            currentSpan.classList.add('exiting');
+            setTimeout(() => {
+              if (currentSpan.parentNode === dynamicH1LineContainer) {
+                  dynamicH1LineContainer.removeChild(currentSpan);
+              }
+            }, animationTime);
+          }
+
+          const nextPhraseText = phrases[currentPhraseIdx];
+          const nextSpan = document.createElement('span');
+          nextSpan.classList.add('dynamic-phrase', 'entering');
+          nextSpan.textContent = nextPhraseText;
+          dynamicH1LineContainer.appendChild(nextSpan);
+          
+          setTimeout(() => { 
+              nextSpan.classList.remove('entering');
+              nextSpan.classList.add('visible');
+          }, 20); // Kurze Verzögerung, damit die 'entering'-Klasse für die Transition angewendet wird
+
+          currentPhraseIdx = (currentPhraseIdx + 1) % phrases.length;
+
+          let delayForNextPhrase;
+          if (isFirstAnimationCycle) {
+            delayForNextPhrase = initialDisplayTime + animationTime;
+            isFirstAnimationCycle = false; // Nach dem ersten Zyklus auf false setzen
+          } else {
+            delayForNextPhrase = displayTime + animationTime;
+          }
+          setTimeout(animatePhraseChange, delayForNextPhrase);
+        }
+
+        if (phrases.length > 0) {
+          // Ersten Satz initial anzeigen und Zyklus starten
+          animatePhraseChange(); 
+        }
+      }
+      // ENDE Dynamischer Effekt für die zweite Zeile von H1
+
+      const heroBackground = document.querySelector('.hero-background');
+      const welcomeText = document.querySelector('.info-section .right-column .welcome-text');
+      const sprechzeitenTabelle = document.querySelector('.sprechzeiten-tabelle');
+      const sectionDividers = document.querySelectorAll('.section-divider');
+      const footerNewTitle = document.querySelector('.footer-new-title');
+      // Alle Sektionen auswählen, bei denen der Farbwechsel stattfinden soll
+      const sectionsForColorChange = document.querySelectorAll('.leistungen-section, .sprechzeiten-section, .lage-anfahrt-section, .werte-section');
+
+      if (!mainNav || !navLinksUl || sectionsForColorChange.length === 0) {
+        // console.warn('Einige Elemente für Menü-Farbwechsel oder Animationen nicht gefunden.');
         return;
       }
-
-      // Wenn keine Sektionen für den Farbwechsel auf dieser Seite vorhanden sind,
-      // kann die Funktionalität hier enden oder ein Standardverhalten definiert werden.
-      if (sectionsForColorChange.length === 0) {
-        console.warn('Keine Sektionen für dynamischen Menü-Farbwechsel auf dieser Seite definiert. Menü behält Standardaussehen.');
-        // Ggf. Standardverhalten setzen, z.B. immer heller Text, falls gewünscht
-        // mainNav.classList.remove('nav-text-dark'); // Angepasst an die neue Logik
-        // mainNav.classList.remove('strong-blur');
-        // return; // Frühzeitiger Ausstieg, wenn keine Sektionen vorhanden sind und keine weitere Logik benötigt wird.
-      }
-
-      const menuHeight = mainNav.offsetHeight;
 
       // Parallax Zoom für Hero-Background
       function handleHeroZoom() {
         if (heroBackground) {
-          let scrollPosition = window.pageYOffset;
-          // Der Divisor (z.B. 7000) steuert, wie schnell der Zoom erfolgt.
-          // Ein größerer Wert bedeutet langsameren Zoom.
-          // Stelle sicher, dass scaleValue nie kleiner als 1 ist
-          let scaleValue = Math.max(1, 1 + scrollPosition / 7000);
-          // heroBackground.style.transform = `scale(${scaleValue})`; // Temporär auskommentiert für Test
-          heroBackground.style.transform = `scale(${scaleValue}) translateZ(0)`; // Force hardware acceleration
+          const scrollPosition = window.pageYOffset;
+          // Standard-Divisor für Desktop
+          let zoomDivisor = 7000; 
+          // Prüfen, ob es sich um ein Mobilgerät handelt (z.B. unter 769px Breite)
+          if (window.innerWidth < 769) {
+            zoomDivisor = 3500; // Stärkerer Zoom für Mobilgeräte (kleinerer Divisor)
+          }
+          const scaleValue = Math.max(1, 1 + scrollPosition / zoomDivisor);
+          heroBackground.style.transform = `scale(${scaleValue})`;
         }
       }
 
-      function checkFooterTitleAnimation() { // Kopiert von index.html
-        if (footerNewTitle && !footerNewTitle.classList.contains('animate-footer-title')) {
-          const rect = footerNewTitle.getBoundingClientRect();
-          // Animation starten, wenn die Oberkante des (verschobenen) Titels in den Viewport kommt.
-          // Die CSS-Transitionen für transform und clip-path laufen dann synchron ab.
-          if (rect.top < window.innerHeight && rect.bottom >= 0) { 
-            footerNewTitle.classList.add('animate-footer-title');
-          }
-        }
-      }
+      const menuHeight = mainNav.offsetHeight;
 
-      function checkSectionDividersVisibility() { // Funktion von index.html kopiert
-        sectionDividers.forEach(divider => {
-          if (!divider.classList.contains('animate')) {
-            const rect = divider.getBoundingClientRect();
-            // Animation starten, sobald der obere Rand des Dividers in den Viewport kommt
-            // und der untere Rand noch nicht komplett darüber ist.
-            if (rect.top < window.innerHeight && rect.bottom > 0) {
-              divider.classList.add('animate');
-            }
-          }
-        });
-      }
-
-      function checkWelcomeTextVisibility() { // Kopiert von index.html
+      function checkWelcomeTextVisibility() {
         if (welcomeText) {
           const rect = welcomeText.getBoundingClientRect();
           // Startet die Animation, wenn die Oberkante des Textes z.B. die 80%-Marke
@@ -2054,85 +2426,82 @@
         }
       }
 
-      // Funktion, um die Animation für die Sprechzeiten-Tabelle auszulösen
       function checkSprechzeitenAnimation() {
         if (sprechzeitenTabelle && !sprechzeitenTabelle.classList.contains('start-animation')) {
           const rect = sprechzeitenTabelle.getBoundingClientRect();
-          // Startet die Animation, wenn die Oberkante der Tabelle z.B. die 85%-Marke
-          // der Viewport-Höhe (von oben gezählt) überschreitet.
-          if (rect.top < window.innerHeight * 0.85 && rect.bottom >= 0) {
+          // Startet die Animation, wenn die Oberkante der Tabelle die 70%-Marke der Viewport-Höhe (von oben gezählt) überschreitet.
+          if (rect.top < window.innerHeight * 0.70 && rect.bottom >= 0) {
             sprechzeitenTabelle.classList.add('start-animation');
           }
         }
       }
-      // Funktion, um die Animation für den Hero-Titel auszulösen (kopiert von leistungen.html/faq.html)
-      function triggerHeroTitleAnimation() {
-        if (heroTitle && !heroTitle.classList.contains('animate-hero-title')) {
-          heroTitle.classList.add('animate-hero-title');
+
+      function checkSectionDividersVisibility() {
+        sectionDividers.forEach(divider => {
+          if (!divider.classList.contains('animate')) {
+            const rect = divider.getBoundingClientRect();
+            // Startet die Animation, wenn der Divider z.B. zu 80% im Viewport ist
+            // oder einfach im Viewport erscheint.
+            if (rect.top < window.innerHeight * 0.9 && rect.bottom >= 0) {
+              divider.classList.add('animate');
+            }
+          }
+        });
+      }
+
+      function checkFooterTitleAnimation() {
+        if (footerNewTitle && !footerNewTitle.classList.contains('animate-footer-title')) {
+          const rect = footerNewTitle.getBoundingClientRect();
+          // Animation starten, wenn die Oberkante des (verschobenen) Titels in den Viewport kommt.
+          // Die CSS-Transitionen für transform und clip-path laufen dann synchron ab.
+          if (rect.top < window.innerHeight && rect.bottom >= 0) { 
+            footerNewTitle.classList.add('animate-footer-title');
+          }
         }
       }
 
-      function checkMenuPosition() {
+      // Funktion für Menü-Farbwechsel und Hero-Zoom beim Scrollen
+      function checkAllAnimations() { // Umbenannt, um mehr Animationen zu handhaben
+        // const sectionRect = leistungenSection.getBoundingClientRect(); // Entfernte Zeile
         let shouldBeDark = false;
 
         sectionsForColorChange.forEach(section => {
           const rect = section.getBoundingClientRect();
-          if (rect.top < menuHeight && rect.bottom > menuHeight) {
+          // Prüft, ob das Menü (das oben im Viewport fixiert ist)
+          // sich visuell über einer der definierten Sektionen befindet
+          if (rect.top < menuHeight && rect.bottom > menuHeight) { // Bedingung angepasst für bessere Überlappungserkennung
             shouldBeDark = true;
           }
         });
 
         if (shouldBeDark) {
           mainNav.classList.add('nav-text-dark'); // Klasse auf mainNav setzen
-          mainNav.classList.add('strong-blur');
+          mainNav.classList.add('strong-blur'); // Stärkeren Blur hinzufügen
         } else {
           mainNav.classList.remove('nav-text-dark'); // Klasse von mainNav entfernen
-          mainNav.classList.remove('strong-blur');
+          mainNav.classList.remove('strong-blur'); // Stärkeren Blur entfernen
         }
+
         // Hero Zoom Effekt aufrufen
         handleHeroZoom();
-        checkFooterTitleAnimation(); // Animation für Footer-Titel prüfen
-        checkWelcomeTextVisibility(); // Animation für Welcome-Text prüfen
-        checkSectionDividersVisibility(); // Animation für Section Dividers prüfen
+
+        // Nur auf Desktop: Hover-Effekt für Navigationslinks (Linie unten)
+        // Auf Mobilgeräten wird dieser Effekt durch die @media-Query (.main-nav .nav-links li a::after { display: none; }) deaktiviert.
+        // Die Farbänderung der Links selbst wird durch .main-nav.nav-text-dark .nav-links a gesteuert.
+
+        checkWelcomeTextVisibility(); // Sichtbarkeit des Welcome-Textes prüfen
         checkSprechzeitenAnimation(); // Animation für Sprechzeiten-Tabelle prüfen
+        checkSectionDividersVisibility(); // Animation für Section Dividers prüfen
+        checkFooterTitleAnimation(); // Animation für Footer-Titel prüfen
       }
 
-      // Animation für die vertikale Linie im "SCHNELLER KONTAKT"-Bereich (analog zu faq.html)
-      const kontaktSectionForLine = document.querySelector('.neue-faq-sektion'); // In kontakt.html ist dies die relevante Sektion
-
-      if (kontaktSectionForLine) {
-        const kontaktLinieElement = kontaktSectionForLine.querySelector('.kontakt-vertikale-linie-element');
-        // Beobachte den Layout-Container oder die Sektion selbst
-        const elementToObserveForLine = kontaktSectionForLine.querySelector('.kontakt-layout-container') || kontaktSectionForLine;
-
-        if (kontaktLinieElement && elementToObserveForLine) {
-          const lineObserverOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1 // Animation starten, wenn 10% des Elements sichtbar sind
-          };
-
-          const lineAnimationObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                kontaktLinieElement.classList.add('animate-draw');
-                observer.unobserve(entry.target); // Animation nur einmal auslösen
-              }
-            });
-          }, lineObserverOptions);
-
-          lineAnimationObserver.observe(elementToObserveForLine);
-        }
-      }
-
-      window.addEventListener('scroll', checkMenuPosition);
-      window.addEventListener('resize', checkMenuPosition);
-      triggerHeroTitleAnimation(); // Hero-Titel Animation beim Laden auslösen
-      checkMenuPosition(); // Initiale Prüfung beim Laden der Seite
-      handleHeroZoom(); // Initialen Zoom-Status setzen
+      window.addEventListener('scroll', checkAllAnimations);
+      window.addEventListener('resize', checkAllAnimations); // Auch bei Größenänderung prüfen
+      checkAllAnimations(); // Initiale Prüfung beim Laden der Seite
+      handleHeroZoom(); // Initialen Zoom-Status setzen (wichtig, falls Seite nicht ganz oben geladen wird)
     });
 
-    // Hamburger Menu Toggle Logik (von index.html übernommen)
+    // Hamburger Menu Toggle Logik
     document.addEventListener('DOMContentLoaded', function() {
       const mainNav = document.querySelector('.main-nav');
       const hamburgerMenu = document.querySelector('.hamburger-menu');
