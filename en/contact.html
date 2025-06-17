@@ -11,11 +11,17 @@
   <meta name="apple-mobile-web-app-title" content="Hausarztpraxis Bazara" />
   <link rel="manifest" href="/favicon/site.webmanifest" />
   <meta name="robots" content="noindex, follow">
-
+  <script>
+    (function() {
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.documentElement.classList.add('is-mobile-device');
+      }
+    })();
+  </script>
 
   <!-- Google Fonts Einbindung -->
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter&family=Questrial&family=Poppins:wght@300;500;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
-  
+
   <style>
     ::selection {
       background-color: #341700;  /* Hintergrundfarbe der Markierung */
