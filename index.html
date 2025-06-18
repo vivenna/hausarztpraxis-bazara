@@ -2371,7 +2371,7 @@
 
         if (window.matchMedia("(max-width: 768px)").matches) {
             // animationTime = 500; // Nicht mehr schneller, Geschwindigkeit soll nicht geändert werden
-            initialDisplayTime = 1000; // Erste Phrase wird kürzer angezeigt (1 Sekunde statt 2)
+            initialDisplayTime = 1700; // Erste Phrase wird 1.5 Sekunden angezeigt (statt 1 Sekunde mobil / 2 Sekunden Desktop)
         }
 
         function animatePhraseChange() {
@@ -2404,7 +2404,17 @@
             delayForNextPhrase = initialDisplayTime + animationTime;
             isFirstAnimationCycle = false; // Nach dem ersten Zyklus auf false setzen
           } else {
-            delayForNextPhrase = displayTime + animationTime;
+            let currentDisplayTime = displayTime; // Standard-Anzeigedauer
+            // Index der Phrase, die gerade sichtbar war und deren Anzeigedauer nun bestimmt wird.
+            // currentPhraseIdx wurde bereits für die *nächste* Phrase inkrementiert.
+            const indexOfPhraseThatWasVisible = (currentPhraseIdx - 1 + phrases.length) % phrases.length;
+
+            // Wenn mobil und die Phrase "Leben genießen." (Index 1) gerade angezeigt wurde,
+            // ihre Anzeigedauer (Verzögerung bis zum nächsten Wechsel) leicht erhöhen.
+            if (window.matchMedia("(max-width: 768px)").matches && indexOfPhraseThatWasVisible === 1) {
+                currentDisplayTime = displayTime + 700; // 1.2 Sekunden länger anzeigen als Standard
+            }
+            delayForNextPhrase = currentDisplayTime + animationTime;
           }
           setTimeout(animatePhraseChange, delayForNextPhrase);
         }
