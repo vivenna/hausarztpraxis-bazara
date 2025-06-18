@@ -2364,9 +2364,15 @@
         ];
         let currentPhraseIdx = 0; // Index des nächsten anzuzeigenden Satzes
         const displayTime = 3000; // Zeit, die ein Satz sichtbar bleibt (3 Sekunden)
-        const animationTime = 1000; // Dauer der Animation (1 Sekunde)
         let isFirstAnimationCycle = true; // Flag für den ersten Animationszyklus
-        const initialDisplayTime = 2000; // Anzeigedauer für die erste Phrase auf 2 Sekunden erhöht
+
+        const animationTime = 1000; // Dauer der Animation (1 Sekunde), nicht mehr 'let', da konstant
+        let initialDisplayTime = 2000; // Dauer, die die erste Phrase sichtbar bleibt, jetzt 'let'
+
+        if (window.matchMedia("(max-width: 768px)").matches) {
+            // animationTime = 500; // Nicht mehr schneller, Geschwindigkeit soll nicht geändert werden
+            initialDisplayTime = 1000; // Erste Phrase wird kürzer angezeigt (1 Sekunde statt 2)
+        }
 
         function animatePhraseChange() {
           const currentSpan = dynamicH1LineContainer.querySelector('.dynamic-phrase.visible');
