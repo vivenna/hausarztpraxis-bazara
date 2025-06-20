@@ -2301,8 +2301,8 @@
           // Auf Desktop-Geräten: Splash-Screen-Sequenz ausführen.
           // Nur ausführen, wenn der Splash-Screen nicht bereits (z.B. durch CSS) ausgeblendet ist.
           // Diese Prüfung ist wichtig, falls die Seite auf einem Desktop >768px geladen wird.
-          body.style.overflow = 'hidden';
-          htmlElement.style.overflow = 'hidden';
+          // body.style.overflow = 'hidden'; // Entfernt, um Scrollen während des Splash Screens auf Desktop zu erlauben
+          // htmlElement.style.overflow = 'hidden'; // Entfernt, um Scrollen während des Splash Screens auf Desktop zu erlauben
 
           const logoFadeInDuration = 600; // Muss mit der CSS transition-duration für opacity übereinstimmen
           const logoVisibleTime = 900;    // Zeit, die das Logo sichtbar bleibt, nachdem es eingeblendet wurde
