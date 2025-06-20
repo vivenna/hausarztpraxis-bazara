@@ -29,30 +29,30 @@
     }
     /* Für WebKit-basierte Browser (Chrome, Safari, Edge) */
     ::-webkit-scrollbar {
-      width: 8px;          /* schmaler */
-      height: 8px;         /* falls horizontaler Scrollbar */
+      width: 8px;
+      height: 8px;
     }
 
     ::-webkit-scrollbar-track {
-      background: transparent;
+      background: #fff; /* weißer Track */
     }
 
     ::-webkit-scrollbar-thumb {
-      background-color: #8a5a34;
-      border-radius: 10px; /* stark abgerundet */
-      border: 2px solid transparent; /* für etwas Abstand */
-      background-clip: content-box;  /* macht den Rand sichtbar */
+      background-color: #6e370e; /* dunkler Braunton */
+      border-radius: 10px;
+      border: 2px solid transparent;
+      background-clip: content-box;
       transition: background-color 0.3s ease;
     }
 
     ::-webkit-scrollbar-thumb:hover {
-      background-color: #6e370e;
+      background-color: #572800; /* noch dunkler beim Hover */
     }
 
-    /* Optional für Firefox */
+    /* Für Firefox */
     * {
       scrollbar-width: thin;
-      scrollbar-color: #8a5a34 transparent;
+      scrollbar-color: #6e370e #fff; /* Thumb und Track */
     }
     
     html {
