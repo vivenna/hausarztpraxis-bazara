@@ -231,8 +231,8 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      min-height: calc(100vh - 93px - 100px); /* 100vh - nav height - some footer space estimate */
-                                            /* Ensures content is visible above the full-height footer */
+      height: 100vh; /* Nimmt die volle Viewport-Höhe ein */
+      box-sizing: border-box; /* Stellt sicher, dass Padding in die Höhe einberechnet wird */
     }
 
     .not-found-section h1 {
@@ -733,7 +733,6 @@
       .not-found-section {
         padding-top: 113px; /* 93px nav + 20px space */
         padding-bottom: 40px;
-        min-height: calc(100vh - 93px - 60px); /* Adjust if footer height changes on mobile */
       }
       .not-found-section h1 {
         font-size: 80px;
@@ -878,16 +877,6 @@
   </style>
 </head>
 <body class="page-404">
-
-  <div id="splash-screen">
-    <div class="footer-logo">
-      <div class="logo-text-container">
-        <div class="bazara-style">BAZARA</div>
-        <div class="safia-style">safia</div>
-      </div>
-      <div class="subtitle-style">Hausarztpraxis</div>
-    </div>
-  </div>
 
   <nav class="main-nav nav-text-dark strong-blur">
     <div class="menu-logo">
