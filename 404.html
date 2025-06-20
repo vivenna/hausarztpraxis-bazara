@@ -220,6 +220,26 @@
       color: #000000; /* Schwarz, wenn .nav-text-dark gesetzt ist */
     }
 
+    /* Change link color to white when nav is over footer */
+    body.page-404 .main-nav.nav-over-footer .nav-links a {
+      color: #ffffff !important; /* Override the 404 page black color */
+    }
+    /* Also change the hamburger menu bars */
+    body.page-404 .main-nav.nav-over-footer .hamburger-menu .bar {
+        background-color: #ffffff !important; /* Override the 404 page dark bar color */
+    }
+    /* Ensure active mobile menu bars remain dark */
+    body.page-404 .main-nav.nav-over-footer.nav-active .hamburger-menu .bar {
+        background-color: #0c0c0c !important; /* Keep dark bars when mobile menu is active */
+    }
+    /* Language switcher links */
+    body.page-404 .main-nav.nav-over-footer .nav-links li.lang-switcher a.lang-option {
+        color: #cccccc !important; /* Lighter grey for inactive */
+    }
+    body.page-404 .main-nav.nav-over-footer .nav-links li.lang-switcher a.lang-option.active-lang {
+        color: #ffffff !important; /* White for active */
+    }
+
     /* 404 Page Specific Styles */
     .not-found-section {
       padding-top: 123px; /* 93px nav + 30px extra space */
@@ -1041,8 +1061,41 @@
       // Simplified animation check for 404 page
       function checkPageAnimations() {
         checkFooterTitleAnimation();
-        // Nav color is handled by CSS overrides and classes set in HTML for page-404
+        updateNavColorOnScroll(); // Check and update nav color based on scroll position
       }
+
+    // Logic to change nav color when over footer
+    const mainNav = document.querySelector('.main-nav');
+    const mainFooter = document.querySelector('.main-footer');
+
+    function updateNavColorOnScroll() {
+      // Ensure mainNav exists before trying to access its properties
+      if (!mainNav) {
+        return;
+      }
+
+      // Only apply this logic on desktop and when mobile menu is not active
+      if (window.matchMedia("(max-width: 768px)").matches || mainNav.classList.contains('nav-active')) {
+        mainNav.classList.remove('nav-over-footer'); // Ensure class is removed if conditions change
+        return;
+      }
+
+      // Proceed only if mainFooter also exists
+      if (mainFooter) {
+        const navRect = mainNav.getBoundingClientRect();
+        const footerRect = mainFooter.getBoundingClientRect();
+
+        // Check if the bottom of the nav is below the top of the footer
+        if (navRect.bottom > footerRect.top) {
+          mainNav.classList.add('nav-over-footer');
+        } else {
+          mainNav.classList.remove('nav-over-footer');
+        }
+      } else {
+        // If footer is not found for some reason, ensure the class is removed as a fallback
+        mainNav.classList.remove('nav-over-footer');
+      }
+    }
 
       window.addEventListener('scroll', checkPageAnimations);
       window.addEventListener('resize', checkPageAnimations); 
