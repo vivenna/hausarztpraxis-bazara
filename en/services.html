@@ -2439,6 +2439,16 @@
         margin-bottom: 40px;
         margin-top: 30px; /* Mehr Abstand der Items (und somit Bilder) nach oben */
       }
+      /* Zweites und drittes Item weiter in den Vordergrund holen */
+      .chronische-betreuung-bilder-container .betreuung-bild-item:nth-of-type(1) {
+        z-index: 1;
+      }
+      .chronische-betreuung-bilder-container .betreuung-bild-item:nth-of-type(2) {
+        z-index: 2;
+      }
+      .chronische-betreuung-bilder-container .betreuung-bild-item:nth-of-type(3) {
+        z-index: 3; /* Noch weiter im Vordergrund als das zweite */
+      }
       .bild-mit-overlay-container { /* Neuer Container für Bild und Plus-Kreis */
         position: relative; /* Wichtig für die absolute Positionierung des Kreises */
         display: inline-block; /* Damit der Container sich an die Bildgröße anpasst */
@@ -2463,7 +2473,7 @@
       }
       .plus-kreis {
         position: absolute;
-        bottom: 40px; /* Noch weiter angehoben */
+        bottom: 38.5px; /* 1px nach unten verschoben */
         right: -7px;  /* Um 10px nach links verschoben */
         width: 50px;   /* Breite des Kreises */
         height: 50px;  /* Höhe des Kreises */
@@ -2499,9 +2509,9 @@
       .info-rechteck {
         position: absolute;
         bottom: 27.5px; /* Vertikal auf Höhe des Kreises */
-        left: 0px;        /* Linke Kante 30px links vom linken Rand des Elternelements (finale Position) */
+        left: 7px;       /* Etwas nach rechts verschoben für bessere Positionierung */
         margin-right: -100px;  /* User-angepasst: rechte Kante 20px über rechten Rand des Containers - Hinweis: Diese Regel hat bei aktueller Konfiguration (left/width gesetzt) ggf. nicht den erwarteten Effekt auf die rechte Kante. */
-        width: 178px; /* Breite reduziert */
+        width: 208px; /* Um 30px verbreitert */
         height: 50px; /* Gleiche Höhe wie der Kreis */
         background-color: #6e370e; /* Akzentfarbe für Hintergrund */
         color: #ffffff; /* Weißer Text */
@@ -2518,11 +2528,10 @@
         transition: transform 0.35s ease-out; /* Sanfter Übergang nur für Position */
         z-index: 5; /* Unter dem Plus-Kreis, aber über dem Bild */
         pointer-events: none; /* Verhindert Interaktion im versteckten Zustand */
-        text-align: center;
       }
 
       .bild-mit-overlay-container:has(.plus-kreis:hover) .info-rechteck {
-        transform: translateX(0); /* Schiebt sich an die finale Position */
+        transform: translateX(-5px); /* Auf Hover 5px weiter nach links */
         pointer-events: auto;
       }
       .neues-weisses-rechteck {
@@ -2534,7 +2543,7 @@
         /* Linke Kante bündig mit visueller linker Kante von .plus-kreis */
         left: calc(100% - 30.5px);
         /* right: -20px; entfernt, da feste Breite gewünscht */
-        width: 208px; /* Feste Breite von 300px */
+        width: 240px; /* Feste Breite von 300px */
         border-radius: 25px; /* Starke Abrundung (Hälfte der Höhe) */
         pointer-events: none; /* Keine Interaktion, da rein dekorativ */
       }
