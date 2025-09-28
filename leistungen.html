@@ -2439,6 +2439,17 @@
         flex-basis: 30%; /* Jedes Item nimmt ca. 30% ein */
         margin-bottom: 40px;
         margin-top: 30px; /* Mehr Abstand der Items (und somit Bilder) nach oben */
+        position: relative; /* Für z-index Steuerung */
+      }
+      /* Zweites und drittes Item weiter in den Vordergrund holen */
+      .chronische-betreuung-bilder-container .betreuung-bild-item:nth-of-type(1) {
+        z-index: 1;
+      }
+      .chronische-betreuung-bilder-container .betreuung-bild-item:nth-of-type(2) {
+        z-index: 2;
+      }
+      .chronische-betreuung-bilder-container .betreuung-bild-item:nth-of-type(3) {
+        z-index: 3; /* Noch weiter im Vordergrund als das zweite */
       }
       .bild-mit-overlay-container { /* Neuer Container für Bild und Plus-Kreis */
         position: relative; /* Wichtig für die absolute Positionierung des Kreises */
@@ -2500,7 +2511,7 @@
       .info-rechteck {
         position: absolute;
         bottom: 27.5px; /* Vertikal auf Höhe des Kreises */
-        left: 0px;        /* Linke Kante 30px links vom linken Rand des Elternelements (finale Position) */
+        left: 30px;       /* Etwas nach rechts verschoben für bessere Positionierung */
         margin-right: -100px;  /* User-angepasst: rechte Kante 20px über rechten Rand des Containers - Hinweis: Diese Regel hat bei aktueller Konfiguration (left/width gesetzt) ggf. nicht den erwarteten Effekt auf die rechte Kante. */
         width: 178px; /* Breite reduziert */
         height: 50px; /* Gleiche Höhe wie der Kreis */
