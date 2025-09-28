@@ -247,6 +247,10 @@
       transition: transform 0.1s ease-out;
       min-width: 100vw; /* Verhindert, dass das Bild schmaler als der Viewport wird */
       min-height: 100vh; /* Verhindert, dass das Bild niedriger als der Viewport wird */
+      /* Performance-Hinweise für sanftere Transform-Animationen */
+      will-change: transform;
+      backface-visibility: hidden;
+      transform-origin: center center;
     }
 
     .hero-section h1 {
@@ -2883,6 +2887,9 @@
 
       const menuHeight = mainNav.offsetHeight;
 
+      // Safari-Erkennung (Chrome/Android ausschließen)
+      const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
       // Parallax Zoom für Hero-Background
       function handleHeroZoom() {
         if (heroBackground) {
@@ -2894,7 +2901,35 @@
             zoomDivisor = 3500; // Stärkerer Zoom für Mobilgeräte (kleinerer Divisor)
           }
           const scaleValue = Math.max(1, 1 + scrollPosition / zoomDivisor);
-          heroBackground.style.transform = `scale(${scaleValue})`;
+          heroBackground.style.transform = `scale(${scaleValue}) translateZ(0)`;
+        }
+      }
+
+      // Safari: rAF-basiertes, geglättetes Zooming
+      let safariZoomRafId = null;
+      let safariCurrentScale = 1;
+      function startSafariZoomLoop() {
+        if (!heroBackground) return;
+        const easing = 0.12; // Glättungsfaktor
+        function loop() {
+          const scrollPosition = window.pageYOffset;
+          let zoomDivisor = 9000; // Desktop
+          if (window.innerWidth < 769) {
+            zoomDivisor = 4500; // Mobil
+          }
+          const targetScale = Math.max(1, 1 + scrollPosition / zoomDivisor);
+          safariCurrentScale += (targetScale - safariCurrentScale) * easing;
+          heroBackground.style.transform = `scale(${safariCurrentScale}) translateZ(0)`;
+          safariZoomRafId = requestAnimationFrame(loop);
+        }
+        if (safariZoomRafId == null) {
+          safariZoomRafId = requestAnimationFrame(loop);
+        }
+      }
+      function stopSafariZoomLoop() {
+        if (safariZoomRafId != null) {
+          cancelAnimationFrame(safariZoomRafId);
+          safariZoomRafId = null;
         }
       }
 
@@ -2962,7 +2997,9 @@
           mainNav.classList.remove('nav-text-dark');
           mainNav.classList.remove('strong-blur'); // Stärkeren Blur entfernen
         }
-        handleHeroZoom();
+        if (!isSafari) {
+          handleHeroZoom();
+        }
         checkWelcomeTextVisibility(); // Sichtbarkeit des Welcome-Textes prüfen
         checkSectionDividersVisibility(); // Animation für Section Dividers prüfen
         checkFooterTitleAnimation(); // Animation für Footer-Titel prüfen
@@ -2971,6 +3008,9 @@
       window.addEventListener('scroll', checkMenuPosition);
       window.addEventListener('resize', checkMenuPosition); // Auch bei Größenänderung prüfen
       triggerHeroTitleAnimation(); // Hero-Titel Animation beim Laden auslösen
+      if (isSafari) {
+        startSafariZoomLoop();
+      }
       checkMenuPosition(); // Initiale Prüfung beim Laden der Seite
 
       // Modal-Elemente

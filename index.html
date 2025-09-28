@@ -246,6 +246,9 @@
       transition: transform 0.1s ease-out;
       min-width: 100vw; /* Verhindert, dass das Bild schmaler als der Viewport wird */
       min-height: 100vh; /* Verhindert, dass das Bild niedriger als der Viewport wird */
+      will-change: transform; /* Performance-Hinweis für sanftere Animationen */
+      backface-visibility: hidden; /* Verhindert Rendering-Artefakte */
+      transform-origin: center center; /* Stabilere Skalierung vom Zentrum */
     }
 
     .hero-section h1 {
@@ -2438,6 +2441,9 @@
         return;
       }
 
+      // Safari-Erkennung (echtes Safari, nicht Chrome auf iOS/macOS)
+      const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
       // Parallax Zoom für Hero-Background
       function handleHeroZoom() {
         if (heroBackground) {
@@ -2449,7 +2455,34 @@
             zoomDivisor = 3500; // Stärkerer Zoom für Mobilgeräte (kleinerer Divisor)
           }
           const scaleValue = Math.max(1, 1 + scrollPosition / zoomDivisor);
-          heroBackground.style.transform = `scale(${scaleValue})`;
+          heroBackground.style.transform = `translateZ(0) scale(${scaleValue})`;
+        }
+      }
+
+      // Safari: rAF-Loop mit Glättung
+      let safariRafId = null;
+      function startSafariZoomLoop() {
+        if (!heroBackground) return;
+        let currentScale = 1;
+        const easing = 0.12; // Glättungsfaktor
+        const computeTargetScale = () => {
+          const scrollPosition = window.pageYOffset;
+          const baseDivisor = window.innerWidth < 769 ? 4500 : 9000; // etwas höherer Divisor für Safari
+          return Math.max(1, 1 + scrollPosition / baseDivisor);
+        };
+
+        const tick = () => {
+          const target = computeTargetScale();
+          currentScale += (target - currentScale) * easing;
+          heroBackground.style.transform = `translateZ(0) scale(${currentScale})`;
+          safariRafId = requestAnimationFrame(tick);
+        };
+        if (safariRafId == null) safariRafId = requestAnimationFrame(tick);
+      }
+      function stopSafariZoomLoop() {
+        if (safariRafId != null) {
+          cancelAnimationFrame(safariRafId);
+          safariRafId = null;
         }
       }
 
@@ -2522,8 +2555,10 @@
           mainNav.classList.remove('strong-blur'); // Stärkeren Blur entfernen
         }
 
-        // Hero Zoom Effekt aufrufen
-        handleHeroZoom();
+        // Hero Zoom Effekt nur auf Nicht-Safari direkt im Scroll-Handler
+        if (!isSafari) {
+          handleHeroZoom();
+        }
 
         // Nur auf Desktop: Hover-Effekt für Navigationslinks (Linie unten)
         // Auf Mobilgeräten wird dieser Effekt durch die @media-Query (.main-nav .nav-links li a::after { display: none; }) deaktiviert.
@@ -2538,7 +2573,11 @@
       window.addEventListener('scroll', checkAllAnimations);
       window.addEventListener('resize', checkAllAnimations); // Auch bei Größenänderung prüfen
       checkAllAnimations(); // Initiale Prüfung beim Laden der Seite
-      handleHeroZoom(); // Initialen Zoom-Status setzen (wichtig, falls Seite nicht ganz oben geladen wird)
+      if (isSafari) {
+        startSafariZoomLoop(); // Safari nutzt rAF-Loop
+      } else {
+        handleHeroZoom(); // Initialen Zoom-Status setzen (wichtig, falls Seite nicht ganz oben geladen wird)
+      }
     });
 
     // Hamburger Menu Toggle Logik

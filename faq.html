@@ -288,6 +288,10 @@
       transition: transform 0.1s ease-out;
       min-width: 100vw; /* Verhindert, dass das Bild schmaler als der Viewport wird */
       min-height: 100vh; /* Verhindert, dass das Bild niedriger als der Viewport wird */
+      /* Performance-Hinweise für sanftere Transform-Animationen */
+      will-change: transform;
+      backface-visibility: hidden;
+      transform-origin: center center;
     }
     
     /* Farbe des Hamburger-Icons (X) wenn das mobile Menü aktiv ist (kopiert von index.html) */
@@ -1893,6 +1897,9 @@
 
       let quoteAnimationStarted = false; // Stellt sicher, dass die Zitat-Animation nur einmal startet
       // Parallax Zoom für Hero-Background
+      // Safari-Erkennung (Chrome/Android ausschließen)
+      const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
       function handleHeroZoom() {
         if (heroBackground) {
           const scrollPosition = window.pageYOffset;
@@ -1903,7 +1910,36 @@
             zoomDivisor = 3500; // Stärkerer Zoom für Mobilgeräte (kleinerer Divisor)
           }
           const scaleValue = Math.max(1, 1 + scrollPosition / zoomDivisor);
-          heroBackground.style.transform = `scale(${scaleValue})`;
+          heroBackground.style.transform = `scale(${scaleValue}) translateZ(0)`;
+        }
+      }
+
+      // Safari: rAF-basiertes, geglättetes Zooming für flüssigere Darstellung
+      let safariZoomRafId = null;
+      let safariCurrentScale = 1;
+      function startSafariZoomLoop() {
+        if (!heroBackground) return;
+        const easing = 0.12; // Glättungsfaktor
+        function loop() {
+          const scrollPosition = window.pageYOffset;
+          // Leicht größerer Divisor für feinere Schritte in Safari
+          let zoomDivisor = 9000; // Desktop
+          if (window.innerWidth < 769) {
+            zoomDivisor = 4500; // Mobil
+          }
+          const targetScale = Math.max(1, 1 + scrollPosition / zoomDivisor);
+          safariCurrentScale += (targetScale - safariCurrentScale) * easing;
+          heroBackground.style.transform = `scale(${safariCurrentScale}) translateZ(0)`;
+          safariZoomRafId = requestAnimationFrame(loop);
+        }
+        if (safariZoomRafId == null) {
+          safariZoomRafId = requestAnimationFrame(loop);
+        }
+      }
+      function stopSafariZoomLoop() {
+        if (safariZoomRafId != null) {
+          cancelAnimationFrame(safariZoomRafId);
+          safariZoomRafId = null;
         }
       }
 
@@ -2033,7 +2069,10 @@
           mainNav.classList.remove('strong-blur');
         }
 
-        handleHeroZoom();
+        // Nur Nicht-Safari: direktes Scroll-Update; Safari läuft per rAF-Loop
+        if (!isSafari) {
+          handleHeroZoom();
+        }
         checkWelcomeTextVisibility(); // Sichtbarkeit des Welcome-Textes prüfen
         checkSectionDividersVisibility(); // Animation für Section Dividers prüfen
         checkQuoteAnimation(); // Zitat-Animation prüfen
@@ -2071,8 +2110,14 @@
       window.addEventListener('scroll', checkMenuPosition);
       window.addEventListener('resize', checkMenuPosition);
       triggerHeroTitleAnimation(); // Hero-Titel Animation beim Laden auslösen
-      checkMenuPosition(); 
-      handleHeroZoom(); // Initialen Zoom-Status setzen (wichtig, falls Seite nicht ganz oben geladen wird)
+      // Safari: rAF-Loop starten, sonst initialen Zustand setzen
+      if (isSafari) {
+        startSafariZoomLoop();
+      }
+      checkMenuPosition();
+      if (!isSafari) {
+        handleHeroZoom(); // Initialen Zoom-Status setzen (wichtig, falls Seite nicht ganz oben geladen wird)
+      }
 
       // JavaScript für den Aufklapp-Button
       const toggleButton = document.getElementById('toggleAnswerButton');
