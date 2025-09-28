@@ -246,6 +246,9 @@
       transition: transform 0.1s ease-out;
       min-width: 100vw; /* Verhindert, dass das Bild schmaler als der Viewport wird */
       min-height: 100vh; /* Verhindert, dass das Bild niedriger als der Viewport wird */
+      will-change: transform; /* Compositor-Hinweis für flüssigere Animationen */
+      backface-visibility: hidden; /* Verhindert Rendering-Artefakte */
+      transform-origin: center center; /* Stabilere Skalierung vom Zentrum */
     }
 
     .hero-section h1 {
@@ -2884,18 +2887,49 @@
 
       const menuHeight = mainNav.offsetHeight;
 
-      // Parallax Zoom für Hero-Background
+      // Browsererkennung für Safari (ohne Chrome/Chromium/Android)
+      const isSafari = (() => {
+        const ua = navigator.userAgent;
+        return /Safari/i.test(ua) && !(/Chrome|Chromium|Android/i.test(ua));
+      })();
+
+      // Zoom-Berechnung abstrahieren
+      function computeScale(scrollY) {
+        const isMobile = window.innerWidth < 769;
+        const divisor = isSafari ? (isMobile ? 4500 : 9000) : (isMobile ? 3500 : 7000);
+        return Math.max(1, 1 + scrollY / divisor);
+      }
+
+      function applyHeroTransform(scale) {
+        if (!heroBackground) return;
+        heroBackground.style.transform = `translateZ(0) scale(${scale})`;
+      }
+
+      // Parallax Zoom für Hero-Background (direkt, für Nicht-Safari)
       function handleHeroZoom() {
-        if (heroBackground) {
-          const scrollPosition = window.pageYOffset;
-          // Standard-Divisor für Desktop
-          let zoomDivisor = 7000; 
-          // Prüfen, ob es sich um ein Mobilgerät handelt (z.B. unter 769px Breite)
-          if (window.innerWidth < 769) {
-            zoomDivisor = 3500; // Stärkerer Zoom für Mobilgeräte (kleinerer Divisor)
-          }
-          const scaleValue = Math.max(1, 1 + scrollPosition / zoomDivisor);
-          heroBackground.style.transform = `scale(${scaleValue})`;
+        if (!heroBackground) return;
+        const scaleValue = computeScale(window.pageYOffset);
+        applyHeroTransform(scaleValue);
+      }
+
+      // Safari-spezifische Glättung mit requestAnimationFrame
+      let safariRAFId = null;
+      let smoothedScroll = window.pageYOffset || 0;
+      const smoothing = 0.12; // Easing-Faktor
+      function safariSmoothLoop() {
+        const target = window.pageYOffset || 0;
+        smoothedScroll += (target - smoothedScroll) * smoothing;
+        applyHeroTransform(computeScale(smoothedScroll));
+        safariRAFId = requestAnimationFrame(safariSmoothLoop);
+      }
+      function startSafariSmoothing() {
+        if (!isSafari || safariRAFId || !heroBackground) return;
+        safariRAFId = requestAnimationFrame(safariSmoothLoop);
+      }
+      function stopSafariSmoothing() {
+        if (safariRAFId) {
+          cancelAnimationFrame(safariRAFId);
+          safariRAFId = null;
         }
       }
 
@@ -2963,7 +2997,10 @@
           mainNav.classList.remove('nav-text-dark');
           mainNav.classList.remove('strong-blur'); // Stärkeren Blur entfernen
         }
-        handleHeroZoom();
+        // Hero-Zoom nur direkt aktualisieren, wenn kein Safari genutzt wird
+        if (!isSafari) {
+          handleHeroZoom();
+        }
         checkWelcomeTextVisibility(); // Sichtbarkeit des Welcome-Textes prüfen
         checkSectionDividersVisibility(); // Animation für Section Dividers prüfen
         checkFooterTitleAnimation(); // Animation für Footer-Titel prüfen
@@ -2972,6 +3009,9 @@
       window.addEventListener('scroll', checkMenuPosition);
       window.addEventListener('resize', checkMenuPosition); // Auch bei Größenänderung prüfen
       triggerHeroTitleAnimation(); // Hero-Titel Animation beim Laden auslösen
+      // Initiale Transform anwenden und ggf. Safari-Loop starten
+      applyHeroTransform(computeScale(window.pageYOffset || 0));
+      if (isSafari) startSafariSmoothing();
       checkMenuPosition(); // Initiale Prüfung beim Laden der Seite
 
       // Modal-Elemente

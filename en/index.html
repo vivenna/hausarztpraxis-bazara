@@ -243,6 +243,9 @@
       transition: transform 0.1s ease-out;
       min-width: 100vw; /* Verhindert, dass das Bild schmaler als der Viewport wird */
       min-height: 100vh; /* Verhindert, dass das Bild niedriger als der Viewport wird */
+      will-change: transform;
+      backface-visibility: hidden;
+      transform-origin: center center;
     }
 
     .hero-section h1 {
@@ -2412,17 +2415,50 @@
       }
 
       // Parallax Zoom für Hero-Background
-      function handleHeroZoom() {
+      const isSafari = (() => {
+        const ua = navigator.userAgent;
+        return /Safari\//.test(ua) && !/Chrome\//.test(ua) && !/Chromium\//.test(ua) && !/Android/.test(ua);
+      })();
+
+      let safariRafId = null;
+      let smoothedScroll = window.pageYOffset || 0;
+      const smoothing = 0.12; // Easing factor for Safari
+
+      function computeScale(scrollY) {
+        const isMobile = window.innerWidth < 769;
+        const divisor = isSafari ? (isMobile ? 4500 : 9000) : (isMobile ? 3500 : 7000);
+        return Math.max(1, 1 + scrollY / divisor);
+      }
+
+      function applyHeroTransform(scaleValue) {
         if (heroBackground) {
-          const scrollPosition = window.pageYOffset;
-          // Standard-Divisor für Desktop
-          let zoomDivisor = 7000; 
-          // Prüfen, ob es sich um ein Mobilgerät handelt (z.B. unter 769px Breite)
-          if (window.innerWidth < 769) {
-            zoomDivisor = 3500; // Stärkerer Zoom für Mobilgeräte (kleinerer Divisor)
-          }
-          const scaleValue = Math.max(1, 1 + scrollPosition / zoomDivisor);
-          heroBackground.style.transform = `scale(${scaleValue})`;
+          heroBackground.style.transform = `translateZ(0) scale(${scaleValue})`;
+        }
+      }
+
+      function handleHeroZoom() {
+        if (!heroBackground) return;
+        const scrollPosition = window.pageYOffset;
+        const scaleValue = computeScale(scrollPosition);
+        applyHeroTransform(scaleValue);
+      }
+
+      function startSafariSmoothing() {
+        if (!isSafari || safariRafId !== null) return;
+        const rafLoop = () => {
+          const target = window.pageYOffset || 0;
+          smoothedScroll += (target - smoothedScroll) * smoothing;
+          const scaleValue = computeScale(smoothedScroll);
+          applyHeroTransform(scaleValue);
+          safariRafId = requestAnimationFrame(rafLoop);
+        };
+        safariRafId = requestAnimationFrame(rafLoop);
+      }
+
+      function stopSafariSmoothing() {
+        if (safariRafId !== null) {
+          cancelAnimationFrame(safariRafId);
+          safariRafId = null;
         }
       }
 
@@ -2474,7 +2510,7 @@
       }
 
       // Funktion für Menü-Farbwechsel und Hero-Zoom beim Scrollen
-      function checkAllAnimations() { // Umbenannt, um mehr Animationen zu handhaben
+  function checkAllAnimations() { // Umbenannt, um mehr Animationen zu handhaben
         // const sectionRect = leistungenSection.getBoundingClientRect(); // Entfernte Zeile
         let shouldBeDark = false;
 
@@ -2495,8 +2531,10 @@
           mainNav.classList.remove('strong-blur'); // Stärkeren Blur entfernen
         }
 
-        // Hero Zoom Effekt aufrufen
-        handleHeroZoom();
+        // Hero Zoom Effekt: non-Safari updates directly on scroll; Safari handled via rAF
+        if (!isSafari) {
+          handleHeroZoom();
+        }
 
         // Nur auf Desktop: Hover-Effekt für Navigationslinks (Linie unten)
         // Auf Mobilgeräten wird dieser Effekt durch die @media-Query (.main-nav .nav-links li a::after { display: none; }) deaktiviert.
@@ -2510,8 +2548,14 @@
 
       window.addEventListener('scroll', checkAllAnimations);
       window.addEventListener('resize', checkAllAnimations); // Auch bei Größenänderung prüfen
+      if (isSafari) startSafariSmoothing();
       checkAllAnimations(); // Initiale Prüfung beim Laden der Seite
-      handleHeroZoom(); // Initialen Zoom-Status setzen (wichtig, falls Seite nicht ganz oben geladen wird)
+      // Initial zoom apply
+      if (!isSafari) {
+        handleHeroZoom();
+      } else {
+        applyHeroTransform(computeScale(window.pageYOffset || 0));
+      }
     });
 
     // Hamburger Menu Toggle Logik

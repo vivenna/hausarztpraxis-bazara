@@ -288,6 +288,9 @@
       transition: transform 0.1s ease-out;
       min-width: 100vw; /* Verhindert, dass das Bild schmaler als der Viewport wird */
       min-height: 100vh; /* Verhindert, dass das Bild niedriger als der Viewport wird */
+      will-change: transform;
+      backface-visibility: hidden;
+      transform-origin: center center;
     }
     
     /* Farbe des Hamburger-Icons (X) wenn das mobile Menü aktiv ist (kopiert von index.html) */
@@ -1893,17 +1896,51 @@
 
       let quoteAnimationStarted = false; // Stellt sicher, dass die Zitat-Animation nur einmal startet
       // Parallax Zoom für Hero-Background
-      function handleHeroZoom() {
+      const isSafari = (() => {
+        const ua = navigator.userAgent;
+        return /Safari\//.test(ua) && !/Chrome\//.test(ua) && !/Chromium\//.test(ua) && !/Android/.test(ua);
+      })();
+
+      let safariRafId = null;
+      let smoothedScroll = window.pageYOffset || 0;
+      const smoothing = 0.12; // Easing factor for Safari
+
+      function computeScale(scrollY) {
+        const isMobile = window.innerWidth < 769;
+        // Different divisors for Safari vs others
+        const divisor = isSafari ? (isMobile ? 4500 : 9000) : (isMobile ? 3500 : 7000);
+        return Math.max(1, 1 + scrollY / divisor);
+      }
+
+      function applyHeroTransform(scaleValue) {
         if (heroBackground) {
-          const scrollPosition = window.pageYOffset;
-          // Standard-Divisor für Desktop
-          let zoomDivisor = 7000; 
-          // Prüfen, ob es sich um ein Mobilgerät handelt (z.B. unter 769px Breite)
-          if (window.innerWidth < 769) {
-            zoomDivisor = 3500; // Stärkerer Zoom für Mobilgeräte (kleinerer Divisor)
-          }
-          const scaleValue = Math.max(1, 1 + scrollPosition / zoomDivisor);
-          heroBackground.style.transform = `scale(${scaleValue})`;
+          heroBackground.style.transform = `translateZ(0) scale(${scaleValue})`;
+        }
+      }
+
+      function handleHeroZoom() {
+        if (!heroBackground) return;
+        const scrollPosition = window.pageYOffset;
+        const scaleValue = computeScale(scrollPosition);
+        applyHeroTransform(scaleValue);
+      }
+
+      function startSafariSmoothing() {
+        if (!isSafari || safariRafId !== null) return; // already running or not Safari
+        const rafLoop = () => {
+          const target = window.pageYOffset || 0;
+          smoothedScroll += (target - smoothedScroll) * smoothing;
+          const scaleValue = computeScale(smoothedScroll);
+          applyHeroTransform(scaleValue);
+          safariRafId = requestAnimationFrame(rafLoop);
+        };
+        safariRafId = requestAnimationFrame(rafLoop);
+      }
+
+      function stopSafariSmoothing() {
+        if (safariRafId !== null) {
+          cancelAnimationFrame(safariRafId);
+          safariRafId = null;
         }
       }
 
@@ -2033,7 +2070,10 @@
           mainNav.classList.remove('strong-blur');
         }
 
-        handleHeroZoom();
+        // Update hero zoom (non-Safari) directly on scroll; Safari is handled via rAF
+        if (!isSafari) {
+          handleHeroZoom();
+        }
         checkWelcomeTextVisibility(); // Sichtbarkeit des Welcome-Textes prüfen
         checkSectionDividersVisibility(); // Animation für Section Dividers prüfen
         checkQuoteAnimation(); // Zitat-Animation prüfen
@@ -2070,9 +2110,16 @@
 
       window.addEventListener('scroll', checkMenuPosition);
       window.addEventListener('resize', checkMenuPosition);
+      if (isSafari) startSafariSmoothing();
       triggerHeroTitleAnimation(); // Hero-Titel Animation beim Laden auslösen
       checkMenuPosition(); 
-      handleHeroZoom(); // Initialen Zoom-Status setzen (wichtig, falls Seite nicht ganz oben geladen wird)
+      // Initial transform apply
+      if (!isSafari) {
+        handleHeroZoom();
+      } else {
+        // Ensure we apply an initial transform for Safari as well
+        applyHeroTransform(computeScale(window.pageYOffset || 0));
+      }
 
       // JavaScript für den Aufklapp-Button
       const toggleButton = document.getElementById('toggleAnswerButton');

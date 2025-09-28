@@ -288,6 +288,9 @@
       transition: transform 0.1s ease-out;
       min-width: 100vw; /* Verhindert, dass das Bild schmaler als der Viewport wird */
       min-height: 100vh; /* Verhindert, dass das Bild niedriger als der Viewport wird */
+      will-change: transform;
+      backface-visibility: hidden;
+      transform-origin: center center;
     }
 
     .hero-text-wrapper {
@@ -1995,6 +1998,27 @@
       // und eine Konsolennachricht (siehe unten) könnte erscheinen.
       const sectionsForColorChange = document.querySelectorAll('.sprechzeiten-section, .lage-anfahrt-section, .neue-faq-sektion');
 
+      const isSafari = (() => {
+        const ua = navigator.userAgent;
+        return /Safari\//.test(ua) && !/Chrome\//.test(ua) && !/Chromium\//.test(ua) && !/Android/.test(ua);
+      })();
+
+      let safariRafId = null;
+      let smoothedScroll = window.pageYOffset || 0;
+      const smoothing = 0.12;
+
+      function computeScale(scrollY) {
+        const isMobile = window.innerWidth < 769;
+        const divisor = isSafari ? (isMobile ? 4500 : 9000) : (isMobile ? 3500 : 7000);
+        return Math.max(1, 1 + scrollY / divisor);
+      }
+
+      function applyHeroTransform(scaleValue) {
+        if (heroBackground) {
+          heroBackground.style.transform = `translateZ(0) scale(${scaleValue})`;
+        }
+      }
+
       if (!mainNav || !navLinksUl) { // Prüfung auf sectionsForColorChange.length entfernt, da es auf kontakt.html leer sein kann
         console.error('Erforderliche Elemente für den Menü-Farbwechsel nicht gefunden (mainNav oder navLinksUl).');
         return;
@@ -2014,14 +2038,28 @@
 
       // Parallax Zoom für Hero-Background
       function handleHeroZoom() {
-        if (heroBackground) {
-          let scrollPosition = window.pageYOffset;
-          // Der Divisor (z.B. 7000) steuert, wie schnell der Zoom erfolgt.
-          // Ein größerer Wert bedeutet langsameren Zoom.
-          // Stelle sicher, dass scaleValue nie kleiner als 1 ist
-          let scaleValue = Math.max(1, 1 + scrollPosition / 7000);
-          // heroBackground.style.transform = `scale(${scaleValue})`; // Temporär auskommentiert für Test
-          heroBackground.style.transform = `scale(${scaleValue}) translateZ(0)`; // Force hardware acceleration
+        if (!heroBackground) return;
+        const scrollPosition = window.pageYOffset;
+        const scaleValue = computeScale(scrollPosition);
+        applyHeroTransform(scaleValue);
+      }
+
+      function startSafariSmoothing() {
+        if (!isSafari || safariRafId !== null) return;
+        const rafLoop = () => {
+          const target = window.pageYOffset || 0;
+          smoothedScroll += (target - smoothedScroll) * smoothing;
+          const scaleValue = computeScale(smoothedScroll);
+          applyHeroTransform(scaleValue);
+          safariRafId = requestAnimationFrame(rafLoop);
+        };
+        safariRafId = requestAnimationFrame(rafLoop);
+      }
+
+      function stopSafariSmoothing() {
+        if (safariRafId !== null) {
+          cancelAnimationFrame(safariRafId);
+          safariRafId = null;
         }
       }
 
@@ -2095,8 +2133,10 @@
           mainNav.classList.remove('nav-text-dark'); // Klasse von mainNav entfernen
           mainNav.classList.remove('strong-blur');
         }
-        // Hero Zoom Effekt aufrufen
-        handleHeroZoom();
+        // Hero Zoom Effekt aufrufen (non-Safari); Safari handled via rAF
+        if (!isSafari) {
+          handleHeroZoom();
+        }
         checkFooterTitleAnimation(); // Animation für Footer-Titel prüfen
         checkWelcomeTextVisibility(); // Animation für Welcome-Text prüfen
         checkSectionDividersVisibility(); // Animation für Section Dividers prüfen
@@ -2134,8 +2174,14 @@
       window.addEventListener('scroll', checkMenuPosition);
       window.addEventListener('resize', checkMenuPosition);
       triggerHeroTitleAnimation(); // Hero-Titel Animation beim Laden auslösen
+      if (isSafari) startSafariSmoothing();
       checkMenuPosition(); // Initiale Prüfung beim Laden der Seite
-      handleHeroZoom(); // Initialen Zoom-Status setzen
+      // Initial zoom apply
+      if (!isSafari) {
+        handleHeroZoom();
+      } else {
+        applyHeroTransform(computeScale(window.pageYOffset || 0));
+      }
     });
 
     // Hamburger Menu Toggle Logik (von index.html übernommen)
