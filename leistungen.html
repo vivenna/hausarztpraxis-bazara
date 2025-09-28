@@ -2511,9 +2511,9 @@
       .info-rechteck {
         position: absolute;
         bottom: 27.5px; /* Vertikal auf Höhe des Kreises */
-        left: 30px;       /* Etwas nach rechts verschoben für bessere Positionierung */
+        left: 7px;       /* Etwas nach rechts verschoben für bessere Positionierung */
         margin-right: -100px;  /* User-angepasst: rechte Kante 20px über rechten Rand des Containers - Hinweis: Diese Regel hat bei aktueller Konfiguration (left/width gesetzt) ggf. nicht den erwarteten Effekt auf die rechte Kante. */
-        width: 178px; /* Breite reduziert */
+        width: 208px; /* Um 30px verbreitert */
         height: 50px; /* Gleiche Höhe wie der Kreis */
         background-color: #6e370e; /* Akzentfarbe für Hintergrund */
         color: #ffffff; /* Weißer Text */
@@ -2533,7 +2533,7 @@
       }
 
       .bild-mit-overlay-container:has(.plus-kreis:hover) .info-rechteck {
-        transform: translateX(0); /* Schiebt sich an die finale Position */
+        transform: translateX(-5px); /* Auf Hover 5px weiter nach links */
         pointer-events: auto;
       }
       .neues-weisses-rechteck {
@@ -2545,7 +2545,7 @@
         /* Linke Kante bündig mit visueller linker Kante von .plus-kreis */
         left: calc(100% - 30.5px);
         /* right: -20px; entfernt, da feste Breite gewünscht */
-        width: 208px; /* Feste Breite von 300px */
+        width: 240px; /* Feste Breite von 300px */
         border-radius: 25px; /* Starke Abrundung (Hälfte der Höhe) */
         pointer-events: none; /* Keine Interaktion, da rein dekorativ */
       }
