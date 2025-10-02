@@ -3296,6 +3296,170 @@
         });
       }
     });
+
+    // Desktop-only: JS-Scroll-Effekt wie in effekt.html
+    // Titel bleibt normales Element; rechte Icon-Spalte "klebt" via translateY, linke Spalte scrollt normal
+    (function() {
+      const WIDTH_THRESHOLD = 900; // exakt wie in effekt.html
+      const OFFSET_TOP = 160;      // Abstand von oben beim "Kleben"
+
+      let enabled = false;
+      let cleanupFns = [];
+
+      function enableStickyIcon() {
+        const section = document.querySelector('.sprechzeiten-section#moderne-diagnostik');
+        if (!section) return;
+        const container = section.querySelector('.diagnostik-content-wrapper');
+        const leftCol = section.querySelector('.diagnostik-content-links');
+        const rightCol = section.querySelector('.diagnostik-icon-sticky-rechts');
+        if (!container || !leftCol || !rightCol) return;
+
+        // Original-Stile merken und CSS-sticky am Parent deaktivieren (sonst doppelt sticky)
+        const origPos = rightCol.style.position;
+        const origTop = rightCol.style.top;
+        rightCol.style.position = 'relative';
+        rightCol.style.top = 'auto';
+
+        // Inner-Wrapper anlegen, in den wir transform anwenden (Layout der Spalte bleibt stabil)
+        let inner = rightCol.querySelector('.diagnostik-icon-inner');
+        if (!inner) {
+          inner = document.createElement('div');
+          inner.className = 'diagnostik-icon-inner';
+          // Kinder in den Inner-Wrapper verschieben
+          while (rightCol.firstChild) inner.appendChild(rightCol.firstChild);
+          rightCol.appendChild(inner);
+        }
+  inner.style.willChange = 'transform';
+  inner.style.transform = 'translate3d(0, 0, 0)';
+
+        // Mess- und Scroll-Logik wie in effekt.html, optimiert für weiches Scrolling
+        let sectionTop = 0;
+        let maxShift = 0;
+        let start = 0;
+        let end = 0;
+
+        // rAF-Ticker gegen Ruckeln, GPU-Compositing forcieren
+        let ticking = false;
+        let targetY = 0;
+        inner.style.backfaceVisibility = 'hidden';
+        inner.style.transformStyle = 'preserve-3d';
+
+        const dpr = window.devicePixelRatio || 1;
+        function applyTransform() {
+          // Begrenzen
+          const value = Math.max(0, Math.min(maxShift, targetY));
+          // Auf Geräte-Pixel runden, um Subpixel-Zittern zu vermeiden
+          const snapped = Math.round(value * dpr) / dpr;
+          // translate3d für glattes, GPU-beschleunigtes Scrolling
+          inner.style.transform = `translate3d(0, ${snapped}px, 0)`;
+          ticking = false;
+        }
+
+        function recalc() {
+          // Startpunkt am Beginn des Content-Containers, nicht am Section-Titel
+          const rect = container.getBoundingClientRect();
+          const seTop = (document.scrollingElement || document.documentElement).scrollTop || window.pageYOffset || 0;
+          sectionTop = rect.top + seTop;
+          // Höhen: linke Spalte vs. klebendes rechtes Icon (inner)
+          // Linke Höhe präziser: Grundhöhe + evtl. margin-bottom des letzten Kindes (gegen Margin-Collapsing-Differenzen)
+          const leftRectH = leftCol.getBoundingClientRect().height;
+          const leftScrollH = leftCol.scrollHeight;
+          let leftH = Math.max(leftRectH, leftScrollH);
+          const lastChild = leftCol.lastElementChild;
+          if (lastChild) {
+            const mb = parseFloat(getComputedStyle(lastChild).marginBottom) || 0;
+            leftH += mb;
+          }
+          const innerH = inner.getBoundingClientRect().height;
+          maxShift = Math.max(0, leftH - innerH);
+          start = sectionTop - OFFSET_TOP;
+          end = start + maxShift;
+        }
+
+        function onScroll() {
+          const se = document.scrollingElement || document.documentElement;
+          const y = se.scrollTop || window.pageYOffset || 0;
+          if (y <= start) {
+            targetY = 0;
+          } else if (y >= end) {
+            targetY = maxShift;
+          } else {
+            targetY = y - start;
+          }
+          if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(applyTransform);
+          }
+        }
+
+        // Resize-Observer wie im Vorbild, um dynamische Inhalte/Schriftarten zu berücksichtigen
+        let ro;
+        if (window.ResizeObserver) {
+          ro = new ResizeObserver(() => { recalc(); onScroll(); });
+          ro.observe(leftCol);
+          ro.observe(inner);
+        }
+
+        // Bild-Load (Icon) abwarten, dann neu berechnen
+        rightCol.querySelectorAll('img').forEach(img => {
+          if (!img.complete) img.addEventListener('load', () => { recalc(); onScroll(); }, { once: true });
+        });
+
+        // Initial berechnen und Listener setzen
+        recalc();
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+        const onResize = (() => {
+          let t;
+          return () => {
+            clearTimeout(t);
+            t = setTimeout(() => { recalc(); onScroll(); }, 120);
+          };
+        })();
+        window.addEventListener('resize', onResize);
+
+        // Cleanup-Funktion registrieren
+        cleanupFns.push(() => {
+          window.removeEventListener('scroll', onScroll);
+          window.removeEventListener('resize', onResize);
+          if (ro) ro.disconnect();
+          inner.style.transform = '';
+          inner.style.willChange = '';
+          inner.style.backfaceVisibility = '';
+          inner.style.transformStyle = '';
+          // Originalstruktur wiederherstellen
+          while (inner.firstChild) rightCol.appendChild(inner.firstChild);
+          rightCol.removeChild(inner);
+          // Ursprungs-Stile zurücksetzen (CSS sticky für andere Breakpoints erlaubt)
+          rightCol.style.position = origPos;
+          rightCol.style.top = origTop;
+        });
+      }
+
+      function disableStickyIcon() {
+        while (cleanupFns.length) {
+          const fn = cleanupFns.pop();
+          try { fn(); } catch (e) { /* noop */ }
+        }
+      }
+
+      function check() {
+        const wide = window.innerWidth > WIDTH_THRESHOLD;
+        if (wide && !enabled) {
+          enabled = true;
+          enableStickyIcon();
+        } else if (!wide && enabled) {
+          enabled = false;
+          disableStickyIcon();
+        }
+      }
+
+      // Initial prüfen und auf Größenänderungen reagieren
+      window.addEventListener('resize', check);
+      // Fonts/Bilder können Layout ändern – kleinen Delay für initiale Stabilität
+      setTimeout(check, 0);
+      window.addEventListener('load', () => { check(); });
+    })();
   </script>
   <div id="infoModalOverlay" class="modal-overlay"> <!-- Klasse modal-active wird per JS hinzugefügt/entfernt -->
     <div class="modal-content">
