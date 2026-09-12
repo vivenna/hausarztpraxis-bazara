@@ -1132,128 +1132,6 @@
         border: 1px solid #6e370e; /* Rahmenfarbe gleich Hintergrund = kein sichtbarer Rahmen, Größe bleibt konstant */
       }
 
-      /* Footer Anpassungen für Mobilgeräte */
-      .main-footer {
-        height: auto !important; /* Höhe automatisch anpassen */
-        padding: 780px 20px 20px 20px !important; /* Oberes Padding erhöht für mehr "Lücke oben", unten 20px */
-        flex-direction: column !important; /* Elemente untereinander anordnen */
-        text-align: left !important; /* Standard-Textausrichtung für den Footer-Inhalt auf links geändert */
-      }
-
-      .footer-top-left-content {
-        position: static !important; /* Positionierung aufheben */
-        margin-top: -350px !important; /* Titel und Button um 40px nach oben verschieben */
-        margin-bottom: 80px !important; /* Abstand zum nächsten Element */
-        text-align: left !important; /* Inhalt linksbündig */
-      }
-
-      .footer-new-title {
-        font-size: 48px !important; /* Deutlich kleinere Schriftgröße */
-        line-height: 1.2 !important;
-        margin-bottom: 70px !important; /* Weiter vergrößerter Abstand zum Button */
-        margin-top: -420px !important;
-        /* Animation bleibt, aber Startposition und Sichtbarkeit werden beibehalten */
-        transform: translateY(50px) !important; /* Kleinere Startverschiebung */
-      }
-
-      .footer-new-button {
-        font-size: 18px !important; /* Kleinere Schriftgröße */
-        padding: 10px 40px !important; /* Angepasstes Padding */
-      }
-      .footer-new-button:hover {
-        padding: 9px 39px !important; /* Hover-Padding anpassen */
-      }
-
-      .footer-logo-wrapper {
-        position: static !important; /* Zurück zu static, um im Fluss zu bleiben */
-        width: 100% !important;
-        height: auto !important; /* Höhe an Inhalt anpassen, nicht 100% des Elternelements */
-        display: flex !important;
-        justify-content: center !important;
-        align-items: flex-end !important; /* Logo am unteren Rand des Wrappers ausrichten */
-        /* z-index nicht relevant für static positioning in diesem Kontext */
-        opacity: 0.1 !important; /* Logo noch transparenter oder ggf. ausblenden (display: none;) */
-        overflow-x: hidden !important; /* Verhindert, dass das Logo horizontales Scrollen verursacht */
-        margin-bottom: 40px !important; /* Abstand zum nächsten Element im Flex-Flow */
-        padding-bottom: 20px !important; /* Abstand des Logos zum unteren Rand des Footers */
-        box-sizing: border-box !important; /* Stellt sicher, dass Padding die Höhe nicht beeinflusst */
-      }
-
-      .footer-logo .bazara-style {
-        font-size: 80px !important; /* Weiter verkleinert für mobile Ansicht */
-      }
-      .footer-logo .safia-style {
-        font-size: 85px !important; /* Weiter verkleinert für mobile Ansicht */
-      }
-      .footer-logo .subtitle-style {
-        font-size: 16px !important; /* Weiter verkleinert für mobile Ansicht */
-        margin-top: 8px !important; /* Angepasster Abstand nach oben */
-      }
-
-      .footer-bottom-wrapper {
-        position: relative !important; /* Notwendig für z-index und um über dem Logo zu liegen */
-        z-index: 1 !important; /* Stellt sicher, dass dieser Container über dem Logo-Wrapper liegt */
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: flex-start !important; /* Alle unteren Elemente linksbündig ausrichten */
-        width: 100% !important;
-      }
-
-      .footer-bottom-left-text {
-        position: static !important;
-        font-size: 20px !important; /* Kleinere Schriftgröße */
-        margin-bottom: 30px !important; /* Abstand zum nächsten Block */
-        text-align: left !important; /* Text linksbündig */
-      }
-
-      .footer-contact-hours-container {
-        position: static;
-        flex-direction: column; /* Kontakt und Öffnungszeiten untereinander */
-        align-items: flex-start; /* Spalten linksbündig ausrichten */
-        width: 100%;
-        font-size: 14px !important; /* Etwas größere Basisschrift für Lesbarkeit */
-        margin-bottom: 150px !important; /* Abstand zum nächsten Block */
-        margin-left: -90px !important;
-      }
-
-      .footer-contact-column,
-      .footer-hours-column {
-        flex-basis: auto !important; /* Automatische Breite */
-        padding-left: 0 !important; /* Linken Einzug entfernen */
-        margin-right: 0 !important; /* Rechten Abstand entfernen */
-        text-align: left !important; /* Text in den Spalten linksbündig */
-        margin-bottom: 20px !important; /* Abstand zwischen Kontakt und Öffnungszeiten */
-      }
-      .footer-contact-column:last-child,
-      .footer-hours-column:last-child {
-        margin-bottom: 0 !important;
-      }
-
-      .footer-hours-details {
-        display: flex !important; /* Sicherstellen, dass es ein Flex-Container ist */
-        flex-direction: row !important; /* Tage und Zeiten nebeneinander */
-        justify-content: space-between !important; /* Verteilt den Platz zwischen den Elementen */
-        width: 100% !important; /* Nimmt die volle Breite des Elternelements ein */
-      }
-      .footer-hours-days,
-      .footer-hours-times {
-        flex-basis: auto !important; /* Lässt die Breite sich an den Inhalt anpassen, kann bei Bedarf angepasst werden */
-        text-align: left !important; /* Tage und Zeiten linksbündig */
-        padding-right: 0 !important; /* Rechten Einzug entfernen */
-        margin-right: 0 !important; /* Rechten Abstand entfernen */
-      }
-      .footer-hours-days { margin-bottom: 0 !important; } /* Entfernt den unteren Abstand, da sie jetzt nebeneinander sind */
-      .footer-hours-times { text-align: right !important; } /* Zeiten rechtsbündig innerhalb ihres Containers */
-
-      .footer-bottom-right-links {
-        position: static !important;
-        text-align: left !important; /* Links linksbündig */
-        margin-top: 20px !important; /* Abstand nach oben, falls es das letzte Element ist */
-      }
-      .footer-bottom-right-links a {
-        font-size: 14px !important; /* Etwas größere Schrift */
-        margin-bottom: 10px !important; /* Mehr Abstand zwischen den Links */
-      }
     }
 
     /* Klasse zum Pausieren der Slideshow-Animation */
@@ -1432,7 +1310,7 @@
       -ms-user-select: none;
     }
 
-    /* Fußzeile */
+    /* Fußzeile (1:1 übernommen aus index.html) */
     .main-footer {
       background-color: #6e370e;
       height: 100vh; /* Fußzeile nimmt die komplette Bildschirmhöhe ein */
@@ -1457,21 +1335,21 @@
       font-weight: 700; /* Bold */
       font-size: 110px; /* Gleiche Schriftgröße wie h1 in hero-section */
       color: #ffffff; /* Helle Schrift für dunklen Footer-Hintergrund */
-      line-height: 1.27; /* Angepasst für Konsistenz und Platz für Unterlängen */
+      line-height: 1.27; /* Leicht erhöht für mehr Platz für Unterlängen */
       margin-bottom: 60px; /* Abstand zum Button vergrößert */
       /* Kein Textschatten, da Hintergrund einfarbig ist, kann bei Bedarf hinzugefügt werden */
 
-      /* Hinzugefügt für die Animation (kopiert von index.html/kontakt.html) */
-      opacity: 1;
-      transform: translateY(150px);
-      clip-path: inset(100% 0 0 0);
-      transition: transform 0.7s ease-out, clip-path 0.7s ease-out;
-      visibility: hidden;
+      /* Hinzugefügt für die Animation */
+      opacity: 1; /* Nicht mehr über Opazität, sondern clip-path gesteuert */
+      transform: translateY(150px); /* Startet ca. eine Zeilenhöhe tiefer (110px * 1.2 = 132px) */
+      clip-path: inset(100% 0 0 0); /* Initial von unten komplett verdeckt (top, right, bottom, left) */
+      transition: transform 0.7s ease-out, clip-path 0.7s ease-out; /* Bewegung und Sichtbarwerden animieren */
+      visibility: hidden; /* Verhindert Interaktion/Darstellung bevor Animation startet */
     }
 
-    .footer-new-title.animate-footer-title { /* Kopiert von index.html/kontakt.html */
-      transform: translateY(0);
-      clip-path: inset(0 0 0 0);
+    .footer-new-title.animate-footer-title { /* Geänderter Klassenname für Klarheit */
+      transform: translateY(0); /* Bewegt sich zur finalen Position */
+      clip-path: inset(0 0 0 0); /* Wird von unten nach oben sichtbar */
       visibility: visible;
     }
 
@@ -1500,9 +1378,12 @@
     .footer-logo-wrapper {
       opacity: 0.2; /* Transparenz weiter reduziert */
       /* Stellt sicher, dass das Logo hinter dem neuen Inhalt ist, falls es überlappt */
-      position: relative; 
+      position: relative;
       z-index: 1;
-      transform: translateY(230px); /* Logo um 150px nach unten verschoben */
+    }
+
+    .footer-logo-wrapper {
+      opacity: 0.2; /* Transparenz weiter reduziert */
     }
 
     /* Wiederverwendung der Logo-Struktur, aber mit eigenen Klassen für die Größe */
@@ -1547,7 +1428,7 @@
 
     .footer-bottom-left-text {
       position: absolute;
-      bottom: 60px; /* Abstand vom unteren Rand */
+      bottom: 105px; /* Abstand vom unteren Rand */
       left: 140px;  /* Gleicher linker Abstand wie der Inhalt oben links */
       text-align: left;
       z-index: 5; /* Über dem Logo */
@@ -1565,7 +1446,7 @@
     }
     .footer-contact-hours-container {
       position: absolute;
-      bottom: 60px; /* Gleicher Abstand vom unteren Rand wie die anderen Elemente */
+      bottom: 105px; /* Gleicher Abstand vom unteren Rand wie die anderen Elemente */
       left: 25%; /* Weiter nach rechts verschoben, Wert anpassbar */
       width: 60%; /* Breite des Containers, anpassbar */
       display: flex;
@@ -1590,7 +1471,7 @@
       margin: 0 0 5px 0; /* Kleiner Abstand zwischen den Zeilen */
       line-height: 1.6; /* Zeilenhöhe angepasst */
     }
-    
+
     .footer-contact-column {
       margin-right: 0px; /* Abstand zwischen Kontakt- und Öffnungszeiten-Spalte, anpassbar */
       padding-left: 250px; /* Schiebt den Inhalt der Kontakt-Spalte nach rechts, anpassbar */
@@ -1633,7 +1514,7 @@
 
     .footer-bottom-right-links {
       position: absolute;
-      bottom: 60px; /* Gleicher Abstand vom unteren Rand wie der Text links */
+      bottom: 105px; /* Gleicher Abstand vom unteren Rand wie der Text links */
       right: 140px; /* Abstand vom rechten Rand */
       text-align: left; /* Textausrichtung innerhalb des Containers auf links geändert */
       z-index: 5; /* Über dem Logo */
@@ -1652,6 +1533,158 @@
     }
     .footer-bottom-right-links a:last-child {
       margin-bottom: 0;
+    }
+
+    .footer-credit {
+      position: absolute;
+      bottom: 35px;
+      left: 140px;
+      right: 140px;
+      text-align: center;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.75);
+      z-index: 5;
+    }
+    .footer-credit a {
+      color: #ffffff;
+      font-weight: 500;
+      text-decoration: underline;
+      text-decoration-color: #ffffff;
+      text-underline-offset: 3px;
+    }
+
+    @media (max-width: 768px) {
+      /* Footer Anpassungen für Mobilgeräte */
+      .main-footer {
+        height: auto; /* Höhe automatisch anpassen */
+        padding: 40px 20px; /* Padding für Mobilgeräte */
+        flex-direction: column; /* Elemente untereinander anordnen */
+        text-align: left; /* Standard-Textausrichtung für den Footer-Inhalt auf links geändert */
+      }
+
+      .footer-top-left-content {
+        position: static; /* Positionierung aufheben */
+        margin-bottom: 40px; /* Abstand zum nächsten Element */
+        text-align: left; /* Inhalt linksbündig */
+      }
+
+      .footer-new-title {
+        font-size: 48px; /* Deutlich kleinere Schriftgröße */
+        line-height: 1.3;
+        margin-bottom: 30px; /* Weniger Abstand zum Button */
+        /* Animation bleibt, aber Startposition und Sichtbarkeit werden beibehalten */
+        transform: translateY(50px); /* Kleinere Startverschiebung */
+      }
+
+      .footer-new-button {
+        font-size: 18px; /* Kleinere Schriftgröße */
+        padding: 10px 40px; /* Angepasstes Padding */
+      }
+      .footer-new-button:hover {
+        padding: 9px 39px; /* Hover-Padding anpassen */
+      }
+
+      .footer-logo-wrapper {
+        position: relative;
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 0; /* Stellt sicher, dass es hinter dem anderen Inhalt liegt */
+        opacity: 0.1; /* Logo noch transparenter oder ggf. ausblenden (display: none;) */
+        overflow-x: hidden; /* Verhindert, dass das Logo horizontales Scrollen verursacht */
+        margin-bottom: -110px; /* Zieht den nachfolgenden Textblock optisch ueber das Logo, sodass es dahinter sitzt */
+        box-sizing: border-box; /* Stellt sicher, dass Padding die Hoehe nicht beeinflusst */
+      }
+
+      .footer-logo .bazara-style {
+        font-size: 80px; /* Weiter verkleinert für mobile Ansicht */
+      }
+      .footer-logo .safia-style {
+        font-size: 85px; /* Weiter verkleinert für mobile Ansicht */
+      }
+      .footer-logo .subtitle-style {
+        font-size: 16px; /* Weiter verkleinert für mobile Ansicht */
+        margin-top: 8px; /* Angepasster Abstand nach oben */
+      }
+
+      .footer-bottom-wrapper {
+        position: relative; /* Notwendig für z-index und um über dem Logo zu liegen */
+        z-index: 1; /* Stellt sicher, dass dieser Container über dem Logo-Wrapper liegt */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* Alle unteren Elemente linksbündig ausrichten */
+        width: 100%;
+      }
+
+      .footer-bottom-left-text {
+        position: static;
+        font-size: 20px; /* Kleinere Schriftgröße */
+        margin-bottom: 30px; /* Abstand zum nächsten Block */
+        text-align: left; /* Text linksbündig */
+      }
+
+      .footer-contact-hours-container {
+        position: static;
+        flex-direction: column; /* Kontakt und Öffnungszeiten untereinander */
+        align-items: flex-start; /* Spalten linksbündig ausrichten */
+        width: 100%;
+        font-size: 14px; /* Etwas größere Basisschrift für Lesbarkeit */
+        margin-bottom: 30px; /* Abstand zum nächsten Block */
+      }
+
+      .footer-contact-column,
+      .footer-hours-column {
+        flex-basis: auto; /* Automatische Breite */
+        padding-left: 0; /* Linken Einzug entfernen */
+        margin-right: 0; /* Rechten Abstand entfernen */
+        text-align: left; /* Text in den Spalten linksbündig */
+        margin-bottom: 20px; /* Abstand zwischen Kontakt und Öffnungszeiten */
+      }
+      .footer-contact-column:last-child,
+      .footer-hours-column:last-child {
+        margin-bottom: 0;
+      }
+
+      .footer-hours-details {
+        display: flex; /* Sicherstellen, dass es ein Flex-Container ist */
+        flex-direction: row; /* Tage und Zeiten nebeneinander */
+        justify-content: space-between; /* Verteilt den Platz zwischen den Elementen */
+        width: 100%; /* Nimmt die volle Breite des Elternelements ein */
+      }
+      .footer-hours-days,
+      .footer-hours-times {
+        flex-basis: auto; /* Lässt die Breite sich an den Inhalt anpassen, kann bei Bedarf angepasst werden */
+        text-align: left; /* Tage und Zeiten linksbündig */
+        padding-right: 0; /* Rechten Einzug entfernen */
+        margin-right: 0; /* Rechten Abstand entfernen */
+      }
+      .footer-hours-days { margin-bottom: 0; } /* Entfernt den unteren Abstand, da sie jetzt nebeneinander sind */
+      .footer-hours-times { text-align: right; } /* Zeiten rechtsbündig innerhalb ihres Containers */
+
+      .footer-bottom-right-links {
+        position: static;
+        text-align: left; /* Links linksbündig */
+        margin-top: 20px; /* Abstand nach oben, falls es das letzte Element ist */
+      }
+      .footer-bottom-right-links a {
+        font-size: 14px; /* Etwas größere Schrift */
+        margin-bottom: 10px; /* Mehr Abstand zwischen den Links */
+      }
+
+      .footer-credit {
+        position: static;
+        left: auto;
+        right: auto;
+        width: 100%;
+        margin-top: 30px;
+        text-align: center;
+      }
     }
   </style>
 </head>
@@ -1866,6 +1899,7 @@
         <a href="/datenschutzerklärung">Datenschutzerklärung</a>
       </div>
     </div>
+    <div class="footer-credit">Webdesign &amp; Umsetzung: <a href="https://vivenna-it.de" target="_blank" rel="noopener">vivenna-it.de</a></div>
   </footer>
   <script>
     document.addEventListener('DOMContentLoaded', function() {

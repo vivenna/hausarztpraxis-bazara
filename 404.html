@@ -440,7 +440,7 @@
 
     .footer-bottom-left-text {
       position: absolute;
-      bottom: 60px; 
+      bottom: 105px; 
       left: 140px;  
       text-align: left;
       z-index: 5; 
@@ -458,7 +458,7 @@
     }
     .footer-contact-hours-container {
       position: absolute;
-      bottom: 60px; 
+      bottom: 105px; 
       left: 25%; 
       width: 60%; 
       display: flex;
@@ -524,7 +524,7 @@
 
     .footer-bottom-right-links {
       position: absolute;
-      bottom: 60px; 
+      bottom: 105px; 
       right: 140px; 
       text-align: left; 
       z-index: 5; 
@@ -802,21 +802,17 @@
       }
 
       .footer-logo-wrapper {
-        position: absolute;
-        top: 0;
-        left: 0;
+        position: relative;
         width: 100%;
-        height: 100%;
+        height: auto;
         display: flex;
         justify-content: center;
-        align-items: flex-end; 
-        z-index: 0; 
-        opacity: 0.1; 
-        overflow-x: hidden; 
-        margin-bottom: 0; 
-        order: unset; 
-        padding-bottom: 20px; 
-        box-sizing: border-box; 
+        align-items: center;
+        z-index: 0; /* Stellt sicher, dass es hinter dem anderen Inhalt liegt */
+        opacity: 0.1; /* Logo noch transparenter oder ggf. ausblenden (display: none;) */
+        overflow-x: hidden; /* Verhindert, dass das Logo horizontales Scrollen verursacht */
+        margin-bottom: -110px; /* Zieht den nachfolgenden Textblock optisch ueber das Logo, sodass es dahinter sitzt */
+        box-sizing: border-box; /* Stellt sicher, dass Padding die Hoehe nicht beeinflusst */
       }
 
       .footer-logo .bazara-style {
@@ -892,6 +888,37 @@
       .footer-bottom-right-links a {
         font-size: 14px; 
         margin-bottom: 10px; 
+      }
+    }
+    .footer-credit {
+      position: absolute;
+      bottom: 35px;
+      left: 140px;
+      right: 140px;
+      text-align: center;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.75);
+      z-index: 5;
+    }
+    .footer-credit a {
+      color: #ffffff;
+      font-weight: 500;
+      text-decoration: underline;
+      text-decoration-color: #ffffff;
+      text-underline-offset: 3px;
+    }
+    @media (max-width: 768px) {
+      .footer-credit {
+        position: static;
+        left: auto;
+        right: auto;
+        width: 100%;
+        margin-top: 30px;
+        text-align: center;
       }
     }
   </style>
@@ -984,6 +1011,7 @@
         <a href="/datenschutzerklärung">Datenschutzerklärung</a>
       </div>
     </div>
+    <div class="footer-credit">Webdesign &amp; Umsetzung: <a href="https://vivenna-it.de" target="_blank" rel="noopener">vivenna-it.de</a></div>
   </footer>
 
   <script>

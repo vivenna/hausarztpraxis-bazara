@@ -1101,7 +1101,7 @@
 
     .footer-bottom-left-text {
       position: absolute;
-      bottom: 60px; /* Abstand vom unteren Rand */
+      bottom: 105px; /* Abstand vom unteren Rand */
       left: 140px;  /* Gleicher linker Abstand wie der Inhalt oben links */
       text-align: left;
       z-index: 5; /* Über dem Logo */
@@ -1119,7 +1119,7 @@
     }
     .footer-contact-hours-container {
       position: absolute;
-      bottom: 60px; /* Gleicher Abstand vom unteren Rand wie die anderen Elemente */
+      bottom: 105px; /* Gleicher Abstand vom unteren Rand wie die anderen Elemente */
       left: 25%; /* Weiter nach rechts verschoben, Wert anpassbar */
       width: 60%; /* Breite des Containers, anpassbar */
       display: flex;
@@ -1190,7 +1190,7 @@
 
     .footer-bottom-right-links {
       position: absolute;
-      bottom: 60px; /* Gleicher Abstand vom unteren Rand wie der Text links */
+      bottom: 105px; /* Gleicher Abstand vom unteren Rand wie der Text links */
       right: 140px; /* Abstand vom rechten Rand */
       text-align: left; /* Textausrichtung innerhalb des Containers auf links geändert */
       z-index: 5; /* Über dem Logo */
@@ -1999,21 +1999,17 @@
       }
 
       .footer-logo-wrapper {
-        position: absolute;
-        top: 0;
-        left: 0;
+        position: relative;
         width: 100%;
-        height: 100%;
+        height: auto;
         display: flex;
         justify-content: center;
-        align-items: flex-end; /* Logo am unteren Rand des Wrappers ausrichten */
+        align-items: center;
         z-index: 0; /* Stellt sicher, dass es hinter dem anderen Inhalt liegt */
         opacity: 0.1; /* Logo noch transparenter oder ggf. ausblenden (display: none;) */
         overflow-x: hidden; /* Verhindert, dass das Logo horizontales Scrollen verursacht */
-        margin-bottom: 0; /* Entfernt, da absolute Positionierung */
-        order: unset; /* Entfernt, da absolute Positionierung */
-        padding-bottom: 20px; /* Abstand des Logos zum unteren Rand des Footers */
-        box-sizing: border-box; /* Stellt sicher, dass Padding die Höhe nicht beeinflusst */
+        margin-bottom: -110px; /* Zieht den nachfolgenden Textblock optisch ueber das Logo, sodass es dahinter sitzt */
+        box-sizing: border-box; /* Stellt sicher, dass Padding die Hoehe nicht beeinflusst */
       }
 
       .footer-logo .bazara-style {
@@ -2089,6 +2085,37 @@
       .footer-bottom-right-links a {
         font-size: 14px; /* Etwas größere Schrift */
         margin-bottom: 10px; /* Mehr Abstand zwischen den Links */
+      }
+    }
+    .footer-credit {
+      position: absolute;
+      bottom: 35px;
+      left: 140px;
+      right: 140px;
+      text-align: center;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.75);
+      z-index: 5;
+    }
+    .footer-credit a {
+      color: #ffffff;
+      font-weight: 500;
+      text-decoration: underline;
+      text-decoration-color: #ffffff;
+      text-underline-offset: 3px;
+    }
+    @media (max-width: 768px) {
+      .footer-credit {
+        position: static;
+        left: auto;
+        right: auto;
+        width: 100%;
+        margin-top: 30px;
+        text-align: center;
       }
     }
   </style>
@@ -3356,6 +3383,7 @@
         <a href="/en/privacypolicy">Privacy policy</a>
       </div>
     </div>
+    <div class="footer-credit">Webdesign &amp; Umsetzung: <a href="https://vivenna-it.de" target="_blank" rel="noopener">vivenna-it.de</a></div>
   </footer>
 </body>
 </html>
