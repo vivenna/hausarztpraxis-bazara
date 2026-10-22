@@ -1,53 +1,34 @@
 (function () {
-  // Popup wird ab dem 22.08.2026 nicht mehr angezeigt.
-  var HIDE_FROM = new Date(2026, 7, 22, 0, 0, 0);
-  if (new Date() >= HIDE_FROM) return;
+  var HIDE_FROM = Date.UTC(2026, 9, 30, 17, 0, 0);
+  if (Date.now() >= HIDE_FROM) return;
 
   var isEnglish = /^\/en(\/|$)/.test(location.pathname) ||
                   (document.documentElement.lang || '').toLowerCase().indexOf('en') === 0;
   var lang = isEnglish ? 'en' : 'de';
-  var storageKey = 'urlaub-2026-popup-' + lang;
+  var storageKey = 'vertretung-2026-10-popup-' + lang;
 
   var texts = {
     de: {
       badge: 'Wichtiger Hinweis',
-      title: 'Urlaub vom 03.08. – 21.08.2026',
-      intro: 'Unsere Praxis bleibt in diesem Zeitraum geschlossen. Die Vertretung übernehmen für Sie:',
-      p1: '03.08. – 07.08.2026',
-      p2: '10.08. – 21.08.2026',
-      phone: 'Telefon',
+      title: 'Vertretung nächste Woche',
+      intro: 'In der kommenden Woche übernehmen folgende Praxen die Vertretung:',
       close: 'Verstanden',
       launcher: 'Vertretung',
-      launcherLabel: 'Informationen zur Urlaubsvertretung anzeigen'
+      launcherLabel: 'Informationen zur Vertretung anzeigen'
     },
     en: {
       badge: 'Important notice',
-      title: 'Holiday from 3 Aug – 21 Aug 2026',
-      intro: 'Our practice will be closed during this period. The following practices will stand in for us:',
-      p1: '3 Aug – 7 Aug 2026',
-      p2: '10 Aug – 21 Aug 2026',
-      phone: 'Phone',
+      title: 'Cover next week',
+      intro: 'The following practices will provide cover next week:',
       close: 'Got it',
       launcher: 'Cover',
-      launcherLabel: 'Show holiday cover information'
+      launcherLabel: 'Show cover information'
     }
   }[lang];
 
-  var periods = [
-    {
-      range: texts.p1,
-      doctors: [
-        { name: 'Dr. med. Mariya Petkova', address: 'Neue Grottkauer Str. 3, 12619 Berlin', phone: '030 74004411', tel: '+493074004411' },
-        { name: 'Dr. med. Sylvia Christina Fehrendt', address: 'Hönower Str. 188, 12623 Berlin', phone: '030 9939127', tel: '+49309939127' }
-      ]
-    },
-    {
-      range: texts.p2,
-      doctors: [
-        { name: 'Praxis Kathrin Oldenburg', address: 'Alte Hellersdorfer Str. 121, 12629 Berlin', phone: '030 9951028', tel: '+49309951028' },
-        { name: 'Familienpraxis Breunung (Dipl.-Med. Iris Breunung)', address: 'Branitzer Karree 5, 12627 Berlin', phone: '030 9918006', tel: '+49309918006' }
-      ]
-    }
+  var doctors = [
+    { name: 'Dr. Oldenburg Kathrin', address: 'Alte Hellersdorfer Str. 121, 12629 Berlin' },
+    { name: 'Dr. Sylvia Fehrend', address: 'Hönowerstr.188, 12623 Berlin' }
   ];
 
   var css = '' +
@@ -65,14 +46,9 @@
       'text-transform:uppercase;padding:5px 12px;border-radius:999px;font-weight:500;}' +
     '.vp-title{font-family:\'Poppins\',sans-serif;font-weight:700;font-size:1.5rem;color:#6e370e;margin:14px 0 8px;}' +
     '.vp-intro{font-size:.95rem;line-height:1.55;color:#333;margin:0 0 22px;}' +
-    '.vp-period+.vp-period{margin-top:22px;}' +
-    '.vp-range{font-family:\'Poppins\',sans-serif;font-weight:500;font-size:1rem;color:#572800;' +
-      'border-bottom:1px solid #e6e6e6;padding-bottom:6px;margin:0 0 12px;}' +
     '.vp-doc{border-left:3px solid #d5ad8f;padding-left:14px;margin-bottom:14px;}' +
     '.vp-doc-name{font-weight:600;font-size:.98rem;margin:0 0 4px;}' +
     '.vp-doc p{margin:0;font-size:.9rem;line-height:1.5;color:#333;}' +
-    '.vp-doc a{color:#6e370e;text-decoration:none;font-weight:500;}' +
-    '.vp-doc a:hover{text-decoration:underline;}' +
     '.vp-btn{display:block;width:100%;margin-top:26px;padding:13px;border:0;border-radius:8px;background:#6e370e;' +
       'color:#fff;font-family:\'Poppins\',sans-serif;font-size:1rem;font-weight:500;cursor:pointer;transition:background .2s ease;}' +
     '.vp-btn:hover{background:#572800;}' +
@@ -107,16 +83,11 @@
       '<h2 class="vp-title" id="vp-title">' + esc(texts.title) + '</h2>' +
       '<p class="vp-intro">' + esc(texts.intro) + '</p>';
 
-    periods.forEach(function (p) {
-      html += '<div class="vp-period"><h3 class="vp-range">' + esc(p.range) + '</h3>';
-      p.doctors.forEach(function (d) {
-        html += '<div class="vp-doc">' +
-          '<p class="vp-doc-name">' + esc(d.name) + '</p>' +
-          '<p>' + esc(d.address) + '</p>' +
-          '<p>' + esc(texts.phone) + ': <a href="tel:' + esc(d.tel) + '">' + esc(d.phone) + '</a></p>' +
-          '</div>';
-      });
-      html += '</div>';
+    doctors.forEach(function (doctor) {
+      html += '<div class="vp-doc">' +
+        '<p class="vp-doc-name">' + esc(doctor.name) + '</p>' +
+        '<p>' + esc(doctor.address) + '</p>' +
+        '</div>';
     });
 
     html += '<button class="vp-btn" type="button">' + esc(texts.close) + '</button></div>';
